@@ -8,7 +8,7 @@ using Cronica.Models;
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160116100322_Creacion")]
+    [Migration("20160116184721_Creacion")]
     partial class Creacion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,8 +124,6 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int?>("PersonajeId");
-
                     b.Property<int>("PotenciaSangre");
 
                     b.Property<int>("PuntosDeSangre");
@@ -135,6 +133,15 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("ValorSenda");
 
                     b.HasKey("Id");
+                });
+
+            modelBuilder.Entity("Cronica.ViewModels.Personaje.PersonaTrasfondo", b =>
+                {
+                    b.Property<int>("PersonajeJugadorId");
+
+                    b.Property<int>("TrasfondoRelacionadoId");
+
+                    b.HasKey("PersonajeJugadorId", "TrasfondoRelacionadoId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -235,10 +242,17 @@ namespace Cronica.Modelos.Migrations
                     b.HasOne("Cronica.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("JugadorId");
+                });
+
+            modelBuilder.Entity("Cronica.ViewModels.Personaje.PersonaTrasfondo", b =>
+                {
+                    b.HasOne("Cronica.ViewModels.Personaje.Personaje")
+                        .WithMany()
+                        .HasForeignKey("PersonajeJugadorId");
 
                     b.HasOne("Cronica.ViewModels.Personaje.Personaje")
                         .WithMany()
-                        .HasForeignKey("PersonajeId");
+                        .HasForeignKey("TrasfondoRelacionadoId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>

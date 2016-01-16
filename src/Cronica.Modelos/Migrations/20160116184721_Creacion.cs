@@ -79,7 +79,6 @@ namespace Cronica.Modelos.Migrations
                     Meritos = table.Column<string>(nullable: true),
                     Naturaleza = table.Column<string>(nullable: true),
                     Nombre = table.Column<string>(nullable: true),
-                    PersonajeId = table.Column<int>(nullable: true),
                     PotenciaSangre = table.Column<int>(nullable: false),
                     PuntosDeSangre = table.Column<int>(nullable: false),
                     Senda = table.Column<int>(nullable: false),
@@ -92,12 +91,6 @@ namespace Cronica.Modelos.Migrations
                         name: "FK_Personaje_ApplicationUser_JugadorId",
                         column: x => x.JugadorId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Personaje_Personaje_PersonajeId",
-                        column: x => x.PersonajeId,
-                        principalTable: "Personaje",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -209,6 +202,29 @@ namespace Cronica.Modelos.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+            migrationBuilder.CreateTable(
+                name: "PersonaTrasfondo",
+                columns: table => new
+                {
+                    PersonajeJugadorId = table.Column<int>(nullable: false),
+                    TrasfondoRelacionadoId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonaTrasfondo", x => new { x.PersonajeJugadorId, x.TrasfondoRelacionadoId });
+                    table.ForeignKey(
+                        name: "FK_PersonaTrasfondo_Personaje_PersonajeJugadorId",
+                        column: x => x.PersonajeJugadorId,
+                        principalTable: "Personaje",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_PersonaTrasfondo_Personaje_TrasfondoRelacionadoId",
+                        column: x => x.TrasfondoRelacionadoId,
+                        principalTable: "Personaje",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
@@ -226,6 +242,7 @@ namespace Cronica.Modelos.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable("AtributoPersonaje");
+            migrationBuilder.DropTable("PersonaTrasfondo");
             migrationBuilder.DropTable("AspNetRoleClaims");
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");

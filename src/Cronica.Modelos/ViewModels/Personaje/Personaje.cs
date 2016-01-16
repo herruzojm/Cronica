@@ -1,6 +1,7 @@
 ﻿using Cronica.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,7 +14,8 @@ namespace Cronica.ViewModels.Personaje
         public Personaje()
         {
             Atributos = new List<AtributoPersonaje>();
-            TrasfondosPersonaje = new List<Personaje>();
+            Trasfondos = new List<PersonaTrasfondo>();
+            PersonajesJugadores = new List<PersonaTrasfondo>();
         }
 
         public int Id { get; set; }
@@ -34,7 +36,8 @@ namespace Cronica.ViewModels.Personaje
         public string Meritos { get; set; }
         public string Defectos { get; set; }
         public virtual List<AtributoPersonaje> Atributos { get; set; }
-        public virtual List<Personaje> TrasfondosPersonaje { get; set; }
+        public virtual List<PersonaTrasfondo> Trasfondos { get; set; }
+        public virtual List<PersonaTrasfondo> PersonajesJugadores { get; set; }
         public virtual ApplicationUser Jugador { get; set; }
 
     }
@@ -101,6 +104,15 @@ namespace Cronica.ViewModels.Personaje
         public virtual Atributo Atributo { get; set; }
 
     }    
+
+    public class PersonaTrasfondo
+    {
+        public int PersonajeJugadorId { get; set; }
+        public virtual Personaje PersonajeJugador { get; set; }
+        public int TrasfondoRelacionadoId { get; set; }
+        public virtual Personaje TrasfondoRelacionado { get; set; }
+    }
+
 
     public class PersonajeCompleto
     {
