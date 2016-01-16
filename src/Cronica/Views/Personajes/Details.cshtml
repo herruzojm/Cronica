@@ -1,0 +1,119 @@
+@model Cronica.ViewModels.Personaje.Personaje
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Personaje</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Clan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Clan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Concepto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Concepto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Conducta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Conducta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Defectos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Defectos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Experiencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Experiencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Generacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Generacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Historia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Historia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Meritos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Meritos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Naturaleza)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Naturaleza)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PotenciaSangre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PotenciaSangre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosDeSangre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosDeSangre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Senda)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Senda)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorSenda)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ValorSenda)
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        @for (int i = 0; i < Model.Atributos.Count(); i++)
+        {
+            <dt>
+                @Model.Atributos[i].Atributo.Nombre
+            </dt>
+            <dd>
+                @Model.Atributos[i].Valor
+            </dd>
+        }
+    </dl>    
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>

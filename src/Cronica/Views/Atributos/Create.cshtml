@@ -1,0 +1,51 @@
+@model Cronica.ViewModels.Personaje.Atributo
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>AtributoViewModel</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Nombre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Tipo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Tipo" asp-items="Html.GetEnumSelectList<TipoAtributo>()" class="form-control"></select>
+                <span asp-validation-for="Tipo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SubTipo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="SubTipo" asp-items="Html.GetEnumSelectList<SubTipoAtributo>()" class="form-control"></select>
+                <span asp-validation-for="SubTipo" class="text-danger" />
+            </div>
+        </div>        
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

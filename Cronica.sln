@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0C469826-08F1-4311-9246-DBFCA74EF217}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1F90C55E-DDDB-4B72-9841-9225435A5556}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+		WebEssentials2015-Settings.json = WebEssentials2015-Settings.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cronica", "src\Cronica\Cronica.xproj", "{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Cronica.Modelos", "src\Cronica.Modelos\Cronica.Modelos.xproj", "{6D74B448-295A-4264-AD6D-EAC28B437EA2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D74B448-295A-4264-AD6D-EAC28B437EA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D74B448-295A-4264-AD6D-EAC28B437EA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D74B448-295A-4264-AD6D-EAC28B437EA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D74B448-295A-4264-AD6D-EAC28B437EA2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BA70BCFB-DCEC-4736-B89A-E9F34AEC712B} = {0C469826-08F1-4311-9246-DBFCA74EF217}
+		{6D74B448-295A-4264-AD6D-EAC28B437EA2} = {0C469826-08F1-4311-9246-DBFCA74EF217}
+	EndGlobalSection
+EndGlobal
