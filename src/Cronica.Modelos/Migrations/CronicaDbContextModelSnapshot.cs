@@ -16,6 +16,31 @@ namespace Cronica.Modelos.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Trama.AtributoPlantillaTrama", b =>
+                {
+                    b.Property<int>("AtributoId");
+
+                    b.Property<int>("PlantillaTramaId");
+
+                    b.Property<int>("Multiplicador");
+
+                    b.HasKey("AtributoId", "PlantillaTramaId");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Trama.PlantillaTrama", b =>
+                {
+                    b.Property<int>("PlantillaTramaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Descripcion");
+
+                    b.Property<int>("PuntosDePresionPorTiemppo");
+
+                    b.Property<int>("PuntosNecesarios");
+
+                    b.HasKey("PlantillaTramaId");
+                });
+
             modelBuilder.Entity("Cronica.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id");
@@ -68,7 +93,7 @@ namespace Cronica.Modelos.Migrations
 
             modelBuilder.Entity("Cronica.ViewModels.Personaje.Atributo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AtributoId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Nombre");
@@ -77,26 +102,25 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("Tipo");
 
-                    b.HasKey("Id");
+                    b.HasKey("AtributoId");
                 });
 
             modelBuilder.Entity("Cronica.ViewModels.Personaje.AtributoPersonaje", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
                     b.Property<int>("AtributoId");
 
                     b.Property<int>("PersonajeId");
 
                     b.Property<int>("Valor");
 
-                    b.HasKey("Id");
+                    b.Property<int>("ValorEnTrama");
+
+                    b.HasKey("AtributoId", "PersonajeId");
                 });
 
             modelBuilder.Entity("Cronica.ViewModels.Personaje.Personaje", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("PersonajeId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Activo");
@@ -131,7 +155,7 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("ValorSenda");
 
-                    b.HasKey("Id");
+                    b.HasKey("PersonajeId");
                 });
 
             modelBuilder.Entity("Cronica.ViewModels.Personaje.PersonaTrasfondo", b =>
@@ -223,6 +247,17 @@ namespace Cronica.Modelos.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Trama.AtributoPlantillaTrama", b =>
+                {
+                    b.HasOne("Cronica.ViewModels.Personaje.Atributo")
+                        .WithMany()
+                        .HasForeignKey("AtributoId");
+
+                    b.HasOne("Cronica.Modelos.ViewModels.Trama.PlantillaTrama")
+                        .WithMany()
+                        .HasForeignKey("PlantillaTramaId");
                 });
 
             modelBuilder.Entity("Cronica.ViewModels.Personaje.AtributoPersonaje", b =>

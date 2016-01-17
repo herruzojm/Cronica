@@ -4,6 +4,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Cronica.ViewModels.Personaje;
 using Cronica.Models;
+using Cronica.Modelos.LogicaPersonajes;
 
 namespace Cronica.Controllers
 {
@@ -30,7 +31,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.Id == id);
+            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.AtributoId == id);
             if (atributoViewModel == null)
             {
                 return HttpNotFound();
@@ -52,9 +53,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Atributos.Add(atributo);
-                await _context.SaveChangesAsync();
-                IncluirAtributoEnPersonajes(atributo);
+                LogicaAtributos logica = new LogicaAtributos(_context);
+                await logica.CrearAtributo(atributo);
                 return RedirectToAction("Index");
             }
             return View(atributo);
@@ -68,7 +68,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.Id == id);
+            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.AtributoId == id);
             if (atributoViewModel == null)
             {
                 return HttpNotFound();
@@ -89,15 +89,6 @@ namespace Cronica.Controllers
                 return RedirectToAction("Index");
             }
             return View(atributoViewModel);
-        }
-
-        private void IncluirAtributoEnPersonajes(Atributo nuevoAtributo)
-        {
-            var personajes = _context.Personajes.ToList<Personaje>();
-            personajes.ForEach(p => p.Atributos.Add(
-                    new AtributoPersonaje() { AtributoId = nuevoAtributo.Id, PersonajeId = p.Id, Valor = 0 }
-                ));
-            _context.SaveChanges();
         }
 
         //// GET: Atributo/Delete/5

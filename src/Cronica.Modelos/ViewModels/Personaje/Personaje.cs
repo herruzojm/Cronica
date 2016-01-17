@@ -18,7 +18,7 @@ namespace Cronica.ViewModels.Personaje
             PersonajesJugadores = new List<PersonaTrasfondo>();
         }
 
-        public int Id { get; set; }
+        public int PersonajeId { get; set; }
         public string JugadorId { get; set; }
         public bool Activo { get; set; }
         public string Nombre { get; set; }
@@ -40,6 +40,30 @@ namespace Cronica.ViewModels.Personaje
         public virtual List<PersonaTrasfondo> PersonajesJugadores { get; set; }
         public virtual ApplicationUser Jugador { get; set; }
 
+    }
+
+    public class AtributoPersonaje
+    {
+        public int PersonajeId { get; set; }
+        public int AtributoId { get; set; }
+        public int Valor { get; set; } = 0;
+        public int ValorEnTrama { get; set; } = 0;
+        public virtual Atributo Atributo { get; set; }
+
+    }    
+
+    public class PersonaTrasfondo
+    {
+        public int PersonajeJugadorId { get; set; }
+        public virtual Personaje PersonajeJugador { get; set; }
+        public int TrasfondoRelacionadoId { get; set; }
+        public virtual Personaje TrasfondoRelacionado { get; set; }
+    }
+
+    public class PersonajeCompleto
+    {
+        public Personaje Personaje { get; set; }
+        public List<AtributoPersonaje> Atributos { get; set; }
     }
 
     public enum TipoClan
@@ -92,32 +116,6 @@ namespace Cronica.ViewModels.Personaje
         Humanidad,
         [Display(Name = "Poder y la Voz Interior")]
         PoderVozInterior
-    }
-
-    public class AtributoPersonaje
-    {
-        public int Id { get; set; }
-        public int PersonajeId { get; set; }
-        public int AtributoId { get; set; }
-        public int Valor { get; set; } = 0;
-
-        public virtual Atributo Atributo { get; set; }
-
-    }    
-
-    public class PersonaTrasfondo
-    {
-        public int PersonajeJugadorId { get; set; }
-        public virtual Personaje PersonajeJugador { get; set; }
-        public int TrasfondoRelacionadoId { get; set; }
-        public virtual Personaje TrasfondoRelacionado { get; set; }
-    }
-
-
-    public class PersonajeCompleto
-    {
-        public Personaje Personaje { get; set; }
-        public List<AtributoPersonaje> Atributos { get; set; }
     }
 
 }

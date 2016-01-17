@@ -10,6 +10,20 @@ namespace Cronica.Modelos.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "PlantillaTrama",
+                columns: table => new
+                {
+                    PlantillaTramaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Descripcion = table.Column<string>(nullable: true),
+                    PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
+                    PuntosNecesarios = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlantillaTrama", x => x.PlantillaTramaId);
+                });
+            migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
                 {
@@ -38,7 +52,7 @@ namespace Cronica.Modelos.Migrations
                 name: "Atributo",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    AtributoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Nombre = table.Column<string>(nullable: true),
                     SubTipo = table.Column<int>(nullable: false),
@@ -46,7 +60,7 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atributo", x => x.Id);
+                    table.PrimaryKey("PK_Atributo", x => x.AtributoId);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -65,7 +79,7 @@ namespace Cronica.Modelos.Migrations
                 name: "Personaje",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    PersonajeId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Activo = table.Column<bool>(nullable: false),
                     Clan = table.Column<int>(nullable: false),
@@ -86,7 +100,7 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personaje", x => x.Id);
+                    table.PrimaryKey("PK_Personaje", x => x.PersonajeId);
                     table.ForeignKey(
                         name: "FK_Personaje_ApplicationUser_JugadorId",
                         column: x => x.JugadorId,
@@ -131,6 +145,30 @@ namespace Cronica.Modelos.Migrations
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            migrationBuilder.CreateTable(
+                name: "AtributoPlantillaTrama",
+                columns: table => new
+                {
+                    AtributoId = table.Column<int>(nullable: false),
+                    PlantillaTramaId = table.Column<int>(nullable: false),
+                    Multiplicador = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtributoPlantillaTrama", x => new { x.AtributoId, x.PlantillaTramaId });
+                    table.ForeignKey(
+                        name: "FK_AtributoPlantillaTrama_Atributo_AtributoId",
+                        column: x => x.AtributoId,
+                        principalTable: "Atributo",
+                        principalColumn: "AtributoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AtributoPlantillaTrama_PlantillaTrama_PlantillaTramaId",
+                        column: x => x.PlantillaTramaId,
+                        principalTable: "PlantillaTrama",
+                        principalColumn: "PlantillaTramaId",
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
@@ -180,26 +218,25 @@ namespace Cronica.Modelos.Migrations
                 name: "AtributoPersonaje",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AtributoId = table.Column<int>(nullable: false),
                     PersonajeId = table.Column<int>(nullable: false),
-                    Valor = table.Column<int>(nullable: false)
+                    Valor = table.Column<int>(nullable: false),
+                    ValorEnTrama = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AtributoPersonaje", x => x.Id);
+                    table.PrimaryKey("PK_AtributoPersonaje", x => new { x.AtributoId, x.PersonajeId });
                     table.ForeignKey(
                         name: "FK_AtributoPersonaje_Atributo_AtributoId",
                         column: x => x.AtributoId,
                         principalTable: "Atributo",
-                        principalColumn: "Id",
+                        principalColumn: "AtributoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_AtributoPersonaje_Personaje_PersonajeId",
                         column: x => x.PersonajeId,
                         principalTable: "Personaje",
-                        principalColumn: "Id",
+                        principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
@@ -216,13 +253,13 @@ namespace Cronica.Modelos.Migrations
                         name: "FK_PersonaTrasfondo_Personaje_PersonajeJugadorId",
                         column: x => x.PersonajeJugadorId,
                         principalTable: "Personaje",
-                        principalColumn: "Id",
+                        principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PersonaTrasfondo_Personaje_TrasfondoRelacionadoId",
                         column: x => x.TrasfondoRelacionadoId,
                         principalTable: "Personaje",
-                        principalColumn: "Id",
+                        principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Restrict);
                 });
             migrationBuilder.CreateIndex(
@@ -241,12 +278,14 @@ namespace Cronica.Modelos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable("AtributoPlantillaTrama");
             migrationBuilder.DropTable("AtributoPersonaje");
             migrationBuilder.DropTable("PersonaTrasfondo");
             migrationBuilder.DropTable("AspNetRoleClaims");
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
+            migrationBuilder.DropTable("PlantillaTrama");
             migrationBuilder.DropTable("Atributo");
             migrationBuilder.DropTable("Personaje");
             migrationBuilder.DropTable("AspNetRoles");

@@ -43,14 +43,14 @@ namespace Cronica.Models
                 personaje3.Clan = TipoClan.Samedi;
                 personaje3.Nombre = "Tres";
                 PersonaTrasfondo tf1 = new PersonaTrasfondo();
-                tf1.PersonajeJugadorId = personaje3.Id;
+                tf1.PersonajeJugadorId = personaje3.PersonajeId;
                 tf1.PersonajeJugador = personaje3;
-                tf1.TrasfondoRelacionadoId = personaje1.Id;
+                tf1.TrasfondoRelacionadoId = personaje1.PersonajeId;
                 tf1.TrasfondoRelacionado = personaje1;
                 PersonaTrasfondo tf2 = new PersonaTrasfondo();
-                tf2.PersonajeJugadorId = personaje3.Id;
+                tf2.PersonajeJugadorId = personaje3.PersonajeId;
                 tf2.PersonajeJugador = personaje3;
-                tf2.TrasfondoRelacionadoId = personaje2.Id;
+                tf2.TrasfondoRelacionadoId = personaje2.PersonajeId;
                 tf2.TrasfondoRelacionado = personaje2;
                 personaje3.Trasfondos.Add(tf1);
                 personaje3.Trasfondos.Add(tf2);
@@ -60,9 +60,9 @@ namespace Cronica.Models
                 personaje4.Clan = TipoClan.Ventrue;
                 personaje4.Nombre = "Cuatro";
                 PersonaTrasfondo tf3 = new PersonaTrasfondo();
-                tf3.PersonajeJugadorId = personaje4.Id;
+                tf3.PersonajeJugadorId = personaje4.PersonajeId;
                 tf3.PersonajeJugador = personaje4;
-                tf3.TrasfondoRelacionadoId = personaje1.Id;
+                tf3.TrasfondoRelacionadoId = personaje1.PersonajeId;
                 tf3.TrasfondoRelacionado = personaje1;
                 personaje4.Trasfondos.Add(tf3);
                 contexto.Personajes.Add(personaje4);
@@ -74,7 +74,7 @@ namespace Cronica.Models
                     foreach (Atributo atributo in atributos)
                     {
                         personaje.Atributos.Add(new AtributoPersonaje
-                        { AtributoId = atributo.Id, PersonajeId = personaje.Id, Valor = 0 });
+                        { AtributoId = atributo.AtributoId, PersonajeId = personaje.PersonajeId, Valor = 0 });
                     }                    
                 }
                 contexto.SaveChanges();

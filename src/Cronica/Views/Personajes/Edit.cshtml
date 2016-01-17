@@ -11,7 +11,7 @@
         <h4>Personaje</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="PersonajeId" />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
@@ -129,8 +129,7 @@
         <h3>Atributos</h3>
         @for (int i = 0; i < Model.Atributos.Count(); i++)
         {
-            <div class="form-group">
-                <input type="hidden" asp-for="Atributos[i].Id" />
+            <div class="form-group">                
                 <input type="hidden" asp-for="Atributos[i].AtributoId" />
                 <input type="hidden" asp-for="Atributos[i].PersonajeId" />
                 <label asp-for="Atributos[i].Id" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>

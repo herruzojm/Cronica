@@ -33,8 +33,8 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            DatosPersonajes datos = new DatosPersonajes(_context);
-            Personaje personaje = datos.GetPersonaje(id.Value);
+            LogicaPersonajes logica = new LogicaPersonajes(_context);
+            Personaje personaje = await logica.GetPersonaje(id.Value);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -43,7 +43,7 @@ namespace Cronica.Controllers
         }
 
         // GET: Personajes/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
             ViewData["JugadorId"] = new SelectList(_context.Users, "Id", "Jugador");
             ViewBag.Jugadores = _context.Users.Select(u => new SelectListItem
@@ -51,8 +51,8 @@ namespace Cronica.Controllers
                 Value = u.Id,
                 Text = u.UserName
             }).ToList();
-            DatosPersonajes datos = new DatosPersonajes(_context);
-            Personaje personaje = datos.GetNuevoPersonaje();            
+            LogicaPersonajes logica = new LogicaPersonajes(_context);
+            Personaje personaje = await logica.GetNuevoPersonaje();            
             return View(personaje);
         }
 
@@ -78,8 +78,8 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-            DatosPersonajes datos = new DatosPersonajes(_context);
-            Personaje personaje = datos.GetPersonaje(id.Value);            
+            LogicaPersonajes datos = new LogicaPersonajes(_context);
+            Personaje personaje = await datos.GetPersonaje(id.Value);            
             ViewData["JugadorId"] = new SelectList(_context.Users, "Id", "Jugador", personaje.JugadorId);
             if (personaje == null)
             {
@@ -117,7 +117,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Personaje personaje = await _context.Personajes.SingleAsync(m => m.Id == id);
+            Personaje personaje = await _context.Personajes.SingleAsync(m => m.PersonajeId == id);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -131,7 +131,7 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Personaje personaje = await _context.Personajes.SingleAsync(m => m.Id == id);
+            Personaje personaje = await _context.Personajes.SingleAsync(m => m.PersonajeId == id);
             _context.Personajes.Remove(personaje);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
