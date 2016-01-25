@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Cronica.Models;
 using Cronica.Services;
+using Cronica.Modelos.LogicaPersonajes;
 
 namespace Cronica
 {
@@ -55,6 +56,9 @@ namespace Cronica
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<LogicaPersonajes, LogicaPersonajes>();
+            services.AddScoped<LogicaAtributos, LogicaAtributos>();
+            services.AddScoped<LogicaPlantillasTrama, LogicaPlantillasTrama>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

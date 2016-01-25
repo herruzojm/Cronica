@@ -1,4 +1,5 @@
-﻿using Cronica.ViewModels.Personaje;
+﻿using Cronica.Modelos.ViewModels.Trama;
+using Cronica.ViewModels.Personaje;
 using Microsoft.Data.Entity.Storage;
 using System;
 using System.Collections.Generic;
@@ -77,6 +78,21 @@ namespace Cronica.Models
                         { AtributoId = atributo.AtributoId, PersonajeId = personaje.PersonajeId, Valor = 0 });
                     }                    
                 }
+                contexto.SaveChanges();
+            }
+            if (!contexto.PlantillasTrama.Any())
+            {
+                PlantillaTrama plantilla = new PlantillaTrama();
+                plantilla.Descripcion = "Aumentar Recursos";
+                plantilla.PuntosDePresionPorTiemppo = 1;
+                plantilla.PuntosNecesarios = 50;
+                var atributos = contexto.Atributos.ToList();
+                foreach (Atributo atributo in atributos)
+                {
+                    plantilla.Atributos.Add(new AtributoPlantillaTrama
+                    { AtributoId = atributo.AtributoId, PlantillaTramaId = plantilla.PlantillaTramaId, Multiplicador = 1 });
+                }                
+                contexto.PlantillasTrama.Add(plantilla);
                 contexto.SaveChanges();
             }
         }

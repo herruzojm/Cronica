@@ -11,10 +11,12 @@ namespace Cronica.Controllers
     public class AtributosController : Controller
     {
         private CronicaDbContext _context;
+        private LogicaAtributos _logicaAtributos;
 
-        public AtributosController(CronicaDbContext context)
+        public AtributosController(CronicaDbContext context, LogicaAtributos logicaAtributos)
         {
             _context = context;
+            _logicaAtributos = logicaAtributos;
         }
 
         // GET: Atributo
@@ -52,9 +54,8 @@ namespace Cronica.Controllers
         public async Task<IActionResult> Create(Atributo atributo)
         {
             if (ModelState.IsValid)
-            {
-                LogicaAtributos logica = new LogicaAtributos(_context);
-                await logica.CrearAtributo(atributo);
+            {                
+                await _logicaAtributos.CrearAtributo(atributo);
                 return RedirectToAction("Index");
             }
             return View(atributo);

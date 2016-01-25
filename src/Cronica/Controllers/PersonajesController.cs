@@ -12,17 +12,18 @@ namespace Cronica.Controllers
     public class PersonajesController : Controller
     {
         private CronicaDbContext _context;
+        private LogicaPersonajes _logicaPersonajes;
 
-        public PersonajesController(CronicaDbContext context)
+        public PersonajesController(CronicaDbContext context, LogicaPersonajes logicaPersonajes)
         {
-            _context = context;    
+            _context = context;
+            _logicaPersonajes = logicaPersonajes;
         }
 
         // GET: Personajes
         public async Task<IActionResult> Index()
         {
-            var cronicaDbContext = _context.Personajes.Include(p => p.Jugador);
-            return View(await cronicaDbContext.ToListAsync());
+            return View(await _context.Personajes.Include(p => p.Jugador).ToListAsync());
         }
 
         // GET: Personajes/Details/5
@@ -32,9 +33,8 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-
-            LogicaPersonajes logica = new LogicaPersonajes(_context);
-            Personaje personaje = await logica.GetPersonaje(id.Value);
+            
+            Personaje personaje = await _logicaPersonajes.GetPersonaje(id.Value);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -51,8 +51,8 @@ namespace Cronica.Controllers
                 Value = u.Id,
                 Text = u.UserName
             }).ToList();
-            LogicaPersonajes logica = new LogicaPersonajes(_context);
-            Personaje personaje = await logica.GetNuevoPersonaje();            
+            
+            Personaje personaje = await _logicaPersonajes.GetNuevoPersonaje();            
             return View(personaje);
         }
 
@@ -78,8 +78,8 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-            LogicaPersonajes datos = new LogicaPersonajes(_context);
-            Personaje personaje = await datos.GetPersonaje(id.Value);            
+            
+            Personaje personaje = await _logicaPersonajes.GetPersonaje(id.Value);            
             ViewData["JugadorId"] = new SelectList(_context.Users, "Id", "Jugador", personaje.JugadorId);
             if (personaje == null)
             {

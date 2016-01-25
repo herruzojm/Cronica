@@ -15,7 +15,7 @@ namespace Cronica.Models
         public DbSet<Personaje> Personajes { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
-
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

@@ -1,0 +1,67 @@
+@model Cronica.Modelos.ViewModels.Trama.PlantillaTrama
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>PlantillaTrama</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PlantillaTramaId" />
+        <div class="form-group">
+            <label asp-for="Descripcion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosDePresionPorTiemppo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosDePresionPorTiemppo" class="form-control" />
+                <span asp-validation-for="PuntosDePresionPorTiemppo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosNecesarios" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosNecesarios" class="form-control" />
+                <span asp-validation-for="PuntosNecesarios" class="text-danger" />
+            </div>
+        </div>
+
+        <h3>Atributos</h3>
+        @for (int i = 0; i < Model.Atributos.Count(); i++)
+        {
+            <div class="form-group">
+                <input type="hidden" asp-for="Atributos[i].AtributoId" />
+                <input type="hidden" asp-for="Atributos[i].PlantillaTramaId" />
+                <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
+                <div class="col-md-10">
+                    <input asp-for="Atributos[i].Multiplicador" class="form-control" />
+                    <span asp-validation-for="Atributos[i].Multiplicador" class="text-danger" />
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

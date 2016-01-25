@@ -29,10 +29,10 @@
         "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final"
     },
 
-  "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel",
-    "ef": "EntityFramework.Commands"
-  },
+    "commands": {
+        "web": "Microsoft.AspNet.Server.Kestrel",
+        "ef": "EntityFramework.Commands"
+    },
 
   "frameworks": {
     "dnx451": { },

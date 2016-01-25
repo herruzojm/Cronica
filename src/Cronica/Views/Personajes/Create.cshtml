@@ -130,7 +130,7 @@
             <div class="form-group">
                 <input type="hidden" asp-for="Atributos[i].AtributoId" />
                 <input type="hidden" asp-for="Atributos[i].PersonajeId" />
-                <label asp-for="Atributos[i].Id" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
+                <label asp-for="Atributos[i].PersonajeId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
                 <div class="col-md-10">
                     <input asp-for="Atributos[i].Valor" class="form-control" />
                     <span asp-validation-for="Atributos[i].Valor" class="text-danger" />
