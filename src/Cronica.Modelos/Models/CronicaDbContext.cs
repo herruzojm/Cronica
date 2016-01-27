@@ -1,4 +1,5 @@
-﻿using Cronica.Modelos.ViewModels.Trama;
+﻿using Cronica.Modelos.ViewModels.PostPartida;
+using Cronica.Modelos.ViewModels.Trama;
 using Cronica.ViewModels.Personaje;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
@@ -15,7 +16,8 @@ namespace Cronica.Models
         public DbSet<Personaje> Personajes { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
-        
+        public DbSet<PostPartida> PostPartidas { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);

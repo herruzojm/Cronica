@@ -8,7 +8,7 @@ using Cronica.Models;
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160127150834_PostPartida")]
+    [Migration("20160127161612_PostPartida")]
     partial class PostPartida
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,36 @@ namespace Cronica.Modelos.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartida.PasaTrama", b =>
+                {
+                    b.Property<int>("PasaTramaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("FechaPrevista");
+
+                    b.Property<DateTime>("FechaResolucion");
+
+                    b.Property<int?>("PostPartidaPostPartidaId");
+
+                    b.Property<bool>("Resuelto");
+
+                    b.HasKey("PasaTramaId");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartida.PostPartida", b =>
+                {
+                    b.Property<int>("PostPartidaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Cerrada");
+
+                    b.Property<DateTime>("FechaFin");
+
+                    b.Property<DateTime>("FechaInicio");
+
+                    b.HasKey("PostPartidaId");
+                });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Trama.AtributoPlantillaTrama", b =>
                 {
@@ -248,6 +278,13 @@ namespace Cronica.Modelos.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartida.PasaTrama", b =>
+                {
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartida.PostPartida")
+                        .WithMany()
+                        .HasForeignKey("PostPartidaPostPartidaId");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Trama.AtributoPlantillaTrama", b =>

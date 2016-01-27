@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
+using Microsoft.Data.Entity.Metadata;
 
 namespace Cronica.Modelos.Migrations
 {
@@ -17,6 +18,41 @@ namespace Cronica.Modelos.Migrations
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserLogin<string>_ApplicationUser_UserId", table: "AspNetUserLogins");
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserRole<string>_IdentityRole_RoleId", table: "AspNetUserRoles");
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserRole<string>_ApplicationUser_UserId", table: "AspNetUserRoles");
+            migrationBuilder.CreateTable(
+                name: "PostPartida",
+                columns: table => new
+                {
+                    PostPartidaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Cerrada = table.Column<bool>(nullable: false),
+                    FechaFin = table.Column<DateTime>(nullable: false),
+                    FechaInicio = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostPartida", x => x.PostPartidaId);
+                });
+            migrationBuilder.CreateTable(
+                name: "PasaTrama",
+                columns: table => new
+                {
+                    PasaTramaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FechaPrevista = table.Column<DateTime>(nullable: false),
+                    FechaResolucion = table.Column<DateTime>(nullable: false),
+                    PostPartidaPostPartidaId = table.Column<int>(nullable: true),
+                    Resuelto = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PasaTrama", x => x.PasaTramaId);
+                    table.ForeignKey(
+                        name: "FK_PasaTrama_PostPartida_PostPartidaPostPartidaId",
+                        column: x => x.PostPartidaPostPartidaId,
+                        principalTable: "PostPartida",
+                        principalColumn: "PostPartidaId",
+                        onDelete: ReferentialAction.Restrict);
+                });
             migrationBuilder.AddForeignKey(
                 name: "FK_AtributoPlantillaTrama_Atributo_AtributoId",
                 table: "AtributoPlantillaTrama",
@@ -93,6 +129,8 @@ namespace Cronica.Modelos.Migrations
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserLogin<string>_ApplicationUser_UserId", table: "AspNetUserLogins");
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserRole<string>_IdentityRole_RoleId", table: "AspNetUserRoles");
             migrationBuilder.DropForeignKey(name: "FK_IdentityUserRole<string>_ApplicationUser_UserId", table: "AspNetUserRoles");
+            migrationBuilder.DropTable("PasaTrama");
+            migrationBuilder.DropTable("PostPartida");
             migrationBuilder.AddForeignKey(
                 name: "FK_AtributoPlantillaTrama_Atributo_AtributoId",
                 table: "AtributoPlantillaTrama",
