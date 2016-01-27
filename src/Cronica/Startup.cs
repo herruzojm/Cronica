@@ -65,7 +65,7 @@ namespace Cronica
                     options.Filters.Add(new RequireHttpsAttribute());
 #endif
                 }
-            );
+            );            
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
