@@ -44,6 +44,10 @@ namespace Cronica.Controllers
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                //todo: redirigir a su personaje
+            }
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }

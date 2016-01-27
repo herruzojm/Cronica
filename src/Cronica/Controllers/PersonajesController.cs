@@ -6,9 +6,11 @@ using Microsoft.Data.Entity;
 using Cronica.Models;
 using Cronica.ViewModels.Personaje;
 using Cronica.Modelos.LogicaPersonajes;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
+    [Authorize]
     public class PersonajesController : Controller
     {
         private CronicaDbContext _context;

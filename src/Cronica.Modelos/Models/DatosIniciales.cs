@@ -1,5 +1,6 @@
 ﻿using Cronica.Modelos.ViewModels.Trama;
 using Cronica.ViewModels.Personaje;
+using Microsoft.AspNet.Identity;
 using Microsoft.Data.Entity.Storage;
 using System;
 using System.Collections.Generic;
@@ -8,15 +9,42 @@ using System.Threading.Tasks;
 
 namespace Cronica.Models
 {
-    public static class DatosIniciales
+    public class DatosIniciales
     {
-        public static void Initialize(IServiceProvider serviceProvider)
-        {
-            var contexto = (CronicaDbContext)serviceProvider.GetService(typeof(CronicaDbContext));
+        private CronicaDbContext _contexto;
+        private UserManager<ApplicationUser> _userManager;
 
-            if (!contexto.Atributos.Any())
+        public DatosIniciales(CronicaDbContext contexto, UserManager<ApplicationUser> userManager)
+        {
+            _contexto = contexto;
+            _userManager = userManager;
+        }
+
+
+        public async Task CrearDatosAsync()
+        {
+            if (!_contexto.Users.Any())
             {
-                contexto.Atributos.AddRange(
+                var usuarioJugador = new ApplicationUser()
+                {
+                    UserName = "jugador@yopmail.com",
+                    Email = "jugador@yopmail.com",
+                    EmailConfirmed = true,
+                    Cuenta = TipoCuenta.Jugador
+                }; 
+                await _userManager.CreateAsync(usuarioJugador, "Cronic@2016");
+                var usuarioNarrador = new ApplicationUser()
+                {
+                    UserName = "narrador@yopmail.com",
+                    Email = "narrador@yopmail.com",
+                    EmailConfirmed = true,
+                    Cuenta = TipoCuenta.Narrador
+                };
+                await _userManager.CreateAsync(usuarioNarrador, "Cronic@2016");                
+            }
+            if (!_contexto.Atributos.Any())
+            {
+                _contexto.Atributos.AddRange(
                     new Atributo() { Nombre = "Fuerza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
                     new Atributo() { Nombre = "Destreza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
                     new Atributo() { Nombre = "Resistencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
@@ -26,20 +54,20 @@ namespace Cronica.Models
                     new Atributo() { Nombre = "Percepción", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental },
                     new Atributo() { Nombre = "Inteligencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental },
                     new Atributo() { Nombre = "Astucia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental });
-                contexto.SaveChanges();
+                _contexto.SaveChanges();
             }
-            if (!contexto.Personajes.Any())
+            if (!_contexto.Personajes.Any())
             {
                 Personaje personaje1 = new Personaje();
                 personaje1.Clan = TipoClan.Assamita;
                 personaje1.Nombre = "Uno";
-                contexto.Personajes.Add(personaje1);
-                contexto.SaveChanges();
+                _contexto.Personajes.Add(personaje1);
+                _contexto.SaveChanges();
                 Personaje personaje2 = new Personaje();
                 personaje2.Clan = TipoClan.Lasombra;
                 personaje2.Nombre = "Dos";
-                contexto.Personajes.Add(personaje2);
-                contexto.SaveChanges();
+                _contexto.Personajes.Add(personaje2);
+                _contexto.SaveChanges();
                 Personaje personaje3 = new Personaje();
                 personaje3.Clan = TipoClan.Samedi;
                 personaje3.Nombre = "Tres";
@@ -55,8 +83,8 @@ namespace Cronica.Models
                 tf2.TrasfondoRelacionado = personaje2;
                 personaje3.Trasfondos.Add(tf1);
                 personaje3.Trasfondos.Add(tf2);
-                contexto.Personajes.Add(personaje3);
-                contexto.SaveChanges();
+                _contexto.Personajes.Add(personaje3);
+                _contexto.SaveChanges();
                 Personaje personaje4 = new Personaje();
                 personaje4.Clan = TipoClan.Ventrue;
                 personaje4.Nombre = "Cuatro";
@@ -66,10 +94,10 @@ namespace Cronica.Models
                 tf3.TrasfondoRelacionadoId = personaje1.PersonajeId;
                 tf3.TrasfondoRelacionado = personaje1;
                 personaje4.Trasfondos.Add(tf3);
-                contexto.Personajes.Add(personaje4);
-                contexto.SaveChanges();
-                var personajes = contexto.Personajes.ToList();
-                var atributos = contexto.Atributos.ToList();
+                _contexto.Personajes.Add(personaje4);
+                _contexto.SaveChanges();
+                var personajes = _contexto.Personajes.ToList();
+                var atributos = _contexto.Atributos.ToList();
                 foreach(Personaje personaje in personajes)
                 {
                     foreach (Atributo atributo in atributos)
@@ -78,22 +106,22 @@ namespace Cronica.Models
                         { AtributoId = atributo.AtributoId, PersonajeId = personaje.PersonajeId, Valor = 0 });
                     }                    
                 }
-                contexto.SaveChanges();
+                _contexto.SaveChanges();
             }
-            if (!contexto.PlantillasTrama.Any())
+            if (!_contexto.PlantillasTrama.Any())
             {
                 PlantillaTrama plantilla = new PlantillaTrama();
                 plantilla.Descripcion = "Aumentar Recursos";
                 plantilla.PuntosDePresionPorTiemppo = 1;
                 plantilla.PuntosNecesarios = 50;
-                var atributos = contexto.Atributos.ToList();
+                var atributos = _contexto.Atributos.ToList();
                 foreach (Atributo atributo in atributos)
                 {
                     plantilla.Atributos.Add(new AtributoPlantillaTrama
                     { AtributoId = atributo.AtributoId, PlantillaTramaId = plantilla.PlantillaTramaId, Multiplicador = 1 });
-                }                
-                contexto.PlantillasTrama.Add(plantilla);
-                contexto.SaveChanges();
+                }
+                _contexto.PlantillasTrama.Add(plantilla);
+                _contexto.SaveChanges();
             }
         }
     }

@@ -12,6 +12,8 @@ using Microsoft.Extensions.Logging;
 using Cronica.Models;
 using Cronica.Services;
 using Cronica.Modelos.LogicaPersonajes;
+using Microsoft.AspNet.Http;
+using Microsoft.AspNet.Mvc;
 
 namespace Cronica
 {
@@ -39,6 +41,7 @@ namespace Cronica
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             // Add framework services.
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -47,22 +50,35 @@ namespace Cronica
                 .AddDbContext<CronicaDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0, 15, 0);
+                options.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders();             
 
-            services.AddMvc();
+            services.AddMvc(options =>
+                {
+#if !DEBUG
+                    options.Filters.Add(new RequireHttpsAttribute());
+#endif
+                }
+            );
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<DatosIniciales>();
             services.AddScoped<LogicaPersonajes, LogicaPersonajes>();
             services.AddScoped<LogicaAtributos, LogicaAtributos>();
             services.AddScoped<LogicaPlantillasTrama, LogicaPlantillasTrama>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public async void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, 
+            DatosIniciales datosIniciales )
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -95,6 +111,13 @@ namespace Cronica
             app.UseStaticFiles();
 
             app.UseIdentity();
+            
+            app.UseCookieAuthentication(options =>
+                {
+                    options.LogoutPath = new PathString("/Home/Index");
+                    options.LoginPath = new PathString("/Account/Login");                    
+                }
+            );
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
@@ -104,8 +127,8 @@ namespace Cronica
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            
-            DatosIniciales.Initialize(app.ApplicationServices);
+
+            await datosIniciales.CrearDatosAsync();
         }
 
         // Entry point for the application.
