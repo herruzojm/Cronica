@@ -1,4 +1,4 @@
-﻿using Cronica.ViewModels.Personaje;
+﻿using Cronica.Modelos.ViewModels.GestionPersonaje;
 using System;
 using System.Collections.Generic;
 using System.Linq;

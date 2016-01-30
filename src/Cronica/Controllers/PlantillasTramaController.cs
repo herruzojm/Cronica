@@ -4,26 +4,24 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.Trama;
-using Cronica.Models;
-using Cronica.Modelos.LogicaPersonajes;
+using Cronica.Modelos.Models;
+using Cronica.Modelos.Repositorios;
 
 namespace Cronica.Controllers
 {
     public class PlantillasTramaController : Controller
     {
-        private CronicaDbContext _context;
-        private LogicaPlantillasTrama _logicaPlantillasTrama;
+        private IRepositorioPlantillasTrama _repositorioPlantillasTrama;
 
-        public PlantillasTramaController(CronicaDbContext context, LogicaPlantillasTrama logicaPlantillasTrama)
+        public PlantillasTramaController(IRepositorioPlantillasTrama repositorioPlantillasTrama)
         {
-            _context = context;
-            _logicaPlantillasTrama = logicaPlantillasTrama;
+            _repositorioPlantillasTrama = repositorioPlantillasTrama;
         }
 
         // GET: PlantillasTrama
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PlantillasTrama.ToListAsync());
+            return View(await _repositorioPlantillasTrama.GetPlantillasTrama());
         }
 
         // GET: PlantillasTrama/Details/5
@@ -34,7 +32,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _logicaPlantillasTrama.GetPlantillaTrama(id.Value);
+            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -46,7 +44,7 @@ namespace Cronica.Controllers
         // GET: PlantillasTrama/Create
         public async Task<IActionResult> Create()
         {
-            PlantillaTrama plantilla = await _logicaPlantillasTrama.GetNuevaPlantilla();
+            PlantillaTrama plantilla = await _repositorioPlantillasTrama.GetNuevaPlantilla();
             return View(plantilla);
         }
 
@@ -57,8 +55,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.PlantillasTrama.Add(plantillaTrama);
-                await _context.SaveChangesAsync();
+                _repositorioPlantillasTrama.IncluirPlantillaTrama(plantillaTrama);
+                await _repositorioPlantillasTrama.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(plantillaTrama);
@@ -72,7 +70,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _logicaPlantillasTrama.GetPlantillaTrama(id.Value);
+            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -87,8 +85,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Update(plantillaTrama);
-                await _context.SaveChangesAsync();
+                _repositorioPlantillasTrama.ActualizarPlantillaTrama(plantillaTrama);
+                await _repositorioPlantillasTrama.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(plantillaTrama);
@@ -103,7 +101,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _context.PlantillasTrama.SingleAsync(m => m.PlantillaTramaId == id);
+            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -117,9 +115,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PlantillaTrama plantillaTrama = await _context.PlantillasTrama.SingleAsync(m => m.PlantillaTramaId == id);
-            _context.PlantillasTrama.Remove(plantillaTrama);
-            await _context.SaveChangesAsync();
+            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id);
+            _repositorioPlantillasTrama.EliminarPlantillaTrama(plantillaTrama);
+            await _repositorioPlantillasTrama.ConfirmarCambios();                        
             return RedirectToAction("Index");
         }
     }

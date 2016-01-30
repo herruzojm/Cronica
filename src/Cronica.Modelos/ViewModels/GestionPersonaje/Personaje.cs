@@ -1,4 +1,4 @@
-﻿using Cronica.Models;
+﻿using Cronica.Modelos.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.ViewModels.Personaje
+namespace Cronica.Modelos.ViewModels.GestionPersonaje
 {
     
     public class Personaje
@@ -48,6 +48,7 @@ namespace Cronica.ViewModels.Personaje
         public int AtributoId { get; set; }
         public int Valor { get; set; } = 0;
         public int ValorEnTrama { get; set; } = 0;
+        public string Descripcion { get; set; }
         public virtual Atributo Atributo { get; set; }
 
     }    
@@ -58,12 +59,6 @@ namespace Cronica.ViewModels.Personaje
         public virtual Personaje PersonajeJugador { get; set; }
         public int TrasfondoRelacionadoId { get; set; }
         public virtual Personaje TrasfondoRelacionado { get; set; }
-    }
-
-    public class PersonajeCompleto
-    {
-        public Personaje Personaje { get; set; }
-        public List<AtributoPersonaje> Atributos { get; set; }
     }
 
     public enum TipoClan

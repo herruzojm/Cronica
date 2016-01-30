@@ -2,27 +2,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
-using Cronica.ViewModels.Personaje;
-using Cronica.Models;
-using Cronica.Modelos.LogicaPersonajes;
+using Cronica.Modelos.ViewModels.GestionPersonaje;
+using Cronica.Modelos.Models;
+using Cronica.Modelos.Repositorios;
 
 namespace Cronica.Controllers
 {
     public class AtributosController : Controller
     {
-        private CronicaDbContext _context;
-        private LogicaAtributos _logicaAtributos;
+        private IRepositorioAtributos _repositorioAtributos;
 
-        public AtributosController(CronicaDbContext context, LogicaAtributos logicaAtributos)
+        public AtributosController(IRepositorioAtributos repositorioAtributos)
         {
-            _context = context;
-            _logicaAtributos = logicaAtributos;
+            _repositorioAtributos = repositorioAtributos;
         }
 
         // GET: Atributo
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Atributos.ToListAsync());
+            return View(await _repositorioAtributos.GetAtributos());
         }
 
         // GET: Atributo/Details/5
@@ -33,7 +31,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.AtributoId == id);
+            Atributo atributoViewModel = await _repositorioAtributos.GetAtributo(id.Value);
             if (atributoViewModel == null)
             {
                 return HttpNotFound();
@@ -55,7 +53,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {                
-                await _logicaAtributos.CrearAtributo(atributo);
+                await _repositorioAtributos.CrearAtributo(atributo);
                 return RedirectToAction("Index");
             }
             return View(atributo);
@@ -69,7 +67,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.AtributoId == id);
+            Atributo atributoViewModel = await _repositorioAtributos.GetAtributo(id.Value);
             if (atributoViewModel == null)
             {
                 return HttpNotFound();
@@ -80,16 +78,16 @@ namespace Cronica.Controllers
         // POST: Atributo/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Atributo atributoViewModel)
+        public async Task<IActionResult> Edit(Atributo atributo)
         {
             if (ModelState.IsValid)
             {
-                _context.Update(atributoViewModel);
-                await _context.SaveChangesAsync();
+                _repositorioAtributos.ActualizarAtributo(atributo);
+                await _repositorioAtributos.ConfirmarCambios();
 
                 return RedirectToAction("Index");
             }
-            return View(atributoViewModel);
+            return View(atributo);
         }
 
         //// GET: Atributo/Delete/5

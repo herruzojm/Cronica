@@ -33,15 +33,27 @@
                 <a asp-controller="Home" asp-action="Index" class="navbar-brand">Verum Est Sanguis</a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">                    
-                    <li><a asp-controller="Atributos" asp-action="Index">Atributos</a></li>
-                    <li><a asp-controller="Personajes" asp-action="Index">Personajes</a></li>                    
-                    <li><a asp-controller="Sistema" asp-action="Sistema">Sistema</a></li>
+                <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Madrid</a>
+                        <a href="#" class="dropdown-toggle" data-hover="dropdown">En Juego</a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="PostPartidas" asp-action="Index">Post Partidas</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Gestion</a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Personajes" asp-action="Index">Personajes</a></li>
+                            <li><a asp-controller="Atributos" asp-action="Index">Atributos</a></li>
+                            <li><a asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-hover="dropdown">La Partida</a>
                         <ul class="dropdown-menu">
                             <li><a asp-controller="Madrid" asp-action="Historia">Historia de Madrid</a></li>
                             <li><a asp-controller="Madrid" asp-action="CarasConocidas">Caras Conocidas</a></li>
+                            <li><a asp-controller="Sistema" asp-action="Sistema">Sistema</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

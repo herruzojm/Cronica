@@ -7,7 +7,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
-using Cronica.Models;
+using Cronica.Modelos.Models;
 using Cronica.Services;
 using Cronica.ViewModels.Manage;
 

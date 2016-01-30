@@ -4,23 +4,24 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.PostPartida;
-using Cronica.Models;
+using Cronica.Modelos.Models;
+using Cronica.Modelos.Repositorios;
 
 namespace Cronica.Controllers
 {
     public class PostPartidasController : Controller
     {
-        private CronicaDbContext _context;
+        private IRepositorioPostPartidas _repositorioPostPartidas;
 
-        public PostPartidasController(CronicaDbContext context)
+        public PostPartidasController(IRepositorioPostPartidas repositorioPostPartidas)
         {
-            _context = context;    
+            _repositorioPostPartidas = repositorioPostPartidas;    
         }
 
         // GET: PostPartidas
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PostPartidas.ToListAsync());
+            return View(await _repositorioPostPartidas.GetPostPartidas());
         }
 
         // GET: PostPartidas/Details/5
@@ -31,7 +32,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PostPartida postPartida = await _context.PostPartidas.SingleAsync(m => m.PostPartidaId == id);
+            PostPartida postPartida = await _repositorioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
                 return HttpNotFound();
@@ -53,8 +54,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.PostPartidas.Add(postPartida);
-                await _context.SaveChangesAsync();
+                _repositorioPostPartidas.IncluirPostPartida(postPartida);
+                await _repositorioPostPartidas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(postPartida);
@@ -68,7 +69,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PostPartida postPartida = await _context.PostPartidas.SingleAsync(m => m.PostPartidaId == id);
+            PostPartida postPartida = await _repositorioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
                 return HttpNotFound();
@@ -83,8 +84,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Update(postPartida);
-                await _context.SaveChangesAsync();
+                _repositorioPostPartidas.ActualizarPostPartida(postPartida);
+                await _repositorioPostPartidas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(postPartida);
@@ -99,7 +100,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PostPartida postPartida = await _context.PostPartidas.SingleAsync(m => m.PostPartidaId == id);
+            PostPartida postPartida = await _repositorioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
                 return HttpNotFound();
@@ -113,9 +114,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PostPartida postPartida = await _context.PostPartidas.SingleAsync(m => m.PostPartidaId == id);
-            _context.PostPartidas.Remove(postPartida);
-            await _context.SaveChangesAsync();
+            PostPartida postPartida = await _repositorioPostPartidas.GetPostPartida(id);
+            _repositorioPostPartidas.EliminarPostPartida(postPartida);
+            await _repositorioPostPartidas.ConfirmarCambios();
             return RedirectToAction("Index");
         }
     }

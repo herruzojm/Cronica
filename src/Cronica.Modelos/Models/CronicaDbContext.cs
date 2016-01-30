@@ -1,6 +1,6 @@
 ﻿using Cronica.Modelos.ViewModels.PostPartida;
 using Cronica.Modelos.ViewModels.Trama;
-using Cronica.ViewModels.Personaje;
+using Cronica.Modelos.ViewModels.GestionPersonaje;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Models
+namespace Cronica.Modelos.Models
 {
     public class CronicaDbContext : ApplicationDbContext
     {
@@ -46,6 +46,12 @@ namespace Cronica.Models
 
             builder.Entity<AtributoPlantillaTrama>()
                 .HasKey(a => new { a.AtributoId, a.PlantillaTramaId });
+
+            builder.Entity<AtributoTramaActiva>()
+                .HasKey(a => new { a.AtributoId, a.TramaActivaId });
+
+            builder.Entity<PuntosPasaTrama>()
+                .HasKey(a => new { a.TramaActivaId, a.PasaTramaId });
         }
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Microsoft.Extensions.Logging;
-using Cronica.Models;
+using Cronica.Modelos.Models;
 using Cronica.Services;
 using Cronica.ViewModels.Account;
 

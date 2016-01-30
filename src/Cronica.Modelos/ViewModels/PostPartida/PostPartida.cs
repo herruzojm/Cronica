@@ -11,6 +11,7 @@ namespace Cronica.Modelos.ViewModels.PostPartida
         public PostPartida()
         {
             PasaTramas = new List<PasaTrama>();
+            Tramas = new List<TramaActiva>();
         }
 
         public int PostPartidaId { get; set; }
@@ -18,5 +19,6 @@ namespace Cronica.Modelos.ViewModels.PostPartida
         public DateTime FechaFin { get; set; }
         public bool Cerrada { get; set; }
         public virtual List<PasaTrama> PasaTramas { get; set; }
+        public virtual List<TramaActiva> Tramas { get; set; }
     }
 }

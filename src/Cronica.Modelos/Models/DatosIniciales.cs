@@ -1,13 +1,10 @@
 ﻿using Cronica.Modelos.ViewModels.Trama;
-using Cronica.ViewModels.Personaje;
+using Cronica.Modelos.ViewModels.GestionPersonaje;
 using Microsoft.AspNet.Identity;
-using Microsoft.Data.Entity.Storage;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Models
+namespace Cronica.Modelos.Models
 {
     public class DatosIniciales
     {

@@ -9,11 +9,12 @@ using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Cronica.Models;
+using Cronica.Modelos.Models;
 using Cronica.Services;
-using Cronica.Modelos.LogicaPersonajes;
+using Cronica.Modelos.Repositorios;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
+using System.Reflection;
 
 namespace Cronica
 {
@@ -65,15 +66,16 @@ namespace Cronica
                     options.Filters.Add(new RequireHttpsAttribute());
 #endif
                 }
-            );            
+            ).AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly); ;            
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<DatosIniciales>();
-            services.AddScoped<LogicaPersonajes, LogicaPersonajes>();
-            services.AddScoped<LogicaAtributos, LogicaAtributos>();
-            services.AddScoped<LogicaPlantillasTrama, LogicaPlantillasTrama>();
+            services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
+            services.AddScoped<IRepositorioPersonajes, RepositorioPersonajes>();
+            services.AddScoped<IRepositorioAtributos, RepositorioAtributos>();
+            services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
