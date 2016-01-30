@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.ViewModels.PostPartida;
+﻿using Cronica.Modelos.ViewModels.PostPartidas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,8 @@ namespace Cronica.Modelos.Repositorios
 {
     public interface IRepositorioPostPartidas
     {
-        Task<List<PostPartida>> GetPostPartidas();        
+        Task<List<PostPartida>> GetPostPartidas();
+        Task<List<int>> GetPostPartidasIds();
         Task<PostPartida> GetPostPartida(int postPartidaId);
         void IncluirPostPartida(PostPartida postPartida);
         Task<int> ConfirmarCambios();

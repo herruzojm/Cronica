@@ -1,5 +1,5 @@
-﻿using Cronica.Modelos.ViewModels.Trama;
-using Cronica.Modelos.ViewModels.GestionPersonaje;
+﻿using Cronica.Modelos.ViewModels.Tramas;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Threading.Tasks;

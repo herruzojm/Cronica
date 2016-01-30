@@ -1,6 +1,6 @@
-﻿using Cronica.Modelos.ViewModels.Trama;
+﻿using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
-using Cronica.Modelos.ViewModels.GestionPersonaje;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.Data.Entity;
 using System;
 using System.Collections.Generic;

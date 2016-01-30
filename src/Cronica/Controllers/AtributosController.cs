@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
-using Cronica.Modelos.ViewModels.GestionPersonaje;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.Repositorios;
 

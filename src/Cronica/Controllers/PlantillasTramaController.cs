@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Cronica.Modelos.ViewModels.Trama;
+using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.Repositorios;
 

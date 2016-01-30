@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
-using Cronica.Modelos.ViewModels.PostPartida;
+using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.Repositorios;
 

@@ -75,7 +75,8 @@ namespace Cronica
             services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             services.AddScoped<IRepositorioPersonajes, RepositorioPersonajes>();
             services.AddScoped<IRepositorioAtributos, RepositorioAtributos>();
-            services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();            
+            services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();
+            services.AddScoped<IRepositorioTramas, RepositorioTramas>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

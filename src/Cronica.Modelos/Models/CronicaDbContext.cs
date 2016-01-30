@@ -1,6 +1,6 @@
-﻿using Cronica.Modelos.ViewModels.PostPartida;
-using Cronica.Modelos.ViewModels.Trama;
-using Cronica.Modelos.ViewModels.GestionPersonaje;
+﻿using Cronica.Modelos.ViewModels.PostPartidas;
+using Cronica.Modelos.ViewModels.Tramas;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.Data.Entity;
 using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
@@ -17,6 +17,7 @@ namespace Cronica.Modelos.Models
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
         public DbSet<PostPartida> PostPartidas { get; set; }
+        public DbSet<Trama> Tramas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,11 +48,11 @@ namespace Cronica.Modelos.Models
             builder.Entity<AtributoPlantillaTrama>()
                 .HasKey(a => new { a.AtributoId, a.PlantillaTramaId });
 
-            builder.Entity<AtributoTramaActiva>()
-                .HasKey(a => new { a.AtributoId, a.TramaActivaId });
+            builder.Entity<AtributoTrama>()
+                .HasKey(a => new { a.AtributoId, a.TramaId });
 
             builder.Entity<PuntosPasaTrama>()
-                .HasKey(a => new { a.TramaActivaId, a.PasaTramaId });
+                .HasKey(a => new { a.TramaId, a.PasaTramaId });
         }
     }
 }

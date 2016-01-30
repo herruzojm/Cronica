@@ -1,10 +1,10 @@
-﻿using Cronica.Modelos.ViewModels.GestionPersonaje;
+﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.ViewModels.Trama
+namespace Cronica.Modelos.ViewModels.Tramas
 {
     public class PlantillaTrama
     {

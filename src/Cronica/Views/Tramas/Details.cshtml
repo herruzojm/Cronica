@@ -1,0 +1,54 @@
+@model Trama
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Trama</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cerrada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cerrada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosActuales)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosActuales)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosDePresionPorTiemppo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosDePresionPorTiemppo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosNecesarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosNecesarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoResolucion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoResolucion)
+        </dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.TramaId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</p>

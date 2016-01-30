@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.ViewModels.PostPartida
+namespace Cronica.Modelos.ViewModels.PostPartidas
 {
     public class PasaTrama
     {

@@ -1,0 +1,73 @@
+@model Trama
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Trama</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Cerrada" />
+                    <label asp-for="Cerrada"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descripcion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosActuales" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosActuales" class="form-control" />
+                <span asp-validation-for="PuntosActuales" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosDePresionPorTiemppo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosDePresionPorTiemppo" class="form-control" />
+                <span asp-validation-for="PuntosDePresionPorTiemppo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosNecesarios" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosNecesarios" class="form-control" />
+                <span asp-validation-for="PuntosNecesarios" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TextoResolucion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TextoResolucion" class="form-control" />
+                <span asp-validation-for="TextoResolucion" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

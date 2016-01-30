@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Cronica.Modelos.ViewModels.PostPartida;
+using Cronica.Modelos.ViewModels.PostPartidas;
 using Microsoft.Data.Entity;
 
 namespace Cronica.Modelos.Repositorios
@@ -19,7 +19,7 @@ namespace Cronica.Modelos.Repositorios
 
         public void ActualizarPostPartida(PostPartida postPartida)
         {
-            _contexto.Update(postPartida);
+            _contexto.Update(postPartida);            
         }
 
         public async Task<int> ConfirmarCambios()
@@ -40,6 +40,11 @@ namespace Cronica.Modelos.Repositorios
         public async Task<List<PostPartida>> GetPostPartidas()
         {
             return await _contexto.PostPartidas.ToListAsync();
+        }
+
+        public async Task<List<int>> GetPostPartidasIds()
+        {
+            return await _contexto.PostPartidas.Select(p => p.PostPartidaId).OrderBy(p=> p).ToListAsync();
         }
 
         public void IncluirPostPartida(PostPartida postPartida)

@@ -1,0 +1,58 @@
+@model Trama
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Trama</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cerrada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cerrada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosActuales)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosActuales)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosDePresionPorTiemppo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosDePresionPorTiemppo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosNecesarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosNecesarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TextoResolucion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TextoResolucion)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

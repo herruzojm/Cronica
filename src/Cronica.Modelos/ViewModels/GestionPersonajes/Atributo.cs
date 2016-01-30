@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.ViewModels.GestionPersonaje
+namespace Cronica.Modelos.ViewModels.GestionPersonajes
 {
     public class Atributo
     {

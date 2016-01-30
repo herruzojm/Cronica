@@ -1,0 +1,66 @@
+@model IEnumerable<Trama>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+    <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cerrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuntosActuales)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuntosDePresionPorTiemppo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuntosNecesarios)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TextoResolucion)
+        </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.TramaId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cerrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuntosActuales)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuntosDePresionPorTiemppo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuntosNecesarios)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TextoResolucion)
+        </td>
+    </tr>
+}
+</tbody>
+</table>

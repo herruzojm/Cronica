@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.ViewModels.Trama;
+﻿using Cronica.Modelos.ViewModels.Tramas;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,7 +4,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.Models;
-using Cronica.Modelos.ViewModels.GestionPersonaje;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Repositorios;
 using Microsoft.AspNet.Authorization;
 
