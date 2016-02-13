@@ -39,7 +39,7 @@ namespace Cronica.Modelos.Repositorios
         public async Task<Personaje> GetPersonaje(int personajeId)
         {
             Personaje personaje = await _contexto.Personajes.Include(p => p.Atributos).
-                ThenInclude(ap => ap.Atributo).SingleAsync(m => m.PersonajeId == personajeId);            
+                ThenInclude(ap => ap.Atributo).SingleAsync(m => m.PersonajeId == personajeId);
             return personaje;
         }
 
@@ -61,6 +61,18 @@ namespace Cronica.Modelos.Repositorios
         public void EliminarPersonaje(Personaje personaje)
         {
             _contexto.Personajes.Remove(personaje);
+        }
+
+        public async Task<List<Personaje>> GetPersonajesJugadores()
+        {
+            return await _contexto.Personajes.Include(p => p.Jugador)
+                .Where(p=> p.Jugador.Cuenta == TipoCuenta.Jugador && p.Activo == true).ToListAsync();
+        }
+
+        public async Task<List<Personaje>> GetPNJs()
+        {
+            return await _contexto.Personajes.Include(p => p.Jugador)
+                .Where(p => p.Jugador.Cuenta == TipoCuenta.Narrador && p.Activo == true).ToListAsync();
         }
     }
 }

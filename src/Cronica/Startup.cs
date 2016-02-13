@@ -31,7 +31,7 @@ namespace Cronica
             {
                 // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
-            }
+            }            
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
@@ -60,13 +60,7 @@ namespace Cronica
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();             
 
-            services.AddMvc(options =>
-                {
-#if !DEBUG
-                    options.Filters.Add(new RequireHttpsAttribute());
-#endif
-                }
-            ).AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly); ;            
+            services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly);           
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -84,16 +78,17 @@ namespace Cronica
             DatosIniciales datosIniciales )
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
 
             if (env.IsDevelopment())
             {
+                loggerFactory.AddDebug(LogLevel.Information);
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
+                loggerFactory.AddDebug(LogLevel.Debug);
                 app.UseExceptionHandler("/Home/Error");
 
                 // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859

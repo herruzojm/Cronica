@@ -29,6 +29,18 @@ namespace Cronica.Controllers
             return View(await _repositorioPersonajes.GetPersonajes());
         }
 
+        // GET: PersonajesJugadores
+        public async Task<IActionResult> PersonajesJugadores()
+        {
+            return View("Index", await _repositorioPersonajes.GetPersonajesJugadores());
+        }
+
+        // GET: PersonajesJugadores
+        public async Task<IActionResult> PNJs()
+        {
+            return View("Index", await _repositorioPersonajes.GetPNJs());
+        }
+
         // GET: Personajes/Details/5
         public async Task<IActionResult> Details(int? id)
         {

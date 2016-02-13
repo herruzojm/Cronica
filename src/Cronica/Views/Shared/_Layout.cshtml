@@ -44,9 +44,16 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-hover="dropdown">Gestion</a>
                         <ul class="dropdown-menu">
-                            <li><a asp-controller="Personajes" asp-action="Index">Personajes</a></li>
                             <li><a asp-controller="Atributos" asp-action="Index">Atributos</a></li>
                             <li><a asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Personajes</a>
+                        <ul class="dropdown-menu">                            
+                            <li><a asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a></li>
+                            <li><a asp-controller="Personajes" asp-action="PNJs">PNJs</a></li>
+                            <li><a asp-controller="Personajes" asp-action="Index">Todos</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

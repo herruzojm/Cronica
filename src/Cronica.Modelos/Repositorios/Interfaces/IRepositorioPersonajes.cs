@@ -15,5 +15,7 @@ namespace Cronica.Modelos.Repositorios
         Task<int> ConfirmarCambios();
         void ActualizarPersonaje(Personaje personaje);
         void EliminarPersonaje(Personaje personaje);
+        Task<List<Personaje>> GetPersonajesJugadores();
+        Task<List<Personaje>> GetPNJs();
     }
 }
