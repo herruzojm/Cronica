@@ -65,12 +65,13 @@ namespace Cronica
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddTransient<DatosIniciales>();
+            services.AddScoped<DatosIniciales>();
             services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
             services.AddScoped<IRepositorioPersonajes, RepositorioPersonajes>();
             services.AddScoped<IRepositorioAtributos, RepositorioAtributos>();
             services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();
             services.AddScoped<IRepositorioTramas, RepositorioTramas>();
+            services.AddScoped<IRepositorioPostPartidas, RepositorioPostPartidas>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -121,11 +122,18 @@ namespace Cronica
 
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
+            ConfigurarRutas(app);
+                      
+            await datosIniciales.CrearDatosAsync();
+        }
+
+        public void ConfigurarRutas(IApplicationBuilder app)
+        {
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");                
+                    template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(
                     name: "AbrirPersonaje",
                     template: "Personajes/Edit/{id}",
@@ -134,11 +142,19 @@ namespace Cronica
                     name: "Personajes",
                     template: "Personajes",
                     defaults: new { controller = "Personajes", action = "Index" });
-            });            
-            await datosIniciales.CrearDatosAsync();
+                routes.MapRoute(
+                    name: "CrearTrama",
+                    template: "Tramas/Create/{id}",
+                    defaults: new { controller = "Tramas", action = "Create" });
+                routes.MapRoute(
+                    name: "CrearAtributo",
+                    template: "Atributos/Create",
+                    defaults: new { controller = "Tramas", action = "Create" });
+            });
         }
 
         // Entry point for the application.
         public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
+
 }

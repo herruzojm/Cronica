@@ -183,7 +183,6 @@
                             <tr>
                                 <td>
                                     <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
-                                    <a asp-controller="Tramas" asp-action="Details" asp-route-id="@item.TramaId">Details</a> |
                                     <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
                                 </td>
                                 <td>
@@ -211,7 +210,7 @@
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-default" asp-controller="Tramas" asp-action="Create" asp-route-id="@Model.PersonajeId">Nueva Trama</a> 
+                <a class="btn btn-default btn-info" asp-route="CrearTrama" asp-route-id="@Model.PersonajeId">Nueva Trama</a> 
             </div>
 
         </div>

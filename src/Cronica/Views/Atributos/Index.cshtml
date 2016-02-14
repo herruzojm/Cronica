@@ -4,11 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Atributos</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -29,7 +26,7 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.AtributoId">Edit</a> |
+                    <a asp-action="Edit" asp-route-id="@item.AtributoId">Edit</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Nombre)
@@ -44,3 +41,4 @@
         }
     </tbody>
 </table>
+<a class="btn btn-default btn-info" asp-route="CrearAtributo">Nuevo Atributo</a> 
