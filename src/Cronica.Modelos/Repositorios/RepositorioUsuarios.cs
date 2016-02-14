@@ -16,7 +16,6 @@ namespace Cronica.Modelos.Repositorios
         {
             _contexto = contexto;
         }
-
        
         public List<ApplicationUser> GetUsuarios()
         {

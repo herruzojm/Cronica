@@ -8,14 +8,12 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public class RepositorioPersonajes : IRepositorioPersonajes
+    public class RepositorioPersonajes : RepositorioBase, IRepositorioPersonajes
     {
 
-        private CronicaDbContext _contexto;
-
-        public RepositorioPersonajes(CronicaDbContext contexto)
-        {
-            _contexto = contexto;
+        
+        public RepositorioPersonajes(CronicaDbContext contexto) : base(contexto)
+        {            
         }
 
         public async Task<List<Personaje>> GetPersonajes()
@@ -45,21 +43,6 @@ namespace Cronica.Modelos.Repositorios
         public void IncluirPersonaje(Personaje personaje)
         {
             _contexto.Personajes.Add(personaje);
-        }
-
-        public Task<int> ConfirmarCambios()
-        {
-            return _contexto.SaveChangesAsync();
-        }
-
-        public void ActualizarPersonaje(Personaje personaje)
-        {
-            _contexto.Update(personaje);
-        }
-
-        public void EliminarPersonaje(Personaje personaje)
-        {
-            _contexto.Personajes.Remove(personaje);
         }
 
         public async Task<List<Personaje>> GetPersonajesJugadores()

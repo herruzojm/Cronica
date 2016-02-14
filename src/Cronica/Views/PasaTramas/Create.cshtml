@@ -1,0 +1,55 @@
+@model Cronica.Modelos.ViewModels.PostPartidas.PasaTrama
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Nuevo Pasa Trama</h4>
+        <hr />
+        <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PostPartidaId" />
+        <div class="form-group">
+            <label asp-for="FechaPrevista" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="FechaPrevista" asp-format="{0:d}" class="form-control" />
+                <span asp-validation-for="FechaPrevista" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="FechaResolucion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input readonly asp-for="FechaResolucion" class="form-control" />
+                <span asp-validation-for="FechaResolucion" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PostPartidaId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input readonly asp-for="PostPartidaId" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Resuelto" readonly />
+                    <label asp-for="Resuelto"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a class="btn btn-warning" asp-route="AbrirPostPartida" asp-route-id="@Model.PostPartidaId">Volver al PostPartida</a>
+                <input type="submit" value="Crear Pasa Trama" class="btn btn-default btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

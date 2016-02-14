@@ -29,12 +29,6 @@ namespace Cronica.Controllers
             return View(await _repositorioTramas.GetTramas());
         }
 
-        // GET: TramasActivas
-        //public async Task<IActionResult> Index(int personajeId)
-        //{
-        //    return View(await _repositorioTramas.GetTramasPersonaje(personajeId));
-        //}
-
         // GET: TramasActivas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -117,7 +111,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioTramas.ActualizarTrama(trama);
+                _repositorioTramas.Actualizar(trama);
                 await _repositorioTramas.ConfirmarCambios();
                 return AbrirPersonaje(trama.PersonajeId);
             }
@@ -148,7 +142,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Trama trama = await _repositorioTramas.GetTrama(id);
-            _repositorioTramas.EliminarTrama(trama);
+            _repositorioTramas.Eliminar(trama);
             await _repositorioTramas.ConfirmarCambios();
             return RedirectToAction("Index");
         }

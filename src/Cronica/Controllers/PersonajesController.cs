@@ -114,7 +114,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPersonajes.ActualizarPersonaje(personaje);
+                _repositorioPersonajes.Actualizar(personaje);
                 await _repositorioPersonajes.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
@@ -145,7 +145,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Personaje personaje = await _repositorioPersonajes.GetPersonaje(id);            
-            _repositorioPersonajes.EliminarPersonaje(personaje);
+            _repositorioPersonajes.Eliminar(personaje);
             await _repositorioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");
         }

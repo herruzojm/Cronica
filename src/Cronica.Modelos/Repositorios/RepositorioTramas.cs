@@ -9,30 +9,12 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public class RepositorioTramas : IRepositorioTramas
+    public class RepositorioTramas : RepositorioBase, IRepositorioTramas
     {
-        private CronicaDbContext _contexto;
-
-        public RepositorioTramas(CronicaDbContext contexto)
+        public RepositorioTramas(CronicaDbContext contexto) : base(contexto)
         {
-            _contexto = contexto;
         }
-
-        public void ActualizarTrama(Trama trama)
-        {
-            _contexto.Update(trama);            
-        }
-
-        public async Task<int> ConfirmarCambios()
-        {
-            return await _contexto.SaveChangesAsync();
-        }
-
-        public void EliminarTrama(Trama tramaId)
-        {
-            _contexto.Remove(tramaId);
-        }
-
+               
         public async Task<Trama> GetNuevaTrama(int? plantillaId)
         {
             Trama trama = new Trama();

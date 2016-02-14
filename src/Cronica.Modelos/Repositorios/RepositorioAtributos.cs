@@ -9,23 +9,10 @@ using System.Collections.Generic;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public class RepositorioAtributos : IRepositorioAtributos
-    {
-        private CronicaDbContext _contexto;
-
-        public RepositorioAtributos(CronicaDbContext contexto)
+    public class RepositorioAtributos : RepositorioBase, IRepositorioAtributos
+    {        
+        public RepositorioAtributos(CronicaDbContext contexto) : base(contexto)
         {
-            _contexto = contexto;
-        }
-
-        public void ActualizarAtributo(Atributo atributo)
-        {
-            _contexto.Update(atributo);
-        }
-
-        public Task<int> ConfirmarCambios()
-        {
-            return _contexto.SaveChangesAsync();
         }
 
         public async Task<int> CrearAtributo(Atributo atributo)

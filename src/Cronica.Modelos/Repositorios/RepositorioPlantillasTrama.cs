@@ -9,30 +9,13 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public class RepositorioPlantillasTrama : IRepositorioPlantillasTrama
+    public class RepositorioPlantillasTrama : RepositorioBase, IRepositorioPlantillasTrama
     {
-        private CronicaDbContext _contexto;
-
-        public RepositorioPlantillasTrama(CronicaDbContext contexto)
-        {
-            _contexto = contexto;
+        
+        public RepositorioPlantillasTrama(CronicaDbContext contexto) : base(contexto)
+        {        
         }
-
-        public void ActualizarPlantillaTrama(PlantillaTrama plantillaTrama)
-        {
-            _contexto.Update(plantillaTrama);
-        }
-
-        public Task<int> ConfirmarCambios()
-        {
-            return _contexto.SaveChangesAsync();
-        }
-
-        public void EliminarPlantillaTrama(PlantillaTrama plantillaTrama)
-        {
-            _contexto.PlantillasTrama.Remove(plantillaTrama);
-        }
-
+                
         public async Task<PlantillaTrama> GetNuevaPlantilla()
         {
             PlantillaTrama plantilla = new PlantillaTrama();

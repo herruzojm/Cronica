@@ -82,7 +82,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioAtributos.ActualizarAtributo(atributo);
+                _repositorioAtributos.Actualizar(atributo);
                 await _repositorioAtributos.ConfirmarCambios();
 
                 return RedirectToAction("Index");

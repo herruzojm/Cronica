@@ -72,6 +72,7 @@ namespace Cronica
             services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();
             services.AddScoped<IRepositorioTramas, RepositorioTramas>();
             services.AddScoped<IRepositorioPostPartidas, RepositorioPostPartidas>();
+            services.AddScoped<IRepositorioPasaTramas, RepositorioPasaTramas>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -156,9 +157,18 @@ namespace Cronica
                     template: "PostPartidas",
                     defaults: new { controller = "PostPartidas", action = "Index" });
                 routes.MapRoute(
+                    name: "AbrirPostPartida",
+                    template: "PostPartidas/Edit/{id}",
+                    defaults: new { controller = "PostPartidas", action = "Edit" });
+                routes.MapRoute(
                     name: "CrearPostPartida",
                     template: "PostPartidas/Create",
                     defaults: new { controller = "PostPartidas", action = "Create" });
+
+                routes.MapRoute(
+                    name: "CrearPasaTrama",
+                    template: "PasaTramas/Create/{id}",
+                    defaults: new { controller = "PasaTramas", action = "Create" });
             });
         }
 

@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public interface IRepositorioPostPartidas
+    public interface IRepositorioPostPartidas : IRepositorioBase
     {
         Task<List<PostPartida>> GetPostPartidas();
         Task<List<int>> GetPostPartidasIds();
         Task<PostPartida> GetPostPartida(int postPartidaId);
-        void IncluirPostPartida(PostPartida postPartida);
-        Task<int> ConfirmarCambios();
-        void ActualizarPostPartida(PostPartida postPartida);
-        void EliminarPostPartida(PostPartida postPartida);
+        void IncluirPostPartida(PostPartida postPartida);        
     }
 }

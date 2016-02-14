@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public interface IRepositorioAtributos
+    public interface IRepositorioAtributos : IRepositorioBase
     {
         Task<int> CrearAtributo(Atributo atributo);
-        void ActualizarAtributo(Atributo atributo);
-        Task<int> ConfirmarCambios();
         Task<List<Atributo>> GetAtributos();
         Task<Atributo> GetAtributo(int atributoId);
     }

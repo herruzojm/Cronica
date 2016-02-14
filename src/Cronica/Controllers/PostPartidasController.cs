@@ -84,7 +84,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPostPartidas.ActualizarPostPartida(postPartida);
+                _repositorioPostPartidas.Actualizar(postPartida);
                 await _repositorioPostPartidas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
@@ -115,7 +115,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             PostPartida postPartida = await _repositorioPostPartidas.GetPostPartida(id);
-            _repositorioPostPartidas.EliminarPostPartida(postPartida);
+            _repositorioPostPartidas.Eliminar(postPartida);
             await _repositorioPostPartidas.ConfirmarCambios();
             return RedirectToAction("Index");
         }

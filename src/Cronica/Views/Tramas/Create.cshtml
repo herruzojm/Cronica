@@ -27,7 +27,7 @@
                 <div class="form-group">
                     <label asp-for="Personaje" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input disabled class="form-control" asp-for="Personaje" value="@ViewBag.Personaje.Nombre" />
+                        <input readonly class="form-control" asp-for="Personaje" value="@ViewBag.Personaje.Nombre" />
                     </div>
                 </div>
                 <hr />
@@ -97,8 +97,6 @@
                 }
             </div>
         </div>
-
-
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

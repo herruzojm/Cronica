@@ -10,8 +10,12 @@ namespace Cronica.Controllers
     {
         protected IActionResult AbrirPersonaje(int personajeId)
         {
-            //return RedirectToAction("Edit", "Personajes", new { id = personajeId });
             return RedirectToRoute("AbrirPersonaje", new { id = personajeId });
+        }
+
+        protected IActionResult AbrirPostPartida(int postPartidaId)
+        {
+            return RedirectToRoute("AbrirPostPartida", new { id = postPartidaId });
         }
     }
 }

@@ -6,14 +6,11 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public interface IRepositorioPlantillasTrama
+    public interface IRepositorioPlantillasTrama : IRepositorioBase
     {
         Task<List<PlantillaTrama>> GetPlantillasTrama();
         Task<PlantillaTrama> GetNuevaPlantilla();
         Task<PlantillaTrama> GetPlantillaTrama(int personajeId);
         void IncluirPlantillaTrama(PlantillaTrama plantillaTrama);
-        Task<int> ConfirmarCambios();
-        void ActualizarPlantillaTrama(PlantillaTrama plantillaTrama);
-        void EliminarPlantillaTrama(PlantillaTrama plantillaTrama);
     }
 }

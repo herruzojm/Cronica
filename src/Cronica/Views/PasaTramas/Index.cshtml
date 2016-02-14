@@ -1,0 +1,48 @@
+@model IEnumerable<Cronica.Modelos.ViewModels.PostPartidas.PasaTrama>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+    <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPrevista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaResolucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resuelto)
+        </th>
+    </tr>
+    </thead>
+    
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <a asp-action="Edit" asp-route-id="@item.PasaTramaId">Edit</a> |
+            <a asp-action="Details" asp-route-id="@item.PasaTramaId">Details</a> |
+            <a asp-action="Delete" asp-route-id="@item.PasaTramaId">Delete</a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaPrevista)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaResolucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resuelto)
+        </td>
+    </tr>
+}
+</tbody>
+</table>

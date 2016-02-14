@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public interface IRepositorioPersonajes
+    public interface IRepositorioPersonajes : IRepositorioBase
     {
         Task<List<Personaje>> GetPersonajes();
         Task<Personaje> GetNuevoPersonaje();
         Task<Personaje> GetPersonaje(int personajeId);
-        void IncluirPersonaje(Personaje personaje);
-        Task<int> ConfirmarCambios();
-        void ActualizarPersonaje(Personaje personaje);
-        void EliminarPersonaje(Personaje personaje);
+        void IncluirPersonaje(Personaje personaje);        
         Task<List<Personaje>> GetPersonajesJugadores();
         Task<List<Personaje>> GetPNJs();
     }

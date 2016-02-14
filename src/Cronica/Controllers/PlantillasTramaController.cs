@@ -85,7 +85,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPlantillasTrama.ActualizarPlantillaTrama(plantillaTrama);
+                _repositorioPlantillasTrama.Actualizar(plantillaTrama);
                 await _repositorioPlantillasTrama.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
@@ -116,7 +116,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id);
-            _repositorioPlantillasTrama.EliminarPlantillaTrama(plantillaTrama);
+            _repositorioPlantillasTrama.Eliminar(plantillaTrama);
             await _repositorioPlantillasTrama.ConfirmarCambios();                        
             return RedirectToAction("Index");
         }

@@ -10,26 +10,84 @@
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="PostPartidaId" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="Cerrada" />
-                    <label asp-for="Cerrada"></label>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#PostPartida">Post Partida</a></li>
+            <li><a data-toggle="tab" href="#PasaTramas">Pasa Tramas</a></li>
+        </ul>
+        <div class="tab-content clearfix">
+            <div id="PostPartida" class="tab-pane active">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="Cerrada" />
+                            <label asp-for="Cerrada"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FechaInicio" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="FechaInicio" class="form-control" />
+                        <span asp-validation-for="FechaInicio" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FechaFin" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="FechaFin" class="form-control" />
+                        <span asp-validation-for="FechaFin" class="text-danger" />
+                    </div>
                 </div>
             </div>
-        </div>        
-        <div class="form-group">
-            <label asp-for="FechaInicio" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FechaInicio" class="form-control" />
-                <span asp-validation-for="FechaInicio" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="FechaFin" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="FechaFin" class="form-control" />
-                <span asp-validation-for="FechaFin" class="text-danger" />
+            <div id="PasaTramas" class="tab-pane">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().PuedeResolverse)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Resuelto)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().FechaPrevista)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().FechaResolucion)
+                            </th>                           
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.PasaTramas)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-controller="PasaTramas" asp-action="Edit" asp-route-id="@item.PasaTramaId">Edit</a> |
+                                    <a asp-controller="PasaTramas" asp-action="Delete" asp-route-id="@item.PasaTramaId">Delete</a>                                   
+                                </td>
+                                <td>
+                                    @if (item.PuedeResolverse)
+                                    {
+                                        <a asp-controller="PasaTramas" asp-action="ResolverPasaTrama" asp-route-id="@item.PasaTramaId">Resolver</a>
+                                    }                                    
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Resuelto)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaPrevista)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaResolucion)
+                                </td>                                
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a class="btn btn-default btn-info" asp-route="CrearPasaTrama" asp-route-id="@Model.PostPartidaId">Nuevo Pasa Trama</a> 
             </div>
         </div>
         <div class="form-group">

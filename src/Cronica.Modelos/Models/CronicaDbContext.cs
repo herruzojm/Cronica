@@ -18,6 +18,7 @@ namespace Cronica.Modelos.Models
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
         public DbSet<PostPartida> PostPartidas { get; set; }
         public DbSet<Trama> Tramas { get; set; }
+        public DbSet<PasaTrama> PasaTramas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

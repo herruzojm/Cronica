@@ -8,33 +8,16 @@ using Microsoft.Data.Entity;
 
 namespace Cronica.Modelos.Repositorios
 {
-    public class RepositorioPostPartidas : IRepositorioPostPartidas
+    public class RepositorioPostPartidas : RepositorioBase, IRepositorioPostPartidas
     {
-        private CronicaDbContext _contexto;
-
-        public RepositorioPostPartidas(CronicaDbContext contexto)
-        {
-            _contexto = contexto;
-        }
-
-        public void ActualizarPostPartida(PostPartida postPartida)
-        {
-            _contexto.Update(postPartida);            
-        }
-
-        public async Task<int> ConfirmarCambios()
-        {
-            return await _contexto.SaveChangesAsync();
-        }
-
-        public void EliminarPostPartida(PostPartida postPartida)
-        {
-            _contexto.Remove(postPartida);
+        
+        public RepositorioPostPartidas(CronicaDbContext contexto) : base(contexto)
+        {            
         }
 
         public async Task<PostPartida> GetPostPartida(int postPartidaId)
         {
-            return await _contexto.PostPartidas.SingleAsync(p => p.PostPartidaId == postPartidaId);
+            return await _contexto.PostPartidas.Include(p => p.PasaTramas).SingleAsync(p => p.PostPartidaId == postPartidaId);
         }
 
         public async Task<List<PostPartida>> GetPostPartidas()
