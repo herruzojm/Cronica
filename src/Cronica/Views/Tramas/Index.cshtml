@@ -6,15 +6,18 @@
 
 <h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
     <tr>
     <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Cerrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Personaje)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
@@ -39,11 +42,16 @@
     <tr>
         <td>
             <a asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.TramaId">Details</a> |
             <a asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Cerrada)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Personaje.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)

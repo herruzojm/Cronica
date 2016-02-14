@@ -13,7 +13,6 @@ namespace Cronica.Controllers
     [Authorize]
     public class PersonajesController : Controller
     {
-        private CronicaDbContext _context;
         private IRepositorioPersonajes _repositorioPersonajes;
         private IRepositorioUsuarios _repositorioUsuarios;
 

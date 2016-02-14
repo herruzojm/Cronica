@@ -26,7 +26,6 @@ namespace Cronica.Modelos.Repositorios
         public async Task<Personaje> GetNuevoPersonaje()
         {
             Personaje personaje = new Personaje();
-            personaje.Atributos = new List<AtributoPersonaje>();
             var atributos = await _contexto.Atributos.ToListAsync();
             foreach (Atributo atributo in atributos)
             {
@@ -38,7 +37,7 @@ namespace Cronica.Modelos.Repositorios
 
         public async Task<Personaje> GetPersonaje(int personajeId)
         {
-            Personaje personaje = await _contexto.Personajes.Include(p => p.Atributos).
+            Personaje personaje = await _contexto.Personajes.Include(p => p.Tramas).Include(p => p.Atributos).
                 ThenInclude(ap => ap.Atributo).SingleAsync(m => m.PersonajeId == personajeId);
             return personaje;
         }

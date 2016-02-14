@@ -11,12 +11,34 @@
         <h4>Trama</h4>
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="PersonajeId" />
+        <div class="form-group">
+            <label asp-for="Plantilla" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PlantillaId" asp-items="ViewBag.Plantillas" class="form-control"></select>                
+            </div>
+        </div>
+        <hr />
+        <div class="form-group">
+            <label asp-for="Personaje" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input disabled class="form-control" asp-for="Personaje" value="@ViewBag.Personaje.Nombre" />
+            </div>
+        </div>
+        <hr />
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
                     <input asp-for="Cerrada" />
                     <label asp-for="Cerrada"></label>
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nombre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -54,6 +76,21 @@
                 <span asp-validation-for="TextoResolucion" class="text-danger" />
             </div>
         </div>
+
+        <h3>Atributos</h3>
+        @for (int i = 0; i < Model.Atributos.Count(); i++)
+        {
+            <div class="form-group">
+                <input type="hidden" asp-for="Atributos[i].AtributoId" />
+                <input type="hidden" asp-for="Atributos[i].TramaId" />
+                <label asp-for="Atributos[i].TramaId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
+                <div class="col-md-10">
+                    <input asp-for="Atributos[i].Multiplicador" class="form-control" />
+                    <span asp-validation-for="Atributos[i].Multiplicador" class="text-danger" />
+                </div>
+            </div>
+        }
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />

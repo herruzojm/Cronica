@@ -14,13 +14,17 @@ namespace Cronica.Modelos.ViewModels.Tramas
             Puntos = new List<PuntosPasaTrama>();
         }
         public int TramaId { get; set; }
+        public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int PuntosNecesarios { get; set; }
         public int PuntosDePresionPorTiemppo { get; set; }
         public int PuntosActuales { get; set; }
         public string TextoResolucion { get; set; }
-        public bool Cerrada { get; set; }        
+        public bool Cerrada { get; set; }
+        public int PersonajeId { get; set; }
+        public int PlantillaId { get; set; }
         public virtual Personaje Personaje { get; set; }
+        public virtual PlantillaTrama Plantilla { get; set; }
         public virtual List<AtributoTrama> Atributos { get; set; }
         public virtual List<PuntosPasaTrama> Puntos { get; set; }
     }

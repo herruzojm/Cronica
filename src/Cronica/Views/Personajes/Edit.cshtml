@@ -4,153 +4,226 @@
     ViewData["Title"] = "Edit";
 }
 
-<h2>Edit</h2>
+<h2>@Model.Nombre</h2>
 
 <form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>Personaje</h4>
-        <hr />
+    <div class="form-horizontal">        
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="PersonajeId" />
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <div class="checkbox">
-                    <input asp-for="Activo" />
-                    <label asp-for="Activo"></label>
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#Personaje">Personaje</a></li>
+            <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
+            <li><a data-toggle="tab" href="#Tramas">Tramas</a></li>
+        </ul>
+        <hr />
+        <div class="tab-content clearfix">
+            <div id="Personaje" class="tab-pane active">
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="Activo" />
+                            <label asp-for="Activo"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Clan" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Clan" asp-items="Html.GetEnumSelectList<TipoClan>()" class="form-control"></select>
+                        <span asp-validation-for="Clan" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Concepto" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Concepto" class="form-control" />
+                        <span asp-validation-for="Concepto" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Conducta" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Conducta" class="form-control" />
+                        <span asp-validation-for="Conducta" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Defectos" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Defectos" class="form-control" />
+                        <span asp-validation-for="Defectos" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Experiencia" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Experiencia" class="form-control" />
+                        <span asp-validation-for="Experiencia" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Generacion" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Generacion" class="form-control" />
+                        <span asp-validation-for="Generacion" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Historia" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Historia" class="form-control" />
+                        <span asp-validation-for="Historia" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="JugadorId" class="control-label col-md-2">JugadorId</label>
+                    <div class="col-md-10">
+                        <select asp-for="JugadorId" asp-items="ViewBag.Jugadores" class="form-control"></select>
+                        <span asp-validation-for="JugadorId" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Meritos" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Meritos" class="form-control" />
+                        <span asp-validation-for="Meritos" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Naturaleza" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Naturaleza" class="form-control" />
+                        <span asp-validation-for="Naturaleza" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Nombre" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PotenciaSangre" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="PotenciaSangre" class="form-control" />
+                        <span asp-validation-for="PotenciaSangre" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PuntosDeSangre" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="PuntosDeSangre" class="form-control" />
+                        <span asp-validation-for="PuntosDeSangre" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Senda" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Senda" asp-items="Html.GetEnumSelectList<TipoSenda>()" class="form-control"></select>
+                        <span asp-validation-for="Senda" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ValorSenda" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="ValorSenda" class="form-control" />
+                        <span asp-validation-for="ValorSenda" class="text-danger" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Clan" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Clan" asp-items="Html.GetEnumSelectList<TipoClan>()" class="form-control"></select>
-                <span asp-validation-for="Clan" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Concepto" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Concepto" class="form-control" />
-                <span asp-validation-for="Concepto" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Conducta" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Conducta" class="form-control" />
-                <span asp-validation-for="Conducta" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Defectos" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Defectos" class="form-control" />
-                <span asp-validation-for="Defectos" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Experiencia" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Experiencia" class="form-control" />
-                <span asp-validation-for="Experiencia" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Generacion" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Generacion" class="form-control" />
-                <span asp-validation-for="Generacion" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Historia" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Historia" class="form-control" />
-                <span asp-validation-for="Historia" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="JugadorId" class="control-label col-md-2">JugadorId</label>
-            <div class="col-md-10">
-                <select asp-for="JugadorId" asp-items="ViewBag.Jugadores" class="form-control"></select>
-                <span asp-validation-for="JugadorId" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Meritos" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Meritos" class="form-control" />
-                <span asp-validation-for="Meritos" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Naturaleza" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Naturaleza" class="form-control" />
-                <span asp-validation-for="Naturaleza" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Nombre" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="Nombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PotenciaSangre" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PotenciaSangre" class="form-control" />
-                <span asp-validation-for="PotenciaSangre" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="PuntosDeSangre" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="PuntosDeSangre" class="form-control" />
-                <span asp-validation-for="PuntosDeSangre" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Senda" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="Senda" asp-items="Html.GetEnumSelectList<TipoSenda>()" class="form-control"></select>
-                <span asp-validation-for="Senda" class="text-danger" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ValorSenda" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="ValorSenda" class="form-control" />
-                <span asp-validation-for="ValorSenda" class="text-danger" />
-            </div>
-        </div>
 
-        <h3>Atributos</h3>
-        @for (int i = 0; i < Model.Atributos.Count(); i++)
-        {
-            <div class="form-group">                
-                <input type="hidden" asp-for="Atributos[i].AtributoId" />
-                <input type="hidden" asp-for="Atributos[i].PersonajeId" />
-                <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
-                <div class="col-md-10">
-                    <input asp-for="Atributos[i].Valor" class="form-control" />
-                    <span asp-validation-for="Atributos[i].Valor" class="text-danger" />
-                </div>
+            <div id="Atributos" class="tab-pane">
+                @for (int i = 0; i < Model.Atributos.Count(); i++)
+                {
+                    <div class="form-group">
+                        <input type="hidden" asp-for="Atributos[i].AtributoId" />
+                        <input type="hidden" asp-for="Atributos[i].PersonajeId" />
+                        <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
+                        <div class="col-md-10">
+                            <input asp-for="Atributos[i].Valor" class="form-control" />
+                            <span asp-validation-for="Atributos[i].Valor" class="text-danger" />
+                        </div>
+                    </div>
+                }
             </div>
-        }
+
+            <div id="Tramas" class="tab-pane">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Cerrada)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Descripcion)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosActuales)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosDePresionPorTiemppo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosNecesarios)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().TextoResolucion)
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.Tramas)
+                        {
+                            <tr>
+                                <td>
+                                    <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
+                                    <a asp-controller="Tramas" asp-action="Details" asp-route-id="@item.TramaId">Details</a> |
+                                    <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cerrada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PuntosActuales)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PuntosDePresionPorTiemppo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PuntosNecesarios)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TextoResolucion)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a class="btn btn-default" asp-controller="Tramas" asp-action="Create" asp-route-id="@Model.PersonajeId">Nueva Trama</a> 
+            </div>
+
+        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <a class="btn btn-warning" asp-route="Personajes">Personajes</a>
+                <input type="submit" value="Guardar" class="btn btn-default btn-success" />
             </div>
         </div>
     </div>
 </form>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
