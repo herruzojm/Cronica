@@ -4,24 +4,24 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Post Partidas</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.Cerrada)
+                @Html.DisplayNameFor(model => model.Activa)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaFin)
+                @Html.DisplayNameFor(model => model.Cerrada)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaInicio)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFin)
+            </th>            
         </tr>
     </thead>
 
@@ -30,20 +30,22 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PostPartidaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.PostPartidaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.PostPartidaId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.PostPartidaId">Edit</a> 
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Activa)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Cerrada)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaFin)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.FechaInicio)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFin)
+                </td>                
             </tr>
         }
     </tbody>
 </table>
+<a class="btn btn-default btn-info" asp-route="CrearPostPartida">Nuevo Post Partida</a> 

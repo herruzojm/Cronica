@@ -22,7 +22,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public string TextoResolucion { get; set; }
         public bool Cerrada { get; set; }
         public int PersonajeId { get; set; }
-        public int PlantillaId { get; set; }
+        public int? PlantillaId { get; set; }
         public virtual Personaje Personaje { get; set; }
         public virtual PlantillaTrama Plantilla { get; set; }
         public virtual List<AtributoTrama> Atributos { get; set; }

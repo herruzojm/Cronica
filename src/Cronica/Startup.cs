@@ -150,6 +150,15 @@ namespace Cronica
                     name: "CrearAtributo",
                     template: "Atributos/Create",
                     defaults: new { controller = "Tramas", action = "Create" });
+
+                routes.MapRoute(
+                    name: "PostPartidas",
+                    template: "PostPartidas",
+                    defaults: new { controller = "PostPartidas", action = "Index" });
+                routes.MapRoute(
+                    name: "CrearPostPartida",
+                    template: "PostPartidas/Create",
+                    defaults: new { controller = "PostPartidas", action = "Create" });
             });
         }
 
