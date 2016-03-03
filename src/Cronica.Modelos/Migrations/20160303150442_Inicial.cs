@@ -5,24 +5,10 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace Cronica.Modelos.Migrations
 {
-    public partial class Creacion : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "PlantillaTrama",
-                columns: table => new
-                {
-                    PlantillaTramaId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Descripcion = table.Column<string>(nullable: true),
-                    PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
-                    PuntosNecesarios = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlantillaTrama", x => x.PlantillaTramaId);
-                });
             migrationBuilder.CreateTable(
                 name: "AspNetUsers",
                 columns: table => new
@@ -61,6 +47,35 @@ namespace Cronica.Modelos.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Atributo", x => x.AtributoId);
+                });
+            migrationBuilder.CreateTable(
+                name: "PostPartida",
+                columns: table => new
+                {
+                    PostPartidaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Cerrada = table.Column<bool>(nullable: false),
+                    FechaFin = table.Column<DateTime>(nullable: false),
+                    FechaInicio = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PostPartida", x => x.PostPartidaId);
+                });
+            migrationBuilder.CreateTable(
+                name: "PlantillaTrama",
+                columns: table => new
+                {
+                    PlantillaTramaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Descripcion = table.Column<string>(nullable: true),
+                    Nombre = table.Column<string>(nullable: true),
+                    PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
+                    PuntosNecesarios = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlantillaTrama", x => x.PlantillaTramaId);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -148,6 +163,27 @@ namespace Cronica.Modelos.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
+                name: "PasaTrama",
+                columns: table => new
+                {
+                    PasaTramaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FechaPrevista = table.Column<DateTime>(nullable: false),
+                    FechaResolucion = table.Column<DateTime>(nullable: true),
+                    PostPartidaId = table.Column<int>(nullable: false),
+                    Resuelto = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PasaTrama", x => x.PasaTramaId);
+                    table.ForeignKey(
+                        name: "FK_PasaTrama_PostPartida_PostPartidaId",
+                        column: x => x.PostPartidaId,
+                        principalTable: "PostPartida",
+                        principalColumn: "PostPartidaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            migrationBuilder.CreateTable(
                 name: "AtributoPlantillaTrama",
                 columns: table => new
                 {
@@ -220,6 +256,7 @@ namespace Cronica.Modelos.Migrations
                 {
                     AtributoId = table.Column<int>(nullable: false),
                     PersonajeId = table.Column<int>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true),
                     Valor = table.Column<int>(nullable: false),
                     ValorEnTrama = table.Column<int>(nullable: false)
                 },
@@ -262,6 +299,88 @@ namespace Cronica.Modelos.Migrations
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Restrict);
                 });
+            migrationBuilder.CreateTable(
+                name: "Trama",
+                columns: table => new
+                {
+                    TramaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Cerrada = table.Column<bool>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true),
+                    Nombre = table.Column<string>(nullable: true),
+                    PersonajeId = table.Column<int>(nullable: false),
+                    PlantillaId = table.Column<int>(nullable: true),
+                    PostPartidaPostPartidaId = table.Column<int>(nullable: true),
+                    PuntosActuales = table.Column<int>(nullable: false),
+                    PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
+                    PuntosNecesarios = table.Column<int>(nullable: false),
+                    TextoResolucion = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Trama", x => x.TramaId);
+                    table.ForeignKey(
+                        name: "FK_Trama_Personaje_PersonajeId",
+                        column: x => x.PersonajeId,
+                        principalTable: "Personaje",
+                        principalColumn: "PersonajeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Trama_PlantillaTrama_PlantillaId",
+                        column: x => x.PlantillaId,
+                        principalTable: "PlantillaTrama",
+                        principalColumn: "PlantillaTramaId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Trama_PostPartida_PostPartidaPostPartidaId",
+                        column: x => x.PostPartidaPostPartidaId,
+                        principalTable: "PostPartida",
+                        principalColumn: "PostPartidaId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
+                name: "AtributoTrama",
+                columns: table => new
+                {
+                    AtributoId = table.Column<int>(nullable: false),
+                    TramaId = table.Column<int>(nullable: false),
+                    Multiplicador = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AtributoTrama", x => new { x.AtributoId, x.TramaId });
+                    table.ForeignKey(
+                        name: "FK_AtributoTrama_Atributo_AtributoId",
+                        column: x => x.AtributoId,
+                        principalTable: "Atributo",
+                        principalColumn: "AtributoId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AtributoTrama_Trama_TramaId",
+                        column: x => x.TramaId,
+                        principalTable: "Trama",
+                        principalColumn: "TramaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+            migrationBuilder.CreateTable(
+                name: "PuntosPasaTrama",
+                columns: table => new
+                {
+                    TramaId = table.Column<int>(nullable: false),
+                    PasaTramaId = table.Column<int>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true),
+                    PuntosObtenidos = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PuntosPasaTrama", x => new { x.TramaId, x.PasaTramaId });
+                    table.ForeignKey(
+                        name: "FK_PuntosPasaTrama_Trama_TramaId",
+                        column: x => x.TramaId,
+                        principalTable: "Trama",
+                        principalColumn: "TramaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
@@ -278,17 +397,22 @@ namespace Cronica.Modelos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("AtributoPlantillaTrama");
             migrationBuilder.DropTable("AtributoPersonaje");
             migrationBuilder.DropTable("PersonaTrasfondo");
+            migrationBuilder.DropTable("PasaTrama");
+            migrationBuilder.DropTable("AtributoPlantillaTrama");
+            migrationBuilder.DropTable("AtributoTrama");
+            migrationBuilder.DropTable("PuntosPasaTrama");
             migrationBuilder.DropTable("AspNetRoleClaims");
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
-            migrationBuilder.DropTable("PlantillaTrama");
             migrationBuilder.DropTable("Atributo");
-            migrationBuilder.DropTable("Personaje");
+            migrationBuilder.DropTable("Trama");
             migrationBuilder.DropTable("AspNetRoles");
+            migrationBuilder.DropTable("Personaje");
+            migrationBuilder.DropTable("PlantillaTrama");
+            migrationBuilder.DropTable("PostPartida");
             migrationBuilder.DropTable("AspNetUsers");
         }
     }

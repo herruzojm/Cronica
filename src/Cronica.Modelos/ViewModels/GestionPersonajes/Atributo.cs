@@ -28,6 +28,9 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
     {
         Fisico,
         Social,
-        Mental
+        Mental,
+        Talento,
+        Tecnica,
+        Conocimiento
     }
 }

@@ -1,49 +1,48 @@
 {
-  "userSecretsId": "aspnet5-Cronica-37702241-bfe0-4568-9491-7144b49140a6",
-  "version": "1.0.0-*",
-  "compilationOptions": {
-    "emitEntryPoint": true
-  },
-    "dependencies": {
-        "Cronica.Modelos": "1.0.0-*",
-        "EntityFramework": "7.0.0-beta6-13679",
-        "EntityFramework.Commands": "7.0.0-rc1-final",
-        "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
-        "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
-        "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
-        "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
-        "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
-        "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
-        "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
-        "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
-        "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
-        "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-rc1-15776",
-        "npm": "3.5.2",
-        "System.Collections.Immutable": "1.1.37",
-        "System.Linq": "4.0.1-beta-23516"
-    },
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel",
     "ef": "EntityFramework.Commands",
     "gen": "Microsoft.Extensions.CodeGeneration"
   },
-  "frameworks": {
-    "dnx451": {},
-    "dnxcore50": {}
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+  "dependencies": {
+    "Cronica.Modelos": "1.0.0-*",
+    "EntityFramework.Commands": "7.0.0-rc1-final",
+    "EntityFramework.Core": "7.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
+    "EntityFramework.Relational": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-rc1-final",
+    "Microsoft.Extensions.CodeGenerators.Mvc": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.FileProviderExtensions": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.Json": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Configuration.UserSecrets": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
+    "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
+    "Microsoft.Framework.CodeGenerators.Mvc":  "1.0.0-beta5",
+    "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
+    "npm": "3.5.2",
+    "System.Collections.Immutable": "1.1.37",
+    "System.Linq": "4.0.1-beta-23516"
   },
   "exclude": [
     "wwwroot",
     "node_modules"
   ],
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
   "publishExclude": [
     "**.user",
     "**.vspscc"
@@ -55,5 +54,7 @@
       "gulp clean",
       "gulp min"
     ]
-  }
+  },
+  "userSecretsId": "aspnet5-Cronica-37702241-bfe0-4568-9491-7144b49140a6",
+  "version": "1.0.0-*"
 }
