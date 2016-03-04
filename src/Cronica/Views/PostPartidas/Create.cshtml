@@ -20,14 +20,14 @@
         <div class="form-group">
             <label asp-for="FechaInicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="FechaInicio" class="form-control" />
+                <input asp-for="FechaInicio" class="form-control datepicker" />
                 <span asp-validation-for="FechaInicio" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="FechaFin" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="FechaFin" class="form-control" />
+                <input asp-for="FechaFin" class="form-control datepicker" />
                 <span asp-validation-for="FechaFin" class="text-danger" />
             </div>
         </div>        
@@ -42,7 +42,6 @@
 
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }

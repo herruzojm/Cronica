@@ -9,6 +9,7 @@
 /// <reference path="../../../../wwwroot/_references.js" />
 /// <reference path="../../../../wwwroot/js/site.js" />
 /// <reference path="../../../../wwwroot/lib/bootstrap/dist/js/bootstrap.js" />
+/// <reference path="../../../../wwwroot/lib/bootstrap-datepicker/js/bootstrap-datepicker.js" />
 /// <reference path="../../../../wwwroot/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js" />
 /// <reference path="../../../../wwwroot/lib/DataTables/media/js/jquery.dataTables.js" />
 /// <reference path="../../../../wwwroot/lib/jquery/dist/jquery.js" />

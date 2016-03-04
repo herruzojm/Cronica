@@ -8,6 +8,7 @@
     "emitEntryPoint": true
   },
   "dependencies": {
+    "Bootstrap.v3.Datetimepicker.CSS": "4.15.35",
     "Cronica.Modelos": "1.0.0-*",
     "EntityFramework.Commands": "7.0.0-rc1-final",
     "EntityFramework.Core": "7.0.0-rc1-final",
@@ -29,7 +30,7 @@
     "Microsoft.Extensions.Logging": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Console": "1.0.0-rc1-final",
     "Microsoft.Extensions.Logging.Debug": "1.0.0-rc1-final",
-    "Microsoft.Framework.CodeGenerators.Mvc":  "1.0.0-beta5",
+    "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta5",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
     "npm": "3.5.2",
     "System.Collections.Immutable": "1.1.37",

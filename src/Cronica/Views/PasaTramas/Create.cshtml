@@ -14,14 +14,14 @@
         <div class="form-group">
             <label asp-for="FechaPrevista" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="FechaPrevista" asp-format="{0:d}" class="form-control" />
+                <input asp-for="FechaPrevista" asp-format="{0:d}" class="form-control datepicker" />
                 <span asp-validation-for="FechaPrevista" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
             <label asp-for="FechaResolucion" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input readonly asp-for="FechaResolucion" class="form-control" />
+                <input readonly asp-for="FechaResolucion" class="form-control datepicker" />
                 <span asp-validation-for="FechaResolucion" class="text-danger" />
             </div>
         </div>
@@ -49,7 +49,6 @@
 </form>
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
