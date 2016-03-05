@@ -15,6 +15,9 @@ using Cronica.Modelos.Repositorios;
 using Microsoft.AspNet.Http;
 using Microsoft.AspNet.Mvc;
 using System.Reflection;
+using System.Globalization;
+using Microsoft.AspNet.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace Cronica
 {
@@ -60,8 +63,8 @@ namespace Cronica
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();             
 
-            services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly);           
-
+            services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly).AddViewLocalization().AddDataAnnotationsLocalization();
+            
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -121,6 +124,11 @@ namespace Cronica
                 }
             );
 
+            var ci = new CultureInfo("es-ES");
+            ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
+
+            app.UseRequestLocalization(new RequestCulture(ci));
+            
             // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
 
             ConfigurarRutas(app);
