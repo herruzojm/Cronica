@@ -11,7 +11,7 @@ using Microsoft.AspNet.Authorization;
 namespace Cronica.Controllers
 {
     [Authorize]
-    public class PersonajesController : Controller
+    public class PersonajesController : RutasController
     {
         private IRepositorioPersonajes _repositorioPersonajes;
         private IRepositorioUsuarios _repositorioUsuarios;
@@ -148,6 +148,37 @@ namespace Cronica.Controllers
             _repositorioPersonajes.Eliminar(personaje);
             await _repositorioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");
+        }
+
+
+        // GET: Personajes/Edit/5/Desligar/3
+        [ActionName("Desligar")]
+        public async Task<IActionResult> Desligar(int id, int SeguidorId)
+        {
+            
+            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id);
+            if (personaje == null)
+            {
+                return HttpNotFound();
+            }
+            PersonaTrasfondo seguidor = personaje.Seguidores.Where(s => s.TrasfondoRelacionadoId == SeguidorId).SingleOrDefault();
+            if (seguidor == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(seguidor);
+        }
+
+        // POST: Personajes/Edit/5/Desligar/3        
+        [HttpPost, ActionName("Desligar")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DesligarConfirmed(PersonaTrasfondo seguidor)
+        {
+            int id = seguidor.PersonajeJugadorId;
+            _repositorioPersonajes.Eliminar(seguidor);
+            await _repositorioPersonajes.ConfirmarCambios();
+            return AbrirPersonaje(id);
         }
     }
 }

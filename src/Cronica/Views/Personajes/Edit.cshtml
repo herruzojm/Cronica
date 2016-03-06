@@ -168,7 +168,7 @@
                             <tr>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
-                                    <a asp-action="Desligar" asp-route-id="@item.TrasfondoRelacionadoId">Desligar</a>
+                                    <a asp-action="Desligar" asp-route-id="@item.PersonajeJugadorId" asp-route-SeguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)

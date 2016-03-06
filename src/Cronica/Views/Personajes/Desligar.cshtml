@@ -1,0 +1,37 @@
+@model PersonaTrasfondo
+
+@{
+    ViewData["Title"] = "Quitar Seguidor";
+}
+
+<h2>Quitar Seguidor</h2>
+
+<h3>Confirma quitar el seguidor al jugador</h3>
+<div>
+    <h4>Seguidor</h4>
+    <hr />
+    <form asp-action="Desligar">
+        <input type="hidden" asp-for="PersonajeJugadorId" />
+        <input type="hidden" asp-for="TrasfondoRelacionadoId" />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.PersonajeJugador)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PersonajeJugador.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TrasfondoRelacionado)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TrasfondoRelacionado.Nombre)
+            </dd>
+        </dl>
+
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>

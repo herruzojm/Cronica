@@ -177,6 +177,11 @@ namespace Cronica
                     name: "CrearPasaTrama",
                     template: "PasaTramas/Create/{id}",
                     defaults: new { controller = "PasaTramas", action = "Create" });
+
+                routes.MapRoute(
+                    name: "Desligar",
+                    template: "Personajes/Edit/{id}/Delisgar/{SeguidorId}",
+                    defaults: new { controller = "Personajes", action = "Index" });
             });
         }
 
