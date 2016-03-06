@@ -1,3 +1,4 @@
+using Cronica.Modelos.Repositorios.Interfaces;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;

@@ -18,6 +18,7 @@ using System.Reflection;
 using System.Globalization;
 using Microsoft.AspNet.Localization;
 using Microsoft.Extensions.Localization;
+using Cronica.Modelos.Repositorios.Interfaces;
 
 namespace Cronica
 {
@@ -76,6 +77,7 @@ namespace Cronica
             services.AddScoped<IRepositorioTramas, RepositorioTramas>();
             services.AddScoped<IRepositorioPostPartidas, RepositorioPostPartidas>();
             services.AddScoped<IRepositorioPasaTramas, RepositorioPasaTramas>();
+            services.AddScoped<IRepositorioSeguidor, RepositorioSeguidor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -180,8 +182,12 @@ namespace Cronica
 
                 routes.MapRoute(
                     name: "Desligar",
-                    template: "Personajes/Edit/{id}/Delisgar/{SeguidorId}",
-                    defaults: new { controller = "Personajes", action = "Index" });
+                    template: "Personajes/Edit/{personajeId}/Desligar/{seguidorId}",
+                    defaults: new { controller = "Seguidor", action = "Desligar" });
+                routes.MapRoute(
+                    name: "Ligar",
+                    template: "Personajes/Edit/{personajeId}/Ligar",
+                    defaults: new { controller = "Seguidor", action = "Ligar" });
             });
         }
 

@@ -6,9 +6,8 @@
 
 <h2>Quitar Seguidor</h2>
 
-<h3>Confirma quitar el seguidor al jugador</h3>
 <div>
-    <h4>Seguidor</h4>
+    <h3>Confirma quitar el seguidor al jugador</h3>
     <hr />
     <form asp-action="Desligar">
         <input type="hidden" asp-for="PersonajeJugadorId" />
@@ -30,8 +29,8 @@
 
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <input type="submit" value="Delete" class="btn btn-default" />
+            <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeJugadorId">Volver al Personaje</a>
         </div>
     </form>
 </div>

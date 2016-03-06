@@ -1,3 +1,4 @@
+using Cronica.Modelos.Repositorios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
@@ -150,35 +151,5 @@ namespace Cronica.Controllers
             return RedirectToAction("Index");
         }
 
-
-        // GET: Personajes/Edit/5/Desligar/3
-        [ActionName("Desligar")]
-        public async Task<IActionResult> Desligar(int id, int SeguidorId)
-        {
-            
-            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id);
-            if (personaje == null)
-            {
-                return HttpNotFound();
-            }
-            PersonaTrasfondo seguidor = personaje.Seguidores.Where(s => s.TrasfondoRelacionadoId == SeguidorId).SingleOrDefault();
-            if (seguidor == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(seguidor);
-        }
-
-        // POST: Personajes/Edit/5/Desligar/3        
-        [HttpPost, ActionName("Desligar")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DesligarConfirmed(PersonaTrasfondo seguidor)
-        {
-            int id = seguidor.PersonajeJugadorId;
-            _repositorioPersonajes.Eliminar(seguidor);
-            await _repositorioPersonajes.ConfirmarCambios();
-            return AbrirPersonaje(id);
-        }
     }
 }

@@ -1,0 +1,28 @@
+@model PersonaTrasfondo
+
+@{
+    ViewData["Title"] = "Nuevo Seguidor";
+}
+
+<h2>Quitar Seguidor</h2>
+
+<div>
+    <form asp-action="Ligar">
+        <div class="form-horizontal">
+            <h3>Selecciona el seguidor</h3>
+            <hr />
+            <input type="hidden" asp-for="PersonajeJugadorId" />
+            <div class="form-group">
+                <label asp-for="TrasfondoRelacionadoId" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="TrasfondoRelacionadoId" asp-items="ViewBag.Seguidores" class="form-control"></select>
+                </div>
+            </div>
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Guardar" class="btn btn-default" />
+                <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeJugadorId">Volver al Personaje</a>
+            </div>
+        </div>
+    </form>
+</div>

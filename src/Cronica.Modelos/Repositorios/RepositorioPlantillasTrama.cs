@@ -1,4 +1,5 @@
-﻿using Cronica.Modelos.ViewModels.Tramas;
+﻿using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.Data.Entity;

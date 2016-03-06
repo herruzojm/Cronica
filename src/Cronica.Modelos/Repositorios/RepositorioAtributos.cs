@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.Data.Entity;
 using System.Collections.Generic;
+using Cronica.Modelos.Repositorios.Interfaces;
 
 namespace Cronica.Modelos.Repositorios
 {

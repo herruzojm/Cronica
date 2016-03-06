@@ -64,6 +64,12 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public virtual Personaje TrasfondoRelacionado { get; set; }
     }
 
+    public class SeguidorPotencial
+    {
+        public int SeguidorId { get; set; }
+        public string Nombre { get; set; }
+    }
+
     public enum TipoClan
     {
         Assamita,
