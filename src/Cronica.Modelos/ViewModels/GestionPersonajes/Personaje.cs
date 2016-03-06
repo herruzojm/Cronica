@@ -15,7 +15,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public Personaje()
         {
             Atributos = new List<AtributoPersonaje>();
-            Trasfondos = new List<PersonaTrasfondo>();
+            Seguidores = new List<PersonaTrasfondo>();
             PersonajesJugadores = new List<PersonaTrasfondo>();
             Tramas = new List<Trama>();
         }
@@ -38,7 +38,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public string Meritos { get; set; }
         public string Defectos { get; set; }
         public virtual List<AtributoPersonaje> Atributos { get; set; }
-        public virtual List<PersonaTrasfondo> Trasfondos { get; set; }
+        public virtual List<PersonaTrasfondo> Seguidores { get; set; }
         public virtual List<PersonaTrasfondo> PersonajesJugadores { get; set; }
         public virtual ApplicationUser Jugador { get; set; }
         public virtual List<Trama> Tramas { get; set; }

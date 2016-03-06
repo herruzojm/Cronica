@@ -35,8 +35,11 @@ namespace Cronica.Modelos.Repositorios
 
         public async Task<Personaje> GetPersonaje(int personajeId)
         {
-            Personaje personaje = await _contexto.Personajes.Include(p => p.Tramas).Include(p => p.Atributos).
-                ThenInclude(ap => ap.Atributo).SingleAsync(m => m.PersonajeId == personajeId);
+            Personaje personaje = await _contexto.Personajes
+                .Include(p => p.Tramas)
+                .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
+                .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)                
+                .SingleAsync(m => m.PersonajeId == personajeId);
             return personaje;
         }
 

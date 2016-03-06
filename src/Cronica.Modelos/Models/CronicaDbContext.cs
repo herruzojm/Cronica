@@ -36,7 +36,7 @@ namespace Cronica.Modelos.Models
 
             builder.Entity<PersonaTrasfondo>()
                 .HasOne(p => p.PersonajeJugador)
-                .WithMany(p => p.Trasfondos)
+                .WithMany(p => p.Seguidores)
                 .HasForeignKey(p => p.PersonajeJugadorId)
                 .OnDelete(DeleteBehavior.Restrict);
 
