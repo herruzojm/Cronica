@@ -19,11 +19,16 @@ using System.Globalization;
 using Microsoft.AspNet.Localization;
 using Microsoft.Extensions.Localization;
 using Cronica.Modelos.Repositorios.Interfaces;
+using AutoMapper;
+using Cronica.Modelos.ViewModels.Tramas;
 
 namespace Cronica
 {
     public class Startup
     {
+
+        private MapperConfiguration _mapperConfiguration { get; set; }
+
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
@@ -39,6 +44,11 @@ namespace Cronica
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
+
+            _mapperConfiguration = new MapperConfiguration(configuracion =>
+            {
+                configuracion.AddProfile(new AutoMapperConfiguration());
+            });
         }
 
         public IConfigurationRoot Configuration { get; set; }
@@ -78,6 +88,7 @@ namespace Cronica
             services.AddScoped<IRepositorioPostPartidas, RepositorioPostPartidas>();
             services.AddScoped<IRepositorioPasaTramas, RepositorioPasaTramas>();
             services.AddScoped<IRepositorioSeguidor, RepositorioSeguidor>();
+            services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,8 +142,6 @@ namespace Cronica
 
             app.UseRequestLocalization(new RequestCulture(ci));
             
-            // To configure external authentication please see http://go.microsoft.com/fwlink/?LinkID=532715
-
             ConfigurarRutas(app);
                       
             await datosIniciales.CrearDatosAsync();
@@ -141,10 +150,7 @@ namespace Cronica
         public void ConfigurarRutas(IApplicationBuilder app)
         {
             app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+            {                
                 routes.MapRoute(
                     name: "AbrirPersonaje",
                     template: "Personajes/Edit/{id}",
@@ -155,7 +161,7 @@ namespace Cronica
                     defaults: new { controller = "Personajes", action = "Index" });
                 routes.MapRoute(
                     name: "CrearTrama",
-                    template: "Tramas/Create/{id}",
+                    template: "Tramas/Create/{personajeId}/{plantillaTramaId?}",
                     defaults: new { controller = "Tramas", action = "Create" });
                 routes.MapRoute(
                     name: "CrearAtributo",
@@ -188,6 +194,9 @@ namespace Cronica
                     name: "Ligar",
                     template: "Personajes/Edit/{personajeId}/Ligar",
                     defaults: new { controller = "Seguidor", action = "Ligar" });
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 

@@ -48,19 +48,19 @@ namespace Cronica.Controllers
         }
 
         // GET: TramasActivas/Create
-        public async Task<IActionResult> Create(int id)
+        public async Task<IActionResult> Create(int personajeId, int? plantillaTramaId)
         {            
-            Trama nuevaTrama = await _repositorioTramas.GetNuevaTrama(null);
-            nuevaTrama.PersonajeId = id;
-            ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(id).Result;
+            Trama nuevaTrama = await _repositorioTramas.GetNuevaTrama(plantillaTramaId);
+            nuevaTrama.PersonajeId = personajeId;
+            ViewBag.Personaje = await _repositorioPersonajes.GetPersonaje(personajeId);
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
             plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result
                 .Select(p => new SelectListItem
                 {
                     Value = p.PlantillaTramaId.ToString(),
-                    Text = p.Nombre
-                }).ToList());
+                    Text = p.Nombre,                    
+                }).ToList());            
             ViewBag.Plantillas = plantillas;
             return View(nuevaTrama);
         }
@@ -92,7 +92,7 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(trama.PersonajeId).Result;
+            ViewBag.Personaje = _repositorioPersonajes.GetPersonajeCompleto(trama.PersonajeId).Result;
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
             plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result

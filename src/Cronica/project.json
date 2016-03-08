@@ -8,6 +8,7 @@
     "emitEntryPoint": true
   },
   "dependencies": {
+    "AutoMapper": "4.2.0",
     "Bootstrap.v3.Datetimepicker.CSS": "4.15.35",
     "Cronica.Modelos": "1.0.0-*",
     "EntityFramework.Commands": "7.0.0-rc1-final",

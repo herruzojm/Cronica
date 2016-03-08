@@ -49,7 +49,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
             
-            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id.Value);
+            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -93,7 +93,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
             
-            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id.Value);            
+            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);            
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -131,7 +131,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id.Value);
+            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -145,7 +145,7 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Personaje personaje = await _repositorioPersonajes.GetPersonaje(id);            
+            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id);            
             _repositorioPersonajes.Eliminar(personaje);
             await _repositorioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");

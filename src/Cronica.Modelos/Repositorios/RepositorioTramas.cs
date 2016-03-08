@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.Tramas;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
+using AutoMapper;
 
 namespace Cronica.Modelos.Repositorios
 {
     public class RepositorioTramas : RepositorioBase, IRepositorioTramas
     {
-        public RepositorioTramas(CronicaDbContext contexto) : base(contexto)
+
+        private IMapper _mapper;
+
+        public RepositorioTramas(CronicaDbContext contexto, IMapper mapper) : base(contexto)
         {
+            _mapper = mapper;
         }
                
         public async Task<Trama> GetNuevaTrama(int? plantillaId)
@@ -26,17 +31,8 @@ namespace Cronica.Modelos.Repositorios
                     .Where(p => p.PlantillaTramaId == plantillaId).FirstOrDefaultAsync();
                 if (plantilla != null)
                 {
-                    trama.PlantillaId = plantillaId.Value;
-                    foreach (AtributoPlantillaTrama atributoPlantilla in plantilla.Atributos)
-                    {
-                        trama.Atributos.Add(new AtributoTrama()
-                        {
-                            Multiplicador = atributoPlantilla.Multiplicador,
-                            TramaId = trama.TramaId,
-                            AtributoId = atributoPlantilla.AtributoId,
-                            Atributo = atributos.Where(a => a.AtributoId == atributoPlantilla.AtributoId).FirstOrDefault()
-                        });
-                    }
+                    trama = _mapper.Map<Trama>(plantilla);
+                    trama.PlantillaId = plantillaId.Value;                    
                 }
                              
             }

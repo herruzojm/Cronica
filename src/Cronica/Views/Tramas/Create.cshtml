@@ -7,6 +7,13 @@
 <h2>Nueva Trama</h2>
 
 <form asp-action="Create">
+    <script>
+        function submitdata() {
+            var plantilla = document.getElementById('PlantillaId').value;
+            var ruta = '@Url.RouteUrl("CrearTrama", new { personajeId = Model.PersonajeId })' + '/' + plantilla;
+            window.location.replace(ruta)
+        }
+    </script>
     <div class="form-horizontal">
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="PersonajeId" />
@@ -20,7 +27,7 @@
                 <div class="form-group">
                     <label asp-for="Plantilla" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <select asp-for="PlantillaId" asp-items="ViewBag.Plantillas" class="form-control"></select>
+                        <select asp-for="PlantillaId" asp-items="ViewBag.Plantillas" onchange="submitdata();" class="form-control"></select>
                     </div>
                 </div>
                 <hr />
