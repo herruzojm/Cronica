@@ -10,6 +10,7 @@ namespace Cronica.Modelos.Repositorios.Interfaces
     {
         Task<List<Personaje>> GetPersonajes();
         Task<Personaje> GetNuevoPersonaje();
+        Task<Personaje> GetMiPersonaje(string jugadorId);
         Task<Personaje> GetPersonajeCompleto(int personajeId);
         Task<Personaje> GetPersonaje(int personajeId);
         void IncluirPersonaje(Personaje personaje);        

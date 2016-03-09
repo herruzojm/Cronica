@@ -92,7 +92,7 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Personaje = _repositorioPersonajes.GetPersonajeCompleto(trama.PersonajeId).Result;
+            ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(trama.PersonajeId).Result;
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
             plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result

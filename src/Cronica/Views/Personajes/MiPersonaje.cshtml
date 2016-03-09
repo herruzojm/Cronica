@@ -1,0 +1,219 @@
+@model Personaje
+
+@{
+    ViewData["Title"] = "Mi Personaje";
+}
+
+<h2>@Model.Nombre</h2>
+
+<div class="form-horizontal">
+
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="tab" href="#Personaje">Personaje</a></li>
+        <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
+        <li><a data-toggle="tab" href="#Seguidores">Seguidores</a></li>
+        <li><a data-toggle="tab" href="#Tramas">Tramas</a></li>
+    </ul>
+    <hr />
+    <div class="tab-content clearfix">
+        <div id="Personaje" class="tab-pane active">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Activo)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Activo)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Clan)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Clan)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Concepto)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Concepto)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Conducta)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Conducta)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Defectos)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Defectos)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Experiencia)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Experiencia)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Generacion)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Generacion)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Historia)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Historia)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Meritos)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Meritos)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Naturaleza)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Naturaleza)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PotenciaSangre)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PotenciaSangre)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.PuntosDeSangre)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.PuntosDeSangre)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Senda)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Senda)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.ValorSenda)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.ValorSenda)
+                </dd>
+            </dl>
+        </div>
+
+        <div id="Atributos" class="tab-pane">
+            <dl class="dl-horizontal">
+                @for (int i = 0; i < Model.Atributos.Count(); i++)
+                {
+                    <dt>
+                        @Model.Atributos[i].Atributo.Nombre
+                    </dt>
+                    <dd>
+                        @Model.Atributos[i].Valor
+                    </dd>
+                    @*<div class="form-group">
+                        <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
+                        <div class="col-md-10">
+                            <input disabled asp-for="Atributos[i].Valor" class="form-control" />
+                        </div>
+                    </div>*@
+                }
+            </dl>
+        </div>
+
+        <div id="Seguidores" class="tab-pane">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Concepto)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Seguidores)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div id="Tramas" class="tab-pane">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Cerrada)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Nombre)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosActuales)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().TextoResolucion)
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model.Tramas)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Asignar</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cerrada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PuntosActuales)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TextoResolucion)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

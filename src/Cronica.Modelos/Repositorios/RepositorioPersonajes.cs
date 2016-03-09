@@ -12,9 +12,8 @@ namespace Cronica.Modelos.Repositorios
     public class RepositorioPersonajes : RepositorioBase, IRepositorioPersonajes
     {
 
-        
         public RepositorioPersonajes(CronicaDbContext contexto) : base(contexto)
-        {            
+        {
         }
 
         public async Task<List<Personaje>> GetPersonajes()
@@ -39,8 +38,8 @@ namespace Cronica.Modelos.Repositorios
             Personaje personaje = await _contexto.Personajes
                 .Include(p => p.Tramas)
                 .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
-                .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)                
-                .SingleAsync(m => m.PersonajeId == personajeId);
+                .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)
+                .SingleAsync(p => p.PersonajeId == personajeId);
             return personaje;
         }
 
@@ -58,13 +57,23 @@ namespace Cronica.Modelos.Repositorios
         public async Task<List<Personaje>> GetPersonajesJugadores()
         {
             return await _contexto.Personajes.Include(p => p.Jugador)
-                .Where(p=> p.Jugador.Cuenta == TipoCuenta.Jugador && p.Activo == true).ToListAsync();
+                .Where(p => p.Jugador.Cuenta == TipoCuenta.Jugador && p.Activo == true).ToListAsync();
         }
 
         public async Task<List<Personaje>> GetPNJs()
         {
             return await _contexto.Personajes.Include(p => p.Jugador)
                 .Where(p => p.Jugador.Cuenta == TipoCuenta.Narrador && p.Activo == true).ToListAsync();
+        }
+
+        public async Task<Personaje> GetMiPersonaje(string jugadorId)
+        {
+            Personaje personaje = await _contexto.Personajes
+                .Include(p => p.Tramas)
+                .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
+                .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)
+                .SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true);
+            return personaje;
         }
     }
 }

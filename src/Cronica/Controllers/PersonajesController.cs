@@ -3,11 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
-using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
-using Cronica.Modelos.Repositorios;
 using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Identity;
+using System.Security.Claims;
+using System;
 
 namespace Cronica.Controllers
 {
@@ -41,18 +41,14 @@ namespace Cronica.Controllers
             return View("Index", await _repositorioPersonajes.GetPNJs());
         }
 
-        // GET: Personajes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: MiPersonaje
+        public async Task<IActionResult> MiPersonaje()
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-            
-            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);
+            string jugadorId = User.GetUserId();
+            Personaje personaje = await _repositorioPersonajes.GetMiPersonaje(jugadorId);
             if (personaje == null)
             {
-                return HttpNotFound();
+                //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
             }            
             return View(personaje);
         }

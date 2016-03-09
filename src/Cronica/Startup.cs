@@ -194,6 +194,12 @@ namespace Cronica
                     name: "Ligar",
                     template: "Personajes/Edit/{personajeId}/Ligar",
                     defaults: new { controller = "Seguidor", action = "Ligar" });
+
+                routes.MapRoute(
+                    name: "MiPersonaje",
+                    template: "MiPersonaje",
+                    defaults: new { controller = "Personajes", action = "MiPersonaje" });
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
