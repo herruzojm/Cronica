@@ -8,7 +8,7 @@ using Cronica.Modelos.Models;
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160306073711_Inicial")]
+    [Migration("20160311152645_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -142,7 +142,7 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("TrasfondoRelacionadoId");
 
-                    b.Property<int?>("PersonajeJugadorPersonajeId");
+                    b.Property<int>("TipoRelacion");
 
                     b.HasKey("PersonajeJugadorId", "TrasfondoRelacionadoId");
                 });
@@ -360,7 +360,7 @@ namespace Cronica.Modelos.Migrations
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
                         .WithMany()
-                        .HasForeignKey("PersonajeJugadorPersonajeId");
+                        .HasForeignKey("PersonajeJugadorId");
 
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
                         .WithMany()

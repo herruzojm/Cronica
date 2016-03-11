@@ -62,6 +62,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public virtual Personaje PersonajeJugador { get; set; }
         public int TrasfondoRelacionadoId { get; set; }
         public virtual Personaje TrasfondoRelacionado { get; set; }
+        public TipoRelacionPersona TipoRelacion { get; set; }
     }
 
     public class SeguidorPotencial
@@ -122,4 +123,11 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         PoderVozInterior
     }
 
+    public enum TipoRelacionPersona
+    {
+        Aliado,
+        Contacto,
+        Criado,
+        Mentor
+    }
 }

@@ -173,11 +173,13 @@ namespace Cronica.Modelos.Models
                 tf1.PersonajeJugador = personaje3;
                 tf1.TrasfondoRelacionadoId = personaje1.PersonajeId;
                 tf1.TrasfondoRelacionado = personaje1;
+                tf1.TipoRelacion = TipoRelacionPersona.Contacto;
                 PersonaTrasfondo tf2 = new PersonaTrasfondo();
                 tf2.PersonajeJugadorId = personaje3.PersonajeId;
                 tf2.PersonajeJugador = personaje3;
                 tf2.TrasfondoRelacionadoId = personaje2.PersonajeId;
                 tf2.TrasfondoRelacionado = personaje2;
+                tf2.TipoRelacion = TipoRelacionPersona.Criado;
                 personaje3.Seguidores.Add(tf1);
                 personaje3.Seguidores.Add(tf2);
                 _contexto.Personajes.Add(personaje3);
@@ -191,6 +193,7 @@ namespace Cronica.Modelos.Models
                 tf3.PersonajeJugador = personaje4;
                 tf3.TrasfondoRelacionadoId = personaje1.PersonajeId;
                 tf3.TrasfondoRelacionado = personaje1;
+                tf3.TipoRelacion = TipoRelacionPersona.Aliado;
                 personaje4.Seguidores.Add(tf3);
                 _contexto.Personajes.Add(personaje4);
                 _contexto.SaveChanges();

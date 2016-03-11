@@ -141,6 +141,8 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("TrasfondoRelacionadoId");
 
+                    b.Property<int>("TipoRelacion");
+
                     b.HasKey("PersonajeJugadorId", "TrasfondoRelacionadoId");
                 });
 

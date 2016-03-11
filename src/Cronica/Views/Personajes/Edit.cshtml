@@ -155,6 +155,9 @@
                         <tr>
                             <th></th>
                             <th>
+                                Tipo
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Nombre)
                             </th>
                             <th>
@@ -169,6 +172,9 @@
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
                                     <a asp-controller="Seguidores" asp-action="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)

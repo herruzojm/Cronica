@@ -281,7 +281,8 @@ namespace Cronica.Modelos.Migrations
                 columns: table => new
                 {
                     PersonajeJugadorId = table.Column<int>(nullable: false),
-                    TrasfondoRelacionadoId = table.Column<int>(nullable: false)
+                    TrasfondoRelacionadoId = table.Column<int>(nullable: false),
+                    TipoRelacion = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

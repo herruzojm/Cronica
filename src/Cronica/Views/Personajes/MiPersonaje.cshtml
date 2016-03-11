@@ -120,13 +120,7 @@
                     </dt>
                     <dd>
                         @Model.Atributos[i].Valor
-                    </dd>
-                    @*<div class="form-group">
-                        <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
-                        <div class="col-md-10">
-                            <input disabled asp-for="Atributos[i].Valor" class="form-control" />
-                        </div>
-                    </div>*@
+                    </dd>                    
                 }
             </dl>
         </div>
@@ -135,6 +129,9 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>
+                            Tipo
+                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Nombre)
                         </th>
@@ -147,6 +144,9 @@
                     @foreach (var item in Model.Seguidores)
                     {
                         <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoRelacion)
+                            </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
                             </td>
