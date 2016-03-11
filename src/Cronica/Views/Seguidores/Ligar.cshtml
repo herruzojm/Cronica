@@ -18,6 +18,13 @@
                     <select asp-for="TrasfondoRelacionadoId" asp-items="ViewBag.Seguidores" class="form-control"></select>
                 </div>
             </div>
+            <div class="form-group">
+                <label asp-for="TipoRelacion" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select asp-for="TipoRelacion" asp-items="Html.GetEnumSelectList<TipoRelacionPersona>()" class="form-control"></select>
+                    <span asp-validation-for="TipoRelacion" class="text-danger" />
+                </div>
+            </div>
 
             <div class="form-actions no-color">
                 <input type="submit" value="Guardar" class="btn btn-default" />

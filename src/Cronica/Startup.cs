@@ -184,16 +184,7 @@ namespace Cronica
                 routes.MapRoute(
                     name: "CrearPasaTrama",
                     template: "PasaTramas/Create/{id}",
-                    defaults: new { controller = "PasaTramas", action = "Create" });
-
-                routes.MapRoute(
-                    name: "Desligar",
-                    template: "Personajes/Edit/{personajeId}/Desligar/{seguidorId}",
-                    defaults: new { controller = "Seguidor", action = "Desligar" });
-                routes.MapRoute(
-                    name: "Ligar",
-                    template: "Personajes/Edit/{personajeId}/Ligar",
-                    defaults: new { controller = "Seguidor", action = "Ligar" });
+                    defaults: new { controller = "PasaTramas", action = "Create" });                
 
                 routes.MapRoute(
                     name: "MiPersonaje",

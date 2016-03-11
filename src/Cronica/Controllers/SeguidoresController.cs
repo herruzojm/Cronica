@@ -22,6 +22,7 @@ namespace Cronica.Controllers
         }
 
         // GET:Personajes/Edit/5/Ligar
+        [Route("Personajes/Edit/{personajeId:int}/Ligar", Name = "Ligar")]
         public async Task<IActionResult> Ligar(int personajeId)
         {
             PersonaTrasfondo nuevoSeguidor = new PersonaTrasfondo();
@@ -38,6 +39,7 @@ namespace Cronica.Controllers
         // POST: Personajes/Edit/5/Ligar
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("Personajes/Edit/{personajeId:int}/Ligar", Name = "Ligar")]
         public async Task<IActionResult> Ligar(PersonaTrasfondo seguidor)
         {
             if (ModelState.IsValid)
@@ -51,6 +53,7 @@ namespace Cronica.Controllers
 
         // GET: Personajes/Edit/5/Desligar/3
         [ActionName("Desligar")]
+        [Route("Personajes/Edit/{personajeId:int}/Desligar/{seguidorId:int}", Name = "Desligar")]
         public async Task<IActionResult> Desligar(int personajeId, int seguidorId)
         {
             
@@ -66,6 +69,7 @@ namespace Cronica.Controllers
         // POST: Personajes/Edit/5/Desligar/3        
         [HttpPost, ActionName("Desligar")]
         [ValidateAntiForgeryToken]
+        [Route("Personajes/Edit/{personajeId:int}/Desligar/{seguidorId:int}", Name = "Desligar")]
         public async Task<IActionResult> DesligarConfirmed(PersonaTrasfondo seguidor)
         {
             int id = seguidor.PersonajeJugadorId;

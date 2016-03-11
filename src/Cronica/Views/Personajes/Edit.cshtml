@@ -171,7 +171,7 @@
                             <tr>
                                 <td>
                                     <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
-                                    <a asp-controller="Seguidores" asp-action="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
+                                    <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.TipoRelacion)
@@ -186,7 +186,7 @@
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-default btn-info" asp-controller="Seguidores" asp-action="Ligar" asp-route-personajeId="@Model.PersonajeId" >Nuevo Seguidor</a>
+                <a class="btn btn-default btn-info" asp-route="Ligar" asp-route-personajeId="@Model.PersonajeId" >Nuevo Seguidor</a>
             </div>
 
             <div id="Tramas" class="tab-pane">
