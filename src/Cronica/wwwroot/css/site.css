@@ -33,6 +33,11 @@ textarea {
     }
 }
 
+.alert {
+    margin-top: 10px;
+}
+
+
 
 
 /* SORTING Datatables */

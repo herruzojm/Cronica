@@ -8,6 +8,8 @@ namespace Cronica.Modelos.Repositorios.Interfaces
 {
     public interface IRepositorioUsuarios
     {
-        List<ApplicationUser> GetUsuarios();
+        Task<List<ApplicationUser>> GetUsuarios();
+        Task<ApplicationUser> GetUsuarioById(string userId);
+        Task<ApplicationUser> GetUsuarioByEmail(string userEmail);
     }
 }

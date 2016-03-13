@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
+using Microsoft.Data.Entity;
 
 namespace Cronica.Modelos.Repositorios
 {
@@ -17,10 +18,20 @@ namespace Cronica.Modelos.Repositorios
         {
             _contexto = contexto;
         }
-       
-        public List<ApplicationUser> GetUsuarios()
+
+        public async Task<ApplicationUser> GetUsuarioById(string userId)
         {
-            return _contexto.Users.ToList();
+            return await _contexto.Users.SingleAsync(u => u.Id == userId);
+        }
+
+        public async Task<ApplicationUser> GetUsuarioByEmail(string userEmail)
+        {
+            return await _contexto.Users.SingleAsync(u => u.Email == userEmail);
+        }
+
+        public async Task<List<ApplicationUser>> GetUsuarios()
+        {
+            return await _contexto.Users.ToListAsync();
         }
 
         

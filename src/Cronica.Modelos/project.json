@@ -1,5 +1,5 @@
 {
-  "authors": [ "DarkShared" ],
+  "authors": [ "Herruzojm" ],
   "dependencies": {
     "AutoMapper": "4.2.0",
     "EntityFramework.Core": "7.0.0-rc1-final",

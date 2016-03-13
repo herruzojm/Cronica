@@ -1,4 +1,5 @@
 {
+  "authors": [ "Herruzojm" ],
   "commands": {
     "web": "Microsoft.AspNet.Server.Kestrel",
     "ef": "EntityFramework.Commands",
@@ -16,6 +17,7 @@
     "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final",
     "EntityFramework.Relational": "7.0.0-rc1-final",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Authorization": "1.0.0-rc1-final",
     "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-rc1-final",
     "Microsoft.AspNet.Identity": "3.0.0-rc1-final",
     "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-rc1-final",
@@ -36,7 +38,8 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc1-final",
     "npm": "3.5.2",
     "System.Collections.Immutable": "1.1.37",
-    "System.Linq": "4.0.1-beta-23516"
+    "System.Linq": "4.0.1-beta-23516",
+    "TagHelperSamples.Bootstrap": "1.0.1.2"
   },
   "exclude": [
     "wwwroot",

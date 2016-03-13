@@ -8,6 +8,7 @@ using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using System;
+using Cronica.Modelos.Models;
 
 namespace Cronica.Controllers
 {
@@ -44,13 +45,21 @@ namespace Cronica.Controllers
         // GET: MiPersonaje
         public async Task<IActionResult> MiPersonaje()
         {
-            string jugadorId = User.GetUserId();
-            Personaje personaje = await _repositorioPersonajes.GetMiPersonaje(jugadorId);
-            if (personaje == null)
+            string userId = User.GetUserId();
+            ApplicationUser usuario = await _repositorioUsuarios.GetUsuarioById(userId);
+            if (usuario.Cuenta == TipoCuenta.Jugador)
             {
-                //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
-            }            
-            return View(personaje);
+                Personaje personaje = await _repositorioPersonajes.GetMiPersonaje(userId);
+                if (personaje == null)
+                {
+                    //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
+                }
+                return View(personaje);                
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Personajes/Create
@@ -58,7 +67,9 @@ namespace Cronica.Controllers
         {
             Personaje personaje = await _repositorioPersonajes.GetNuevoPersonaje();
 
-            ViewBag.Jugadores = _repositorioUsuarios.GetUsuarios().Select(u => new SelectListItem
+            var jugadores = await _repositorioUsuarios.GetUsuarios();
+
+            ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
             {
                 Value = u.Id,
                 Text = u.UserName
@@ -95,7 +106,9 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.Jugadores = _repositorioUsuarios.GetUsuarios().Select(u => new SelectListItem
+            var jugadores = await _repositorioUsuarios.GetUsuarios();
+
+            ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
             {
                 Value = u.Id,
                 Text = u.UserName
@@ -113,7 +126,7 @@ namespace Cronica.Controllers
             {
                 _repositorioPersonajes.Actualizar(personaje);
                 await _repositorioPersonajes.ConfirmarCambios();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");                
             }
             return View(personaje);
         }

@@ -8,6 +8,11 @@ namespace Cronica.Controllers
 {
     public class RutasController : Controller
     {
+        protected IActionResult VistaMiPersonaje()
+        {
+            return RedirectToRoute("MiPersonaje");
+        }
+
         protected IActionResult AbrirPersonaje(int personajeId)
         {
             return RedirectToRoute("AbrirPersonaje", new { id = personajeId });

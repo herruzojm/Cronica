@@ -21,6 +21,8 @@ using Microsoft.Extensions.Localization;
 using Cronica.Modelos.Repositorios.Interfaces;
 using AutoMapper;
 using Cronica.Modelos.ViewModels.Tramas;
+using Cronica.Authorization;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica
 {
@@ -69,13 +71,18 @@ namespace Cronica
             {
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.DefaultLockoutTimeSpan = new TimeSpan(0, 15, 0);
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = true;                
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();             
 
             services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly).AddViewLocalization().AddDataAnnotationsLocalization();
-            
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Narrador", policy => policy.Requirements.Add(new TipoCuentaRequirement(TipoCuenta.Narrador)));
+            });
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -89,6 +96,7 @@ namespace Cronica
             services.AddScoped<IRepositorioPasaTramas, RepositorioPasaTramas>();
             services.AddScoped<IRepositorioSeguidor, RepositorioSeguidor>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
+            services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -132,8 +140,10 @@ namespace Cronica
             
             app.UseCookieAuthentication(options =>
                 {
+                    options.AuthenticationScheme = "Cookies";
                     options.LogoutPath = new PathString("/Home/Index");
-                    options.LoginPath = new PathString("/Account/Login");                    
+                    options.LoginPath = new PathString("/Account/Login");
+                    options.AccessDeniedPath = new PathString("/Account/AccesoDenegado");
                 }
             );
 

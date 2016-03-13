@@ -12,30 +12,34 @@ using Microsoft.Extensions.Logging;
 using Cronica.Modelos.Models;
 using Cronica.Services;
 using Cronica.ViewModels.Account;
+using Cronica.Modelos.Repositorios.Interfaces;
 
 namespace Cronica.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : RutasController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private IRepositorioUsuarios _repositorioUsuarios;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IRepositorioUsuarios repositorioUsuarios)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _repositorioUsuarios = repositorioUsuarios;
         }
 
         //
@@ -43,11 +47,7 @@ namespace Cronica.Controllers
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
-        {
-            if (User.Identity.IsAuthenticated)
-            {
-                //todo: redirigir a su personaje
-            }
+        {            
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -68,6 +68,11 @@ namespace Cronica.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
+                    ApplicationUser usuario = await _repositorioUsuarios.GetUsuarioByEmail(model.Email);
+                    if (usuario.Cuenta == TipoCuenta.Jugador)
+                    {
+                        return VistaMiPersonaje();
+                    }                    
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -93,16 +98,16 @@ namespace Cronica.Controllers
         //
         // GET: /Account/Register
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Policy = "Narrador")]
         public IActionResult Register()
-        {
+        {            
             return View();
         }
 
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -118,9 +123,11 @@ namespace Cronica.Controllers
                     //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                    //await _signInManager.SignInAsync(user, isPersistent: false);
+                    _logger.LogInformation(3, $"Cuenta creada para el usuario {model.Email}");
+                    ViewBag.MensajeExito = $"Cuenta creada para el usuario {model.Email}";
+                    ModelState.Clear();
+                    return View();
                 }
                 AddErrors(result);
             }
