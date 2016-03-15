@@ -200,6 +200,10 @@ namespace Cronica
                     name: "MiPersonaje",
                     template: "MiPersonaje",
                     defaults: new { controller = "Personajes", action = "MiPersonaje" });
+                routes.MapRoute(
+                    name: "MisTramas",
+                    template: "MisTramas",
+                    defaults: new { controller = "Personajes", action = "MisTramas" });
 
                 routes.MapRoute(
                     name: "default",

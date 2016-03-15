@@ -1,0 +1,145 @@
+@model Personaje
+
+@{
+    ViewData["Title"] = "Mis Tramas";
+}
+
+<h2>Tramas Activas</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Involucrarse Personalmente</th>
+            <th>Curro, el Nazareno <br />(Mentor)</th>
+            <th>Tu Vecino Autista <br />(Contacto)</th>
+            <th>La Niña Tetraplejica <br />(Alidado)</th>
+            <th>Dani, el sordomudo <br />(Criado)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Comprar un phoskito original</td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+        </tr>
+        <tr>
+            <td>Hackear la web del tiempo para que sea siempre invierno</td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+            <td><input type="checkbox" /></td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    Pros: <br />
+    Facil de entender y de usar.<br />
+    Permite configurar a tu gusto la dedicación a cada trama.
+</p>
+<p>
+    Contras: <br />
+    Queda feo.<br />
+    No permite configurarse (o una al 100% o las dos al 50%, pero no puedes poner mas empeño en una que en otra).
+</p>
+<p>
+    <hr />
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Involucrarse Personalmente</th>
+            <th>Curro, el Nazareno <br />(Mentor)</th>
+            <th>Tu Vecino Autista <br />(Contacto)</th>
+            <th>La Niña Tetraplejica <br />(Alidado)</th>
+            <th>Dani, el sordomudo <br />(Criado)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Comprar un phoskito original</td>
+            <td><input type="number" class="form-control valid" /></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+        </tr>
+        <tr>
+            <td>Hackear la web del tiempo para que sea siempre invierno</td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+            <td><input type="number" class="form-control valid"/></td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    Pros:<br />
+    Relativamente facil de usar: se puede poner que los numeros se pongan en rojo si intentas poner mas de 100 o en amarillo si el total es menos de 100.    <br />
+    Permite configurar a tu gusto la dedicación a cada trama.
+</p>
+<p>
+    Contras:<br />
+    Queda feo.<br />
+    Si tienes muchas tramas y/o muchos aliados, puede ser un poco coñazo cuadrarlos todos.<br />
+    Si no estas atentos, puedes dejar alguna trama con un porcentaje muy bajo (1% o 2%), que practicamente no sirve para nada.
+</p>
+<p>
+    <hr />
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Involucrarse Personalmente</th>
+            <th>Curro, el Nazareno <br />(Mentor)</th>
+            <th>Tu Vecino Autista <br />(Contacto)</th>
+            <th>La Niña Tetraplejica <br />(Alidado)</th>
+            <th>Dani, el sordomudo <br />(Criado)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Comprar un phoskito original</td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+        </tr>
+        <tr>
+            <td>Hackear la web del tiempo para que sea siempre invierno</td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+            <td><input type="range" /></td>
+        </tr>
+    </tbody>
+</table>
+<p>
+    Pros:<br />
+    Queda guay (en un color rojo sangre y cambiado el icono selector por el ankh, por ejemplo).<br />
+    Intuitivo.<br />
+    Se configura siempre al 100% (las barras iran linkadas, de forma que si subes una, las otras bajan y viceversa).
+</p>
+<p>
+    Contras:<br />
+    Es dificil marcar porcentajes exactos en todas las tramas.<br />
+</p>
+<p>
+    <hr />
+</p>
+
+
+
+    @section Scripts {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }

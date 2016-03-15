@@ -62,6 +62,12 @@ namespace Cronica.Controllers
             }
         }
 
+        // GET: MiPersonaje
+        public async Task<IActionResult> MisTramas()
+        {
+            return View();
+        }
+
         // GET: Personajes/Create
         public async Task<IActionResult> Create()
         {
