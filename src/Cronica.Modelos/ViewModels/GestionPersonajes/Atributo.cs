@@ -11,6 +11,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public string Nombre { get; set; }
         public TipoAtributo Tipo { get; set; }
         public SubTipoAtributo SubTipo { get; set; }   
+        public int Orden { get; set; }
      
     }
 

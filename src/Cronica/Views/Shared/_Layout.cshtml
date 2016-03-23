@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Verum Est Sanguis</title>
 
@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/bootswatch/cyborg/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/ssdrw/ssdot.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css" />
@@ -80,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content anchoTotal">
         <alert message="@ViewBag.MensajeExito" icon="success" dismissible="true">
         </alert>
         @RenderBody()
@@ -96,6 +97,7 @@
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
         <script src="~/lib/datatables/media/js/jquery.datatables.js"></script>
         <script src="~/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+        <script src="~/lib/ssdrw/ssdot.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
