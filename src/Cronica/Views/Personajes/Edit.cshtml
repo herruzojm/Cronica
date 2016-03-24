@@ -195,31 +195,34 @@
                         <tr>
                             <th></th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Cerrada)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Cerrada)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Nombre)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Nombre)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Descripcion)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TipoTrama)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosActuales)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Descripcion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosDePresionPorTiemppo)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.PuntosActuales)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosNecesarios)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.PuntosDePresionPorTiemppo)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().TextoResolucion)
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.PuntosNecesarios)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TextoResolucion)
                             </th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model.Tramas)
+                        @foreach (var item in Model.TramasParticipadas)
                         {
                             <tr>
                                 <td>
@@ -227,25 +230,28 @@
                                     <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Cerrada)
+                                    @Html.DisplayFor(modelItem => item.Trama.Cerrada)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                    @Html.DisplayFor(modelItem => item.Trama.Nombre)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                    @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PuntosActuales)
+                                    @Html.DisplayFor(modelItem => item.Trama.Descripcion)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PuntosDePresionPorTiemppo)
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.PuntosNecesarios)
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.TextoResolucion)
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
                                 </td>
                             </tr>
                         }

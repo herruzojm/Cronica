@@ -12,13 +12,16 @@
     <th></th>
         <th>
             @Html.DisplayNameFor(model => model.Cerrada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Personaje)
-        </th>
+        </th>        
         <th>
             @Html.DisplayNameFor(model => model.Nombre)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTrama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Participantes)
+        </th>        
         <th>
             @Html.DisplayNameFor(model => model.Descripcion)
         </th>
@@ -48,11 +51,19 @@
             @Html.DisplayFor(modelItem => item.Cerrada)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Personaje.Nombre)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Nombre)
         </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoTrama)
+        </td>
+        <td>
+            @if (item.Participantes.Count() == 1){
+                @Html.DisplayFor(modelItem => item.Participantes.FirstOrDefault().Personaje.Nombre)
+            }
+            else {
+                @Html.DisplayFor(modelItem => item.Participantes.Count().ToString()) @:" participantes";
+            }
+        </td>        
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>

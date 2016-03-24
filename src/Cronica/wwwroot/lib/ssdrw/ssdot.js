@@ -33,9 +33,21 @@
         var max, value;
         max = this.data("dot-max");
         value = this.data("dot-value");
-
+        var hasAttr = this.attr("readonly");
+        var readOnly = false;
+        if (typeof hasAttr !== typeof undefined && hasAttr !== false) {
+            readOnly = true;
+        }
+        
         if (max != null)
         {
+            var basicClass;
+            if (readOnly) {
+                basicClass = "<div class='ss-dot readonly'></div>";
+            } else {
+                basicClass = "<div class='ss-dot clickclable'></div>";
+            }
+
             this.html((new Array(max + 1)).join("<div class='ss-dot'></div>"));
             SetDotRating(this, value);
             //this.html("<div class='capaDerecha'>" + this.html() + "</div>");
@@ -43,14 +55,16 @@
                 this.children(".ss-dot").addClass("ss-dot-xmark");
             }
 
-            this.click(function (e) {
-                var target = $(e.target);
-                if (target.attr("id") !== $(this).attr("id")) {
-                    SetDotRating($(this), $(this).children(".ss-dot").index(target) + 1);
-                } else {
-                    SetDotRating($(this), 0);
-                }
-            });
+            if (!readOnly) {
+                this.click(function (e) {
+                    var target = $(e.target);
+                    if (target.attr("id") !== $(this).attr("id")) {
+                        SetDotRating($(this), $(this).children(".ss-dot").index(target) + 1);
+                    } else {
+                        SetDotRating($(this), 0);
+                    }
+                });
+            }
         }
         
     };

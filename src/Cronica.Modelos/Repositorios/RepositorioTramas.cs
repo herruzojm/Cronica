@@ -54,12 +54,13 @@ namespace Cronica.Modelos.Repositorios
 
         public async Task<List<Trama>> GetTramas()
         {
-            return await _contexto.Tramas.Include(t=> t.Personaje).ToListAsync();
+            return await _contexto.Tramas.Include(t=> t.Participantes).ToListAsync();
         }
 
         public async Task<List<Trama>> GetTramasPersonaje(int personajeId)
         {
-            return await _contexto.Tramas.Where(t=> t.PersonajeId == personajeId).ToListAsync();
+            return await (from trama in _contexto.Tramas join participantes in _contexto.ParticipantesTrama on trama.TramaId  equals participantes.TramaId
+                         where participantes.PersonajeId == personajeId select trama).ToListAsync();
         }
 
         public void IncluirTrama(Trama trama)

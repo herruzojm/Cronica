@@ -118,7 +118,7 @@
                 <h4>Fisicos</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -127,7 +127,7 @@
                 <h4>Sociales</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -136,7 +136,7 @@
                 <h4>Mentales</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -146,7 +146,7 @@
                 <h4>Talentos</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -155,7 +155,7 @@
                 <h4>Tecnicas</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -164,7 +164,7 @@
                 <h4>Conocimientos</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -174,7 +174,7 @@
                 <h4>Trasfondos</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -183,7 +183,7 @@
                 <h4>Disciplinas</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -192,7 +192,7 @@
                 <h4>Virtudes</h4>
                 @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
                 {
-                    <span class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
                         <div class="clearfix"></div>
                 }
@@ -242,44 +242,50 @@
                     <tr>
                         <th></th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Cerrada)
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Cerrada)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Nombre)
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Nombre)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Descripcion)
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TipoTrama)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().PuntosActuales)
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Descripcion)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().TextoResolucion)
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.PuntosActuales)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TextoResolucion)
                         </th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach (var item in Model.Tramas)
+                    @foreach (var item in Model.TramasParticipadas)
                     {
                         <tr>
                             <td>
                                 <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Asignar</a>
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Cerrada)
+                                @Html.DisplayFor(modelItem => item.Trama.Cerrada)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
+                                @Html.DisplayFor(modelItem => item.Trama.Nombre)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
+                                @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.PuntosActuales)
+                                @Html.DisplayFor(modelItem => item.Trama.Descripcion)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TextoResolucion)
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
                             </td>
                         </tr>
                     }
@@ -298,7 +304,7 @@
             @foreach (AtributoPersonaje atributo in Model.Atributos)
             {
                 @:$("#Caracteristica_@atributo.Atributo.AtributoId.ToString()").DotRating();
-                        }
+            }
 
         })
     </script>

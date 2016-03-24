@@ -26,9 +26,10 @@
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="Personaje" class="col-md-2 control-label"></label>
+                    <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input readonly class="form-control" asp-for="Personaje" value="@ViewBag.Personaje.Nombre" />
+                        <select asp-for="TipoTrama" class="form-control" />
+                        <span asp-validation-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="text-danger" />
                     </div>
                 </div>
                 <hr />

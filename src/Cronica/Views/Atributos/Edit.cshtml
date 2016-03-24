@@ -32,7 +32,14 @@
                 <select asp-for="SubTipo" asp-items="Html.GetEnumSelectList<SubTipoAtributo>()" class="form-control"></select>
                 <span asp-validation-for="SubTipo" class="text-danger" />
             </div>
-        </div>        
+        </div>
+        <div class="form-group">
+            <label asp-for="Orden" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Orden" class="form-control" />
+                <span asp-validation-for="Orden" class="text-danger" />
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Guardar" class="btn btn-default btn-success" />

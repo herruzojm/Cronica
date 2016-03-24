@@ -9,14 +9,14 @@
 <form asp-action="Create">
     <script>
         function submitdata() {
+            @* todo pasarlo a componente
             var plantilla = document.getElementById('PlantillaId').value;
             var ruta = '@Url.RouteUrl("CrearTrama", new { personajeId = Model.PersonajeId })' + '/' + plantilla;
-            window.location.replace(ruta)
+            window.location.replace(ruta)*@
         }
     </script>
     <div class="form-horizontal">
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="PersonajeId" />
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="tab" href="#Trama">Trama</a></li>
             <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
@@ -32,9 +32,10 @@
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="Personaje" class="col-md-2 control-label"></label>
+                    <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input readonly class="form-control" asp-for="Personaje" value="@ViewBag.Personaje.Nombre" />
+                        <select asp-for="TipoTrama" class="form-control" />
+                        <span asp-validation-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="text-danger" />
                     </div>
                 </div>
                 <hr />
@@ -107,7 +108,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeId">Volver al Personaje</a>
+                @*//todo volver al personaje o a la lista de tramas
+    <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeId">Volver al Personaje</a>*@
                 <input type="submit" value="Crear Trama" class="btn btn-default btn-success" />
             </div>
         </div>

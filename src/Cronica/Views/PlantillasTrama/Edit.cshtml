@@ -20,6 +20,13 @@
             </div>
         </div>
         <div class="form-group">
+            <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="form-control" ></select>
+                <span asp-validation-for="TipoTrama" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
             <label asp-for="Descripcion" class="col-md-2 control-label"></label>
             <div class="col-md-10">
                 <input asp-for="Descripcion" class="form-control" />

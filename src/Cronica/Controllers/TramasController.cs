@@ -50,8 +50,11 @@ namespace Cronica.Controllers
         // GET: TramasActivas/Create
         public async Task<IActionResult> Create(int personajeId, int? plantillaTramaId)
         {            
+            //todo vincular a lista de personajes
             Trama nuevaTrama = await _repositorioTramas.GetNuevaTrama(plantillaTramaId);
-            nuevaTrama.PersonajeId = personajeId;
+            ParticipantesTrama participante = new ParticipantesTrama();
+            participante.PersonajeId = personajeId;
+            nuevaTrama.Participantes.Add(participante);
             ViewBag.Personaje = await _repositorioPersonajes.GetPersonaje(personajeId);
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
@@ -74,7 +77,9 @@ namespace Cronica.Controllers
             {
                 _repositorioTramas.IncluirTrama(trama);
                 await _repositorioTramas.ConfirmarCambios();
-                return AbrirPersonaje(trama.PersonajeId);
+                //todo volver al personaje o a la lista de tramas
+                //return AbrirPersonaje(trama.PersonajeId);
+                
             }
             return View(trama);
         }
@@ -82,6 +87,7 @@ namespace Cronica.Controllers
         // GET: TramasActivas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            //todo vincular a lista de personajes
             if (id == null)
             {
                 return HttpNotFound();
@@ -92,7 +98,8 @@ namespace Cronica.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(trama.PersonajeId).Result;
+            //todo lista participantes
+            //ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(trama.PersonajeId).Result;
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
             plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result
@@ -114,7 +121,8 @@ namespace Cronica.Controllers
             {
                 _repositorioTramas.Actualizar(trama);
                 await _repositorioTramas.ConfirmarCambios();
-                return AbrirPersonaje(trama.PersonajeId);
+                //todo volver al personaje o a la lista de tramas
+                //return AbrirPersonaje(trama.PersonajeId);
             }
             return View(trama);
         }

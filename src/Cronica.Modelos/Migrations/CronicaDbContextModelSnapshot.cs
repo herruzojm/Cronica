@@ -73,6 +73,8 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<string>("Nombre");
 
+                    b.Property<int>("Orden");
+
                     b.Property<int>("SubTipo");
 
                     b.Property<int>("Tipo");
@@ -198,6 +200,17 @@ namespace Cronica.Modelos.Migrations
                     b.HasKey("AtributoId", "TramaId");
                 });
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.ParticipantesTrama", b =>
+                {
+                    b.Property<int>("TramaId");
+
+                    b.Property<int>("PersonajeId");
+
+                    b.Property<int>("Equipo");
+
+                    b.HasKey("TramaId", "PersonajeId", "Equipo");
+                });
+
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PlantillaTrama", b =>
                 {
                     b.Property<int>("PlantillaTramaId")
@@ -211,6 +224,8 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("PuntosNecesarios");
 
+                    b.Property<int>("TipoTrama");
+
                     b.HasKey("PlantillaTramaId");
                 });
 
@@ -220,11 +235,13 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("PasaTramaId");
 
+                    b.Property<int>("PersonajeId");
+
                     b.Property<string>("Descripcion");
 
                     b.Property<int>("PuntosObtenidos");
 
-                    b.HasKey("TramaId", "PasaTramaId");
+                    b.HasKey("TramaId", "PasaTramaId", "PersonajeId");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
@@ -238,8 +255,6 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<string>("Nombre");
 
-                    b.Property<int>("PersonajeId");
-
                     b.Property<int?>("PlantillaId");
 
                     b.Property<int?>("PostPartidaPostPartidaId");
@@ -251,6 +266,8 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("PuntosNecesarios");
 
                     b.Property<string>("TextoResolucion");
+
+                    b.Property<int>("TipoTrama");
 
                     b.HasKey("TramaId");
                 });
@@ -395,6 +412,17 @@ namespace Cronica.Modelos.Migrations
                         .HasForeignKey("TramaId");
                 });
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.ParticipantesTrama", b =>
+                {
+                    b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
+                        .WithMany()
+                        .HasForeignKey("PersonajeId");
+
+                    b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
+                        .WithMany()
+                        .HasForeignKey("TramaId");
+                });
+
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosPasaTrama", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
@@ -404,10 +432,6 @@ namespace Cronica.Modelos.Migrations
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
                 {
-                    b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
-                        .WithMany()
-                        .HasForeignKey("PersonajeId");
-
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.PlantillaTrama")
                         .WithMany()
                         .HasForeignKey("PlantillaId");

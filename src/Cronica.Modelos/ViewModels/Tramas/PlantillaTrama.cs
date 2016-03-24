@@ -14,6 +14,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         }
 
         public int PlantillaTramaId { get; set; }
+        public TipoTrama TipoTrama { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public int PuntosNecesarios { get; set; }
@@ -28,4 +29,12 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public int Multiplicador { get; set; }
         public virtual Atributo Atributo { get; set; }
     }
+
+    public enum TipoTrama
+    {
+        Individual,
+        Colaborativa,
+        Entrentada
+    }
+
 }

@@ -20,6 +20,7 @@ namespace Cronica.Modelos.Models
         public DbSet<Trama> Tramas { get; set; }
         public DbSet<PasaTrama> PasaTramas { get; set; }
         public DbSet<PersonaTrasfondo> Seguidores { get; set; }
+        public DbSet<ParticipantesTrama> ParticipantesTrama{ get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -54,7 +55,10 @@ namespace Cronica.Modelos.Models
                 .HasKey(a => new { a.AtributoId, a.TramaId });
 
             builder.Entity<PuntosPasaTrama>()
-                .HasKey(a => new { a.TramaId, a.PasaTramaId });
+                .HasKey(a => new { a.TramaId, a.PasaTramaId, a.PersonajeId });
+
+            builder.Entity<ParticipantesTrama>()
+                .HasKey(a => new { a.TramaId, a.PersonajeId, a.Equipo });
         }
     }
 }

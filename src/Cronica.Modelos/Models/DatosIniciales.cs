@@ -41,110 +41,167 @@ namespace Cronica.Modelos.Models
             }
             if (!_contexto.Atributos.Any())
             {
-                _contexto.Atributos.AddRange(
-                    new Atributo() { Nombre = "Fuerza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
-                    new Atributo() { Nombre = "Destreza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
-                    new Atributo() { Nombre = "Resistencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico },
-                    new Atributo() { Nombre = "Carisma", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social},
-                    new Atributo() { Nombre = "Manipulación", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social },
-                    new Atributo() { Nombre = "Apariencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social },
-                    new Atributo() { Nombre = "Percepción", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental },
-                    new Atributo() { Nombre = "Inteligencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental },
-                    new Atributo() { Nombre = "Astucia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental },
-                    new Atributo() { Nombre = "Alerta", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento},
-                    new Atributo() { Nombre = "Atletismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Callejeo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Consciencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Empatia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Expresion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Intimidacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Liderazgo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Pelea", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Subterfugio", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento },
-                    new Atributo() { Nombre = "Armas C.C.", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Armas de Fuego", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Conducir", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Etiqueta", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Hurto", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Interpretacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Pericias", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Sigilo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Supervivencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Trato con Animales", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica },
-                    new Atributo() { Nombre = "Academicismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Ciencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Finanzas", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Informatica", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Investigacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Leyes", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Medicina", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Ocultismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Politica", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Tecnologia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Aliados", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento},
-                    new Atributo() { Nombre = "Contactos: Bajos Fondos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Cultura Académica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Finanzas", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Fuerzas del Estado", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Informatica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Medios de Comunicacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Ocultismo", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Politica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Contactos: Transporte e Infraestructuras", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Criados", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Dominio", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Fama", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Generacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Identidad Alternativa", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Bajos Fondos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Cultura Académica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Finanzas", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Fuerzas del Estado", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Informatica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Medios de Comunicacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Ocultismo", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Politica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Influencia: Transporte e Infraestructuras", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Mentor", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Rebaño", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Recursos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Refugio: Seguridad", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Refugio: Tamaño", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Consciencia", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Conviccion", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Autocontrol", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Instinto", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Coraje", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Animalismo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Auspex", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Celeridad", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Dementacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Dominacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Extincion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Fortaleza", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Sepulcro", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Cadaver Dentro del Monstruo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Podredumbre de la Tumba", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Cenizas", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Cenotafio", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Cuatro Humores", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Osario", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Nigromancia: Vitrea", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Obtenebracion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Ofuscacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Potencia", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Presencia", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Quimerismo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },                    
-                    new Atributo() { Nombre = "Serpentis", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Sangre", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Control Atmosferico", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Dominio Elemental", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Encanto de las Llamas", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Movimiento Mental", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Conjuracion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Taumaturgia: Marte", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento },
-                    new Atributo() { Nombre = "Vicisitud", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento }
-                    );
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Fuerza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Destreza", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico, Orden = 2 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Resistencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Fisico, Orden = 3 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Carisma", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Manipulación", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social, Orden = 2 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Apariencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Social, Orden = 3});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Percepción", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Inteligencia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental, Orden = 2});
+                _contexto.SaveChanges();
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Astucia", Tipo = TipoAtributo.Caracteristica, SubTipo = SubTipoAtributo.Mental, Orden = 3 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Alerta", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Atletismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 2});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Callejeo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 3 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Consciencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 4});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Empatia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 5 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Expresion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 6 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Intimidacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden =7 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Liderazgo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 8 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Pelea", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 9 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Subterfugio", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Talento, Orden = 10 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Armas C.C.", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Armas de Fuego", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 2 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Conducir", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 3 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Etiqueta", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 4 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Hurto", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 5 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Interpretacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 6 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Pericias", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 7 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Sigilo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 8 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Supervivencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 9 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Trato con Animales", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Tecnica, Orden = 10 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Academicismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 1 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Ciencia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 2 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Finanzas", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 3 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Informatica", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 4 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Investigacion", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 5 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Leyes", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 6});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Medicina", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 7});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Ocultismo", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 8});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Politica", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 9});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Tecnologia", Tipo = TipoAtributo.Habilidad, SubTipo = SubTipoAtributo.Conocimiento, Orden = 10});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Aliados", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 10 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Bajos Fondos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 20 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Cultura Académica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 30 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Finanzas", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 40 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Fuerzas del Estado", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 50 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Informatica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 60});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Medios de Comunicacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 70 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Ocultismo", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 80});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Politica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 90});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Contactos: Transporte e Infraestructuras", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 100 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Criados", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden =110 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Dominio", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 120 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Fama", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 130 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Generacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 140 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Identidad Alternativa", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 150 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Bajos Fondos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 160});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Cultura Académica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 170});
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Finanzas", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 180 });
+                _contexto.SaveChanges();
+                _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Fuerzas del Estado", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 190});
+                _contexto.SaveChanges();
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Informatica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 200});
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Medios de Comunicacion", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 210 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Ocultismo", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 220 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Politica", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 230 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Influencia: Transporte e Infraestructuras", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 240 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Mentor", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 250});
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Rebaño", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 260});
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Recursos", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 270 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Refugio: Seguridad", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 280 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Refugio: Tamaño", Tipo = TipoAtributo.Trasfondo, SubTipo = SubTipoAtributo.Conocimiento, Orden = 290 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Consciencia", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento, Orden = 10});
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Conviccion", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento, Orden = 20 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Autocontrol", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento, Orden = 30 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Instinto", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento, Orden = 40 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Coraje", Tipo = TipoAtributo.Virtud, SubTipo = SubTipoAtributo.Conocimiento, Orden = 50 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Animalismo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 10 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Auspex", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 20 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Celeridad", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 30 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Dementacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 40 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Dominacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 50 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Extincion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 60 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Fortaleza", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 70 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Sepulcro", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 80 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Cadaver Dentro del Monstruo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 90 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Podredumbre de la Tumba", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 100 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Cenizas", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 110 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Cenotafio", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 120 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Cuatro Humores", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 130 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Osario", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 140 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Nigromancia: Vitrea", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 150 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Obtenebracion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 160 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Ofuscacion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 170 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Potencia", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 180 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Presencia", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 190 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Quimerismo", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 200 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Serpentis", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 210 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Sangre", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 220 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Control Atmosferico", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 230 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Dominio Elemental", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 240 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Encanto de las Llamas", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 250 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Movimiento Mental", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 260 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Conjuracion", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 270 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Taumaturgia: Marte", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 280 });
+                _contexto.SaveChanges(); _contexto.Atributos.Add(new Atributo() { Nombre = "Vicisitud", Tipo = TipoAtributo.Disciplina, SubTipo = SubTipoAtributo.Conocimiento, Orden = 290 });                    
                 _contexto.SaveChanges();
             }
             if (!_contexto.Personajes.Any())

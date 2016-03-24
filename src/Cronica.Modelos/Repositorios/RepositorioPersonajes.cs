@@ -36,7 +36,7 @@ namespace Cronica.Modelos.Repositorios
         public async Task<Personaje> GetPersonajeCompleto(int personajeId)
         {
             Personaje personaje = await _contexto.Personajes
-                .Include(p => p.Tramas)
+                .Include(p => p.TramasParticipadas).ThenInclude(tp=> tp.Trama)
                 .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
                 .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)
                 .SingleAsync(p => p.PersonajeId == personajeId);
@@ -69,7 +69,7 @@ namespace Cronica.Modelos.Repositorios
         public async Task<Personaje> GetMiPersonaje(string jugadorId)
         {
             Personaje personaje = await _contexto.Personajes
-                .Include(p => p.Tramas)
+                .Include(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
                 .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
                 .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)
                 .SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true);

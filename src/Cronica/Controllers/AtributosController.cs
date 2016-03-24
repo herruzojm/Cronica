@@ -24,23 +24,6 @@ namespace Cronica.Controllers
             return View(await _repositorioAtributos.GetAtributos());
         }
 
-        // GET: Atributo/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-
-            Atributo atributoViewModel = await _repositorioAtributos.GetAtributo(id.Value);
-            if (atributoViewModel == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(atributoViewModel);
-        }
-
         // GET: Atributo/Create
         public IActionResult Create()
         {
@@ -90,34 +73,5 @@ namespace Cronica.Controllers
             }
             return View(atributo);
         }
-
-        //// GET: Atributo/Delete/5
-        //[ActionName("Delete")]
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.Id == id);
-        //    if (atributoViewModel == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(atributoViewModel);
-        //}
-
-        //// POST: Atributo/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    Atributo atributoViewModel = await _context.Atributos.SingleAsync(m => m.Id == id);
-        //    _context.Atributos.Remove(atributoViewModel);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction("Index");
-        //}
     }
 }
