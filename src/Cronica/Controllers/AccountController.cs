@@ -12,7 +12,7 @@ using Microsoft.Extensions.Logging;
 using Cronica.Modelos.Models;
 using Cronica.Services;
 using Cronica.ViewModels.Account;
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 
 namespace Cronica.Controllers
 {
@@ -24,7 +24,7 @@ namespace Cronica.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-        private IRepositorioUsuarios _repositorioUsuarios;
+        private IServicioUsuarios _servicioUsuarios;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -32,14 +32,14 @@ namespace Cronica.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IRepositorioUsuarios repositorioUsuarios)
+            IServicioUsuarios servicioUsuarios)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
-            _repositorioUsuarios = repositorioUsuarios;
+            _servicioUsuarios = servicioUsuarios;
         }
 
         //
@@ -68,7 +68,7 @@ namespace Cronica.Controllers
                 if (result.Succeeded)
                 {
                     _logger.LogInformation(1, "User logged in.");
-                    ApplicationUser usuario = await _repositorioUsuarios.GetUsuarioByEmail(model.Email);
+                    ApplicationUser usuario = await _servicioUsuarios.GetUsuarioByEmail(model.Email);
                     if (usuario.Cuenta == TipoCuenta.Jugador)
                     {
                         return VistaMiPersonaje();

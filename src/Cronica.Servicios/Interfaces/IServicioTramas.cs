@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioTramas : IRepositorioBase
+    public interface IServicioTramas : IServicioBase
     {
         Task<List<Trama>> GetTramas();
         Task<List<Trama>> GetTramasPersonaje(int personajeId);

@@ -5,7 +5,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
 
@@ -14,11 +14,11 @@ namespace Cronica.Controllers
     
     public class SeguidoresController : RutasController
     {
-        private IRepositorioSeguidor _repositorioSeguidores;
+        private IServicioSeguidor _servicioSeguidores;
 
-        public SeguidoresController(IRepositorioSeguidor repositorioSeguidores)
+        public SeguidoresController(IServicioSeguidor servicioSeguidores)
         {
-            _repositorioSeguidores = repositorioSeguidores;
+            _servicioSeguidores = servicioSeguidores;
         }
 
         // GET:Personajes/Edit/5/Ligar
@@ -27,7 +27,7 @@ namespace Cronica.Controllers
         {
             PersonaTrasfondo nuevoSeguidor = new PersonaTrasfondo();
             nuevoSeguidor.PersonajeJugadorId = personajeId;
-            ViewBag.Seguidores = _repositorioSeguidores.GetSeguidoresPotenciales(personajeId).Result.Select(seguidor => new SelectListItem
+            ViewBag.Seguidores = _servicioSeguidores.GetSeguidoresPotenciales(personajeId).Result.Select(seguidor => new SelectListItem
             {
                 Value = seguidor.SeguidorId.ToString(),
                 Text = seguidor.Nombre
@@ -44,8 +44,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioSeguidores.GuardarSeguidor(seguidor);
-                await _repositorioSeguidores.ConfirmarCambios();
+                _servicioSeguidores.GuardarSeguidor(seguidor);
+                await _servicioSeguidores.ConfirmarCambios();
                 return AbrirPersonaje(seguidor.PersonajeJugadorId);
             }
             return View(seguidor);
@@ -57,7 +57,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> Desligar(int personajeId, int seguidorId)
         {
             
-            PersonaTrasfondo seguidor = await _repositorioSeguidores.GetSeguidor(personajeId, seguidorId); ;
+            PersonaTrasfondo seguidor = await _servicioSeguidores.GetSeguidor(personajeId, seguidorId); ;
             if (seguidor == null)
             {
                 return HttpNotFound();
@@ -73,8 +73,8 @@ namespace Cronica.Controllers
         public async Task<IActionResult> DesligarConfirmed(PersonaTrasfondo seguidor)
         {
             int id = seguidor.PersonajeJugadorId;
-            _repositorioSeguidores.Eliminar(seguidor);
-            await _repositorioSeguidores.ConfirmarCambios();
+            _servicioSeguidores.Eliminar(seguidor);
+            await _servicioSeguidores.ConfirmarCambios();
             return AbrirPersonaje(id);
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Cronica.Modelos.Models;
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using Microsoft.AspNet.Authorization;
 using System;
 using System.Collections.Generic;
@@ -11,17 +11,17 @@ namespace Cronica.Authorization
 {
     public class TipoCuentaHandler : AuthorizationHandler<TipoCuentaRequirement>
     {
-        private IRepositorioUsuarios _repositorioUsuarios;
+        private IServicioUsuarios _servicioUsuarios;
 
-        public TipoCuentaHandler(IRepositorioUsuarios repositorioUsuarios)
+        public TipoCuentaHandler(IServicioUsuarios servicioUsuarios)
         {
-            _repositorioUsuarios = repositorioUsuarios;
+            _servicioUsuarios = servicioUsuarios;
         }
 
         protected override async void Handle(AuthorizationContext context, TipoCuentaRequirement requirement)
         {
 
-            ApplicationUser usuario = await _repositorioUsuarios.GetUsuarioById(context.User.GetUserId());
+            ApplicationUser usuario = await _servicioUsuarios.GetUsuarioById(context.User.GetUserId());
 
             if (usuario == null)
             {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioPostPartidas : IRepositorioBase
+    public interface IServicioPostPartidas : IServicioBase
     {
         Task<List<PostPartida>> GetPostPartidas();
         Task<List<int>> GetPostPartidasIds();

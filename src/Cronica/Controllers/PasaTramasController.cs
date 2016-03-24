@@ -1,4 +1,4 @@
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
@@ -6,23 +6,23 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.PostPartidas;
-using Cronica.Modelos.Repositorios;
+using Cronica.Servicios;
 
 namespace Cronica.Controllers
 {
     public class PasaTramasController : RutasController
     {
-        private IRepositorioPasaTramas _repositorioPasaTramas;
+        private IServicioPasaTramas _servicioPasaTramas;
 
-        public PasaTramasController(IRepositorioPasaTramas repositorioPasaTrama)
+        public PasaTramasController(IServicioPasaTramas servicioPasaTrama)
         {
-            _repositorioPasaTramas = repositorioPasaTrama;
+            _servicioPasaTramas = servicioPasaTrama;
         }
 
         // GET: PasaTramas
         public async Task<IActionResult> Index()
         {
-            return View(await _repositorioPasaTramas.GetPasaTramas());
+            return View(await _servicioPasaTramas.GetPasaTramas());
         }
 
         // GET: PasaTramas/Details/5
@@ -33,7 +33,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PasaTrama pasaTrama = await _repositorioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
                 return HttpNotFound();
@@ -57,7 +57,7 @@ namespace Cronica.Controllers
         // GET: PasaTramas/Create
         public async Task<IActionResult> Create(int id)
         {
-            PasaTrama pasaTrama = await _repositorioPasaTramas.GetNuevoPasaTrama();
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetNuevoPasaTrama();
             pasaTrama.PostPartidaId = id;
             pasaTrama.FechaPrevista = DateTime.Now.Date;
             return View(pasaTrama);
@@ -70,8 +70,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPasaTramas.IncluirPasaTrama(pasaTrama);
-                await _repositorioPasaTramas.ConfirmarCambios();
+                _servicioPasaTramas.IncluirPasaTrama(pasaTrama);
+                await _servicioPasaTramas.ConfirmarCambios();
                 return AbrirPostPartida(pasaTrama.PostPartidaId);
             }
             return View(pasaTrama);
@@ -85,7 +85,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PasaTrama pasaTrama = await _repositorioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
                 return HttpNotFound();
@@ -100,8 +100,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPasaTramas.Actualizar(pasaTrama);
-                await _repositorioPasaTramas.ConfirmarCambios();
+                _servicioPasaTramas.Actualizar(pasaTrama);
+                await _servicioPasaTramas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(pasaTrama);
@@ -116,7 +116,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PasaTrama pasaTrama = await _repositorioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
                 return HttpNotFound();
@@ -130,9 +130,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PasaTrama pasaTrama = await _repositorioPasaTramas.GetPasaTrama(id);
-            _repositorioPasaTramas.Eliminar(pasaTrama);
-            await _repositorioPasaTramas.ConfirmarCambios();
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id);
+            _servicioPasaTramas.Eliminar(pasaTrama);
+            await _servicioPasaTramas.ConfirmarCambios();
             return RedirectToAction("Index");
         }
 

@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioPasaTramas : IRepositorioBase
+    public interface IServicioPasaTramas : IServicioBase
     {
         Task<PasaTrama> GetNuevoPasaTrama();
         Task<List<PasaTrama>> GetPasaTramas();

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -11,18 +8,15 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Cronica.Modelos.Models;
 using Cronica.Services;
-using Cronica.Modelos.Repositorios;
+using Cronica.Servicios.Interfaces;
 using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Mvc;
 using System.Reflection;
 using System.Globalization;
 using Microsoft.AspNet.Localization;
-using Microsoft.Extensions.Localization;
-using Cronica.Modelos.Repositorios.Interfaces;
 using AutoMapper;
-using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Authorization;
 using Microsoft.AspNet.Authorization;
+using Cronica.Servicios;
 
 namespace Cronica
 {
@@ -87,14 +81,14 @@ namespace Cronica
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddScoped<DatosIniciales>();
-            services.AddScoped<IRepositorioUsuarios, RepositorioUsuarios>();
-            services.AddScoped<IRepositorioPersonajes, RepositorioPersonajes>();
-            services.AddScoped<IRepositorioAtributos, RepositorioAtributos>();
-            services.AddScoped<IRepositorioPlantillasTrama, RepositorioPlantillasTrama>();
-            services.AddScoped<IRepositorioTramas, RepositorioTramas>();
-            services.AddScoped<IRepositorioPostPartidas, RepositorioPostPartidas>();
-            services.AddScoped<IRepositorioPasaTramas, RepositorioPasaTramas>();
-            services.AddScoped<IRepositorioSeguidor, RepositorioSeguidor>();
+            services.AddScoped<IServicioUsuarios, ServicioUsuarios>();
+            services.AddScoped<IServicioPersonajes, ServicioPersonajes>();
+            services.AddScoped<IServicioAtributos, ServicioAtributos>();
+            services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
+            services.AddScoped<IServicioTramas, ServicioTramas>();
+            services.AddScoped<IServicioPostPartidas, ServicioPostPartidas>();
+            services.AddScoped<IServicioPasaTramas, ServicioPasaTramas>();
+            services.AddScoped<IServicioSeguidor, ServicioSeguidor>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }

@@ -1,17 +1,17 @@
 ﻿using Cronica.Modelos.Models;
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioBase : IRepositorioBase
+    public class ServicioBase : IServicioBase
     {
         protected CronicaDbContext _contexto;
 
-        public RepositorioBase(CronicaDbContext contexto)
+        public ServicioBase(CronicaDbContext contexto)
         {
             _contexto = contexto;
         }

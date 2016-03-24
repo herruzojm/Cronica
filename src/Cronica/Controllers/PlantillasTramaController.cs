@@ -1,4 +1,4 @@
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
@@ -6,23 +6,23 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
-using Cronica.Modelos.Repositorios;
+using Cronica.Servicios;
 
 namespace Cronica.Controllers
 {
     public class PlantillasTramaController : Controller
     {
-        private IRepositorioPlantillasTrama _repositorioPlantillasTrama;
+        private IServicioPlantillasTrama _servicioPlantillasTrama;
 
-        public PlantillasTramaController(IRepositorioPlantillasTrama repositorioPlantillasTrama)
+        public PlantillasTramaController(IServicioPlantillasTrama servicioPlantillasTrama)
         {
-            _repositorioPlantillasTrama = repositorioPlantillasTrama;
+            _servicioPlantillasTrama = servicioPlantillasTrama;
         }
 
         // GET: PlantillasTrama
         public async Task<IActionResult> Index()
         {
-            return View(await _repositorioPlantillasTrama.GetPlantillasTrama());
+            return View(await _servicioPlantillasTrama.GetPlantillasTrama());
         }
 
         // GET: PlantillasTrama/Details/5
@@ -33,7 +33,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
+            PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -45,7 +45,7 @@ namespace Cronica.Controllers
         // GET: PlantillasTrama/Create
         public async Task<IActionResult> Create()
         {
-            PlantillaTrama plantilla = await _repositorioPlantillasTrama.GetNuevaPlantilla();
+            PlantillaTrama plantilla = await _servicioPlantillasTrama.GetNuevaPlantilla();
             return View(plantilla);
         }
 
@@ -56,8 +56,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPlantillasTrama.IncluirPlantillaTrama(plantillaTrama);
-                await _repositorioPlantillasTrama.ConfirmarCambios();
+                _servicioPlantillasTrama.IncluirPlantillaTrama(plantillaTrama);
+                await _servicioPlantillasTrama.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(plantillaTrama);
@@ -71,7 +71,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
+            PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -86,8 +86,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPlantillasTrama.Actualizar(plantillaTrama);
-                await _repositorioPlantillasTrama.ConfirmarCambios();
+                _servicioPlantillasTrama.Actualizar(plantillaTrama);
+                await _servicioPlantillasTrama.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
             return View(plantillaTrama);
@@ -102,7 +102,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id.Value);
+            PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
                 return HttpNotFound();
@@ -116,9 +116,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PlantillaTrama plantillaTrama = await _repositorioPlantillasTrama.GetPlantillaTrama(id);
-            _repositorioPlantillasTrama.Eliminar(plantillaTrama);
-            await _repositorioPlantillasTrama.ConfirmarCambios();                        
+            PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id);
+            _servicioPlantillasTrama.Eliminar(plantillaTrama);
+            await _servicioPlantillasTrama.ConfirmarCambios();                        
             return RedirectToAction("Index");
         }
     }

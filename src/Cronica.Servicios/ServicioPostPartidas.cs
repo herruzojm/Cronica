@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.Models;
 using System;
 using System.Collections.Generic;
@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Microsoft.Data.Entity;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioPostPartidas : RepositorioBase, IRepositorioPostPartidas
+    public class ServicioPostPartidas : ServicioBase, IServicioPostPartidas
     {
         
-        public RepositorioPostPartidas(CronicaDbContext contexto) : base(contexto)
+        public ServicioPostPartidas(CronicaDbContext contexto) : base(contexto)
         {            
         }
 

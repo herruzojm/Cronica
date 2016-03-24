@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
@@ -8,12 +8,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioPlantillasTrama : RepositorioBase, IRepositorioPlantillasTrama
+    public class ServicioPlantillasTrama : ServicioBase, IServicioPlantillasTrama
     {
         
-        public RepositorioPlantillasTrama(CronicaDbContext contexto) : base(contexto)
+        public ServicioPlantillasTrama(CronicaDbContext contexto) : base(contexto)
         {        
         }
                 

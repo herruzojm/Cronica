@@ -1,33 +1,33 @@
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Cronica.Modelos.ViewModels.Tramas;
-using Cronica.Modelos.Repositorios;
+using Cronica.Servicios;
 using System.Collections.Generic;
 
 namespace Cronica.Controllers
 {
     public class TramasController : RutasController
     {
-        private IRepositorioTramas _repositorioTramas;
-        private IRepositorioPersonajes _repositorioPersonajes;
-        private IRepositorioPlantillasTrama _repositorioPlantillasTrama;
+        private IServicioTramas _servicioTramas;
+        private IServicioPersonajes _servicioPersonajes;
+        private IServicioPlantillasTrama _servicioPlantillasTrama;
 
-        public TramasController(IRepositorioTramas repositorioTramas, 
-            IRepositorioPersonajes repositorioPersonajes,
-            IRepositorioPlantillasTrama repositorioPlantillasTrama)
+        public TramasController(IServicioTramas servicioTramas, 
+            IServicioPersonajes servicioPersonajes,
+            IServicioPlantillasTrama servicioPlantillasTrama)
         {
-            _repositorioTramas = repositorioTramas;
-            _repositorioPersonajes = repositorioPersonajes;
-            _repositorioPlantillasTrama = repositorioPlantillasTrama;
+            _servicioTramas = servicioTramas;
+            _servicioPersonajes = servicioPersonajes;
+            _servicioPlantillasTrama = servicioPlantillasTrama;
         }
 
         // GET: TramasActivas
         public async Task<IActionResult> Index()
         {
-            return View(await _repositorioTramas.GetTramas());
+            return View(await _servicioTramas.GetTramas());
         }
 
         // GET: TramasActivas/Details/5
@@ -38,7 +38,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Trama trama = await _repositorioTramas.GetTrama(id.Value);
+            Trama trama = await _servicioTramas.GetTrama(id.Value);
             if (trama == null)
             {
                 return HttpNotFound();
@@ -51,14 +51,14 @@ namespace Cronica.Controllers
         public async Task<IActionResult> Create(int personajeId, int? plantillaTramaId)
         {            
             //todo vincular a lista de personajes
-            Trama nuevaTrama = await _repositorioTramas.GetNuevaTrama(plantillaTramaId);
+            Trama nuevaTrama = await _servicioTramas.GetNuevaTrama(plantillaTramaId);
             ParticipantesTrama participante = new ParticipantesTrama();
             participante.PersonajeId = personajeId;
             nuevaTrama.Participantes.Add(participante);
-            ViewBag.Personaje = await _repositorioPersonajes.GetPersonaje(personajeId);
+            ViewBag.Personaje = await _servicioPersonajes.GetPersonaje(personajeId);
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
-            plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result
+            plantillas.AddRange(_servicioPlantillasTrama.GetPlantillasTrama().Result
                 .Select(p => new SelectListItem
                 {
                     Value = p.PlantillaTramaId.ToString(),
@@ -75,8 +75,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioTramas.IncluirTrama(trama);
-                await _repositorioTramas.ConfirmarCambios();
+                _servicioTramas.IncluirTrama(trama);
+                await _servicioTramas.ConfirmarCambios();
                 //todo volver al personaje o a la lista de tramas
                 //return AbrirPersonaje(trama.PersonajeId);
                 
@@ -93,16 +93,16 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Trama trama = await _repositorioTramas.GetTrama(id.Value);
+            Trama trama = await _servicioTramas.GetTrama(id.Value);
             if (trama == null)
             {
                 return HttpNotFound();
             }
             //todo lista participantes
-            //ViewBag.Personaje = _repositorioPersonajes.GetPersonaje(trama.PersonajeId).Result;
+            //ViewBag.Personaje = _servicioPersonajes.GetPersonaje(trama.PersonajeId).Result;
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
-            plantillas.AddRange(_repositorioPlantillasTrama.GetPlantillasTrama().Result
+            plantillas.AddRange(_servicioPlantillasTrama.GetPlantillasTrama().Result
                 .Select(p => new SelectListItem
                 {
                     Value = p.PlantillaTramaId.ToString(),
@@ -119,8 +119,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioTramas.Actualizar(trama);
-                await _repositorioTramas.ConfirmarCambios();
+                _servicioTramas.Actualizar(trama);
+                await _servicioTramas.ConfirmarCambios();
                 //todo volver al personaje o a la lista de tramas
                 //return AbrirPersonaje(trama.PersonajeId);
             }
@@ -136,7 +136,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Trama trama = await _repositorioTramas.GetTrama(id.Value);
+            Trama trama = await _servicioTramas.GetTrama(id.Value);
             if (trama == null)
             {
                 return HttpNotFound();
@@ -150,9 +150,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Trama trama = await _repositorioTramas.GetTrama(id);
-            _repositorioTramas.Eliminar(trama);
-            await _repositorioTramas.ConfirmarCambios();
+            Trama trama = await _servicioTramas.GetTrama(id);
+            _servicioTramas.Eliminar(trama);
+            await _servicioTramas.ConfirmarCambios();
             return RedirectToAction("Index");
         }
     }

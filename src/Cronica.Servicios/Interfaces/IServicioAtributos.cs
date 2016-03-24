@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioAtributos : IRepositorioBase
+    public interface IServicioAtributos : IServicioBase
     {
         Task<int> CrearAtributo(Atributo atributo);
         Task<List<Atributo>> GetAtributos();

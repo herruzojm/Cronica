@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +7,11 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Models;
 using Microsoft.Data.Entity;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioSeguidor : RepositorioBase, IRepositorioSeguidor
+    public class ServicioSeguidor : ServicioBase, IServicioSeguidor
     {
-        public RepositorioSeguidor(CronicaDbContext contexto) : base(contexto)
+        public ServicioSeguidor(CronicaDbContext contexto) : base(contexto)
         {
         }
 

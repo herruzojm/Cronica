@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,12 +7,12 @@ using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.Models;
 using Microsoft.Data.Entity;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioPasaTramas : RepositorioBase, IRepositorioPasaTramas
+    public class ServicioPasaTramas : ServicioBase, IServicioPasaTramas
     {
         
-        public RepositorioPasaTramas(CronicaDbContext contexto) : base(contexto)
+        public ServicioPasaTramas(CronicaDbContext contexto) : base(contexto)
         {            
         }
 

@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.Models;
 using System;
 using System.Collections.Generic;
@@ -9,14 +9,14 @@ using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using AutoMapper;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioTramas : RepositorioBase, IRepositorioTramas
+    public class ServicioTramas : ServicioBase, IServicioTramas
     {
 
         private IMapper _mapper;
 
-        public RepositorioTramas(CronicaDbContext contexto, IMapper mapper) : base(contexto)
+        public ServicioTramas(CronicaDbContext contexto, IMapper mapper) : base(contexto)
         {
             _mapper = mapper;
         }

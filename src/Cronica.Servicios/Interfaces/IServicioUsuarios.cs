@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioUsuarios
+    public interface IServicioUsuarios
     {
         Task<List<ApplicationUser>> GetUsuarios();
         Task<ApplicationUser> GetUsuarioById(string userId);

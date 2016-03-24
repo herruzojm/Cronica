@@ -1,4 +1,4 @@
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
@@ -15,41 +15,41 @@ namespace Cronica.Controllers
     [Authorize]
     public class PersonajesController : RutasController
     {
-        private IRepositorioPersonajes _repositorioPersonajes;
-        private IRepositorioUsuarios _repositorioUsuarios;
+        private IServicioPersonajes _servicioPersonajes;
+        private IServicioUsuarios _servicioUsuarios;
 
-        public PersonajesController(IRepositorioPersonajes repositorioPersonajes, IRepositorioUsuarios repositorioUsuarios)
+        public PersonajesController(IServicioPersonajes servicioPersonajes, IServicioUsuarios servicioUsuarios)
         {
-            _repositorioPersonajes = repositorioPersonajes;
-            _repositorioUsuarios = repositorioUsuarios;
+            _servicioPersonajes = servicioPersonajes;
+            _servicioUsuarios = servicioUsuarios;
         }
 
         // GET: Personajes
         public async Task<IActionResult> Index()
         {
-            return View(await _repositorioPersonajes.GetPersonajes());
+            return View(await _servicioPersonajes.GetPersonajes());
         }
 
         // GET: PersonajesJugadores
         public async Task<IActionResult> PersonajesJugadores()
         {
-            return View("Index", await _repositorioPersonajes.GetPersonajesJugadores());
+            return View("Index", await _servicioPersonajes.GetPersonajesJugadores());
         }
 
         // GET: PersonajesJugadores
         public async Task<IActionResult> PNJs()
         {
-            return View("Index", await _repositorioPersonajes.GetPNJs());
+            return View("Index", await _servicioPersonajes.GetPNJs());
         }
 
         // GET: MiPersonaje
         public async Task<IActionResult> MiPersonaje()
         {
             string userId = User.GetUserId();
-            ApplicationUser usuario = await _repositorioUsuarios.GetUsuarioById(userId);
+            ApplicationUser usuario = await _servicioUsuarios.GetUsuarioById(userId);
             if (usuario.Cuenta == TipoCuenta.Jugador)
             {
-                Personaje personaje = await _repositorioPersonajes.GetMiPersonaje(userId);
+                Personaje personaje = await _servicioPersonajes.GetMiPersonaje(userId);
                 if (personaje == null)
                 {
                     //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
@@ -71,9 +71,9 @@ namespace Cronica.Controllers
         // GET: Personajes/Create
         public async Task<IActionResult> Create()
         {
-            Personaje personaje = await _repositorioPersonajes.GetNuevoPersonaje();
+            Personaje personaje = await _servicioPersonajes.GetNuevoPersonaje();
 
-            var jugadores = await _repositorioUsuarios.GetUsuarios();
+            var jugadores = await _servicioUsuarios.GetUsuarios();
 
             ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
             {
@@ -91,8 +91,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPersonajes.IncluirPersonaje(personaje);
-                await _repositorioPersonajes.ConfirmarCambios();                
+                _servicioPersonajes.IncluirPersonaje(personaje);
+                await _servicioPersonajes.ConfirmarCambios();                
                 return RedirectToAction("Index");
             }
             return View(personaje);
@@ -106,13 +106,13 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
             
-            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);            
+            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);            
             if (personaje == null)
             {
                 return HttpNotFound();
             }
 
-            var jugadores = await _repositorioUsuarios.GetUsuarios();
+            var jugadores = await _servicioUsuarios.GetUsuarios();
 
             ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
             {
@@ -130,8 +130,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioPersonajes.Actualizar(personaje);
-                await _repositorioPersonajes.ConfirmarCambios();
+                _servicioPersonajes.Actualizar(personaje);
+                await _servicioPersonajes.ConfirmarCambios();
                 return RedirectToAction("Index");                
             }
             return View(personaje);
@@ -146,7 +146,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id.Value);
+            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);
             if (personaje == null)
             {
                 return HttpNotFound();
@@ -160,9 +160,9 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Personaje personaje = await _repositorioPersonajes.GetPersonajeCompleto(id);            
-            _repositorioPersonajes.Eliminar(personaje);
-            await _repositorioPersonajes.ConfirmarCambios();
+            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id);            
+            _servicioPersonajes.Eliminar(personaje);
+            await _servicioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");
         }
 

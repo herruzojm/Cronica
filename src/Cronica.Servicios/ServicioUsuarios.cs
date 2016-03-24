@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
@@ -8,13 +8,13 @@ using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioUsuarios : IRepositorioUsuarios
+    public class ServicioUsuarios : IServicioUsuarios
     {
         private CronicaDbContext _contexto;
 
-        public RepositorioUsuarios(CronicaDbContext contexto)
+        public ServicioUsuarios(CronicaDbContext contexto)
         {
             _contexto = contexto;
         }

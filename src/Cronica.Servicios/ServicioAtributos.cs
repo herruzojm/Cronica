@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System;
 using Microsoft.Data.Entity;
 using System.Collections.Generic;
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioAtributos : RepositorioBase, IRepositorioAtributos
+    public class ServicioAtributos : ServicioBase, IServicioAtributos
     {        
-        public RepositorioAtributos(CronicaDbContext contexto) : base(contexto)
+        public ServicioAtributos(CronicaDbContext contexto) : base(contexto)
         {
         }
 

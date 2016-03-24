@@ -1,4 +1,4 @@
-﻿using Cronica.Modelos.Repositorios.Interfaces;
+﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.Data.Entity;
@@ -7,12 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios
+namespace Cronica.Servicios
 {
-    public class RepositorioPersonajes : RepositorioBase, IRepositorioPersonajes
+    public class ServicioPersonajes : ServicioBase, IServicioPersonajes
     {
 
-        public RepositorioPersonajes(CronicaDbContext contexto) : base(contexto)
+        public ServicioPersonajes(CronicaDbContext contexto) : base(contexto)
         {
         }
 

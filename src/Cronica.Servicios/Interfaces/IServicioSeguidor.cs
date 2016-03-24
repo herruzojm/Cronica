@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Cronica.Modelos.Repositorios.Interfaces
+namespace Cronica.Servicios.Interfaces
 {
-    public interface IRepositorioSeguidor : IRepositorioBase
+    public interface IServicioSeguidor : IServicioBase
     {
         Task<PersonaTrasfondo> GetSeguidor(int personajeId, int seguidorId);
 

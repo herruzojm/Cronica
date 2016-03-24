@@ -1,27 +1,27 @@
-using Cronica.Modelos.Repositorios.Interfaces;
+using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Models;
-using Cronica.Modelos.Repositorios;
+using Cronica.Servicios;
 
 namespace Cronica.Controllers
 {
     public class AtributosController : Controller
     {
-        private IRepositorioAtributos _repositorioAtributos;
+        private IServicioAtributos _servicioAtributos;
 
-        public AtributosController(IRepositorioAtributos repositorioAtributos)
+        public AtributosController(IServicioAtributos servicioAtributos)
         {
-            _repositorioAtributos = repositorioAtributos;
+            _servicioAtributos = servicioAtributos;
         }
 
         // GET: Atributo
         public async Task<IActionResult> Index()
         {
-            return View(await _repositorioAtributos.GetAtributos());
+            return View(await _servicioAtributos.GetAtributos());
         }
 
         // GET: Atributo/Create
@@ -37,7 +37,7 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {                
-                await _repositorioAtributos.CrearAtributo(atributo);
+                await _servicioAtributos.CrearAtributo(atributo);
                 return RedirectToAction("Index");
             }
             return View(atributo);
@@ -51,7 +51,7 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Atributo atributoViewModel = await _repositorioAtributos.GetAtributo(id.Value);
+            Atributo atributoViewModel = await _servicioAtributos.GetAtributo(id.Value);
             if (atributoViewModel == null)
             {
                 return HttpNotFound();
@@ -66,8 +66,8 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                _repositorioAtributos.Actualizar(atributo);
-                await _repositorioAtributos.ConfirmarCambios();
+                _servicioAtributos.Actualizar(atributo);
+                await _servicioAtributos.ConfirmarCambios();
 
                 return RedirectToAction("Index");
             }
