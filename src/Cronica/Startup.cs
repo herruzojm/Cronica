@@ -163,14 +163,6 @@ namespace Cronica
                     name: "Personajes",
                     template: "Personajes",
                     defaults: new { controller = "Personajes", action = "Index" });
-                routes.MapRoute(
-                    name: "CrearTrama",
-                    template: "Tramas/Create/{personajeId}/{plantillaTramaId?}",
-                    defaults: new { controller = "Tramas", action = "Create" });
-                routes.MapRoute(
-                    name: "CrearAtributo",
-                    template: "Atributos/Create",
-                    defaults: new { controller = "Tramas", action = "Create" });
 
                 routes.MapRoute(
                     name: "PostPartidas",

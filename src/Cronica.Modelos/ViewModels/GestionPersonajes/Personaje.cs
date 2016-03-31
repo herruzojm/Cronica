@@ -49,6 +49,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
     {
         public int PersonajeId { get; set; }
         public int AtributoId { get; set; }
+        [Range(0, 10, ErrorMessage = "El valor debe ser entre 0 y 10")]
         public int Valor { get; set; } = 0;
         public int ValorEnTrama { get; set; } = 0;
         public string Descripcion { get; set; }
