@@ -1,52 +1,51 @@
 @model PlantillaTrama
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Borrar Plantilla";
 }
 
-<h2>Delete</h2>
+<h2>@ViewData["Title"]</h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>PlantillaTrama</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoTrama)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TipoTrama)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PuntosDePresionPorTiemppo)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PuntosDePresionPorTiemppo)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PuntosNecesarios)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PuntosNecesarios)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
-        </div>
-    </form>
-</div>
+<alert header="Estas seguro de que quieres borrar esto?" message="Si no lo estas y le das a grabar, ten por seguro que como minimo te cae un capon." icon="danger" dismissible="true"></alert>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoTrama)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TipoTrama)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PuntosDePresionPorTiemppo)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PuntosDePresionPorTiemppo)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PuntosNecesarios)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PuntosNecesarios)
+            </dd>
+        </dl>
+
+        <form asp-action="Delete">
+            <div class="form-actions no-color">
+                <a class="btn btn-warning" asp-action="Index">Volver</a>
+                <input type="submit" value="Borrar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
