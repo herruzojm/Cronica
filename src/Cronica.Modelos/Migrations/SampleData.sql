@@ -1714,6 +1714,8 @@ INSERT [dbo].[PersonaTrasfondo] ([PersonajeJugadorId], [TrasfondoRelacionadoId],
 GO
 
 
+update Cronica.dbo.AtributoPersonaje set ValorEnTrama = Valor
+GO
 
 
 

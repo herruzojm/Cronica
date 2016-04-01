@@ -135,17 +135,201 @@
             </div>
 
             <div id="Atributos" class="tab-pane">
-                @for (int i = 0; i < Model.Atributos.Count(); i++)
-                {
-                    <div class="form-group">
-                        <input type="hidden" asp-for="Atributos[i].AtributoId" />
-                        <input type="hidden" asp-for="Atributos[i].PersonajeId" />
-                        <label asp-for="Atributos[i].AtributoId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
-                        <div class="col-md-10">
-                            <input asp-for="Atributos[i].Valor" class="form-control" />
-                            <span asp-validation-for="Atributos[i].Valor" class="text-danger" />
+
+                @{
+                    int contador = 0;
+                    <h3 class="alineadoCentro">Atributos</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Fisicos</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
+                            contador++;
+                        }
                     </div>
+                    <div class="capaTresColumnas">
+                        <h4>Sociales</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Mentales</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Habilidades</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Talentos</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Tecnicas</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Conocimientos</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Ventajas</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Trasfondos</h4>
+                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo).Count(); i++)
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
+                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
+                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                            contador++;
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Disciplinas</h4>
+                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
+                        {
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].PersonajeId" />
+                            <label asp-for="Atributos[atributo.AtributoId - 1].AtributoId" class="col-md-4 control-label">@atributo.Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[atributo.AtributoId - 1].Valor" oninput="IgualarValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                <input asp-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" oninput="CompararValores(@atributo.AtributoId-1)" onload="CompararValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[atributo.AtributoId - 1].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Virtudes</h4>
+                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
+                        {
+
+                        <div class="form-group">
+                            <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].AtributoId" />
+                            <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].PersonajeId" />
+                            <label asp-for="Atributos[atributo.AtributoId - 1].AtributoId" class="col-md-4 control-label">@atributo.Atributo.Nombre</label>
+                            <div class="col-md-4">
+                                <input asp-for="Atributos[atributo.AtributoId - 1].Valor" oninput="IgualarValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                <input asp-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" oninput="CompararValores(@atributo.AtributoId-1)" onload="CompararValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                <span asp-validation-for="Atributos[atributo.AtributoId - 1].Valor" class="text-danger" />
+                                <span asp-validation-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" class="text-danger" />
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Otros Rasgos</h3>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Otros))
+                    {
+                        <div class="capaTresColumnas">
+                            <div class="form-group">
+                                <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].AtributoId" />
+                                <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].PersonajeId" />
+                                <label asp-for="Atributos[atributo.AtributoId - 1].AtributoId" class="col-md-4 control-label">@atributo.Atributo.Nombre</label>
+                                <div class="col-md-4">
+                                    <input asp-for="Atributos[atributo.AtributoId - 1].Valor" oninput="IgualarValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                    <input asp-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" oninput="CompararValores(@atributo.AtributoId-1)" onload="CompararValores(@atributo.AtributoId-1)" class="form-control atributo" />
+                                    <span asp-validation-for="Atributos[atributo.AtributoId - 1].Valor" class="text-danger" />
+                                    <span asp-validation-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" class="text-danger" />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            }
+                        </div>
+                    }
                 }
             </div>
 
@@ -167,26 +351,26 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Seguidores)
-                        { 
-                            <tr>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
-                                    <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
-                                </td>
-                            </tr>
-                        }
+                            {
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
+                                <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoRelacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
+                            </td>
+                        </tr>
+                            }
                     </tbody>
                 </table>
-                <a class="btn btn-default btn-info" asp-route="Ligar" asp-route-personajeId="@Model.PersonajeId" >Nuevo Seguidor</a>
+                <a class="btn btn-default btn-info" asp-route="Ligar" asp-route-personajeId="@Model.PersonajeId">Nuevo Seguidor</a>
             </div>
 
             <div id="Tramas" class="tab-pane">
@@ -223,38 +407,38 @@
 
                     <tbody>
                         @foreach (var item in Model.TramasParticipadas)
-                        {
-                            <tr>
-                                <td>
-                                    <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
-                                    <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Cerrada)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
-                                </td>
-                            </tr>
-                        }
+                            {
+                        <tr>
+                            <td>
+                                <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
+                                <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Cerrada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
+                            </td>
+                        </tr>
+                            }
                     </tbody>
                 </table>
                 <a class="btn btn-default btn-info" asp-controller="Tramas" asp-action="Create" asp-route-personajeId="@Model.PersonajeId" asp-route-plantillaTramaId="">Nueva Trama</a>
@@ -274,4 +458,42 @@
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        function IgualarValores(idAtributo) {
+            var campoValor = document.getElementById("Atributos_" + idAtributo + "__Valor");
+            var campoValorEnTrama = document.getElementById("Atributos_" + idAtributo + "__ValorEnTrama");
+
+            var valor = campoValor.value;
+            var valorEnTrama = campoValorEnTrama.value;
+
+            if (valor != valorEnTrama) {
+                campoValorEnTrama.value = campoValor.value;
+                campoValorEnTrama.style.backgroundColor = campoValor.style.backgroundColor;
+            }
+        };
+    </script>
+    <script>
+        function CompararValores(idAtributo) {
+            var campoValor = document.getElementById("Atributos_" + idAtributo + "__Valor");
+            var campoValorEnTrama = document.getElementById("Atributos_" + idAtributo + "__ValorEnTrama");
+
+            var valor = campoValor.value;
+            var valorEnTrama = campoValorEnTrama.value;
+
+            if (valor == valorEnTrama) {
+                campoValorEnTrama.style.backgroundColor = campoValor.style.backgroundColor;
+            }
+            else {
+                campoValorEnTrama.style.backgroundColor = 'yellow';
+            }
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            @for (int i = 0; i < Model.Atributos.Count(); i++)
+            {
+                @:CompararValores(@i);
+                                                                                                        }
+        });
+    </script>
 }

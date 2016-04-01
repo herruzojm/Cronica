@@ -12,9 +12,17 @@
 
 /* Set widths on the form inputs since otherwise they're 100% wide */
 input,
-select,
-textarea {
+select {
     max-width: 280px;
+}
+
+textarea {
+    max-width: 600px;
+}
+
+input.atributo {
+    display: inline !important;
+    width: 48% !important;
 }
 
 /* Carousel */
