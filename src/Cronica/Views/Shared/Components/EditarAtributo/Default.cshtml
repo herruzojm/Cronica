@@ -1,0 +1,30 @@
+﻿@model AtributoPersonaje
+
+<div class="form-group">
+    @{
+        int id = Model.AtributoId - 1;
+        <input type="hidden" data-val="true" data-val-required="El campo AtributoId es obligatorio." id="Atributos_@id.ToString()__AtributoId" name="Atributos[@id].AtributoId" value="@Model.AtributoId">
+        <input type="hidden" data-val="true" data-val-required="El campo PersonajeId es obligatorio." id="Atributos_@id.ToString()__PersonajeId" name="Atributos[@id].PersonajeId" value="@Model.PersonajeId">
+        <label asp-for="AtributoId" class="col-md-4 control-label">@Model.Atributo.Nombre</label>
+        <div class="col-md-4">
+            <input oninput="IgualarValores(@id)" class="form-control atributo valid" type="number" data-val="true" data-val-range="Valor" data-val-range-max="10" data-val-range-min="0"
+                   data-val-required="El campo Valor es obligatorio." id="Atributos_@id.ToString()__Valor" name="Atributos[@id].Valor" value="@Model.Valor"
+                   aria-required="true" aria-invalid="false" aria-describedby="Atributos_@id.ToString()__Valor-error">
+
+            <input oninput="CompararValores(@id)" class="form-control atributo" type="number" data-val="true"
+                   data-val-required="El campo ValorEnTrama es obligatorio." id="Atributos_@id.ToString()__ValorEnTrama" name="Atributos[@id].ValorEnTrama" value="@Model.ValorEnTrama">
+            <span class="text-danger field-validation-valid" data-valmsg-for="Atributos[@id].Valor" data-valmsg-replace="true"></span>
+        </div>
+
+    }
+    
+    
+
+    @*<div class="col-md-4">
+            <input asp-for="@Model.Valor" oninput="IgualarValores(@Model.AtributoId)" class="form-control atributo" />
+            <input asp-for="@Model.ValorEnTrama" oninput="CompararValores(@Model.AtributoId)" onload="CompararValores(@Model.AtributoId)" class="form-control atributo" />
+            <span asp-validation-for="@Model.Valor" class="text-danger" />
+            <span asp-validation-for="@Model.ValorEnTrama" class="text-danger" />
+        </div>*@
+    <div class="clearfix"></div>
+</div>

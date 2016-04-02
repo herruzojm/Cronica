@@ -12,7 +12,6 @@ using Cronica.Modelos.Models;
 
 namespace Cronica.Controllers
 {
-    [Authorize]
     public class PersonajesController : RutasController
     {
         private IServicioPersonajes _servicioPersonajes;
@@ -132,7 +131,9 @@ namespace Cronica.Controllers
             {
                 _servicioPersonajes.Actualizar(personaje);
                 await _servicioPersonajes.ConfirmarCambios();
-                return RedirectToAction("Index");                
+                ViewBag.MensajeExito = $"Personaje guardado";
+                personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);
+                return View(personaje);
             }
             return View(personaje);
         }
