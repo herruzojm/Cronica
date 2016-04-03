@@ -92,7 +92,7 @@ namespace Cronica.Controllers
             {
                 _servicioPersonajes.IncluirPersonaje(personaje);
                 await _servicioPersonajes.ConfirmarCambios();                
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit", new { id = personaje.PersonajeId });
             }
             return View(personaje);
         }

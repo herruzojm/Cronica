@@ -30,6 +30,7 @@ namespace Cronica.Servicios
                 personaje.Atributos.Add(new AtributoPersonaje()
                 { Valor = 0, PersonajeId = personaje.PersonajeId, AtributoId = atributo.AtributoId, Atributo = atributo });
             }
+            personaje.Activo = true;
             return personaje;
         }
 

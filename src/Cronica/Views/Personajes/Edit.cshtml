@@ -135,76 +135,74 @@
             </div>
 
             <div id="Atributos" class="tab-pane">
+                <h3 class="alineadoCentro">Atributos</h3>
+                <div class="capaTresColumnas">
+                    <h4>Fisicos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Sociales</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Mentales</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <h3 class="alineadoCentro">Habilidades</h3>
+                <div class="capaTresColumnas">
+                    <h4>Talentos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Tecnicas</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Conocimientos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <h3 class="alineadoCentro">Ventajas</h3>
+                <div class="capaTresColumnas">
+                    <h4>Trasfondos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Disciplinas</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Virtudes</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
+                    {
+                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    }
+                </div>
+                <h3 class="alineadoCentro">Otros Rasgos</h3>
 
-                @{                    
-                    <h3 class="alineadoCentro">Atributos</h3>
-                    <div class="capaTresColumnas">
-                        <h4>Fisicos</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
-                        {                        
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Sociales</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Mentales</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <h3 class="alineadoCentro">Habilidades</h3>
-                    <div class="capaTresColumnas">
-                        <h4>Talentos</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Tecnicas</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Conocimientos</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <h3 class="alineadoCentro">Ventajas</h3>
-                    <div class="capaTresColumnas">
-                        <h4>Trasfondos</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Disciplinas</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <div class="capaTresColumnas">
-                        <h4>Virtudes</h4>
-                        @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
-                        {
-                            @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
-                        }
-                    </div>
-                    <h3 class="alineadoCentro">Otros Rasgos</h3>
-                }
 
             </div>
 
@@ -227,21 +225,21 @@
                     <tbody>
                         @foreach (var item in Model.Seguidores)
                         {
-                            <tr>
-                                <td>
-                                    <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
-                                    <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
+                                <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoRelacion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -283,36 +281,36 @@
                     <tbody>
                         @foreach (var item in Model.TramasParticipadas)
                         {
-                            <tr>
-                                <td>
-                                    <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
-                                    <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Cerrada)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Nombre)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.Descripcion)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>
+                                <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
+                                <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Cerrada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Nombre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>
@@ -337,16 +335,16 @@
 
 
 @section Scripts {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            @for (int i = 0; i < Model.Atributos.Count(); i++)
-            { 
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script>
+    $(document).ready(function () {
+        @for (int i = 0; i < Model.Atributos.Count(); i++)
+            {
                 @:CompararValores(@i);
-            }
-        });
-    </script>
+                    }
+    });
+</script>
 }
 
 
