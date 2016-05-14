@@ -21,6 +21,16 @@ namespace Cronica.Servicios
             _mapper = mapper;
         }
 
+        public async Task CrearTrama(Trama trama, VistaParticipantesTramas vistaParticipantes)
+        {
+            trama.Participantes = new List<ParticipantesTrama>();
+            IncluirParticipantesEnTrama(ref trama, vistaParticipantes);
+
+            //guardar cambios
+            Actualizar(trama);
+            await ConfirmarCambios();
+        }
+
         public async Task ActualizarTrama(Trama trama, VistaParticipantesTramas vistaParticipantes)
         {
             //primero, borrar los participantes previos
@@ -31,6 +41,16 @@ namespace Cronica.Servicios
 
             //incluir nuevos participantes
             trama.Participantes = new List<ParticipantesTrama>();
+            IncluirParticipantesEnTrama(ref trama, vistaParticipantes);
+
+            //guardar cambios
+            Actualizar(trama);
+            await ConfirmarCambios();
+
+        }
+
+        private void IncluirParticipantesEnTrama(ref Trama trama, VistaParticipantesTramas vistaParticipantes)
+        {
             ParticipantesTrama nuevoParticipante;
             if (trama.TipoTrama == TipoTrama.Enfrentada)
             {
@@ -51,7 +71,7 @@ namespace Cronica.Servicios
                 }
             }
             else
-            {                
+            {
                 foreach (string participante in vistaParticipantes.ParticipantesIds)
                 {
                     nuevoParticipante = new ParticipantesTrama();
@@ -61,11 +81,6 @@ namespace Cronica.Servicios
                     trama.Participantes.Add(nuevoParticipante);
                 }
             }
-
-            //guardar cambios
-            Actualizar(trama);
-            await ConfirmarCambios();
-
         }
 
         public async Task<Trama> GetNuevaTrama(int? plantillaId)

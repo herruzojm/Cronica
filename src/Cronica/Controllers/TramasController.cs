@@ -71,12 +71,11 @@ namespace Cronica.Controllers
         // POST: TramasActivas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Trama trama)
+        public async Task<IActionResult> Create(Trama trama, VistaParticipantesTramas vistaParticipantes)
         {
             if (ModelState.IsValid)
             {
-                _servicioTramas.IncluirTrama(trama);
-                await _servicioTramas.ConfirmarCambios();
+                await _servicioTramas.CrearTrama(trama, vistaParticipantes);                
                 return RedirectToAction("Edit", new { id = trama.TramaId });
                 
             }

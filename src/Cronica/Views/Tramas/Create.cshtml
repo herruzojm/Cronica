@@ -25,8 +25,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-               <a class="btn btn-warning" asp-action="Index"> Volver a Tramas</a>
-               <input type="submit" value="Crear Trama" class="btn btn-default btn-success" />
+                <a class="btn btn-warning" asp-action="Index"> Volver a Tramas</a>
+                <input type="submit" value="Crear Trama" class="btn btn-default btn-success" />
             </div>
         </div>
     </div>
@@ -41,6 +41,16 @@
             var id = $('#PlantillaId').val();
             $.get("/Tramas/DetalleTrama", { plantillaTramaId: id }, function (data) {
                 $('#DetallePlantillaTrama').html(data);
+                CambiarParticipantesTrama();
+            });
+        }
+    </script>
+    <script>
+        function CambiarParticipantesTrama() {
+            var tramaId = $('#TramaId').val();
+            var tipoTramaId = $('#TipoTrama').val();
+            $.get("/Tramas/ParticipantesTrama", { tramaId: tramaId, tipoTrama: tipoTramaId }, function (data) {
+                $('#ParticipantesTrama').html(data);
             });
         }
     </script>

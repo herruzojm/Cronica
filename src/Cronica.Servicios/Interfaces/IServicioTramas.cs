@@ -14,6 +14,7 @@ namespace Cronica.Servicios.Interfaces
         Task<List<ParticipantesTrama>> GetParticipantesTrama(int tramaId);
         void IncluirTrama(Trama trama);
         Task<Trama> GetNuevaTrama(int? plantillaId);
+        Task CrearTrama(Trama trama, VistaParticipantesTramas participantes);
         Task ActualizarTrama(Trama trama, VistaParticipantesTramas participantes);
     }
 }
