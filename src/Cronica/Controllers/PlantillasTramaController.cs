@@ -25,23 +25,6 @@ namespace Cronica.Controllers
             return View(await _servicioPlantillasTrama.GetPlantillasTrama());
         }
 
-        // GET: PlantillasTrama/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
-
-            PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
-            if (plantillaTrama == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(plantillaTrama);
-        }
-
         // GET: PlantillasTrama/Create
         public async Task<IActionResult> Create()
         {
