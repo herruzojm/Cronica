@@ -140,21 +140,21 @@
                     <h4>Fisicos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Sociales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Mentales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <h3 class="alineadoCentro">Habilidades</h3>
@@ -162,21 +162,21 @@
                     <h4>Talentos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Tecnicas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Conocimientos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <h3 class="alineadoCentro">Ventajas</h3>
@@ -184,26 +184,24 @@
                     <h4>Trasfondos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Disciplinas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Virtudes</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributo), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
                     }
                 </div>
-                <h3 class="alineadoCentro">Otros Rasgos</h3>
-
-
+                <h3 class="alineadoCentro">Otros Rasgos</h3>               
             </div>
 
             <div id="Seguidores" class="tab-pane">
@@ -264,6 +262,9 @@
                                 @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Descripcion)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Equipo)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.PuntosActuales)
                             </th>
                             <th>
@@ -297,6 +298,9 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Trama.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Equipo)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
@@ -346,46 +350,3 @@
     });
 </script>
 }
-
-
-@*
-
-    <div class="capaTresColumnas">
-                        <h4>Sociales</h4>
-                        @for (int i = 0; i < Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social).Count(); i++)
-                        {
-                        <div class="form-group">
-                            <input type="hidden" asp-for="Atributos[contador].AtributoId" />
-                            <input type="hidden" asp-for="Atributos[contador].PersonajeId" />
-                            <label asp-for="Atributos[contador].AtributoId" class="col-md-4 control-label">@Model.Atributos[contador].Atributo.Nombre</label>
-                            <div class="col-md-4">
-                                <input asp-for="Atributos[contador].Valor" oninput="IgualarValores(@contador)" class="form-control atributo" />
-                                <input asp-for="Atributos[contador].ValorEnTrama" oninput="CompararValores(@contador)" onload="CompararValores(@contador)" class="form-control atributo" />
-                                <span asp-validation-for="Atributos[contador].Valor" class="text-danger" />
-                                <span asp-validation-for="Atributos[contador].ValorEnTrama" class="text-danger" />
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                            contador++;
-                        }
-                    </div>
-
-    <div class="capaTresColumnas">
-                            <h4>Disciplinas</h4>
-                            @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
-                            {
-                            <div class="form-group">
-                                <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].AtributoId" />
-                                <input type="hidden" asp-for="Atributos[atributo.AtributoId - 1].PersonajeId" />
-                                <label asp-for="Atributos[atributo.AtributoId - 1].AtributoId" class="col-md-4 control-label">@atributo.Atributo.Nombre</label>
-                                <div class="col-md-4">
-                                    <input asp-for="Atributos[atributo.AtributoId - 1].Valor" oninput="IgualarValores(@atributo.AtributoId-1)" class="form-control atributo" />
-                                    <input asp-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" oninput="CompararValores(@atributo.AtributoId-1)" onload="CompararValores(@atributo.AtributoId-1)" class="form-control atributo" />
-                                    <span asp-validation-for="Atributos[atributo.AtributoId - 1].Valor" class="text-danger" />
-                                    <span asp-validation-for="Atributos[atributo.AtributoId - 1].ValorEnTrama" class="text-danger" />
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-                            }
-                        </div>
-*@

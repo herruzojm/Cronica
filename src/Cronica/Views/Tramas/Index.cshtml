@@ -4,6 +4,8 @@
     ViewData["Title"] = "Tramas";
 }
 
+<h2>@ViewData["Title"]</h2>
+
 <table class="table">
     <thead>
     <tr>
@@ -32,14 +34,12 @@
         <th>
             @Html.DisplayNameFor(model => model.PuntosNecesarios)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TextoResolucion)
-        </th>
     </tr>
     </thead>
     
     <tbody>
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
             <a asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
@@ -55,12 +55,15 @@
             @Html.DisplayFor(modelItem => item.TipoTrama)
         </td>
         <td>
-            @if (item.Participantes.Count() == 1){
-                @Html.DisplayFor(modelItem => item.Participantes.FirstOrDefault().Personaje.Nombre)
-            }
-            else {
-                @Html.DisplayFor(modelItem => item.Participantes.Count().ToString()) @:" participantes";
-            }
+            @*@{ 
+                if (item.Participantes.Count() == 1)
+                {
+                    @Html.DisplayFor(modelItem => item.Participantes.FirstOrDefault().Personaje.Nombre)
+                }
+                else {
+                    @item.Participantes.Count().ToString() @: participantes
+                }
+            }*@
         </td>        
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
@@ -74,11 +77,8 @@
         <td>
             @Html.DisplayFor(modelItem => item.PuntosNecesarios)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TextoResolucion)
-        </td>
     </tr>
 }
 </tbody>
 </table>
-
+<a class="btn btn-default btn-info" asp-action="Create">Nueva Trama</a> 

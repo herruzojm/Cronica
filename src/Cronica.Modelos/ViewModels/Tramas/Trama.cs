@@ -1,4 +1,5 @@
 ﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
+using Microsoft.AspNet.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public int PuntosDePresionPorTiemppo { get; set; }
         public int PuntosActuales { get; set; }
         public string TextoResolucion { get; set; }
-        public bool Cerrada { get; set; }        
+        public bool Cerrada { get; set; }
         public int? PlantillaId { get; set; }
         public virtual List<ParticipantesTrama> Participantes { get; set; }
         public virtual PlantillaTrama Plantilla { get; set; }
@@ -65,7 +66,34 @@ namespace Cronica.Modelos.ViewModels.Tramas
         D,
         E,
         F,
-        G
+        G,
+        H
     }
+
+    public class VistaParticipantesTramas
+    {
+        private string[] _participantes;
+        public TipoTrama TipoTrama { get; set; }
+        public string Participante { get; set; }
+        public string[] ParticipantesIds
+        {
+            get
+            {
+                if (_participantes == null && Participante != null)
+                {
+                    _participantes = new string[] {Participante };
+                }
+                return _participantes;
+            }
+            set
+            {
+                _participantes = value;
+            }
+        }                
+        public IEnumerable<SelectListItem> Participantes { get; set; }
+        public string[][] GrupoParticipantesIds { get; set; } = new string[Enum.GetNames(typeof(TipoEquipo)).Length][];
+        public List<SelectListItem>[] GrupoParticipantes { get; set; } = new List<SelectListItem>[Enum.GetNames(typeof(TipoEquipo)).Length];
+    }
+
 
 }

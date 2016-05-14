@@ -1,0 +1,140 @@
+﻿@model Trama
+
+
+<ul class="nav nav-pills">
+    <li class="active"><a data-toggle="tab" href="#Trama">Trama</a></li>
+    <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
+</ul>
+<hr />
+<div class="tab-content clearfix">
+    <div id="Trama" class="tab-pane active">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Cerrada" />
+                    <label asp-for="Cerrada"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="form-control"></select>
+                <span asp-validation-for="TipoTrama" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nombre" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Descripcion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Descripcion" class="form-control" />
+                <span asp-validation-for="Descripcion" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosActuales" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosActuales" class="form-control" />
+                <span asp-validation-for="PuntosActuales" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosDePresionPorTiemppo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosDePresionPorTiemppo" class="form-control" />
+                <span asp-validation-for="PuntosDePresionPorTiemppo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PuntosNecesarios" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PuntosNecesarios" class="form-control" />
+                <span asp-validation-for="PuntosNecesarios" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TextoResolucion" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="TextoResolucion" class="form-control" />
+                <span asp-validation-for="TextoResolucion" class="text-danger" />
+            </div>
+        </div>
+    </div>
+    <div id="Atributos" class="tab-pane">
+        <div id="Atributos" class="tab-pane">
+            <h3 class="alineadoCentro">Atributos</h3>
+            <div class="capaTresColumnas">
+                <h4>Fisicos</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Sociales</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Mentales</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <h3 class="alineadoCentro">Habilidades</h3>
+            <div class="capaTresColumnas">
+                <h4>Talentos</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Tecnicas</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Conocimientos</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <h3 class="alineadoCentro">Ventajas</h3>
+            <div class="capaTresColumnas">
+                <h4>Trasfondos</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Disciplinas</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <div class="capaTresColumnas">
+                <h4>Virtudes</h4>
+                @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
+                {
+                    @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                }
+            </div>
+            <h3 class="alineadoCentro">Otros Rasgos</h3>
+        </div>
+    </div>
+</div>

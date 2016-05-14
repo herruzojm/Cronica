@@ -34,7 +34,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
     {
         Individual,
         Colaborativa,
-        Entrentada
+        Enfrentada
     }
 
 }

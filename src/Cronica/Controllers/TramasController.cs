@@ -6,6 +6,7 @@ using Microsoft.AspNet.Mvc.Rendering;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Servicios;
 using System.Collections.Generic;
+using System;
 
 namespace Cronica.Controllers
 {
@@ -29,33 +30,31 @@ namespace Cronica.Controllers
         {
             return View(await _servicioTramas.GetTramas());
         }
-
-        // GET: TramasActivas/Details/5
-        public async Task<IActionResult> Details(int? id)
+        
+        public IActionResult DetalleTrama(int plantillaTramaId)
         {
-            if (id == null)
-            {
-                return HttpNotFound();
-            }
+            return ViewComponent(nameof(DetalleTrama), plantillaTramaId);
+        }
 
-            Trama trama = await _servicioTramas.GetTrama(id.Value);
-            if (trama == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(trama);
+        public IActionResult ParticipantesTrama(int tramaId, TipoTrama tipoTrama)
+        {
+            return ViewComponent(nameof(ParticipantesTrama), tramaId, tipoTrama);
         }
 
         // GET: TramasActivas/Create
-        public async Task<IActionResult> Create(int personajeId, int? plantillaTramaId)
-        {            
-            //todo vincular a lista de personajes
+        public async Task<IActionResult> Create(int? personajeId, int? plantillaTramaId)
+        {                        
             Trama nuevaTrama = await _servicioTramas.GetNuevaTrama(plantillaTramaId);
-            ParticipantesTrama participante = new ParticipantesTrama();
-            participante.PersonajeId = personajeId;
-            nuevaTrama.Participantes.Add(participante);
-            ViewBag.Personaje = await _servicioPersonajes.GetPersonaje(personajeId);
+
+            if (personajeId.HasValue)
+            {
+                ParticipantesTrama participante = new ParticipantesTrama();
+                participante.PersonajeId = personajeId.Value;
+                nuevaTrama.Participantes.Add(participante);
+                ViewBag.Personaje = await _servicioPersonajes.GetPersonaje(personajeId.Value);
+            }
+            
+            
             List<SelectListItem> plantillas = new List<SelectListItem>();
             plantillas.Add(new SelectListItem() { Value = "", Text = "" });
             plantillas.AddRange(_servicioPlantillasTrama.GetPlantillasTrama().Result
@@ -65,6 +64,7 @@ namespace Cronica.Controllers
                     Text = p.Nombre,                    
                 }).ToList());            
             ViewBag.Plantillas = plantillas;
+
             return View(nuevaTrama);
         }
 
@@ -77,11 +77,26 @@ namespace Cronica.Controllers
             {
                 _servicioTramas.IncluirTrama(trama);
                 await _servicioTramas.ConfirmarCambios();
-                //todo volver al personaje o a la lista de tramas
-                //return AbrirPersonaje(trama.PersonajeId);
+                return RedirectToAction("Edit", new { id = trama.TramaId });
                 
             }
             return View(trama);
+        }
+
+        private async Task<Trama> DevolverVistaEdicionTrama(int tramaId)
+        {
+            List<SelectListItem> plantillas = new List<SelectListItem>();
+            plantillas.Add(new SelectListItem() { Value = "", Text = "" });
+            plantillas.AddRange(_servicioPlantillasTrama.GetPlantillasTrama().Result
+                .Select(p => new SelectListItem
+                {
+                    Value = p.PlantillaTramaId.ToString(),
+                    Text = p.Nombre
+                }).ToList());
+            ViewBag.Plantillas = plantillas;
+
+            Trama trama = await _servicioTramas.GetTrama(tramaId);
+            return trama;
         }
 
         // GET: TramasActivas/Edit/5
@@ -93,38 +108,26 @@ namespace Cronica.Controllers
                 return HttpNotFound();
             }
 
-            Trama trama = await _servicioTramas.GetTrama(id.Value);
+            Trama trama = await DevolverVistaEdicionTrama(id.Value);
             if (trama == null)
             {
                 return HttpNotFound();
-            }
-            //todo lista participantes
-            //ViewBag.Personaje = _servicioPersonajes.GetPersonaje(trama.PersonajeId).Result;
-            List<SelectListItem> plantillas = new List<SelectListItem>();
-            plantillas.Add(new SelectListItem() { Value = "", Text = "" });
-            plantillas.AddRange(_servicioPlantillasTrama.GetPlantillasTrama().Result
-                .Select(p => new SelectListItem
-                {
-                    Value = p.PlantillaTramaId.ToString(),
-                    Text = p.Nombre
-                }).ToList());
-            ViewBag.Plantillas = plantillas;
+            }            
+
             return View(trama);
         }
 
-        // POST: TramasActivas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Trama trama)
+        public async Task<IActionResult> Edit(Trama trama, VistaParticipantesTramas vistaParticipantes)
         {
             if (ModelState.IsValid)
             {
-                _servicioTramas.Actualizar(trama);
-                await _servicioTramas.ConfirmarCambios();
-                //todo volver al personaje o a la lista de tramas
-                //return AbrirPersonaje(trama.PersonajeId);
+                await _servicioTramas.ActualizarTrama(trama, vistaParticipantes);
+                ViewBag.MensajeExito = $"Trama guardada";
+                return View(await DevolverVistaEdicionTrama(trama.TramaId));
             }
-            return View(trama);
+            return RedirectToAction("Edit", new { id = trama.TramaId });
         }
 
         // GET: TramasActivas/Delete/5

@@ -1,0 +1,18 @@
+﻿@model AtributoTrama
+
+<div class="form-group">
+    @{
+        int id = Model.AtributoId - 1;
+        <input type="hidden" data-val="true" data-val-required="El campo AtributoId es obligatorio." id="Atributos_@id.ToString()__AtributoId" name="Atributos[@id].AtributoId" value="@Model.AtributoId">
+        <input type="hidden" data-val="true" data-val-required="El campo TramaId es obligatorio." id="Atributos_@id.ToString()__TramaId" name="Atributos[@id].TramaId" value="@Model.TramaId">
+        <label asp-for="AtributoId" class="col-md-4 control-label">@Model.Atributo.Nombre</label>
+        <div class="col-md-4">
+            <input class="form-control atributo valid" type="number" data-val="true" data-val-range="Multiplicador" 
+                   data-val-required="El campo Multiplicador es obligatorio." id="Atributos_@id.ToString()__Multiplicador" name="Atributos[@id].Multiplicador" value="@Model.Multiplicador"
+                   aria-required="true" aria-invalid="false" aria-describedby="Atributos_@id.ToString()__Multiplicador-error">            
+            <span class="text-danger field-validation-valid" data-valmsg-for="Atributos[@id].Multiplicador" data-valmsg-replace="true"></span>
+        </div>
+
+    }
+    <div class="clearfix"></div>
+</div>

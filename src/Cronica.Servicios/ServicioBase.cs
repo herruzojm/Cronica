@@ -17,13 +17,27 @@ namespace Cronica.Servicios
         }
 
         public void Actualizar(object elemento)
-        {
-            _contexto.Update(elemento);
+        {            
+            try
+            {
+                _contexto.Update(elemento);
+            }
+            catch (Exception ex)
+            {
+                
+            }
         }
 
         public async Task<int> ConfirmarCambios()
         {
-            return await _contexto.SaveChangesAsync();
+            try
+            {
+                return await _contexto.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
 
         public void Eliminar(object elemento)

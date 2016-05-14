@@ -1,16 +1,15 @@
 @model Trama
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar Trama";
 }
 
-<h2>@Model.Nombre</h2>
+<h2>@ViewData["Title"]: <b>@Model.Nombre</b></h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="TramaId" />
-        <input type="hidden" asp-for="PersonajeId" />
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="tab" href="#Trama">Trama</a></li>
             <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
@@ -26,14 +25,6 @@
                 </div>
                 <hr />
                 <div class="form-group">
-                    <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <select asp-for="TipoTrama" class="form-control" />
-                        <span asp-validation-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="text-danger" />
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
                             <input asp-for="Cerrada" />
@@ -41,6 +32,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" onchange="CambiarParticipantesTrama()" class="form-control"></select>
+                        <span asp-validation-for="TipoTrama" class="text-danger" />
+                    </div>
+                </div>
+                <span id="ParticipantesTrama">
+
+                </span>
                 <div class="form-group">
                     <label asp-for="Nombre" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
@@ -85,23 +86,80 @@
                 </div>
             </div>
             <div id="Atributos" class="tab-pane">
-                @for (int i = 0; i < Model.Atributos.Count(); i++)
-                {
-                    <div class="form-group">
-                        <input type="hidden" asp-for="Atributos[i].AtributoId" />
-                        <input type="hidden" asp-for="Atributos[i].TramaId" />
-                        <label asp-for="Atributos[i].TramaId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
-                        <div class="col-md-10">
-                            <input asp-for="Atributos[i].Multiplicador" class="form-control" />
-                            <span asp-validation-for="Atributos[i].Multiplicador" class="text-danger" />
-                        </div>
+                <div id="Atributos" class="tab-pane">
+                    <h3 class="alineadoCentro">Atributos</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Fisicos</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
                     </div>
-                }
+                    <div class="capaTresColumnas">
+                        <h4>Sociales</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Mentales</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Habilidades</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Talentos</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Tecnicas</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Conocimientos</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Ventajas</h3>
+                    <div class="capaTresColumnas">
+                        <h4>Trasfondos</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Disciplinas</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <div class="capaTresColumnas">
+                        <h4>Virtudes</h4>
+                        @foreach (AtributoTrama atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
+                        {
+                        @await Component.InvokeAsync(nameof(EditarAtributoTrama), atributo)
+                        }
+                    </div>
+                    <h3 class="alineadoCentro">Otros Rasgos</h3>
+                </div>
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeId">Volver al Personaje</a>
+                <a class="btn btn-warning" asp-action="Index"> Volver a Tramas</a>
                 <input type="submit" value="Guardar" class="btn btn-default btn-success" />
             </div>
         </div>
@@ -110,7 +168,20 @@
 
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            CambiarParticipantesTrama();
+        });
+    </script>
+    <script>
+        function CambiarParticipantesTrama() {
+            var tramaId = $('#TramaId').val();
+            var tipoTramaId = $('#TipoTrama').val();
+            $.get("/Tramas/ParticipantesTrama", { tramaId: tramaId, tipoTrama: tipoTramaId }, function (data) {
+                $('#ParticipantesTrama').html(data);
+            });
+        }
+</script>
 }

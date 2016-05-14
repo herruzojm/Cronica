@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cronica.ViewComponents
 {
-    public class EditarAtributo : ViewComponent
+    public class EditarAtributoPersonaje : ViewComponent
     {
         public async Task<IViewComponentResult> InvokeAsync(AtributoPersonaje atributo)
         {

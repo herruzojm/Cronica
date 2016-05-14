@@ -20,7 +20,54 @@ namespace Cronica.Servicios
         {
             _mapper = mapper;
         }
-               
+
+        public async Task ActualizarTrama(Trama trama, VistaParticipantesTramas vistaParticipantes)
+        {
+            //primero, borrar los participantes previos
+            trama.Participantes = await GetParticipantesTrama(trama.TramaId);
+            trama.Participantes.ForEach(p => Eliminar(p));
+            Actualizar(trama);
+            await ConfirmarCambios();
+
+            //incluir nuevos participantes
+            trama.Participantes = new List<ParticipantesTrama>();
+            ParticipantesTrama nuevoParticipante;
+            if (trama.TipoTrama == TipoTrama.Enfrentada)
+            {
+                var grupos = Enum.GetValues(typeof(TipoEquipo)).Cast<TipoEquipo>();
+                foreach (var grupo in grupos)
+                {
+                    if ((int)grupo < vistaParticipantes.GrupoParticipantesIds.Length)
+                    {
+                        foreach (string participante in vistaParticipantes.GrupoParticipantesIds[(int)grupo])
+                        {
+                            nuevoParticipante = new ParticipantesTrama();
+                            nuevoParticipante.PersonajeId = Convert.ToInt32(participante);
+                            nuevoParticipante.TramaId = trama.TramaId;
+                            nuevoParticipante.Equipo = grupo;
+                            trama.Participantes.Add(nuevoParticipante);
+                        }
+                    }
+                }
+            }
+            else
+            {                
+                foreach (string participante in vistaParticipantes.ParticipantesIds)
+                {
+                    nuevoParticipante = new ParticipantesTrama();
+                    nuevoParticipante.PersonajeId = Convert.ToInt32(participante);
+                    nuevoParticipante.TramaId = trama.TramaId;
+                    nuevoParticipante.Equipo = TipoEquipo.A;
+                    trama.Participantes.Add(nuevoParticipante);
+                }
+            }
+
+            //guardar cambios
+            Actualizar(trama);
+            await ConfirmarCambios();
+
+        }
+
         public async Task<Trama> GetNuevaTrama(int? plantillaId)
         {
             Trama trama = new Trama();
@@ -47,14 +94,19 @@ namespace Cronica.Servicios
             return trama;
         }
 
+        public async Task<List<ParticipantesTrama>> GetParticipantesTrama(int tramaId)
+        {
+            return await _contexto.ParticipantesTrama.Where(pt => pt.TramaId == tramaId).ToListAsync();
+        }
+
         public async Task<Trama> GetTrama(int tramaId)
         {
-            return await _contexto.Tramas.Include(t=> t.Atributos).SingleAsync(t => t.TramaId == tramaId);
+            return await _contexto.Tramas.Include(t=> t.Atributos).ThenInclude(at => at.Atributo).SingleAsync(t => t.TramaId == tramaId);
         }
 
         public async Task<List<Trama>> GetTramas()
         {
-            return await _contexto.Tramas.Include(t=> t.Participantes).ToListAsync();
+            return await _contexto.Tramas.Include(t=> t.Participantes).ThenInclude(p=> p.Personaje).ToListAsync();
         }
 
         public async Task<List<Trama>> GetTramasPersonaje(int personajeId)

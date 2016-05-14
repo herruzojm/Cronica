@@ -1,10 +1,10 @@
 @model Trama
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Borrar Trama";
 }
 
-<h2>Delete</h2>
+<h2>@ViewData["Title"]: <b>@Model.Nombre</b></h2>
 
 <alert header="Estas seguro de que quieres borrar esto?" message="Si no lo estas y le das a grabar, ten por seguro que como minimo te cae un capon." icon="danger" dismissible="true"></alert>
 <div>
@@ -63,8 +63,8 @@
     
     <form asp-action="Delete">
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a asp-action="Index">Back to List</a>
+            <a class="btn btn-warning" asp-action="Index"> Volver a Tramas</a>
+            <input type="submit" value="Delete" class="btn btn-default" /> |            
         </div>
     </form>
 </div>

@@ -1,116 +1,32 @@
 @model Trama
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Trama";
 }
 
-<h2>Nueva Trama</h2>
+<h2>@ViewData["Title"]</h2>
 
 <form asp-action="Create">
-    <script>
-        function submitdata() {
-            @* todo pasarlo a componente
-            var plantilla = document.getElementById('PlantillaId').value;
-            var ruta = '@Url.RouteUrl("CrearTrama", new { personajeId = Model.PersonajeId })' + '/' + plantilla;
-            window.location.replace(ruta)*@
-        }
-    </script>
     <div class="form-horizontal">
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
-        <ul class="nav nav-pills">
-            <li class="active"><a data-toggle="tab" href="#Trama">Trama</a></li>
-            <li><a data-toggle="tab" href="#Atributos">Atributos</a></li>
-        </ul>
-        <hr />
-        <div class="tab-content clearfix">
-            <div id="Trama" class="tab-pane active">
-                <div class="form-group">
-                    <label asp-for="Plantilla" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <select asp-for="PlantillaId" asp-items="ViewBag.Plantillas" onchange="submitdata();" class="form-control"></select>
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <label asp-for="TipoTrama" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <select asp-for="TipoTrama" class="form-control" />
-                        <span asp-validation-for="TipoTrama" asp-items="Html.GetEnumSelectList<TipoTrama>()" class="text-danger" />
-                    </div>
-                </div>
-                <hr />
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            <input asp-for="Cerrada" />
-                            <label asp-for="Cerrada"></label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Nombre" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Descripcion" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Descripcion" class="form-control" />
-                        <span asp-validation-for="Descripcion" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PuntosActuales" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="PuntosActuales" class="form-control" />
-                        <span asp-validation-for="PuntosActuales" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PuntosDePresionPorTiemppo" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="PuntosDePresionPorTiemppo" class="form-control" />
-                        <span asp-validation-for="PuntosDePresionPorTiemppo" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PuntosNecesarios" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="PuntosNecesarios" class="form-control" />
-                        <span asp-validation-for="PuntosNecesarios" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="TextoResolucion" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="TextoResolucion" class="form-control" />
-                        <span asp-validation-for="TextoResolucion" class="text-danger" />
-                    </div>
-                </div>
-            </div>
-            <div id="Atributos" class="tab-pane">
-                @for (int i = 0; i < Model.Atributos.Count(); i++)
-                {
-                    <div class="form-group">
-                        <input type="hidden" asp-for="Atributos[i].AtributoId" />
-                        <input type="hidden" asp-for="Atributos[i].TramaId" />
-                        <label asp-for="Atributos[i].TramaId" class="col-md-2 control-label">@Model.Atributos[i].Atributo.Nombre</label>
-                        <div class="col-md-10">
-                            <input asp-for="Atributos[i].Multiplicador" class="form-control" />
-                            <span asp-validation-for="Atributos[i].Multiplicador" class="text-danger" />
-                        </div>
-                    </div>
-                }
+
+
+        <div class="form-group">
+            <label asp-for="Plantilla" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="PlantillaId" asp-items="ViewBag.Plantillas" onchange="CargarPlantilla()" class="form-control"></select>
             </div>
         </div>
+        <hr />
+        <p></p>
+        <span id="DetallePlantillaTrama">
+
+        </span>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                @*//todo volver al personaje o a la lista de tramas
-    <a class="btn btn-warning" asp-route="AbrirPersonaje" asp-route-id="@Model.PersonajeId">Volver al Personaje</a>*@
-                <input type="submit" value="Crear Trama" class="btn btn-default btn-success" />
+               <a class="btn btn-warning" asp-action="Index"> Volver a Tramas</a>
+               <input type="submit" value="Crear Trama" class="btn btn-default btn-success" />
             </div>
         </div>
     </div>
@@ -118,7 +34,19 @@
 
 
 @section Scripts {
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        function CargarPlantilla() {
+            var id = $('#PlantillaId').val();
+            $.get("/Tramas/DetalleTrama", { plantillaTramaId: id }, function (data) {
+                $('#DetallePlantillaTrama').html(data);
+            });
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            CargarPlantilla();
+        });
+    </script>
 }
