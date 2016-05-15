@@ -2,20 +2,21 @@
 
 @if (User.IsSignedIn())
 {
-    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @User.GetUserName()!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
-            </li>
-        </ul>
+    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="">
+        <div class="list-group panel">
+            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@User.GetUserName()</strong></a>
+        </div>
+        
+        @await Component.InvokeAsync(nameof(MenuUsuario), User.GetUserId())
+
+        <div class="list-group panel">
+            <button type="submit" class="list-group-item">Cerrar Sesión</button>
+        </div>        
     </form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-left">
         <li><a asp-controller="Account" asp-action="Register">Register</a></li>
         <li><a asp-controller="Account" asp-action="Login">Log in</a></li>
     </ul>

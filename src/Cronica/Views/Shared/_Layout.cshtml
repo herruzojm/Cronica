@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Verum Est Sanguis</title>
 
-    <environment names="Development">       
+    <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css" />
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/bootswatch/cyborg/bootstrap.css" />
@@ -26,73 +26,55 @@
     </environment>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-controller="Home" asp-action="Index" class="navbar-brand">Verum Est Sanguis</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">En Juego</a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-controller="PostPartidas" asp-action="Index">Post Partidas</a></li>
-                            <li><a asp-controller="Tramas" asp-action="Index">Tramas</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Gestion</a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-controller="Atributos" asp-action="Index">Atributos</a></li>
-                            <li><a asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Personajes</a>
-                        <ul class="dropdown-menu">                            
-                            <li><a asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a></li>
-                            <li><a asp-controller="Personajes" asp-action="PNJs">PNJs</a></li>
-                            <li><a asp-controller="Personajes" asp-action="Index">Todos</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">La Partida</a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-controller="Madrid" asp-action="Historia">Historia de Madrid</a></li>
-                            <li><a asp-controller="Madrid" asp-action="CarasConocidas">Caras Conocidas</a></li>
-                            <li><a asp-controller="Sistema" asp-action="Sistema">Sistema</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-hover="dropdown">Sobre Nosotros</a>
-                        <ul class="dropdown-menu">
-                            <li><a asp-controller="Home" asp-action="QuienesSomos">Quienes Somos</a></li>
-                            <li><a asp-controller="Home" asp-action="Escribenos">Escribenos</a></li>
-                        </ul>
-                    </li>
+    <div id="sidebar" class="nav navbar-inverse">
+        @await Html.PartialAsync("_LoginPartial")        
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a asp-controller="Home" asp-action="Index" class="navbar-brand">Verum Est Sanguis</a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">La Partida</a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="Madrid" asp-action="Historia">Historia de Madrid</a></li>
+                                <li><a asp-controller="Madrid" asp-action="CarasConocidas">Caras Conocidas</a></li>
+                                <li><a asp-controller="Sistema" asp-action="Sistema">Sistema</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-hover="dropdown">Sobre Nosotros</a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="Home" asp-action="QuienesSomos">Quienes Somos</a></li>
+                                <li><a asp-controller="Home" asp-action="Escribenos">Escribenos</a></li>
+                            </ul>
+                        </li>
 
-                </ul>
-                @await Html.PartialAsync("_LoginPartial")
+                    </ul>
+                </div>
             </div>
+        </nav>
+        <div class="container body-content anchoTotal">
+            <alert message="@ViewBag.MensajeExito" icon="success" dismissible="true">
+            </alert>
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; 2016 - Verum Est Sanguis</p>
+            </footer>
         </div>
     </div>
-    <div class="container body-content anchoTotal">
-        <alert message="@ViewBag.MensajeExito" icon="success" dismissible="true">
-        </alert>
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - Verum Est Sanguis</p>
-        </footer>
-    </div>
 
-    <environment names="Development">        
+    <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
@@ -119,7 +101,7 @@
 
     @RenderSection("scripts", required: false)
     <script type="text/javascript" charset="utf8">
-        $(document).ready(function () {            
+        $(document).ready(function () {
             $('.datepicker').datepicker({
                 autoclose: true,
                 clearBtn: true,

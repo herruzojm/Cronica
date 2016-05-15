@@ -1,0 +1,48 @@
+﻿@model ApplicationUser
+
+@{
+    if (Model.Cuenta == TipoCuenta.Jugador)
+    {
+        <div class="list-group panel">
+            <span class="list-group-item list-group-item-info">Personaje</span>
+            <div>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="MiPersonaje">Mi Personaje</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="EnviarPostPartida">Enviar Post Partida</a>
+            </div>
+            <span class="list-group-item list-group-item-info">Tramas</span>
+            <div>
+                <a class="list-group-item" asp-controller="Tramas" asp-action="MisTramas">Tramas Activas</a>
+                <a class="list-group-item" asp-controller="Tramas" asp-action="Asignar">Asignaciones</a>                
+                <a class="list-group-item" asp-controller="Tramas" asp-action="MisTramasResueltas">Tramas Cerradas</a>
+            </div>
+            <span class="list-group-item list-group-item-info">Correo</span>
+            <div>
+                <a class="list-group-item" asp-controller="Correos" asp-action="MisRecibidos">Recibidos</a>
+                <a class="list-group-item" asp-controller="Correos" asp-action="MisEnviados">Enviados</a>
+                <a class="list-group-item" asp-controller="Correos" asp-action="Create">Nuevo Correo</a>
+            </div>
+        </div>
+
+    }
+    else if (Model.Cuenta == TipoCuenta.Narrador)
+    {
+        <div class="list-group panel">
+            <span class="list-group-item list-group-item-info">En Juego</span>
+            <div>
+                <a class="list-group-item" asp-controller="PostPartidas" asp-action="Index">Post Partidas</a>
+                <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
+            </div>
+            <span class="list-group-item list-group-item-info">Gestion</span>
+            <div>
+                <a class="list-group-item" asp-controller="Atributos" asp-action="Index">Atributos</a>
+                <a class="list-group-item" asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a>
+            </div>
+            <span class="list-group-item list-group-item-info">Personajes</span>
+            <div>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+            </div>
+        </div>
+    }
+}
