@@ -1718,5 +1718,35 @@ update Cronica.dbo.AtributoPersonaje set ValorEnTrama = Valor
 GO
 
 
+SET IDENTITY_INSERT [dbo].PostPartida ON
+GO
+insert into PostPartida
+(PostPartidaId, Cerrada, FechaFin, FechaInicio)
+values
+(1, 0, '30/05/2016', '01/05/2016'),
+(2, 0, '30/06/2016', '01/06/2016')
+GO
+SET IDENTITY_INSERT [dbo].PostPartida OFF
+GO
+
+SET IDENTITY_INSERT [dbo].PasaTrama ON
+GO
+insert into PasaTrama
+(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
+values
+(1, '20/05/2016', '21/05/2016', 1, 1),
+(2, '20/06/2016', null, 2, 0)
+GO
+SET IDENTITY_INSERT [dbo].PasaTrama OFF
+GO
+
+insert into PuntosPasaTrama
+(TramaId, PasaTramaId, PersonajeId, Descripcion, PuntosObtenidos)
+values
+(3, 2, 3, 'De segundas no contribuyes tanto', 6),
+(3, 1, 3, 'Puntos para personaje tres', 10),
+(3, 1, 5, 'Personaje cinco tambien contribuye', 30)
+GO
+
 
 

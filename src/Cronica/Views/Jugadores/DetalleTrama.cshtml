@@ -1,0 +1,78 @@
+@model Trama
+
+@{
+    ViewData["Title"] = "Detalle de Trama";
+}
+
+
+<h2>@ViewData["Title"]: <b>@Model.Nombre</b></h2>
+
+
+<div id="Trama" class="tab-pane active">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cerrada)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cerrada)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoTrama)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TipoTrama)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PuntosNecesarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PuntosNecesarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+    </dl>
+    @{
+        foreach (PuntosPasaTrama puntos in Model.Puntos)
+        {
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().PasaTrama.FechaResolucion)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => puntos.PasaTrama.FechaResolucion)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().PuntosObtenidos)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => puntos.PuntosObtenidos)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().Descripcion)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => puntos.Descripcion)
+                </dd>
+            </dl>
+        }
+    }
+</div>
+
+
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

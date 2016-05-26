@@ -9,8 +9,7 @@ namespace Cronica.Servicios.Interfaces
     public interface IServicioPersonajes : IServicioBase
     {
         Task<List<Personaje>> GetPersonajes();
-        Task<Personaje> GetNuevoPersonaje();
-        Task<Personaje> GetMiPersonaje(string jugadorId);
+        Task<Personaje> GetNuevoPersonaje();        
         Task<Personaje> GetPersonajeCompleto(int personajeId);
         Task<Personaje> GetPersonaje(int personajeId);
         void IncluirPersonaje(Personaje personaje);        

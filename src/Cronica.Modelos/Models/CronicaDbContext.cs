@@ -21,6 +21,7 @@ namespace Cronica.Modelos.Models
         public DbSet<PasaTrama> PasaTramas { get; set; }
         public DbSet<PersonaTrasfondo> Seguidores { get; set; }
         public DbSet<ParticipantesTrama> ParticipantesTrama{ get; set; }
+        public DbSet<PuntosPasaTrama> PuntosPasaTrama { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

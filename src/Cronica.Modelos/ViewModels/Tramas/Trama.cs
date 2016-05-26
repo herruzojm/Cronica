@@ -1,4 +1,5 @@
 ﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
+using Cronica.Modelos.ViewModels.PostPartidas;
 using Microsoft.AspNet.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace Cronica.Modelos.ViewModels.Tramas
             Atributos = new List<AtributoTrama>();
             Puntos = new List<PuntosPasaTrama>();
             Participantes = new List<ParticipantesTrama>();
-        }
+        }        
+
         public int TramaId { get; set; }
         public string Nombre { get; set; }
         public TipoTrama TipoTrama { get; set; }
@@ -56,6 +58,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public int PersonajeId { get; set; }
         public int PuntosObtenidos { get; set; }
         public string Descripcion { get; set; }
+        public virtual PasaTrama PasaTrama { get; set; }
     }
 
     public enum TipoEquipo

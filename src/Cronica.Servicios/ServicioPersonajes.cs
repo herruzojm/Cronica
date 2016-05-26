@@ -65,16 +65,6 @@ namespace Cronica.Servicios
         {
             return await _contexto.Personajes.Include(p => p.Jugador)
                 .Where(p => p.Jugador.Cuenta == TipoCuenta.Narrador && p.Activo == true).ToListAsync();
-        }
-
-        public async Task<Personaje> GetMiPersonaje(string jugadorId)
-        {
-            Personaje personaje = await _contexto.Personajes
-                .Include(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
-                .Include(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
-                .Include(p => p.Atributos).ThenInclude(ap => ap.Atributo)
-                .SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true);
-            return personaje;
-        }
+        }        
     }
 }

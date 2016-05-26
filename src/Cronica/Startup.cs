@@ -83,6 +83,7 @@ namespace Cronica
             services.AddScoped<DatosIniciales>();
             services.AddScoped<IServicioUsuarios, ServicioUsuarios>();
             services.AddScoped<IServicioPersonajes, ServicioPersonajes>();
+            services.AddScoped<IServicioJugadores, ServicioJugadores>();
             services.AddScoped<IServicioAtributos, ServicioAtributos>();
             services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
             services.AddScoped<IServicioTramas, ServicioTramas>();
@@ -185,11 +186,19 @@ namespace Cronica
                 routes.MapRoute(
                     name: "MiPersonaje",
                     template: "MiPersonaje",
-                    defaults: new { controller = "Personajes", action = "MiPersonaje" });
+                    defaults: new { controller = "Jugadores", action = "MiPersonaje" });
                 routes.MapRoute(
                     name: "MisTramas",
                     template: "MisTramas",
-                    defaults: new { controller = "Personajes", action = "MisTramas" });
+                    defaults: new { controller = "Jugadores", action = "MisTramas" });
+                routes.MapRoute(
+                    name: "Asignaciones",
+                    template: "Asignaciones",
+                    defaults: new { controller = "Jugadores", action = "Asignaciones" });
+                routes.MapRoute(
+                    name: "DetalleTrama",
+                    template: "DetalleTrama/{personajeId}/{tramaId}",
+                    defaults: new { controller = "Jugadores", action = "DetalleTrama" });
 
                 routes.MapRoute(
                     name: "default",

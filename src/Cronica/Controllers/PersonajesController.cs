@@ -41,32 +41,6 @@ namespace Cronica.Controllers
             return View("Index", await _servicioPersonajes.GetPNJs());
         }
 
-        // GET: MiPersonaje
-        public async Task<IActionResult> MiPersonaje()
-        {
-            string userId = User.GetUserId();
-            ApplicationUser usuario = await _servicioUsuarios.GetUsuarioById(userId);
-            if (usuario.Cuenta == TipoCuenta.Jugador)
-            {
-                Personaje personaje = await _servicioPersonajes.GetMiPersonaje(userId);
-                if (personaje == null)
-                {
-                    //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
-                }
-                return View(personaje);                
-            }
-            else
-            {
-                return RedirectToAction("Index");
-            }
-        }
-
-        // GET: MiPersonaje
-        public async Task<IActionResult> MisTramas()
-        {
-            return View();
-        }
-
         // GET: Personajes/Create
         public async Task<IActionResult> Create()
         {
