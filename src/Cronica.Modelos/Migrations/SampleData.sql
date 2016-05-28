@@ -1750,3 +1750,12 @@ GO
 
 
 
+insert into AspNetUserClaims
+(ClaimType, ClaimValue, UserId)
+values
+('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Narrador', '377784a7-d7ef-4cd7-a8d0-5ac1e86039c2'),
+('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', '3591851d-dcad-46a1-9a74-e0b28ce31ee6'),
+('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', 'b75f8426-c837-4799-aa1d-391b18b79d82')
+GO
+
+

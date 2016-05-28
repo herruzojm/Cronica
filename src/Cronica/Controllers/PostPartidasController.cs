@@ -7,10 +7,12 @@ using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
-    public class PostPartidasController : Controller
+    [Authorize(Policy = "Narrador")]
+    public class PostPartidasController : RutasController
     {
         private IServicioPostPartidas _servicioPostPartidas;
 

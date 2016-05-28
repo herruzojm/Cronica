@@ -12,6 +12,8 @@ using Cronica.Modelos.Models;
 
 namespace Cronica.Controllers
 {
+
+    [Authorize(Policy = "Narrador")]
     public class PersonajesController : RutasController
     {
         private IServicioPersonajes _servicioPersonajes;
@@ -29,7 +31,7 @@ namespace Cronica.Controllers
             return View(await _servicioPersonajes.GetPersonajes());
         }
 
-        // GET: PersonajesJugadores
+        // GET: PersonajesJugadores        
         public async Task<IActionResult> PersonajesJugadores()
         {
             return View("Index", await _servicioPersonajes.GetPersonajesJugadores());

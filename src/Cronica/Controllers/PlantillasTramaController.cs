@@ -7,10 +7,12 @@ using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
-    public class PlantillasTramaController : Controller
+    [Authorize(Policy = "Narrador")]
+    public class PlantillasTramaController : RutasController
     {
         private IServicioPlantillasTrama _servicioPlantillasTrama;
 

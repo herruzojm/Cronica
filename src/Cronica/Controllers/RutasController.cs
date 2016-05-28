@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Mvc;
+﻿using Microsoft.AspNet.Authorization;
+using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace Cronica.Controllers
 {
     public class RutasController : Controller
     {
+
+
         protected IActionResult VistaMiPersonaje()
         {
             return RedirectToRoute("MiPersonaje");

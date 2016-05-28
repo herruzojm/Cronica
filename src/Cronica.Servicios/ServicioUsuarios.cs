@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using Microsoft.Data.Entity;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Servicios
 {

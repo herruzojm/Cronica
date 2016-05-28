@@ -13,6 +13,7 @@ using Cronica.Modelos.Models;
 using Cronica.Services;
 using Cronica.ViewModels.Account;
 using Cronica.Servicios.Interfaces;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Cronica.Controllers
 {
@@ -40,6 +41,13 @@ namespace Cronica.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
             _servicioUsuarios = servicioUsuarios;
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
 
         //
@@ -109,11 +117,14 @@ namespace Cronica.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Narrador")]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                List<Claim> claims = new List<Claim>();                                
+                user.Claims.Add(new IdentityUserClaim<string> { ClaimType = ClaimTypes.Role, ClaimValue = model.Cuenta.ToString(), UserId = user.Id });
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

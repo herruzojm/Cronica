@@ -6,10 +6,12 @@ using Microsoft.Data.Entity;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
-    public class AtributosController : Controller
+    [Authorize(Policy = "Narrador")]
+    public class AtributosController : RutasController
     {
         private IServicioAtributos _servicioAtributos;
 

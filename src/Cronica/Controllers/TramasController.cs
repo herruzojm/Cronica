@@ -7,9 +7,11 @@ using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Servicios;
 using System.Collections.Generic;
 using System;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
+    [Authorize(Policy = "Narrador")]
     public class TramasController : RutasController
     {
         private IServicioTramas _servicioTramas;

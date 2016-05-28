@@ -7,9 +7,11 @@ using Microsoft.Data.Entity;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Servicios;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
+    [Authorize(Policy = "Narrador")]
     public class PasaTramasController : RutasController
     {
         private IServicioPasaTramas _servicioPasaTramas;

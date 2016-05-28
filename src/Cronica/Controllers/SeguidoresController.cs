@@ -8,10 +8,12 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Servicios.Interfaces;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Controllers
 {
-    
+
+    [Authorize(Policy = "Narrador")]
     public class SeguidoresController : RutasController
     {
         private IServicioSeguidor _servicioSeguidores;

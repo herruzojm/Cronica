@@ -74,6 +74,7 @@ namespace Cronica
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("Jugador", policy => policy.AddRequirements(new TipoCuentaRequirement(TipoCuenta.Jugador)));
                 options.AddPolicy("Narrador", policy => policy.Requirements.Add(new TipoCuentaRequirement(TipoCuenta.Narrador)));
             });
 
@@ -137,8 +138,9 @@ namespace Cronica
                 {
                     options.AuthenticationScheme = "Cookies";
                     options.LogoutPath = new PathString("/Home/Index");
-                    options.LoginPath = new PathString("/Account/Login");
-                    options.AccessDeniedPath = new PathString("/Account/AccesoDenegado");
+                    options.LoginPath = new PathString("/Home/Index");
+                    options.AccessDeniedPath = new PathString("/Home/Index");
+                    options.CookieName = "VerumEstSanguis";
                 }
             );
 

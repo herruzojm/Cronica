@@ -20,18 +20,11 @@ namespace Cronica.Authorization
 
         protected override async void Handle(AuthorizationContext context, TipoCuentaRequirement requirement)
         {
-
-            ApplicationUser usuario = await _servicioUsuarios.GetUsuarioById(context.User.GetUserId());
-
-            if (usuario == null)
-            {
-                return;
-            }
-            if (usuario.Cuenta == requirement.Cuenta)
+            if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == requirement.Cuenta.ToString())
             {
                 context.Succeed(requirement);
-
             }
         }
+
     }
 }

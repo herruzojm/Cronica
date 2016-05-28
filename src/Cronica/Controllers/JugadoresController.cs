@@ -2,6 +2,7 @@
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Servicios.Interfaces;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ using System.Threading.Tasks;
 
 namespace Cronica.Controllers
 {
+    [Authorize(Policy = "Jugador")]
     public class JugadoresController : RutasController
     {
+        
         private IServicioJugadores _servicioJugadores;
         private IServicioUsuarios _servicioUsuarios;
         private IServicioTramas _servicioTramas;
@@ -25,7 +28,7 @@ namespace Cronica.Controllers
             _servicioTramas = servicioTramas;
         }
 
-        // GET: MiPersonaje
+        // GET: MiPersonaje        
         public async Task<IActionResult> MiPersonaje()
         {
             string userId = User.GetUserId();
