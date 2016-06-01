@@ -96,7 +96,7 @@ namespace Cronica
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public async void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app, 
             IHostingEnvironment env, 
             ILoggerFactory loggerFactory, 
             DatosIniciales datosIniciales )
@@ -151,7 +151,7 @@ namespace Cronica
             
             ConfigurarRutas(app);
                       
-            await datosIniciales.CrearDatosAsync();
+            //await datosIniciales.CrearDatosAsync();
         }
 
         public void ConfigurarRutas(IApplicationBuilder app)

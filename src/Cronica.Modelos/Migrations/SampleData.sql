@@ -1723,11 +1723,18 @@ GO
 insert into PostPartida
 (PostPartidaId, Cerrada, FechaFin, FechaInicio)
 values
-(1, 0, '30/05/2016', '01/05/2016'),
-(2, 0, '30/06/2016', '01/06/2016')
+(1, 0, '30-05-2016', '01-05-2016'),
+(2, 0, '30-06-2016', '01-06-2016')
+GO
+insert into PostPartida
+(PostPartidaId, Cerrada, FechaFin, FechaInicio)
+values
+(1, 0, '05-30-2016', '05-01-2016'),
+(2, 0, '06-30-2016', '06-01-2016')
 GO
 SET IDENTITY_INSERT [dbo].PostPartida OFF
 GO
+
 
 SET IDENTITY_INSERT [dbo].PasaTrama ON
 GO
@@ -1737,7 +1744,24 @@ values
 (1, '20/05/2016', '21/05/2016', 1, 1),
 (2, '20/06/2016', null, 2, 0)
 GO
+insert into PasaTrama
+(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
+values
+(1, '05/20/2016', '05/21/2016', 1, 1),
+(2, '06/20/2016', null, 2, 0)
+GO
 SET IDENTITY_INSERT [dbo].PasaTrama OFF
+GO
+
+
+SET IDENTITY_INSERT [dbo].[Trama] ON 
+
+GO
+INSERT [dbo].[Trama] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaPostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (1, 0, N'Aumentar Recursos', N'Aumentar Recursos', 1, NULL, 0, 1, 50, NULL, 0)
+GO
+INSERT [dbo].[Trama] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaPostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (3, 0, N'Gana el pulso a tu rival', N'Ganar el pulso', 3, NULL, 0, 0, 30, NULL, 2)
+GO
+SET IDENTITY_INSERT [dbo].[Trama] OFF
 GO
 
 insert into PuntosPasaTrama
@@ -1754,8 +1778,7 @@ insert into AspNetUserClaims
 (ClaimType, ClaimValue, UserId)
 values
 ('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Narrador', '377784a7-d7ef-4cd7-a8d0-5ac1e86039c2'),
-('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', '3591851d-dcad-46a1-9a74-e0b28ce31ee6'),
-('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', 'b75f8426-c837-4799-aa1d-391b18b79d82')
+('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', '3591851d-dcad-46a1-9a74-e0b28ce31ee6')
 GO
 
 

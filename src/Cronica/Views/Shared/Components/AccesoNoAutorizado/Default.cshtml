@@ -1,0 +1,34 @@
+﻿@{
+
+    Random aleatorio = new Random(DateTime.Now.Millisecond);
+    switch (aleatorio.Next(0, 3))
+    {
+        case 0:
+            <h1 class="text-danger">Me temo que no amigo.</h1>
+            <h3 class="text-danger">
+                No puedes pasar. El principe fué muy insistente en que te lo comentase <i>diplomaticamente</i>.
+                El asunto es que no me dijo <i>como</i> debía detenerte si lo intentabas. Y creeme amigo, hoy me siento creativo.
+            </h3>
+            <img src="~/images/AccesoNoAutorizado/brujah.jpg" alt="Brujah" />            
+            break;
+        case 1:
+            <h1 class="text-danger">Buen intento.</h1>
+            <img src="~/images/AccesoNoAutorizado/nosferatu.jpg" alt="Nosferatu" />
+            <p class="text-danger">Buuff, cada día los abrazan más tontos.</p>
+            <p class="text-danger">¿En serio pensaste que solo porque no veias a nadie a tu alrededor no estabas siendo vigilado ?</p>
+            <p class="text-danger">Te ahorraré la pregunta que está a punto de salir de tu estupida boca: no, no puedes pasar.</p>
+            <p class="text-danger">Y ahora largate de aquí antes de que me toques las pelotas lo suficiente como para hurgar en tu mierda de cuenta bancaria.</p>
+            break;
+        case 2:            
+            <img src="~/images/AccesoNoAutorizado/tremere.jpg" alt="Tremere" style="float:left; margin-right:15px" />
+            <h1 class="text-danger">No, no pases.</h1>
+            <p class="text-danger">Dado tu nivel de inteligencia, es normal que no lo sepas, así que intentare explicartelo de forma que hasta mi gato lo entendería.</p>
+            <p class="text-danger">De entrar ahí, interferirias con las lineas de poder de Khereggik, lo que aumentaría la influencia lunar en la <i>vis</i>, que se intercalaría entre tu patrón sanguineo.</p>
+            <p class="text-danger">En cualquier caso, no te preocupes, estarías bien muerto antes de que empezara el dolor.</p>
+            <p class="text-danger">Claro, si tuvieses un medallon de <i>Corporem</i> con el sello de Blackwood, <i>quizás y sólo quizás</i> podrías sobrevivir. Pero ni siquiera yo tengo uno de esos, así que te olvidando.</p>
+            break;
+    }
+
+}
+
+
