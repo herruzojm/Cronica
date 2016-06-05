@@ -1,12 +1,12 @@
 using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -50,13 +50,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             Atributo atributoViewModel = await _servicioAtributos.GetAtributo(id.Value);
             if (atributoViewModel == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(atributoViewModel);
         }

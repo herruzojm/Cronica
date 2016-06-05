@@ -1,14 +1,10 @@
 using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Identity;
-using System.Security.Claims;
-using System;
-using Cronica.Modelos.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -78,13 +74,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             
             Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);            
             if (personaje == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             var jugadores = await _servicioUsuarios.GetUsuarios();
@@ -120,13 +116,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);
             if (personaje == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(personaje);

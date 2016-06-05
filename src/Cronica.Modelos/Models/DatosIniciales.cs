@@ -1,8 +1,4 @@
-﻿using Cronica.Modelos.ViewModels.Tramas;
-using Cronica.Modelos.ViewModels.GestionPersonajes;
-using Microsoft.AspNet.Identity;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace Cronica.Modelos.Models
 {

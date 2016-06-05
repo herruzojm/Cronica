@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Servicios.Interfaces;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -62,7 +62,7 @@ namespace Cronica.Controllers
             PersonaTrasfondo seguidor = await _servicioSeguidores.GetSeguidor(personajeId, seguidorId); ;
             if (seguidor == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(seguidor);

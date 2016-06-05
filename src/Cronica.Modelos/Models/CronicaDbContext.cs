@@ -1,18 +1,17 @@
 ﻿using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Cronica.Modelos.Models
 {
     public class CronicaDbContext : ApplicationDbContext
     {
+        public CronicaDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<Personaje> Personajes { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
@@ -22,11 +21,7 @@ namespace Cronica.Modelos.Models
         public DbSet<PersonaTrasfondo> Seguidores { get; set; }
         public DbSet<ParticipantesTrama> ParticipantesTrama{ get; set; }
         public DbSet<PuntosPasaTrama> PuntosPasaTrama { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
-        }
+        
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

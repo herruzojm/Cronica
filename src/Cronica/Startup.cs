@@ -1,22 +1,23 @@
 ﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Data.Entity;
+using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 using Cronica.Modelos.Models;
+using Cronica.Authorization;
 using Cronica.Services;
 using Cronica.Servicios.Interfaces;
-using Microsoft.AspNet.Http;
-using System.Reflection;
-using System.Globalization;
-using Microsoft.AspNet.Localization;
-using AutoMapper;
-using Cronica.Authorization;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Cronica.Servicios;
+using Microsoft.AspNetCore.Http;
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 
 namespace Cronica
 {
@@ -24,17 +25,17 @@ namespace Cronica
     {
 
         private MapperConfiguration _mapperConfiguration { get; set; }
-
+        
         public Startup(IHostingEnvironment env)
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets();
             }            
 
@@ -53,14 +54,14 @@ namespace Cronica
         public void ConfigureServices(IServiceCollection services)
         {
 
-            // Add framework services.
-            services.AddEntityFramework()
-                .AddSqlServer()
+            // Add framework services.            
+            services
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
                 .AddDbContext<CronicaDbContext>(options =>
                     options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
 
+           
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Lockout.MaxFailedAccessAttempts = 5;
@@ -70,7 +71,7 @@ namespace Cronica
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();             
 
-            services.AddMvc().AddPrecompiledRazorViews(GetType().GetTypeInfo().Assembly).AddViewLocalization().AddDataAnnotationsLocalization();
+            services.AddMvc();
 
             services.AddAuthorization(options =>
             {
@@ -115,7 +116,6 @@ namespace Cronica
                 loggerFactory.AddDebug(LogLevel.Debug);
                 app.UseExceptionHandler("/Home/Error");
 
-                // For more details on creating database during deployment see http://go.microsoft.com/fwlink/?LinkID=615859
                 try
                 {
                     using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>()
@@ -127,27 +127,25 @@ namespace Cronica
                 }
                 catch { }
             }
-
-            app.UseIISPlatformHandler(options => options.AuthenticationDescriptions.Clear());
-
+            
             app.UseStaticFiles();
 
             app.UseIdentity();
-            
-            app.UseCookieAuthentication(options =>
-                {
-                    options.AuthenticationScheme = "Cookies";
-                    options.LogoutPath = new PathString("/Home/Index");
-                    options.LoginPath = new PathString("/Home/Index");
-                    options.AccessDeniedPath = new PathString("/Home/Index");
-                    options.CookieName = "VerumEstSanguis";
-                }
-            );
 
+            CookieAuthenticationOptions cookiesOptions = new CookieAuthenticationOptions();
+            cookiesOptions.AuthenticationScheme = "Cookies";            
+            cookiesOptions.LogoutPath = new PathString("/Home/Index");
+            cookiesOptions.LoginPath = new PathString("/Home/Index");
+            cookiesOptions.AccessDeniedPath = new PathString("/Home/Index");
+            cookiesOptions.CookieName = "VerumEstSanguis";
+            app.UseCookieAuthentication(cookiesOptions);
+            
             var ci = new CultureInfo("es-ES");
             ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
 
-            app.UseRequestLocalization(new RequestCulture(ci));
+            Microsoft.AspNetCore.Builder.RequestLocalizationOptions localizationOptions = new Microsoft.AspNetCore.Builder.RequestLocalizationOptions();
+            localizationOptions.DefaultRequestCulture = new RequestCulture(ci);
+            app.UseRequestLocalization(localizationOptions);
             
             ConfigurarRutas(app);
                       
@@ -209,7 +207,18 @@ namespace Cronica
         }
 
         // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+              .UseKestrel()
+              .UseContentRoot(Directory.GetCurrentDirectory())
+              .UseIISIntegration()
+              .UseStartup<Startup>()
+              .Build();
+
+            host.Run();
+        }
+
     }
 
 }

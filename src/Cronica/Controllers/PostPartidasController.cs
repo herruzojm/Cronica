@@ -1,13 +1,13 @@
 using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -32,13 +32,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PostPartida postPartida = await _servicioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(postPartida);
@@ -69,13 +69,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PostPartida postPartida = await _servicioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(postPartida);
         }
@@ -100,13 +100,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PostPartida postPartida = await _servicioPostPartidas.GetPostPartida(id.Value);
             if (postPartida == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(postPartida);

@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.Mvc.Routing;
+﻿using Microsoft.AspNetCore.Mvc.Routing;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;

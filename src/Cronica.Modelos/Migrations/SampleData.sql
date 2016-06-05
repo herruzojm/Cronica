@@ -9,230 +9,230 @@ GO
 
 
 
-SET IDENTITY_INSERT [dbo].[Atributo] ON 
+SET IDENTITY_INSERT [dbo].[Atributos] ON 
 
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (1, N'Fuerza', 1, 0, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (1, N'Fuerza', 1, 0, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (2, N'Destreza', 2, 0, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (2, N'Destreza', 2, 0, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (3, N'Resistencia', 3, 0, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (3, N'Resistencia', 3, 0, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (4, N'Carisma', 1, 1, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (4, N'Carisma', 1, 1, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (5, N'Manipulación', 2, 1, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (5, N'Manipulación', 2, 1, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (6, N'Apariencia', 3, 1, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (6, N'Apariencia', 3, 1, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (7, N'Percepción', 1, 2, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (7, N'Percepción', 1, 2, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (8, N'Inteligencia', 2, 2, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (8, N'Inteligencia', 2, 2, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (9, N'Astucia', 3, 2, 0)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (9, N'Astucia', 3, 2, 0)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (10, N'Alerta', 1, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (10, N'Alerta', 1, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (11, N'Atletismo', 2, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (11, N'Atletismo', 2, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (12, N'Callejeo', 3, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (12, N'Callejeo', 3, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (13, N'Consciencia', 4, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (13, N'Consciencia', 4, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (14, N'Empatia', 5, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (14, N'Empatia', 5, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (15, N'Expresion', 6, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (15, N'Expresion', 6, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (16, N'Intimidacion', 7, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (16, N'Intimidacion', 7, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (17, N'Liderazgo', 8, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (17, N'Liderazgo', 8, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (18, N'Pelea', 9, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (18, N'Pelea', 9, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (19, N'Subterfugio', 10, 3, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (19, N'Subterfugio', 10, 3, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (20, N'Armas C.C.', 1, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (20, N'Armas C.C.', 1, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (21, N'Armas de Fuego', 2, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (21, N'Armas de Fuego', 2, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (22, N'Conducir', 3, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (22, N'Conducir', 3, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (23, N'Etiqueta', 4, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (23, N'Etiqueta', 4, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (24, N'Hurto', 5, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (24, N'Hurto', 5, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (25, N'Interpretacion', 6, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (25, N'Interpretacion', 6, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (26, N'Pericias', 7, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (26, N'Pericias', 7, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (27, N'Sigilo', 8, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (27, N'Sigilo', 8, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (28, N'Supervivencia', 9, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (28, N'Supervivencia', 9, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (29, N'Trato con Animales', 10, 4, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (29, N'Trato con Animales', 10, 4, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (30, N'Academicismo', 1, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (30, N'Academicismo', 1, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (31, N'Ciencia', 2, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (31, N'Ciencia', 2, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (32, N'Finanzas', 3, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (32, N'Finanzas', 3, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (33, N'Informatica', 4, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (33, N'Informatica', 4, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (34, N'Investigacion', 5, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (34, N'Investigacion', 5, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (35, N'Leyes', 6, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (35, N'Leyes', 6, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (36, N'Medicina', 7, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (36, N'Medicina', 7, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (37, N'Ocultismo', 8, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (37, N'Ocultismo', 8, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (38, N'Politica', 9, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (38, N'Politica', 9, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (39, N'Tecnologia', 10, 5, 1)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (39, N'Tecnologia', 10, 5, 1)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (40, N'Aliados', 10, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (40, N'Aliados', 10, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (41, N'Contactos: Bajos Fondos', 20, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (41, N'Contactos: Bajos Fondos', 20, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (42, N'Contactos: Cultura Académica', 30, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (42, N'Contactos: Cultura Académica', 30, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (43, N'Contactos: Finanzas', 40, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (43, N'Contactos: Finanzas', 40, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (44, N'Contactos: Fuerzas del Estado', 50, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (44, N'Contactos: Fuerzas del Estado', 50, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (45, N'Contactos: Informatica', 60, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (45, N'Contactos: Informatica', 60, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (46, N'Contactos: Medios de Comunicacion', 70, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (46, N'Contactos: Medios de Comunicacion', 70, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (47, N'Contactos: Ocultismo', 80, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (47, N'Contactos: Ocultismo', 80, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (48, N'Contactos: Politica', 90, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (48, N'Contactos: Politica', 90, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (49, N'Contactos: Transporte e Infraestructuras', 100, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (49, N'Contactos: Transporte e Infraestructuras', 100, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (50, N'Criados', 110, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (50, N'Criados', 110, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (51, N'Dominio', 120, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (51, N'Dominio', 120, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (52, N'Fama', 130, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (52, N'Fama', 130, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (53, N'Generacion', 140, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (53, N'Generacion', 140, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (54, N'Identidad Alternativa', 150, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (54, N'Identidad Alternativa', 150, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (55, N'Influencia: Bajos Fondos', 160, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (55, N'Influencia: Bajos Fondos', 160, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (56, N'Influencia: Cultura Académica', 170, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (56, N'Influencia: Cultura Académica', 170, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (57, N'Influencia: Finanzas', 180, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (57, N'Influencia: Finanzas', 180, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (58, N'Influencia: Fuerzas del Estado', 190, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (58, N'Influencia: Fuerzas del Estado', 190, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (59, N'Influencia: Informatica', 200, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (59, N'Influencia: Informatica', 200, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (60, N'Influencia: Medios de Comunicacion', 210, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (60, N'Influencia: Medios de Comunicacion', 210, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (61, N'Influencia: Ocultismo', 220, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (61, N'Influencia: Ocultismo', 220, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (62, N'Influencia: Politica', 230, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (62, N'Influencia: Politica', 230, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (63, N'Influencia: Transporte e Infraestructuras', 240, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (63, N'Influencia: Transporte e Infraestructuras', 240, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (64, N'Mentor', 250, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (64, N'Mentor', 250, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (65, N'Rebaño', 260, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (65, N'Rebaño', 260, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (66, N'Recursos', 270, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (66, N'Recursos', 270, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (67, N'Refugio: Seguridad', 280, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (67, N'Refugio: Seguridad', 280, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (68, N'Refugio: Tamaño', 290, 5, 2)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (68, N'Refugio: Tamaño', 290, 5, 2)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (69, N'Consciencia', 10, 5, 4)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (69, N'Consciencia', 10, 5, 4)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (70, N'Conviccion', 20, 5, 4)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (70, N'Conviccion', 20, 5, 4)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (71, N'Autocontrol', 30, 5, 4)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (71, N'Autocontrol', 30, 5, 4)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (72, N'Instinto', 40, 5, 4)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (72, N'Instinto', 40, 5, 4)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (73, N'Coraje', 50, 5, 4)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (73, N'Coraje', 50, 5, 4)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (74, N'Animalismo', 10, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (74, N'Animalismo', 10, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (75, N'Auspex', 20, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (75, N'Auspex', 20, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (76, N'Celeridad', 30, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (76, N'Celeridad', 30, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (77, N'Dementacion', 40, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (77, N'Dementacion', 40, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (78, N'Dominacion', 50, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (78, N'Dominacion', 50, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (79, N'Extincion', 60, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (79, N'Extincion', 60, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (80, N'Fortaleza', 70, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (80, N'Fortaleza', 70, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (81, N'Nigromancia: Sepulcro', 80, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (81, N'Nigromancia: Sepulcro', 80, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (82, N'Nigromancia: Cadaver Dentro del Monstruo', 90, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (82, N'Nigromancia: Cadaver Dentro del Monstruo', 90, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (83, N'Nigromancia: Podredumbre de la Tumba', 100, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (83, N'Nigromancia: Podredumbre de la Tumba', 100, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (84, N'Nigromancia: Cenizas', 110, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (84, N'Nigromancia: Cenizas', 110, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (85, N'Nigromancia: Cenotafio', 120, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (85, N'Nigromancia: Cenotafio', 120, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (86, N'Nigromancia: Cuatro Humores', 130, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (86, N'Nigromancia: Cuatro Humores', 130, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (87, N'Nigromancia: Osario', 140, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (87, N'Nigromancia: Osario', 140, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (88, N'Nigromancia: Vitrea', 150, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (88, N'Nigromancia: Vitrea', 150, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (89, N'Obtenebracion', 160, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (89, N'Obtenebracion', 160, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (90, N'Ofuscacion', 170, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (90, N'Ofuscacion', 170, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (91, N'Potencia', 180, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (91, N'Potencia', 180, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (92, N'Presencia', 190, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (92, N'Presencia', 190, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (93, N'Quimerismo', 200, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (93, N'Quimerismo', 200, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (94, N'Serpentis', 210, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (94, N'Serpentis', 210, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (95, N'Taumaturgia: Sangre', 220, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (95, N'Taumaturgia: Sangre', 220, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (96, N'Taumaturgia: Control Atmosferico', 230, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (96, N'Taumaturgia: Control Atmosferico', 230, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (97, N'Taumaturgia: Dominio Elemental', 240, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (97, N'Taumaturgia: Dominio Elemental', 240, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (98, N'Taumaturgia: Encanto de las Llamas', 250, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (98, N'Taumaturgia: Encanto de las Llamas', 250, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (99, N'Taumaturgia: Movimiento Mental', 260, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (99, N'Taumaturgia: Movimiento Mental', 260, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (100, N'Taumaturgia: Conjuracion', 270, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (100, N'Taumaturgia: Conjuracion', 270, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (101, N'Taumaturgia: Marte', 280, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (101, N'Taumaturgia: Marte', 280, 5, 3)
 GO
-INSERT [dbo].[Atributo] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (102, N'Vicisitud', 290, 5, 3)
+INSERT [dbo].[Atributos] ([AtributoId], [Nombre], [Orden], [SubTipo], [Tipo]) VALUES (102, N'Vicisitud', 290, 5, 3)
 GO
-SET IDENTITY_INSERT [dbo].[Atributo] OFF
+SET IDENTITY_INSERT [dbo].[Atributos] OFF
 GO
 
 
 --
 
 
-SET IDENTITY_INSERT [dbo].[PlantillaTrama] ON 
+SET IDENTITY_INSERT [dbo].[PlantillasTrama] ON 
 
 GO
-INSERT [dbo].[PlantillaTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (1, N'Aumentar Recursos', N'Aumentar Recursos', 1, 50, 0)
+INSERT [dbo].[PlantillasTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (1, N'Aumentar Recursos', N'Aumentar Recursos', 1, 50, 0)
 GO
-INSERT [dbo].[PlantillaTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (2, N'Turnarse para seguir a alguien', N'Seguir a alguien', -5, 85, 1)
+INSERT [dbo].[PlantillasTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (2, N'Turnarse para seguir a alguien', N'Seguir a alguien', -5, 85, 1)
 GO
-INSERT [dbo].[PlantillaTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (3, N'Gana el pulsu a tu rival', N'Ganar el pulso', 0, 30, 2)
+INSERT [dbo].[PlantillasTrama] ([PlantillaTramaId], [Descripcion], [Nombre], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TipoTrama]) VALUES (3, N'Gana el pulsu a tu rival', N'Ganar el pulso', 0, 30, 2)
 GO
-SET IDENTITY_INSERT [dbo].[PlantillaTrama] OFF
+SET IDENTITY_INSERT [dbo].[PlantillasTrama] OFF
 GO
 
 
@@ -862,18 +862,18 @@ GO
 
 
 
-SET IDENTITY_INSERT [dbo].[Personaje] ON 
+SET IDENTITY_INSERT [dbo].[Personajes] ON 
 
 GO
-INSERT [dbo].[Personaje] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0)
 GO
-INSERT [dbo].[Personaje] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0)
 GO
-INSERT [dbo].[Personaje] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (3, 1, 18, NULL, NULL, NULL, 0, 0, NULL, N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', NULL, NULL, N'Tres', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (3, 1, 18, NULL, NULL, NULL, 0, 0, NULL, N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', NULL, NULL, N'Tres', 0, 0, 0, 0)
 GO
-INSERT [dbo].[Personaje] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0)
 GO
-SET IDENTITY_INSERT [dbo].[Personaje] OFF
+SET IDENTITY_INSERT [dbo].[Personajes] OFF
 GO
 
 
@@ -1706,11 +1706,11 @@ GO
 
 
 
-INSERT [dbo].[PersonaTrasfondo] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (3, 1, 1)
+INSERT [dbo].[Seguidores] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (3, 1, 1)
 GO
-INSERT [dbo].[PersonaTrasfondo] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (3, 2, 2)
+INSERT [dbo].[Seguidores] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (3, 2, 2)
 GO
-INSERT [dbo].[PersonaTrasfondo] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (4, 1, 0)
+INSERT [dbo].[Seguidores] ([PersonajeJugadorId], [TrasfondoRelacionadoId], [TipoRelacion]) VALUES (4, 1, 0)
 GO
 
 
@@ -1718,50 +1718,50 @@ update Cronica.dbo.AtributoPersonaje set ValorEnTrama = Valor
 GO
 
 
-SET IDENTITY_INSERT [dbo].PostPartida ON
+SET IDENTITY_INSERT [dbo].PostPartidas ON
 GO
-insert into PostPartida
+insert into PostPartidas
 (PostPartidaId, Cerrada, FechaFin, FechaInicio)
 values
 (1, 0, '30-05-2016', '01-05-2016'),
 (2, 0, '30-06-2016', '01-06-2016')
 GO
-insert into PostPartida
+insert into PostPartidas
 (PostPartidaId, Cerrada, FechaFin, FechaInicio)
 values
 (1, 0, '05-30-2016', '05-01-2016'),
 (2, 0, '06-30-2016', '06-01-2016')
 GO
-SET IDENTITY_INSERT [dbo].PostPartida OFF
+SET IDENTITY_INSERT [dbo].PostPartidas OFF
 GO
 
 
-SET IDENTITY_INSERT [dbo].PasaTrama ON
+SET IDENTITY_INSERT [dbo].PasaTramas ON
 GO
-insert into PasaTrama
+insert into PasaTramas
 (PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
 values
 (1, '20/05/2016', '21/05/2016', 1, 1),
 (2, '20/06/2016', null, 2, 0)
 GO
-insert into PasaTrama
+insert into PasaTramas
 (PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
 values
 (1, '05/20/2016', '05/21/2016', 1, 1),
 (2, '06/20/2016', null, 2, 0)
 GO
-SET IDENTITY_INSERT [dbo].PasaTrama OFF
+SET IDENTITY_INSERT [dbo].PasaTramas OFF
 GO
 
 
-SET IDENTITY_INSERT [dbo].[Trama] ON 
+SET IDENTITY_INSERT [dbo].[Tramas] ON 
 
 GO
-INSERT [dbo].[Trama] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaPostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (1, 0, N'Aumentar Recursos', N'Aumentar Recursos', 1, NULL, 0, 1, 50, NULL, 0)
+INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (1, 0, N'Aumentar Recursos', N'Aumentar Recursos', 1, NULL, 0, 1, 50, NULL, 0)
 GO
-INSERT [dbo].[Trama] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaPostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (3, 0, N'Gana el pulso a tu rival', N'Ganar el pulso', 3, NULL, 0, 0, 30, NULL, 2)
+INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (3, 0, N'Gana el pulso a tu rival', N'Ganar el pulso', 3, NULL, 0, 0, 30, NULL, 2)
 GO
-SET IDENTITY_INSERT [dbo].[Trama] OFF
+SET IDENTITY_INSERT [dbo].[Tramas] OFF
 GO
 
 insert into PuntosPasaTrama

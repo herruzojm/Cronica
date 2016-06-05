@@ -1,6 +1,6 @@
 ﻿using Cronica.Modelos.Models;
 using Cronica.Servicios.Interfaces;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Collections.Generic;
 using System;

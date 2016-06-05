@@ -4,9 +4,9 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
-using Microsoft.Data.Entity;
 using System.Collections.Generic;
 using Cronica.Servicios.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cronica.Servicios
 {

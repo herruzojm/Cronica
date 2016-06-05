@@ -1,13 +1,13 @@
 using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Servicios;
 using System.Collections.Generic;
 using System;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -40,7 +40,8 @@ namespace Cronica.Controllers
 
         public IActionResult ParticipantesTrama(int tramaId, TipoTrama tipoTrama)
         {
-            return ViewComponent(nameof(ParticipantesTrama), tramaId, tipoTrama);
+            //return ViewComponent(nameof(ParticipantesTrama), tramaId, tipoTrama);
+            return ViewComponent(nameof(ParticipantesTrama), new { tramaId = tramaId, tipoTrama = tipoTrama });
         }
 
         // GET: TramasActivas/Create
@@ -106,13 +107,13 @@ namespace Cronica.Controllers
             //todo vincular a lista de personajes
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             Trama trama = await DevolverVistaEdicionTrama(id.Value);
             if (trama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }            
 
             return View(trama);
@@ -137,13 +138,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             Trama trama = await _servicioTramas.GetTrama(id.Value);
             if (trama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(trama);

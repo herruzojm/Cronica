@@ -1,21 +1,27 @@
 ﻿@using System.Security.Claims
+@using Microsoft.AspNetCore.Identity
 
-@if (User.IsSignedIn())
-{
-    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="">
-        <div class="list-group panel">
-            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@User.GetUserName()</strong></a>
-        </div>
-        
-        @await Component.InvokeAsync(nameof(MenuUsuario), User.GetUserId())
+@inject SignInManager<ApplicationUser> _signInManager
+@inject UserManager<ApplicationUser> _userManager
 
-        <div class="list-group panel">
-            <button type="submit" class="list-group-item">Cerrar Sesión</button>
-        </div>        
-    </form>
-}
-else
+@if (_signInManager.IsSignedIn(User))
 {
+
+        var _user = await _userManager.GetUserAsync(User);        
+        <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="">
+            <div class="list-group panel">
+                <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@_user.UserName</strong></a>
+            </div>
+
+            @await Component.InvokeAsync(nameof(MenuUsuario), new { userId = _user.Id })
+
+            <div class="list-group panel">
+                <button type="submit" class="list-group-item">Cerrar Sesión</button>
+            </div>
+        </form>
+        }
+        else
+        {
     <ul class="nav navbar-nav navbar-left">
         <li><a asp-controller="Account" asp-action="Register">Register</a></li>
         <li><a asp-controller="Account" asp-action="Login">Log in</a></li>

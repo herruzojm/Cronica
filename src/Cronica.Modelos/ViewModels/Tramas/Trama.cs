@@ -1,6 +1,6 @@
 ﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.ViewModels.PostPartidas;
-using Microsoft.AspNet.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;

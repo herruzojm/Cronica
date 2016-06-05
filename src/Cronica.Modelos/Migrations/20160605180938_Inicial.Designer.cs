@@ -1,20 +1,20 @@
-using System;
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Infrastructure;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Cronica.Modelos.Models;
 
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160331144825_Inicial")]
+    [Migration("20160605180938_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
+                .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Cronica.Modelos.Models.ApplicationUser", b =>
@@ -59,12 +59,12 @@ namespace Cronica.Modelos.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
-                        .HasAnnotation("Relational:Name", "EmailIndex");
+                        .HasName("EmailIndex");
 
                     b.HasIndex("NormalizedUserName")
-                        .HasAnnotation("Relational:Name", "UserNameIndex");
+                        .HasName("UserNameIndex");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetUsers");
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.Atributo", b =>
@@ -81,6 +81,8 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("Tipo");
 
                     b.HasKey("AtributoId");
+
+                    b.ToTable("Atributos");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.AtributoPersonaje", b =>
@@ -96,6 +98,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("ValorEnTrama");
 
                     b.HasKey("AtributoId", "PersonajeId");
+
+                    b.HasIndex("AtributoId");
+
+                    b.HasIndex("PersonajeId");
+
+                    b.ToTable("AtributoPersonaje");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", b =>
@@ -136,6 +144,10 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("ValorSenda");
 
                     b.HasKey("PersonajeId");
+
+                    b.HasIndex("JugadorId");
+
+                    b.ToTable("Personajes");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.PersonaTrasfondo", b =>
@@ -147,6 +159,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("TipoRelacion");
 
                     b.HasKey("PersonajeJugadorId", "TrasfondoRelacionadoId");
+
+                    b.HasIndex("PersonajeJugadorId");
+
+                    b.HasIndex("TrasfondoRelacionadoId");
+
+                    b.ToTable("Seguidores");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
@@ -163,6 +181,10 @@ namespace Cronica.Modelos.Migrations
                     b.Property<bool>("Resuelto");
 
                     b.HasKey("PasaTramaId");
+
+                    b.HasIndex("PostPartidaId");
+
+                    b.ToTable("PasaTramas");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", b =>
@@ -177,6 +199,8 @@ namespace Cronica.Modelos.Migrations
                     b.Property<DateTime>("FechaInicio");
 
                     b.HasKey("PostPartidaId");
+
+                    b.ToTable("PostPartidas");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.AtributoPlantillaTrama", b =>
@@ -188,6 +212,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("Multiplicador");
 
                     b.HasKey("AtributoId", "PlantillaTramaId");
+
+                    b.HasIndex("AtributoId");
+
+                    b.HasIndex("PlantillaTramaId");
+
+                    b.ToTable("AtributoPlantillaTrama");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.AtributoTrama", b =>
@@ -199,6 +229,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("Multiplicador");
 
                     b.HasKey("AtributoId", "TramaId");
+
+                    b.HasIndex("AtributoId");
+
+                    b.HasIndex("TramaId");
+
+                    b.ToTable("AtributoTrama");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.ParticipantesTrama", b =>
@@ -210,6 +246,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("Equipo");
 
                     b.HasKey("TramaId", "PersonajeId", "Equipo");
+
+                    b.HasIndex("PersonajeId");
+
+                    b.HasIndex("TramaId");
+
+                    b.ToTable("ParticipantesTrama");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PlantillaTrama", b =>
@@ -228,6 +270,8 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("TipoTrama");
 
                     b.HasKey("PlantillaTramaId");
+
+                    b.ToTable("PlantillasTrama");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosPasaTrama", b =>
@@ -243,6 +287,12 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("PuntosObtenidos");
 
                     b.HasKey("TramaId", "PasaTramaId", "PersonajeId");
+
+                    b.HasIndex("PasaTramaId");
+
+                    b.HasIndex("TramaId");
+
+                    b.ToTable("PuntosPasaTrama");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
@@ -258,7 +308,7 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int?>("PlantillaId");
 
-                    b.Property<int?>("PostPartidaPostPartidaId");
+                    b.Property<int?>("PostPartidaId");
 
                     b.Property<int>("PuntosActuales");
 
@@ -271,9 +321,15 @@ namespace Cronica.Modelos.Migrations
                     b.Property<int>("TipoTrama");
 
                     b.HasKey("TramaId");
+
+                    b.HasIndex("PlantillaId");
+
+                    b.HasIndex("PostPartidaId");
+
+                    b.ToTable("Tramas");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
                 {
                     b.Property<string>("Id");
 
@@ -289,12 +345,12 @@ namespace Cronica.Modelos.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
-                        .HasAnnotation("Relational:Name", "RoleNameIndex");
+                        .HasName("RoleNameIndex");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetRoles");
+                    b.ToTable("AspNetRoles");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -308,10 +364,12 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetRoleClaims");
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -325,10 +383,12 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetUserClaims");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider");
 
@@ -341,10 +401,12 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetUserLogins");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId");
 
@@ -352,18 +414,39 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasKey("UserId", "RoleId");
 
-                    b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId");
+
+                    b.Property<string>("LoginProvider");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Value");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.AtributoPersonaje", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Atributo")
                         .WithMany()
-                        .HasForeignKey("AtributoId");
+                        .HasForeignKey("AtributoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
                         .WithMany()
-                        .HasForeignKey("PersonajeId");
+                        .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", b =>
@@ -388,47 +471,60 @@ namespace Cronica.Modelos.Migrations
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida")
                         .WithMany()
-                        .HasForeignKey("PostPartidaId");
+                        .HasForeignKey("PostPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.AtributoPlantillaTrama", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Atributo")
                         .WithMany()
-                        .HasForeignKey("AtributoId");
+                        .HasForeignKey("AtributoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.PlantillaTrama")
                         .WithMany()
-                        .HasForeignKey("PlantillaTramaId");
+                        .HasForeignKey("PlantillaTramaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.AtributoTrama", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Atributo")
                         .WithMany()
-                        .HasForeignKey("AtributoId");
+                        .HasForeignKey("AtributoId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
                         .WithMany()
-                        .HasForeignKey("TramaId");
+                        .HasForeignKey("TramaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.ParticipantesTrama", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
                         .WithMany()
-                        .HasForeignKey("PersonajeId");
+                        .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
                         .WithMany()
-                        .HasForeignKey("TramaId");
+                        .HasForeignKey("TramaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosPasaTrama", b =>
                 {
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama")
+                        .WithMany()
+                        .HasForeignKey("PasaTramaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
                         .WithMany()
-                        .HasForeignKey("TramaId");
+                        .HasForeignKey("TramaId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
@@ -439,39 +535,44 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida")
                         .WithMany()
-                        .HasForeignKey("PostPartidaPostPartidaId");
+                        .HasForeignKey("PostPartidaId");
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRoleClaim<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim<string>", b =>
-                {
-                    b.HasOne("Cronica.Modelos.Models.ApplicationUser")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
                     b.HasOne("Cronica.Modelos.Models.ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole<string>", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNet.Identity.EntityFramework.IdentityRole")
+                    b.HasOne("Cronica.Modelos.Models.ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.Models.ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

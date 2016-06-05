@@ -1,11 +1,10 @@
 ﻿using Cronica.Servicios.Interfaces;
 using Cronica.Modelos.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.PostPartidas;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Cronica.Servicios
 {

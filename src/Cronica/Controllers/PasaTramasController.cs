@@ -1,13 +1,13 @@
 using Cronica.Servicios.Interfaces;
 using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.Models;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Servicios;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -32,13 +32,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(pasaTrama);
@@ -84,13 +84,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(pasaTrama);
         }
@@ -115,13 +115,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
             if (pasaTrama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(pasaTrama);

@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Microsoft.Data.Entity.Migrations;
-using Microsoft.Data.Entity.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Cronica.Modelos.Migrations
 {
@@ -32,10 +32,11 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ApplicationUser", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
+
             migrationBuilder.CreateTable(
-                name: "Atributo",
+                name: "Atributos",
                 columns: table => new
                 {
                     AtributoId = table.Column<int>(nullable: false)
@@ -47,10 +48,11 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Atributo", x => x.AtributoId);
+                    table.PrimaryKey("PK_Atributos", x => x.AtributoId);
                 });
+
             migrationBuilder.CreateTable(
-                name: "PostPartida",
+                name: "PostPartidas",
                 columns: table => new
                 {
                     PostPartidaId = table.Column<int>(nullable: false)
@@ -61,10 +63,11 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostPartida", x => x.PostPartidaId);
+                    table.PrimaryKey("PK_PostPartidas", x => x.PostPartidaId);
                 });
+
             migrationBuilder.CreateTable(
-                name: "PlantillaTrama",
+                name: "PlantillasTrama",
                 columns: table => new
                 {
                     PlantillaTramaId = table.Column<int>(nullable: false)
@@ -77,8 +80,9 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlantillaTrama", x => x.PlantillaTramaId);
+                    table.PrimaryKey("PK_PlantillasTrama", x => x.PlantillaTramaId);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -90,10 +94,25 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityRole", x => x.Id);
+                    table.PrimaryKey("PK_AspNetRoles", x => x.Id);
                 });
+
             migrationBuilder.CreateTable(
-                name: "Personaje",
+                name: "AspNetUserTokens",
+                columns: table => new
+                {
+                    UserId = table.Column<string>(nullable: false),
+                    LoginProvider = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Value = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Personajes",
                 columns: table => new
                 {
                     PersonajeId = table.Column<int>(nullable: false)
@@ -117,14 +136,15 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Personaje", x => x.PersonajeId);
+                    table.PrimaryKey("PK_Personajes", x => x.PersonajeId);
                     table.ForeignKey(
-                        name: "FK_Personaje_ApplicationUser_JugadorId",
+                        name: "FK_Personajes_AspNetUsers_JugadorId",
                         column: x => x.JugadorId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
@@ -137,14 +157,15 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityUserClaim<string>", x => x.Id);
+                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IdentityUserClaim<string>_ApplicationUser_UserId",
+                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AspNetUserLogins",
                 columns: table => new
@@ -156,16 +177,17 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityUserLogin<string>", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_IdentityUserLogin<string>_ApplicationUser_UserId",
+                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
-                name: "PasaTrama",
+                name: "PasaTramas",
                 columns: table => new
                 {
                     PasaTramaId = table.Column<int>(nullable: false)
@@ -177,14 +199,15 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PasaTrama", x => x.PasaTramaId);
+                    table.PrimaryKey("PK_PasaTramas", x => x.PasaTramaId);
                     table.ForeignKey(
-                        name: "FK_PasaTrama_PostPartida_PostPartidaId",
+                        name: "FK_PasaTramas_PostPartidas_PostPartidaId",
                         column: x => x.PostPartidaId,
-                        principalTable: "PostPartida",
+                        principalTable: "PostPartidas",
                         principalColumn: "PostPartidaId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AtributoPlantillaTrama",
                 columns: table => new
@@ -197,20 +220,21 @@ namespace Cronica.Modelos.Migrations
                 {
                     table.PrimaryKey("PK_AtributoPlantillaTrama", x => new { x.AtributoId, x.PlantillaTramaId });
                     table.ForeignKey(
-                        name: "FK_AtributoPlantillaTrama_Atributo_AtributoId",
+                        name: "FK_AtributoPlantillaTrama_Atributos_AtributoId",
                         column: x => x.AtributoId,
-                        principalTable: "Atributo",
+                        principalTable: "Atributos",
                         principalColumn: "AtributoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AtributoPlantillaTrama_PlantillaTrama_PlantillaTramaId",
+                        name: "FK_AtributoPlantillaTrama_PlantillasTrama_PlantillaTramaId",
                         column: x => x.PlantillaTramaId,
-                        principalTable: "PlantillaTrama",
+                        principalTable: "PlantillasTrama",
                         principalColumn: "PlantillaTramaId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
-                name: "Trama",
+                name: "Tramas",
                 columns: table => new
                 {
                     TramaId = table.Column<int>(nullable: false)
@@ -219,7 +243,7 @@ namespace Cronica.Modelos.Migrations
                     Descripcion = table.Column<string>(nullable: true),
                     Nombre = table.Column<string>(nullable: true),
                     PlantillaId = table.Column<int>(nullable: true),
-                    PostPartidaPostPartidaId = table.Column<int>(nullable: true),
+                    PostPartidaId = table.Column<int>(nullable: true),
                     PuntosActuales = table.Column<int>(nullable: false),
                     PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
                     PuntosNecesarios = table.Column<int>(nullable: false),
@@ -228,20 +252,21 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Trama", x => x.TramaId);
+                    table.PrimaryKey("PK_Tramas", x => x.TramaId);
                     table.ForeignKey(
-                        name: "FK_Trama_PlantillaTrama_PlantillaId",
+                        name: "FK_Tramas_PlantillasTrama_PlantillaId",
                         column: x => x.PlantillaId,
-                        principalTable: "PlantillaTrama",
+                        principalTable: "PlantillasTrama",
                         principalColumn: "PlantillaTramaId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Trama_PostPartida_PostPartidaPostPartidaId",
-                        column: x => x.PostPartidaPostPartidaId,
-                        principalTable: "PostPartida",
+                        name: "FK_Tramas_PostPartidas_PostPartidaId",
+                        column: x => x.PostPartidaId,
+                        principalTable: "PostPartidas",
                         principalColumn: "PostPartidaId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
@@ -254,14 +279,15 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityRoleClaim<string>", x => x.Id);
+                    table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_IdentityRoleClaim<string>_IdentityRole_RoleId",
+                        name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AspNetUserRoles",
                 columns: table => new
@@ -271,20 +297,21 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IdentityUserRole<string>", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_IdentityUserRole<string>_IdentityRole_RoleId",
+                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_IdentityUserRole<string>_ApplicationUser_UserId",
+                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AtributoPersonaje",
                 columns: table => new
@@ -299,20 +326,21 @@ namespace Cronica.Modelos.Migrations
                 {
                     table.PrimaryKey("PK_AtributoPersonaje", x => new { x.AtributoId, x.PersonajeId });
                     table.ForeignKey(
-                        name: "FK_AtributoPersonaje_Atributo_AtributoId",
+                        name: "FK_AtributoPersonaje_Atributos_AtributoId",
                         column: x => x.AtributoId,
-                        principalTable: "Atributo",
+                        principalTable: "Atributos",
                         principalColumn: "AtributoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AtributoPersonaje_Personaje_PersonajeId",
+                        name: "FK_AtributoPersonaje_Personajes_PersonajeId",
                         column: x => x.PersonajeId,
-                        principalTable: "Personaje",
+                        principalTable: "Personajes",
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
-                name: "PersonaTrasfondo",
+                name: "Seguidores",
                 columns: table => new
                 {
                     PersonajeJugadorId = table.Column<int>(nullable: false),
@@ -321,20 +349,21 @@ namespace Cronica.Modelos.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PersonaTrasfondo", x => new { x.PersonajeJugadorId, x.TrasfondoRelacionadoId });
+                    table.PrimaryKey("PK_Seguidores", x => new { x.PersonajeJugadorId, x.TrasfondoRelacionadoId });
                     table.ForeignKey(
-                        name: "FK_PersonaTrasfondo_Personaje_PersonajeJugadorId",
+                        name: "FK_Seguidores_Personajes_PersonajeJugadorId",
                         column: x => x.PersonajeJugadorId,
-                        principalTable: "Personaje",
+                        principalTable: "Personajes",
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_PersonaTrasfondo_Personaje_TrasfondoRelacionadoId",
+                        name: "FK_Seguidores_Personajes_TrasfondoRelacionadoId",
                         column: x => x.TrasfondoRelacionadoId,
-                        principalTable: "Personaje",
+                        principalTable: "Personajes",
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Restrict);
                 });
+
             migrationBuilder.CreateTable(
                 name: "AtributoTrama",
                 columns: table => new
@@ -347,18 +376,19 @@ namespace Cronica.Modelos.Migrations
                 {
                     table.PrimaryKey("PK_AtributoTrama", x => new { x.AtributoId, x.TramaId });
                     table.ForeignKey(
-                        name: "FK_AtributoTrama_Atributo_AtributoId",
+                        name: "FK_AtributoTrama_Atributos_AtributoId",
                         column: x => x.AtributoId,
-                        principalTable: "Atributo",
+                        principalTable: "Atributos",
                         principalColumn: "AtributoId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AtributoTrama_Trama_TramaId",
+                        name: "FK_AtributoTrama_Tramas_TramaId",
                         column: x => x.TramaId,
-                        principalTable: "Trama",
+                        principalTable: "Tramas",
                         principalColumn: "TramaId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "ParticipantesTrama",
                 columns: table => new
@@ -371,18 +401,19 @@ namespace Cronica.Modelos.Migrations
                 {
                     table.PrimaryKey("PK_ParticipantesTrama", x => new { x.TramaId, x.PersonajeId, x.Equipo });
                     table.ForeignKey(
-                        name: "FK_ParticipantesTrama_Personaje_PersonajeId",
+                        name: "FK_ParticipantesTrama_Personajes_PersonajeId",
                         column: x => x.PersonajeId,
-                        principalTable: "Personaje",
+                        principalTable: "Personajes",
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ParticipantesTrama_Trama_TramaId",
+                        name: "FK_ParticipantesTrama_Tramas_TramaId",
                         column: x => x.TramaId,
-                        principalTable: "Trama",
+                        principalTable: "Tramas",
                         principalColumn: "TramaId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateTable(
                 name: "PuntosPasaTrama",
                 columns: table => new
@@ -397,46 +428,198 @@ namespace Cronica.Modelos.Migrations
                 {
                     table.PrimaryKey("PK_PuntosPasaTrama", x => new { x.TramaId, x.PasaTramaId, x.PersonajeId });
                     table.ForeignKey(
-                        name: "FK_PuntosPasaTrama_Trama_TramaId",
+                        name: "FK_PuntosPasaTrama_PasaTramas_PasaTramaId",
+                        column: x => x.PasaTramaId,
+                        principalTable: "PasaTramas",
+                        principalColumn: "PasaTramaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PuntosPasaTrama_Tramas_TramaId",
                         column: x => x.TramaId,
-                        principalTable: "Trama",
+                        principalTable: "Tramas",
                         principalColumn: "TramaId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
                 table: "AspNetUsers",
                 column: "NormalizedEmail");
+
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
                 column: "NormalizedUserName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoPersonaje_AtributoId",
+                table: "AtributoPersonaje",
+                column: "AtributoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoPersonaje_PersonajeId",
+                table: "AtributoPersonaje",
+                column: "PersonajeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Personajes_JugadorId",
+                table: "Personajes",
+                column: "JugadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seguidores_PersonajeJugadorId",
+                table: "Seguidores",
+                column: "PersonajeJugadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Seguidores_TrasfondoRelacionadoId",
+                table: "Seguidores",
+                column: "TrasfondoRelacionadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PasaTramas_PostPartidaId",
+                table: "PasaTramas",
+                column: "PostPartidaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoPlantillaTrama_AtributoId",
+                table: "AtributoPlantillaTrama",
+                column: "AtributoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoPlantillaTrama_PlantillaTramaId",
+                table: "AtributoPlantillaTrama",
+                column: "PlantillaTramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoTrama_AtributoId",
+                table: "AtributoTrama",
+                column: "AtributoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AtributoTrama_TramaId",
+                table: "AtributoTrama",
+                column: "TramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParticipantesTrama_PersonajeId",
+                table: "ParticipantesTrama",
+                column: "PersonajeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParticipantesTrama_TramaId",
+                table: "ParticipantesTrama",
+                column: "TramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PuntosPasaTrama_PasaTramaId",
+                table: "PuntosPasaTrama",
+                column: "PasaTramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PuntosPasaTrama_TramaId",
+                table: "PuntosPasaTrama",
+                column: "TramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tramas_PlantillaId",
+                table: "Tramas",
+                column: "PlantillaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tramas_PostPartidaId",
+                table: "Tramas",
+                column: "PostPartidaId");
+
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
                 table: "AspNetRoles",
                 column: "NormalizedName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetRoleClaims_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserClaims_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserLogins_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_RoleId",
+                table: "AspNetUserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AspNetUserRoles_UserId",
+                table: "AspNetUserRoles",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable("AtributoPersonaje");
-            migrationBuilder.DropTable("PersonaTrasfondo");
-            migrationBuilder.DropTable("PasaTrama");
-            migrationBuilder.DropTable("AtributoPlantillaTrama");
-            migrationBuilder.DropTable("AtributoTrama");
-            migrationBuilder.DropTable("ParticipantesTrama");
-            migrationBuilder.DropTable("PuntosPasaTrama");
-            migrationBuilder.DropTable("AspNetRoleClaims");
-            migrationBuilder.DropTable("AspNetUserClaims");
-            migrationBuilder.DropTable("AspNetUserLogins");
-            migrationBuilder.DropTable("AspNetUserRoles");
-            migrationBuilder.DropTable("Atributo");
-            migrationBuilder.DropTable("Personaje");
-            migrationBuilder.DropTable("Trama");
-            migrationBuilder.DropTable("AspNetRoles");
-            migrationBuilder.DropTable("AspNetUsers");
-            migrationBuilder.DropTable("PlantillaTrama");
-            migrationBuilder.DropTable("PostPartida");
+            migrationBuilder.DropTable(
+                name: "AtributoPersonaje");
+
+            migrationBuilder.DropTable(
+                name: "Seguidores");
+
+            migrationBuilder.DropTable(
+                name: "AtributoPlantillaTrama");
+
+            migrationBuilder.DropTable(
+                name: "AtributoTrama");
+
+            migrationBuilder.DropTable(
+                name: "ParticipantesTrama");
+
+            migrationBuilder.DropTable(
+                name: "PuntosPasaTrama");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoleClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserClaims");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserLogins");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Atributos");
+
+            migrationBuilder.DropTable(
+                name: "Personajes");
+
+            migrationBuilder.DropTable(
+                name: "PasaTramas");
+
+            migrationBuilder.DropTable(
+                name: "Tramas");
+
+            migrationBuilder.DropTable(
+                name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "PlantillasTrama");
+
+            migrationBuilder.DropTable(
+                name: "PostPartidas");
         }
     }
 }

@@ -1,13 +1,13 @@
 using Cronica.Servicios.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Mvc.Rendering;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
@@ -53,13 +53,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(plantillaTrama);
         }
@@ -84,13 +84,13 @@ namespace Cronica.Controllers
         {
             if (id == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             PlantillaTrama plantillaTrama = await _servicioPlantillasTrama.GetPlantillaTrama(id.Value);
             if (plantillaTrama == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
 
             return View(plantillaTrama);

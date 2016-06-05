@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Cronica.ViewModels.Manage
+﻿namespace Cronica.ViewModels.Manage
 {
     public class RemoveLoginViewModel
     {

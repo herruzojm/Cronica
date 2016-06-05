@@ -1,13 +1,9 @@
 ﻿using Cronica.Servicios.Interfaces;
-using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.Models;
-using Cronica.Modelos.ViewModels.GestionPersonajes;
-using System.Linq;
 using System.Threading.Tasks;
-using System;
 using System.Collections.Generic;
-using Microsoft.Data.Entity;
-using Microsoft.AspNet.Authorization;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Cronica.Servicios
 {

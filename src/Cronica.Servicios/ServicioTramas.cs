@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.Tramas;
-using Microsoft.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using AutoMapper;
 
