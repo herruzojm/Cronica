@@ -2,5 +2,5 @@
     ViewData["Title"] = "Acceso Denegado";
 }
 
-@Component.Invoke(nameof(AccesoNoAutorizado))
+@await Component.InvokeAsync(nameof(AccesoNoAutorizado))
 
