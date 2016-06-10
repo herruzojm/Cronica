@@ -22,7 +22,7 @@ namespace Cronica.Modelos.Models
             var connectionStringConfig = builder.Build();            
 
             var options = new DbContextOptionsBuilder<ApplicationDbContext>();
-            options.UseSqlServer(connectionStringConfig["Data:DefaultConnection:ConnectionString"]); 
+            options.UseSqlServer(connectionStringConfig["ConnectionStrings:DefaultConnection"]); 
 
             return new CronicaDbContext(options.Options);
         }

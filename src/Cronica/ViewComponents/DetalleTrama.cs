@@ -17,9 +17,9 @@ namespace Cronica.ViewComponents
             _servicioTramas = servicioTramas;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int? plantillaId)
+        public async Task<IViewComponentResult> InvokeAsync(int? plantillaTramaId)
         {
-            Trama trama = await _servicioTramas.GetNuevaTrama(plantillaId);
+            Trama trama = await _servicioTramas.GetNuevaTrama(plantillaTramaId);
             return View(trama);
         }
     }

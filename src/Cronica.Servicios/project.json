@@ -1,15 +1,9 @@
 ﻿{
   "version": "1.0.0-*",
   "description": "Cronica.Servicios Class Library",
-  "authors": [ "Darkshared" ],
+  "authors": [ "Jesus Maria Herruzo Luque" ],
   "frameworks": {
-    "netcoreapp1.0": {
-      "imports": [
-        "dotnet5.6",
-        "dnxcore50",
-        "portable-net45+win8"
-      ]
-    }
+    "net452": { }
   },
   "dependencies": {
     "Cronica.Modelos": "1.0.0-*"

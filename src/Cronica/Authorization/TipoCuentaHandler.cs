@@ -1,15 +1,16 @@
 ﻿using Cronica.Modelos.Models;
 using Cronica.Servicios.Interfaces;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Authorization;
 
 namespace Cronica.Authorization
 {
-    public class TipoCuentaHandler : AuthorizationHandler<TipoCuentaRequirement>
+    public class TipoCuentaHandler : Microsoft.AspNetCore.Authorization.AuthorizationHandler<TipoCuentaRequirement>
     {
         private IServicioUsuarios _servicioUsuarios;
 
@@ -18,7 +19,7 @@ namespace Cronica.Authorization
             _servicioUsuarios = servicioUsuarios;
         }
 
-        protected override void Handle(AuthorizationContext context, TipoCuentaRequirement requirement)
+        protected override void Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext context, TipoCuentaRequirement requirement)
         {
             if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == requirement.Cuenta.ToString())
             {

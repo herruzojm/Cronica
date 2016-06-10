@@ -57,9 +57,9 @@ namespace Cronica
             // Add framework services.            
             services
                 .AddDbContext<ApplicationDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]))
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")))
                 .AddDbContext<CronicaDbContext>(options =>
-                    options.UseSqlServer(Configuration["Data:DefaultConnection:ConnectionString"]));
+                    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
            
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
@@ -81,8 +81,7 @@ namespace Cronica
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.AddScoped<DatosIniciales>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();            
             services.AddScoped<IServicioUsuarios, ServicioUsuarios>();
             services.AddScoped<IServicioPersonajes, ServicioPersonajes>();
             services.AddScoped<IServicioJugadores, ServicioJugadores>();
@@ -99,8 +98,7 @@ namespace Cronica
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, 
             IHostingEnvironment env, 
-            ILoggerFactory loggerFactory, 
-            DatosIniciales datosIniciales )
+            ILoggerFactory loggerFactory )
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
@@ -148,8 +146,7 @@ namespace Cronica
             app.UseRequestLocalization(localizationOptions);
             
             ConfigurarRutas(app);
-                      
-            //await datosIniciales.CrearDatosAsync();
+                                  
         }
 
         public void ConfigurarRutas(IApplicationBuilder app)

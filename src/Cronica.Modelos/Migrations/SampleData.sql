@@ -1782,3 +1782,6 @@ values
 GO
 
 
+insert into AtributoTrama
+select AtributoId, TramaId, 1 from Atributos, Tramas
+GO

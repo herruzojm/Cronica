@@ -35,12 +35,11 @@ namespace Cronica.Controllers
         
         public IActionResult DetalleTrama(int plantillaTramaId)
         {
-            return ViewComponent(nameof(DetalleTrama), plantillaTramaId);
+            return ViewComponent(nameof(DetalleTrama), new { plantillaTramaId = plantillaTramaId });
         }
 
         public IActionResult ParticipantesTrama(int tramaId, TipoTrama tipoTrama)
         {
-            //return ViewComponent(nameof(ParticipantesTrama), tramaId, tipoTrama);
             return ViewComponent(nameof(ParticipantesTrama), new { tramaId = tramaId, tipoTrama = tipoTrama });
         }
 
