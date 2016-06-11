@@ -17,10 +17,19 @@ namespace Cronica.ViewComponents
             _servicioTramas = servicioTramas;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int? plantillaTramaId)
+        public async Task<IViewComponentResult> InvokeAsync(int? plantillaTramaId, Trama trama)
         {
-            Trama trama = await _servicioTramas.GetNuevaTrama(plantillaTramaId);
-            return View(trama);
+            if (plantillaTramaId.HasValue)
+            {
+                Trama nuevaTrama = await _servicioTramas.GetNuevaTrama(plantillaTramaId);
+                return View(nuevaTrama);
+            }
+            else
+            {
+                return View(trama);
+            }
+            
         }
+        
     }
 }

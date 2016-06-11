@@ -1785,3 +1785,14 @@ GO
 insert into AtributoTrama
 select AtributoId, TramaId, 1 from Atributos, Tramas
 GO
+
+
+insert into ParticipantesTrama
+(TramaId, PersonajeId, Equipo)
+values
+(1, 3, 0),
+(3, 3, 0)
+GO
+
+
+

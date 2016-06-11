@@ -41,6 +41,13 @@ namespace Cronica.Controllers
             _servicioUsuarios = servicioUsuarios;
         }
 
+        // GET: /Account/Index
+        [Authorize(Policy = "Narrador")]
+        public async Task<IActionResult> Index()
+        {
+            return View(await _servicioUsuarios.GetUsuarios());
+        }
+
         [HttpGet]
         [AllowAnonymous]
         public IActionResult AccessDenied()

@@ -19,6 +19,7 @@
         <hr />
         <p></p>
         <span id="DetallePlantillaTrama">
+            @await Component.InvokeAsync(nameof(DetalleTrama), new { trama = Model })
         </span>
 
         <div class="form-group">
@@ -36,13 +37,13 @@
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
     <script>
         $(document).ready(function () {
-            CargarPlantilla();            
+            CambiarParticipantesTrama();
         });
     </script>
     <script>
-        function CargarPlantilla() {
+        function CargarPlantilla(cargarPorPlantilla) {
             var id = $('#PlantillaId').val();
-            $.get("/Tramas/DetalleTrama", { plantillaTramaId: id }, function (data) {
+            $.get("/Tramas/DetalleTrama", { plantillaTramaId: id, cargarPorPlantilla: cargarPorPlantilla }, function (data) {
                 $('#DetallePlantillaTrama').html(data);
                 CambiarParticipantesTrama();
             });

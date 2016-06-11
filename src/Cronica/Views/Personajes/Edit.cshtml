@@ -140,21 +140,21 @@
                     <h4>Fisicos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Sociales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Mentales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <h3 class="alineadoCentro">Habilidades</h3>
@@ -162,21 +162,21 @@
                     <h4>Talentos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Tecnicas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Conocimientos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <h3 class="alineadoCentro">Ventajas</h3>
@@ -184,21 +184,21 @@
                     <h4>Trasfondos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Disciplinas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Virtudes</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), atributo)
+                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
                     }
                 </div>
                 <h3 class="alineadoCentro">Otros Rasgos</h3>               
