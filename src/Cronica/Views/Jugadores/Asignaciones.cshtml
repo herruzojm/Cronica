@@ -27,14 +27,14 @@
                 <tr>
                     <td>@tramaParticipada.Trama.Nombre</td>
                     <td>
-                        <input type="range" max="100" min="0"
-                               value="@Model.Asignaciones.Where(a=> a.PersonajeId == Model.PersonajeId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
+                        <input data-provide="slider" type="text" data-slider-max="100" data-slider-handle="custom"
+                               data-slider-value="@Model.Asignaciones.Where(a=> a.PersonajeId == Model.PersonajeId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
                     </td>
                     @foreach (var seguidor in Model.Personaje.Seguidores)
                     {
                         <td>
-                            <input type="range" max="100" min="0"
-                                   value="@Model.Asignaciones.Where(a=> a.PersonajeId == seguidor.TrasfondoRelacionadoId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
+                            <input data-provide="slider" type="range" data-slider-max="100" data-slider-handle="custom"
+                                   data-slider-value="@Model.Asignaciones.Where(a=> a.PersonajeId == seguidor.TrasfondoRelacionadoId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
                         </td>
                     }
                 </tr>

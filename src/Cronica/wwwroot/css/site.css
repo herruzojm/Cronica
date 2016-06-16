@@ -300,3 +300,107 @@ table.dataTable.table-condensed .sorting_desc:after {
 .dataTables_wrapper .dataTables_paginate {
   color: inherit;
 }
+
+
+/******** SLIDERS  *******/
+.slider-handle.custom::before {
+    content: none;
+}
+
+.slider-handle.custom {
+    background: transparent;
+    background-image: url('../images/ankh.png');
+}
+.slider-selection {
+	background: #b20808;
+}
+.slider.slider-horizontal .slider-handle {
+    margin-left: -15px;
+}
+
+/*input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 6.45px 0;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 14.1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 4.9px #000000, 0px 0px 1px #0d0d0d;
+  background: #160426;
+  border-radius: 6.3px;
+  border: 2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 0.9px 0.9px 1px #110031, 0px 0px 0.9px #1a004b;
+  border: 1.8px solid #00001e;
+  height: 27px;
+  width: 24px;
+  border-radius: 15px;
+  background: #ff2415;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8.45px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #210638;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 14.1px;
+  cursor: pointer;
+  box-shadow: 1px 1px 4.9px #000000, 0px 0px 1px #0d0d0d;
+  background: #160426;
+  border-radius: 6.3px;
+  border: 2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0.9px 0.9px 1px #110031, 0px 0px 0.9px #1a004b;
+  border: 1.8px solid #00001e;
+  height: 27px;
+  width: 24px;
+  border-radius: 15px;
+  background: #ff2415;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 14.1px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #0b0214;
+  border: 2px solid #010101;
+  border-radius: 12.6px;
+  box-shadow: 1px 1px 4.9px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #160426;
+  border: 2px solid #010101;
+  border-radius: 12.6px;
+  box-shadow: 1px 1px 4.9px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 0.9px 0.9px 1px #110031, 0px 0px 0.9px #1a004b;
+  border: 1.8px solid #00001e;
+  height: 27px;
+  width: 24px;
+  border-radius: 15px;
+  background: #ff2415;
+  cursor: pointer;
+  height: 14.1px;
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: #160426;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: #210638;
+}*/
+
