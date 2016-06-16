@@ -19,7 +19,7 @@ namespace Cronica.Servicios
         {
             return await _contexto.PostPartidas.Include(p => p.PasaTramas).SingleAsync(p => p.PostPartidaId == postPartidaId);
         }
-
+        
         public async Task<List<PostPartida>> GetPostPartidas()
         {
             return await _contexto.PostPartidas.ToListAsync();

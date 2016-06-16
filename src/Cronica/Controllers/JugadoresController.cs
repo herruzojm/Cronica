@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Cronica.Modelos.ViewModels.PostPartidas;
 
 namespace Cronica.Controllers
 {
@@ -21,13 +22,16 @@ namespace Cronica.Controllers
         private IServicioUsuarios _servicioUsuarios;
         private IServicioTramas _servicioTramas;
         private readonly UserManager<ApplicationUser> _userManager;
+        private IServicioAsignaciones _servicioAsignaciones;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
-                                    IServicioTramas servicioTramas, UserManager<ApplicationUser> userManager)
+                                    IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
+                                    UserManager<ApplicationUser> userManager)
         {
             _servicioJugadores = servicioJugadores;
             _servicioUsuarios = servicioUsuarios;
             _servicioTramas = servicioTramas;
+            _servicioAsignaciones = servicioAsignaciones;
             _userManager = userManager;
         }
 
@@ -72,7 +76,16 @@ namespace Cronica.Controllers
         // GET: MisTramas
         public async Task<IActionResult> Asignaciones()
         {
-            return View();
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            if (usuario.Cuenta == TipoCuenta.Jugador)
+            {
+                Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);                
+                return View(asignacion);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Personajes");
+            }
         }
 
         //GET: DetalleTrama/2

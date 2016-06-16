@@ -1795,4 +1795,33 @@ values
 GO
 
 
+SET IDENTITY_INSERT [dbo].[Asignaciones] ON 
+GO
+insert into Asignaciones
+(AsignacionId, PersonajeId, PasaTramaId)
+values
+(1, 3, 2)
+GO
+SET IDENTITY_INSERT [dbo].[Asignaciones] OFF
+GO
+
+
+
+SET IDENTITY_INSERT [dbo].[PersonajeAsignacion] ON 
+GO
+insert into PersonajeAsignacion
+(PersonajeAsignacionId, AsignacionId, PersonajeId, PuntosParticipacion, TramaId)
+values
+(1,                         1,              3,           25,                1 ),
+(2,                         1,              3,           75,                3 ),
+(3,                         1,              1,           20,                1 ),
+(4,                         1,              1,           80,                3 ),
+(5,                         1,              2,           40,                1 ),
+(6,                         1,              2,           60,                3 )
+GO
+SET IDENTITY_INSERT [dbo].[PersonajeAsignacion] OFF
+GO
+
+
+
 

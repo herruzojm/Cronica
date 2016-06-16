@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Cronica.Modelos.Models;
 
-namespace Cronica.Modelos.Migrations
+namespace Cronica.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
     partial class CronicaDbContextModelSnapshot : ModelSnapshot
@@ -166,6 +166,22 @@ namespace Cronica.Modelos.Migrations
                     b.ToTable("Seguidores");
                 });
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.Asignacion", b =>
+                {
+                    b.Property<int>("AsignacionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("PasaTramaId");
+
+                    b.Property<int>("PersonajeId");
+
+                    b.HasKey("AsignacionId");
+
+                    b.HasIndex("PersonajeId");
+
+                    b.ToTable("Asignaciones");
+                });
+
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
                 {
                     b.Property<int>("PasaTramaId")
@@ -184,6 +200,30 @@ namespace Cronica.Modelos.Migrations
                     b.HasIndex("PostPartidaId");
 
                     b.ToTable("PasaTramas");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PersonajeAsignacion", b =>
+                {
+                    b.Property<int>("PersonajeAsignacionId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("AsignacionId");
+
+                    b.Property<int>("PersonajeId");
+
+                    b.Property<int>("PuntosParticipacion");
+
+                    b.Property<int>("TramaId");
+
+                    b.HasKey("PersonajeAsignacionId");
+
+                    b.HasIndex("AsignacionId");
+
+                    b.HasIndex("PersonajeId");
+
+                    b.HasIndex("TramaId");
+
+                    b.ToTable("PersonajeAsignacion");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", b =>
@@ -466,11 +506,36 @@ namespace Cronica.Modelos.Migrations
                         .HasForeignKey("TrasfondoRelacionadoId");
                 });
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.Asignacion", b =>
+                {
+                    b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
+                        .WithMany()
+                        .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
                 {
                     b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida")
                         .WithMany()
                         .HasForeignKey("PostPartidaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PersonajeAsignacion", b =>
+                {
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.Asignacion")
+                        .WithMany()
+                        .HasForeignKey("AsignacionId");
+
+                    b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje")
+                        .WithMany()
+                        .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
+                        .WithMany()
+                        .HasForeignKey("TramaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

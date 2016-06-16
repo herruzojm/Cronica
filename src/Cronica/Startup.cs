@@ -90,7 +90,8 @@ namespace Cronica
             services.AddScoped<IServicioTramas, ServicioTramas>();
             services.AddScoped<IServicioPostPartidas, ServicioPostPartidas>();
             services.AddScoped<IServicioPasaTramas, ServicioPasaTramas>();
-            services.AddScoped<IServicioSeguidor, ServicioSeguidor>();
+            services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
+            services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }

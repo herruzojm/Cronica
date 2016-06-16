@@ -16,9 +16,9 @@ namespace Cronica.Controllers
     [Authorize(Policy = "Narrador")]
     public class SeguidoresController : RutasController
     {
-        private IServicioSeguidor _servicioSeguidores;
+        private IServicioSeguidores _servicioSeguidores;
 
-        public SeguidoresController(IServicioSeguidor servicioSeguidores)
+        public SeguidoresController(IServicioSeguidores servicioSeguidores)
         {
             _servicioSeguidores = servicioSeguidores;
         }

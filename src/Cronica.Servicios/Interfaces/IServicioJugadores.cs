@@ -10,5 +10,6 @@ namespace Cronica.Servicios.Interfaces
     {
         Task<Personaje> GetMiPersonaje(string jugadorId);
         Task<Personaje> GetMisTramas(string jugadorId);
+
     }
 }

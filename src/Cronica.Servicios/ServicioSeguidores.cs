@@ -8,9 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Cronica.Servicios
 {
-    public class ServicioSeguidor : ServicioBase, IServicioSeguidor
+    public class ServicioSeguidores : ServicioBase, IServicioSeguidores
     {
-        public ServicioSeguidor(CronicaDbContext contexto) : base(contexto)
+        public ServicioSeguidores(CronicaDbContext contexto) : base(contexto)
         {
         }
 

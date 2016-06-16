@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cronica.Servicios.Interfaces
 {
-    public interface IServicioSeguidor : IServicioBase
+    public interface IServicioSeguidores : IServicioBase
     {
         Task<PersonaTrasfondo> GetSeguidor(int personajeId, int seguidorId);
 
