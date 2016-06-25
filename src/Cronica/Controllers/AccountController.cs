@@ -127,25 +127,41 @@ namespace Cronica.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                List<Claim> claims = new List<Claim>();                                
-                user.Claims.Add(new IdentityUserClaim<string> { ClaimType = ClaimTypes.Role, ClaimValue = model.Cuenta.ToString(), UserId = user.Id });
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                bool crearCuenta = true;
+                //solo los administradores pueden crear cuentas de narrador o de administrador
+                if (model.Cuenta == TipoCuenta.Narrador || model.Cuenta == TipoCuenta.Administrador)
                 {
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
-                    // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                    //await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, $"Cuenta creada para el usuario {model.Email}");
-                    ViewBag.MensajeExito = $"Cuenta creada para el usuario {model.Email}";
-                    ModelState.Clear();
-                    return View();
+                    ApplicationUser usuarioLogueado = await _userManager.GetUserAsync(User);
+                    if (usuarioLogueado.Cuenta != TipoCuenta.Administrador)
+                    {
+                        crearCuenta = false;
+                        ModelState.AddModelError(string.Empty, "Se necesita una cuenta de Administrador para crear cuentas de Narrador o Administrador");
+                    }                    
                 }
-                AddErrors(result);
+                                
+                if (crearCuenta)
+                {
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Cuenta = model.Cuenta };
+                    List<Claim> claims = new List<Claim>();
+                    user.Claims.Add(new IdentityUserClaim<string> { ClaimType = ClaimTypes.Role, ClaimValue = model.Cuenta.ToString(), UserId = user.Id });
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
+                        // Send an email with this link
+                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                        //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
+                        //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
+                        //await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation(3, $"Cuenta creada para el usuario {model.Email}");
+                        ViewBag.MensajeExito = $"Cuenta creada para el usuario {model.Email}";
+                        ModelState.Clear();
+                        return View();
+                    }
+                    AddErrors(result);
+                }
+                
             }
 
             // If we got this far, something failed, redisplay form

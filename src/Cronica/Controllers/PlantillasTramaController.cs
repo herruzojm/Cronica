@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
-    [Authorize(Policy = "Narrador")]
+    [Authorize(Policy = "Administrador")]
     public class PlantillasTramaController : RutasController
     {
         private IServicioPlantillasTrama _servicioPlantillasTrama;

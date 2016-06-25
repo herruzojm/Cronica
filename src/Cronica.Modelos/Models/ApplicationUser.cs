@@ -12,6 +12,7 @@ namespace Cronica.Modelos.Models
     public enum TipoCuenta
     {
         Jugador,
-        Narrador
+        Narrador,
+        Administrador
     }
 }

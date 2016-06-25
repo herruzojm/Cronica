@@ -6,7 +6,8 @@ INSERT [dbo].[AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Cuen
 GO
 INSERT [dbo].[AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Cuenta], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName]) VALUES (N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', 0, N'6a584eb4-976a-4565-8e6b-c087f9955e7d', 1, N'narrador@yopmail.com', 1, 1, NULL, N'NARRADOR@YOPMAIL.COM', N'NARRADOR@YOPMAIL.COM', N'AQAAAAEAACcQAAAAEGQUinIJUJya8vCwPj5GvTuXWKhTWQRzg9/esng7EMZBPX7vrEDUvAiPDNDN9QG0/A==', NULL, 0, N'87043d95-4eec-458d-a16a-dd0e4dd12dd0', 0, N'narrador@yopmail.com')
 GO
-
+INSERT [dbo].[AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Cuenta], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName]) VALUES (N'32ad9830-b7ac-4125-954e-b41505c8eab5', 0, N'08750dce-6285-4ff6-b425-1d2d8bf655c3', 2, N'administrador@yopmail.com', 0, 1, NULL, N'ADMINISTRADOR@YOPMAIL.COM', N'ADMINISTRADOR@YOPMAIL.COM', N'AQAAAAEAACcQAAAAEKfiih7+Yohqm/682yDA19Ya1/ms+FxcpOoE/YGAT7u/m5sKyjsXV2pAJxVy5k9VOQ==', NULL, 0, N'3908af19-ddea-4460-87c2-a494b7411dc4', 0, N'administrador@yopmail.com')
+GO
 
 
 SET IDENTITY_INSERT [dbo].[Atributos] ON 
@@ -1773,12 +1774,16 @@ values
 GO
 
 
+SET IDENTITY_INSERT [dbo].[AspNetUserClaims] ON 
 
-insert into AspNetUserClaims
-(ClaimType, ClaimValue, UserId)
-values
-('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Narrador', '377784a7-d7ef-4cd7-a8d0-5ac1e86039c2'),
-('http://schemas.microsoft.com/ws/2008/06/identity/claims/role', 'Jugador', '3591851d-dcad-46a1-9a74-e0b28ce31ee6')
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [ClaimType], [ClaimValue], [UserId]) VALUES (1, N'http://schemas.microsoft.com/ws/2008/06/identity/claims/role', N'Narrador', N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2')
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [ClaimType], [ClaimValue], [UserId]) VALUES (2, N'http://schemas.microsoft.com/ws/2008/06/identity/claims/role', N'Jugador', N'3591851d-dcad-46a1-9a74-e0b28ce31ee6')
+GO
+INSERT [dbo].[AspNetUserClaims] ([Id], [ClaimType], [ClaimValue], [UserId]) VALUES (3, N'http://schemas.microsoft.com/ws/2008/06/identity/claims/role', N'Administrador', N'32ad9830-b7ac-4125-954e-b41505c8eab5')
+GO
+SET IDENTITY_INSERT [dbo].[AspNetUserClaims] OFF
 GO
 
 

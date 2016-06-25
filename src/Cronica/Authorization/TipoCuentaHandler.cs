@@ -21,10 +21,22 @@ namespace Cronica.Authorization
 
         protected override void Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext context, TipoCuentaRequirement requirement)
         {
+            //Dejamos continuar si tiene el tipo de cuenta requerido...
             if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == requirement.Cuenta.ToString())
             {
                 context.Succeed(requirement);
             }
+            else
+            {
+                //... o si se solicita Narrador y es administrador
+                if (requirement.Cuenta == TipoCuenta.Narrador)
+                {
+                    if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == TipoCuenta.Administrador.ToString())
+                    {
+                        context.Succeed(requirement);
+                    }
+                }
+            }            
         }
 
     }

@@ -111,6 +111,7 @@ namespace Cronica.Controllers
         }
 
         // GET: Personajes/Delete/5
+        [Authorize(Policy = "Administrador")]
         [ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -129,6 +130,7 @@ namespace Cronica.Controllers
         }
 
         // POST: Personajes/Delete/5
+        [Authorize(Policy = "Administrador")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

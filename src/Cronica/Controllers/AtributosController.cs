@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Cronica.Controllers
 {
-    [Authorize(Policy = "Narrador")]
+    [Authorize(Policy = "Administrador")]
     public class AtributosController : RutasController
     {
         private IServicioAtributos _servicioAtributos;

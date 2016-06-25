@@ -26,6 +26,23 @@
     }
     else if (Model.Cuenta == TipoCuenta.Narrador)
     {
+        <div class="list-group panel">            
+            <span class="list-group-item list-group-item-info">Personajes</span>
+            <div>
+                <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
+                <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+            </div>
+            <span class="list-group-item list-group-item-info">Usuarios</span>
+            <div>
+                <a class="list-group-item" asp-controller="Account" asp-action="Index">Listado de Cuentas</a>
+                <a class="list-group-item" asp-controller="Account" asp-action="Register">Crear Cuenta</a>
+            </div>
+        </div>
+    }
+    else if (Model.Cuenta == TipoCuenta.Administrador)
+    {
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">En Juego</span>
             <div>

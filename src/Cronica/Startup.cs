@@ -77,6 +77,7 @@ namespace Cronica
             {
                 options.AddPolicy("Jugador", policy => policy.AddRequirements(new TipoCuentaRequirement(TipoCuenta.Jugador)));
                 options.AddPolicy("Narrador", policy => policy.Requirements.Add(new TipoCuentaRequirement(TipoCuenta.Narrador)));
+                options.AddPolicy("Administrador", policy => policy.Requirements.Add(new TipoCuentaRequirement(TipoCuenta.Administrador)));
             });
 
             // Add application services.

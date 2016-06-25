@@ -101,7 +101,7 @@ namespace Cronica.Controllers
                 asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
                 return View(asignacion);
             }
-            ViewBag.MensajeError = $"Uppss... la estamos liando parda";
+            ViewBag.MensajeError = $"Uppss... parece que tenemos algún problemilla";
             asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
             return View(asignacion);
         }
