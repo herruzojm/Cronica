@@ -6,45 +6,74 @@
 
 <h2>Tramas Activas</h2>
 
+<form asp-action="Asignaciones">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="AsignacionId" />
+    <input type="hidden" asp-for="PersonajeId" />
+    <input type="hidden" asp-for="PasaTramaId" />
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Trama</th>
-            <th>Jugador</th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Trama</th>
+                <th>Jugador</th>
+                @{
+                    foreach (var seguidor in Model.Personaje.Seguidores)
+                    {
+                        <th>@seguidor.TrasfondoRelacionado.Nombre<br />(@seguidor.TipoRelacion)</th>
+                    }
+                }
+            </tr>
+        </thead>
+        <tbody>
             @{
-                foreach (var seguidor in Model.Personaje.Seguidores)
+                PersonajeAsignacion asignacion;
+                int id;
+                foreach (var tramaParticipada in Model.Personaje.TramasParticipadas)
                 {
-                    <th>@seguidor.TrasfondoRelacionado.Nombre<br />(@seguidor.TipoRelacion)</th>
+                    <tr>
+                        <td>@tramaParticipada.Trama.Nombre</td>
+                        <td>
+                            @{
+                                asignacion = Model.Asignaciones.Where(a => a.PersonajeId == Model.PersonajeId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault();
+                                id = Model.Asignaciones.IndexOf(asignacion);
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeAsignacionId" />
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeId" />
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].TramaId" />
+                                <input type="range" data-val="true" data-val-range="El campo PuntosParticipacion debe estar entre 0 y 100." data-val-range-max="100" data-val-range-min="0"
+                                       data-val-required="El campo PuntosParticipacion es obligatorio."
+                                       id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion" />
+                            }                            
+                        </td>
+                        @foreach (var seguidor in Model.Personaje.Seguidores)
+                        {
+                            asignacion = Model.Asignaciones.Where(a => a.PersonajeId == seguidor.TrasfondoRelacionadoId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault();
+                            id = Model.Asignaciones.IndexOf(asignacion);
+                            <td>
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeAsignacionId" />
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeId" />
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].TramaId" />                                
+                                <input type="range" data-val="true" data-val-range="El campo PuntosParticipacion debe estar entre 0 y 100." data-val-range-max="100" data-val-range-min="0"
+                                       data-val-required="El campo PuntosParticipacion es obligatorio." 
+                                       id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion"  />                             
+                            </td>
+                        }
+                    </tr>
                 }
             }
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var tramaParticipada in Model.Personaje.TramasParticipadas)
-            {
-                <tr>
-                    <td>@tramaParticipada.Trama.Nombre</td>
-                    <td>
-                        <input data-provide="slider" type="text" data-slider-max="100" data-slider-handle="custom"
-                               data-slider-value="@Model.Asignaciones.Where(a=> a.PersonajeId == Model.PersonajeId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
-                    </td>
-                    @foreach (var seguidor in Model.Personaje.Seguidores)
-                    {
-                        <td>
-                            <input data-provide="slider" type="range" data-slider-max="100" data-slider-handle="custom"
-                                   data-slider-value="@Model.Asignaciones.Where(a=> a.PersonajeId == seguidor.TrasfondoRelacionadoId && a.TramaId == tramaParticipada.TramaId).FirstOrDefault().PuntosParticipacion" />
-                        </td>
-                    }
-                </tr>
-            }
-        }
-    </tbody>
-</table>
-
+        </tbody>
+    </table>
+    <input type="submit" value="Guardar" class="btn btn-default btn-success" />
+</form>
 
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" charset="utf8">
+        $('.table').DataTable({
+            "paging": false,
+            "ordering": false,
+            "searching": false
+        });
+    </script>    
 }

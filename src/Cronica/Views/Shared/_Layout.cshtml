@@ -68,6 +68,8 @@
         <div class="container body-content anchoTotal">
             <alert message="@ViewBag.MensajeExito" icon="success" dismissible="true">
             </alert>
+            <alert message="@ViewBag.MensajeError" icon="danger" dismissible="true">
+            </alert>
             @RenderBody()
             <hr />
             <footer>
@@ -76,14 +78,14 @@
         </div>
     </div>
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
+    <environment names="Development">        
+        <script src="~/lib/jquery/dist/jquery.js"></script>        
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/7.1.0/bootstrap-slider.js"></script>        
         <script src="~/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
         <script src="~/lib/datatables/media/js/jquery.datatables.js"></script>
         <script src="~/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-        <script src="~/lib/ssdrw/ssdot.js"></script>
+        <script src="~/lib/ssdrw/ssdot.js"></script>        
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">

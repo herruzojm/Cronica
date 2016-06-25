@@ -88,6 +88,24 @@ namespace Cronica.Controllers
             }
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Asignaciones(Asignacion asignacion)
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            if (ModelState.IsValid)
+            {
+                _servicioAsignaciones.Actualizar(asignacion);
+                await _servicioAsignaciones.ConfirmarCambios();
+                ViewBag.MensajeExito = $"Asignaciones guardadas";
+                asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
+                return View(asignacion);
+            }
+            ViewBag.MensajeError = $"Uppss... la estamos liando parda";
+            asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
+            return View(asignacion);
+        }
+
         //GET: DetalleTrama/2
         public async Task<IActionResult> DetalleTrama(int? personajeId, int? tramaId)
         {
