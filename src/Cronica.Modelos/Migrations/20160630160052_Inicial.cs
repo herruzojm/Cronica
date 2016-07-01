@@ -17,18 +17,18 @@ namespace Cronica.Migrations
                     AccessFailedCount = table.Column<int>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
                     Cuenta = table.Column<int>(nullable: false),
-                    Email = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
-                    NormalizedEmail = table.Column<string>(nullable: true),
-                    NormalizedUserName = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
-                    UserName = table.Column<string>(nullable: true)
+                    UserName = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -89,8 +89,8 @@ namespace Cronica.Migrations
                 {
                     Id = table.Column<string>(nullable: false),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    NormalizedName = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(maxLength: 256, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -123,6 +123,7 @@ namespace Cronica.Migrations
                     Conducta = table.Column<string>(nullable: true),
                     Defectos = table.Column<string>(nullable: true),
                     Experiencia = table.Column<int>(nullable: false),
+                    Foto = table.Column<string>(nullable: true),
                     Generacion = table.Column<int>(nullable: false),
                     Historia = table.Column<string>(nullable: true),
                     JugadorId = table.Column<string>(nullable: true),
@@ -132,7 +133,8 @@ namespace Cronica.Migrations
                     PotenciaSangre = table.Column<int>(nullable: false),
                     PuntosDeSangre = table.Column<int>(nullable: false),
                     Senda = table.Column<int>(nullable: false),
-                    ValorSenda = table.Column<int>(nullable: false)
+                    ValorSenda = table.Column<int>(nullable: false),
+                    Virtud = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,6 +194,7 @@ namespace Cronica.Migrations
                 {
                     PasaTramaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Actual = table.Column<bool>(nullable: false),
                     FechaPrevista = table.Column<DateTime>(nullable: false),
                     FechaResolucion = table.Column<DateTime>(nullable: true),
                     PostPartidaId = table.Column<int>(nullable: false),
@@ -377,6 +380,12 @@ namespace Cronica.Migrations
                 {
                     table.PrimaryKey("PK_Asignaciones", x => x.AsignacionId);
                     table.ForeignKey(
+                        name: "FK_Asignaciones_PasaTramas_PasaTramaId",
+                        column: x => x.PasaTramaId,
+                        principalTable: "PasaTramas",
+                        principalColumn: "PasaTramaId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Asignaciones_Personajes_PersonajeId",
                         column: x => x.PersonajeId,
                         principalTable: "Personajes",
@@ -503,7 +512,8 @@ namespace Cronica.Migrations
             migrationBuilder.CreateIndex(
                 name: "UserNameIndex",
                 table: "AspNetUsers",
-                column: "NormalizedUserName");
+                column: "NormalizedUserName",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AtributoPersonaje_AtributoId",
@@ -529,6 +539,11 @@ namespace Cronica.Migrations
                 name: "IX_Seguidores_TrasfondoRelacionadoId",
                 table: "Seguidores",
                 column: "TrasfondoRelacionadoId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Asignaciones_PasaTramaId",
+                table: "Asignaciones",
+                column: "PasaTramaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Asignaciones_PersonajeId",
@@ -681,13 +696,13 @@ namespace Cronica.Migrations
                 name: "Atributos");
 
             migrationBuilder.DropTable(
-                name: "PasaTramas");
-
-            migrationBuilder.DropTable(
                 name: "Tramas");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "PasaTramas");
 
             migrationBuilder.DropTable(
                 name: "Personajes");

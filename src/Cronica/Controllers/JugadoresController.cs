@@ -79,7 +79,7 @@ namespace Cronica.Controllers
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
             if (usuario.Cuenta == TipoCuenta.Jugador)
             {
-                Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);                
+                Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);                
                 return View(asignacion);
             }
             else
@@ -98,11 +98,11 @@ namespace Cronica.Controllers
                 _servicioAsignaciones.Actualizar(asignacion);
                 await _servicioAsignaciones.ConfirmarCambios();
                 ViewBag.MensajeExito = $"Asignaciones guardadas";
-                asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
+                asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
                 return View(asignacion);
             }
             ViewBag.MensajeError = $"Uppss... parece que tenemos algún problemilla";
-            asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id, 2);
+            asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
             return View(asignacion);
         }
 

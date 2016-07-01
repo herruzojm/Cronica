@@ -8,7 +8,7 @@ namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioAsignaciones : IServicioBase
     {
-        Task<Asignacion> GetAsignacion(string jugadorId, int pasaTramaId);
+        Task<Asignacion> GetAsignacion(string jugadorId);
         Task<Asignacion> GetNuevaAsignacion(string jugadorId, int postPartidaId);
     }
 }

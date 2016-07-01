@@ -24,18 +24,21 @@ namespace Cronica.Controllers
         // GET: Personajes
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Lista Completa de Personajes";
             return View(await _servicioPersonajes.GetPersonajes());
         }
 
         // GET: PersonajesJugadores        
         public async Task<IActionResult> PersonajesJugadores()
         {
+            ViewData["Title"] = "Personajes Jugadores";
             return View("Index", await _servicioPersonajes.GetPersonajesJugadores());
         }
 
-        // GET: PersonajesJugadores
+        // GET: PNJs
         public async Task<IActionResult> PNJs()
         {
+            ViewData["Title"] = "PNJs";
             return View("Index", await _servicioPersonajes.GetPNJs());
         }
 

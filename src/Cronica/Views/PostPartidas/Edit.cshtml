@@ -48,6 +48,9 @@
                                 @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().PuedeResolverse)
                             </th>
                             <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Actual)
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Resuelto)
                             </th>
                             <th>
@@ -73,7 +76,9 @@
                                         <a asp-controller="PasaTramas" asp-action="ResolverPasaTrama" asp-route-id="@item.PasaTramaId">Resolver</a>
                                     }                                    
                                 </td>
-
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Actual)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Resuelto)
                                 </td>

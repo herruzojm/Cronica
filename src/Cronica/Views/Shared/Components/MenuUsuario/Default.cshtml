@@ -3,6 +3,10 @@
 @{
     if (Model.Cuenta == TipoCuenta.Jugador)
     {
+        @inject IServicioJugadores _servicioJugadores
+        <div class="list-group panel">
+            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong></a>
+        </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personaje</span>
             <div>
@@ -26,6 +30,9 @@
     }
     else if (Model.Cuenta == TipoCuenta.Narrador)
     {
+        <div class="list-group panel">
+            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@Model.UserName</strong></a>
+        </div>
         <div class="list-group panel">            
             <span class="list-group-item list-group-item-info">Personajes</span>
             <div>
@@ -43,6 +50,9 @@
     }
     else if (Model.Cuenta == TipoCuenta.Administrador)
     {
+        <div class="list-group panel">
+            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@Model.UserName</strong></a>
+        </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">En Juego</span>
             <div>

@@ -35,5 +35,6 @@ namespace Cronica.Servicios
         {
             _contexto.PasaTramas.Add(pasaTrama);
         }
+
     }
 }

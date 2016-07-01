@@ -40,10 +40,11 @@
                                 <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeAsignacionId" />
                                 <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeId" />
                                 <input type="hidden" asp-for="@Model.Asignaciones[@id].TramaId" />
-                                <input type="range" data-val="true" data-val-range="El campo PuntosParticipacion debe estar entre 0 y 100." data-val-range-max="100" data-val-range-min="0"
-                                       data-val-required="El campo PuntosParticipacion es obligatorio."
-                                       id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion" />
-                            }                            
+                                <input type="hidden" id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion" />
+                                <div id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" class="slider slider_@Model.PersonajeId.ToString()">
+                                    @asignacion.PuntosParticipacion
+                                </div>
+                            }
                         </td>
                         @foreach (var seguidor in Model.Personaje.Seguidores)
                         {
@@ -52,14 +53,15 @@
                             <td>
                                 <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeAsignacionId" />
                                 <input type="hidden" asp-for="@Model.Asignaciones[@id].PersonajeId" />
-                                <input type="hidden" asp-for="@Model.Asignaciones[@id].TramaId" />                                
-                                <input type="range" data-val="true" data-val-range="El campo PuntosParticipacion debe estar entre 0 y 100." data-val-range-max="100" data-val-range-min="0"
-                                       data-val-required="El campo PuntosParticipacion es obligatorio." 
-                                       id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion"  />                             
+                                <input type="hidden" asp-for="@Model.Asignaciones[@id].TramaId" />
+                                <input type="hidden" id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" value="@asignacion.PuntosParticipacion" />
+                                <div id="Asignaciones_@id.ToString()__PuntosParticipacion" name="Asignaciones[@id].PuntosParticipacion" class="slider slider_@seguidor.TrasfondoRelacionadoId.ToString()">
+                                    @asignacion.PuntosParticipacion
+                                </div>
                             </td>
                         }
                     </tr>
-                }
+                                }
             }
         </tbody>
     </table>
@@ -75,5 +77,66 @@
             "ordering": false,
             "searching": false
         });
-    </script>    
+    </script>
+    <script>
+        function ManejarRangos(sliders, puntuacionDisponibleTotal) {
+            sliders.each(function () {
+                var init_value = parseInt($(this).text());
+
+                $(this).empty().slider({
+                    value: init_value,
+                    min: 0,
+                    max: puntuacionDisponibleTotal,
+                    range: "max",
+                    step: 1,
+                    animate: 0,
+                    slide: function (event, ui) {
+
+                        // Get current total
+                        var total = 0;
+
+                        sliders.not(this).each(function () {
+                            total += $(this).slider("option", "value");
+                        });
+
+                        // Need to do this because apparently jQ UI
+                        // does not update value until this event completes
+                        total += ui.value;
+                        document.getElementById(this.id).value = parseInt(ui.value);
+
+                        var delta = puntuacionDisponibleTotal - total;
+
+                        // Update each slider
+                        sliders.not(this).each(function () {
+                            var t = $(this),
+                                value = t.slider("option", "value");
+
+                            var new_value = value + (delta / 2);
+
+                            if (new_value < 0 || ui.value == puntuacionDisponibleTotal)
+                                new_value = 0;
+                            if (new_value > puntuacionDisponibleTotal)
+                                new_value = puntuacionDisponibleTotal;
+
+                            t.slider('value', new_value);
+                            document.getElementById(t[0].id).value = parseInt(new_value);
+                        });
+                    }
+                });
+            });
+
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            var puntuacionDisponibleTotal = 100;
+            var sliders = $(".slider_@Model.PersonajeId.ToString()");
+            ManejarRangos(sliders, puntuacionDisponibleTotal);
+            @foreach (var seguidor in Model.Personaje.Seguidores)
+            {
+                @:sliders = $(".slider_@seguidor.TrasfondoRelacionadoId.ToString()");
+                @:ManejarRangos(sliders, puntuacionDisponibleTotal);
+            }
+        });
+    </script>
 }

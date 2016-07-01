@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioPersonajes : IServicioBase
-    {
+    {        
         Task<List<Personaje>> GetPersonajes();
         Task<Personaje> GetNuevoPersonaje();        
         Task<Personaje> GetPersonajeCompleto(int personajeId);

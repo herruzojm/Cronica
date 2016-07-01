@@ -6,11 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authorization;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Cronica.Authorization
 {
-    public class TipoCuentaHandler : Microsoft.AspNetCore.Authorization.AuthorizationHandler<TipoCuentaRequirement>
+    public class TipoCuentaHandler : AuthorizationHandler<TipoCuentaRequirement>
     {
         private IServicioUsuarios _servicioUsuarios;
 
@@ -19,7 +20,7 @@ namespace Cronica.Authorization
             _servicioUsuarios = servicioUsuarios;
         }
 
-        protected override void Handle(Microsoft.AspNetCore.Authorization.AuthorizationContext context, TipoCuentaRequirement requirement)
+        protected async override Task HandleRequirementAsync(AuthorizationHandlerContext context, TipoCuentaRequirement requirement)
         {
             //Dejamos continuar si tiene el tipo de cuenta requerido...
             if (context.User.FindFirst(c => c.Type == ClaimTypes.Role).Value == requirement.Cuenta.ToString())
@@ -36,8 +37,7 @@ namespace Cronica.Authorization
                         context.Succeed(requirement);
                     }
                 }
-            }            
-        }
-
+            }
+        }    
     }
 }

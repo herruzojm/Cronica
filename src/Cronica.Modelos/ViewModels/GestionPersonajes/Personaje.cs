@@ -37,6 +37,8 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public int Experiencia { get; set; }        
         public string Meritos { get; set; }
         public string Defectos { get; set; }
+        public string Virtud { get; set; }
+        public string Foto { get; set; }
         public virtual List<AtributoPersonaje> Atributos { get; set; }
         public virtual List<PersonaTrasfondo> Seguidores { get; set; }
         public virtual List<PersonaTrasfondo> PersonajesJugadores { get; set; }

@@ -26,5 +26,18 @@ namespace Cronica.Modelos.Models
 
             return new CronicaDbContext(options.Options);
         }
+
+        public CronicaDbContext Create(DbContextFactoryOptions options)
+        {
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("appsettings.json").Build();
+            var connectionStringConfig = builder.Build();
+
+            var config = new DbContextOptionsBuilder<ApplicationDbContext>();
+            config.UseSqlServer(connectionStringConfig["ConnectionStrings:DefaultConnection"]);
+
+            return new CronicaDbContext(config.Options);
+        }
     }
 }

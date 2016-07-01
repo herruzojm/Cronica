@@ -866,13 +866,13 @@ GO
 SET IDENTITY_INSERT [dbo].[Personajes] ON 
 
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0, '', '')
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0, '', '')
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (3, 1, 18, NULL, NULL, NULL, 0, 0, NULL, N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', NULL, NULL, N'Tres', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (3, 1, 18, NULL, NULL, NULL, 0, 0, NULL, N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', NULL, NULL, N'Tres', 0, 0, 0, 0, '', '')
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0)
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0, '', '')
 GO
 SET IDENTITY_INSERT [dbo].[Personajes] OFF
 GO
@@ -1740,16 +1740,16 @@ GO
 SET IDENTITY_INSERT [dbo].PasaTramas ON
 GO
 insert into PasaTramas
-(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
+(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto, Actual)
 values
-(1, '20/05/2016', '21/05/2016', 1, 1),
-(2, '20/06/2016', null, 2, 0)
+(1, '20/05/2016', '21/05/2016', 1, 1, 0),
+(2, '20/06/2016', null, 2, 0, 1)
 GO
 insert into PasaTramas
-(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto)
+(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto, Actual)
 values
-(1, '05/20/2016', '05/21/2016', 1, 1),
-(2, '06/20/2016', null, 2, 0)
+(1, '05/20/2016', '05/21/2016', 1, 1, 0),
+(2, '06/20/2016', null, 2, 0, 1)
 GO
 SET IDENTITY_INSERT [dbo].PasaTramas OFF
 GO

@@ -15,14 +15,14 @@ namespace Cronica.Servicios
         {
         }
 
-        public async Task<Asignacion> GetAsignacion(string jugadorId, int pasaTramaId)
+        public async Task<Asignacion> GetAsignacion(string jugadorId)
         {
             var asignacion = await _contexto.Asignaciones
                 .Include(a => a.Personaje).ThenInclude(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
                 .Include(a => a.Personaje).ThenInclude(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Personaje)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Trama)
-                .Where(a => a.PasaTramaId == pasaTramaId && a.Personaje.JugadorId == jugadorId ).FirstOrDefaultAsync();
+                .Where(a => a.Personaje.JugadorId == jugadorId && a.PasaTrama.Actual == true ).FirstOrDefaultAsync();
 
             return asignacion;
         }

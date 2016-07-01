@@ -12,6 +12,6 @@ namespace Cronica.Servicios.Interfaces
         Task<PasaTrama> GetNuevoPasaTrama();
         Task<List<PasaTrama>> GetPasaTramas();
         Task<PasaTrama> GetPasaTrama(int pasaTramaId);
-        void IncluirPasaTrama(PasaTrama pasaTrama);        
+        void IncluirPasaTrama(PasaTrama pasaTrama);
     }
 }
