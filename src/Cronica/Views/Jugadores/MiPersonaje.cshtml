@@ -17,7 +17,7 @@
     <hr />
     <div class="tab-content clearfix">
         <div id="Personaje" class="tab-pane active">
-            <dl class="dl-horizontal">
+            <dl class="dl-horizontal">                
                 <dt>
                     @Html.DisplayNameFor(model => model.Nombre)
                 </dt>
@@ -204,6 +204,8 @@
             <table class="table">
                 <thead>
                     <tr>
+                        <th>                            
+                        </th>
                         <th>
                             Tipo
                         </th>
@@ -219,8 +221,13 @@
                     @foreach (var item in Model.Seguidores)
                     {
                         <tr>
+                            <td class="tablaSeguidor">                                                                
+                                <img class="fotoSeguidor" />
+                            </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.TipoRelacion)
+                                <div class="espacioTablaSeguidores">
+                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
+                                </div>                                
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)

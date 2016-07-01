@@ -81,6 +81,22 @@ input.atributo {
     margin-top: 5px;
 }
 
+.espacioTablaSeguidores {
+    min-height: 100px;
+}
+
+.fotoSeguidor {
+    max-height: 150px;
+    max-width: 150px;    
+    min-height: 100px;
+    min-width: 100px;
+    border: 2px outset red;
+}
+
+.tablaSeguidor{
+    text-align: center;
+    vertical-align: middle !important;
+}
 
 #sidebar {
   /*background: #2a2c36;*/

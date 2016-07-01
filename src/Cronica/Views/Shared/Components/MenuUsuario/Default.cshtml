@@ -5,7 +5,11 @@
     {
         @inject IServicioJugadores _servicioJugadores
         <div class="list-group panel">
-            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong></a>
+            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">
+                Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
+                <p></p>
+                <img class="fotoSeguidor" />
+            </a>            
         </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personaje</span>
@@ -16,7 +20,7 @@
             <span class="list-group-item list-group-item-info">Tramas</span>
             <div>
                 <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramas">Tramas Activas</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="Asignaciones">Asignaciones</a>                
+                <a class="list-group-item" asp-controller="Jugadores" asp-action="Asignaciones">Asignaciones</a>
                 <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramasResueltas">Tramas Cerradas</a>
             </div>
             <span class="list-group-item list-group-item-info">Correo</span>
@@ -26,14 +30,13 @@
                 <a class="list-group-item" asp-controller="Jugadores" asp-action="Create">Nuevo Correo</a>
             </div>
         </div>
-
     }
     else if (Model.Cuenta == TipoCuenta.Narrador)
     {
         <div class="list-group panel">
             <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@Model.UserName</strong></a>
         </div>
-        <div class="list-group panel">            
+        <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personajes</span>
             <div>
                 <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
