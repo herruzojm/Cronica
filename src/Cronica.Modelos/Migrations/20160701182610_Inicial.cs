@@ -134,7 +134,8 @@ namespace Cronica.Migrations
                     PuntosDeSangre = table.Column<int>(nullable: false),
                     Senda = table.Column<int>(nullable: false),
                     ValorSenda = table.Column<int>(nullable: false),
-                    Virtud = table.Column<string>(nullable: true)
+                    Virtud = table.Column<string>(nullable: true),
+                    Voluntad = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

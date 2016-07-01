@@ -34,6 +34,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public int PuntosDeSangre { get; set; }
         public TipoSenda Senda { get; set; }
         public int ValorSenda { get; set; }
+        public int Voluntad { get; set; }
         public int Experiencia { get; set; }        
         public string Meritos { get; set; }
         public string Defectos { get; set; }

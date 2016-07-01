@@ -147,6 +147,8 @@ namespace Cronica.Migrations
 
                     b.Property<string>("Virtud");
 
+                    b.Property<int>("Voluntad");
+
                     b.HasKey("PersonajeId");
 
                     b.HasIndex("JugadorId");

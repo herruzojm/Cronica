@@ -864,16 +864,17 @@ GO
 
 
 SET IDENTITY_INSERT [dbo].[Personajes] ON 
+GO
 
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Foto], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Voluntad]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, N'', 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0, N'', 3)
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (1, 1, 0, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Uno', 0, 0, 0, 0, '', '')
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Foto], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Voluntad]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, N'', 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0, N'', 5)
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (2, 1, 9, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Dos', 0, 0, 0, 0, '', '')
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Foto], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Voluntad]) VALUES (3, 1, 18, N'Tio chungo', N'Bravucon', N'Feo', 2, N'', 11, N'sdfsdkfj sdklfjasdklfjsdkl fjadklfj sdfioadufioadufio asdfiojsdkfjkl jckljvklcz vcxzjv cjviosjfiojsdiofjasklfjklcv klcxjvk zcjvklzj cvklzjcv cxjv zcxkjvcj viozjvicjviozjviozjviozcjvi zjviczjviozcxjviozjcxvoizcjvoizcjviozcjviozcjviozjcviozjc vizjxc viozxjv icxzojvioxzjvo zx', N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', N'Suerte', N'Niño', N'Tres', 1, 8, 0, 7, N'Justicia', 6)
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (3, 1, 18, NULL, NULL, NULL, 0, 0, NULL, N'3591851d-dcad-46a1-9a74-e0b28ce31ee6', NULL, NULL, N'Tres', 0, 0, 0, 0, '', '')
+INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Foto], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Voluntad]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, N'', 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0, N'', 4)
 GO
-INSERT [dbo].[Personajes] ([PersonajeId], [Activo], [Clan], [Concepto], [Conducta], [Defectos], [Experiencia], [Generacion], [Historia], [JugadorId], [Meritos], [Naturaleza], [Nombre], [PotenciaSangre], [PuntosDeSangre], [Senda], [ValorSenda], [Virtud], [Foto]) VALUES (4, 0, 26, NULL, NULL, NULL, 0, 0, NULL, N'377784a7-d7ef-4cd7-a8d0-5ac1e86039c2', NULL, NULL, N'Cuatro', 0, 0, 0, 0, '', '')
-GO
+
 SET IDENTITY_INSERT [dbo].[Personajes] OFF
 GO
 
