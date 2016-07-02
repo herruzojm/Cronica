@@ -7,6 +7,22 @@ h4{
     margin-top: 0px;
 }
 
+textarea.form-control{
+    width: 75em;
+    height: 8em;
+}
+
+textarea.form-control[disabled]{
+    width: 25em;
+    height: 6em;
+    background-color: white;
+}
+textarea.grande{
+    width: 120em;
+    height: 8em;
+    cursor: not-allowed;
+    background-color: white;    
+}
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
@@ -22,6 +38,9 @@ select {
 
 textarea {
     max-width: 600px;
+}
+textarea[disabled] {
+    max-width: 900px;
 }
 
 input.atributo {

@@ -86,7 +86,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -95,7 +95,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -104,7 +104,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="clearfix">
@@ -117,7 +117,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -126,7 +126,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -135,7 +135,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="clearfix">
@@ -148,7 +148,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -157,7 +157,7 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="capaTresColumnas">
@@ -166,13 +166,13 @@
                 {
                     <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
                           data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <div class="clearfix"></div>
+                        <div class="clearfix"></div>
                 }
             </div>
             <div class="clearfix">
                 <br />
             </div>
-            <h3 class="alineadoCentro">Otros Rasgos</h3>            
+            <h3 class="alineadoCentro">Otros Rasgos</h3>
             <div class="capaTresColumnas">
                 <span readonly class="ss-dot-rating" id="ValorSenda" data-dot-title="@Html.DisplayFor(model => model.Senda)"
                       data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValorSenda" data-dot-color-empty="white" data-dot-color-marked="red"></span>
@@ -180,59 +180,60 @@
                     <dt>
                         (@Html.DisplayFor(model => model.Virtud))
                     </dt>
-                </dl>                
+                </dl>
             </div>
             <div class="capaTresColumnas">
                 <span readonly class="ss-dot-rating" id="Voluntad" data-dot-title="@Html.DisplayNameFor(model => model.Voluntad)"
                       data-dot-max="10" data-dot-min="0" data-dot-value="@Model.Voluntad" data-dot-color-empty="white" data-dot-color-marked="red"></span>
             </div>
-                <div class="clearfix">
-                    <br />
-                </div>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Otros && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
-            {
-                    <div class="capaTresColumnas">
-                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    </div>
-                }
-                <div class="capaTresColumnas">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Meritos)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Meritos)
-                        </dd>
-                    </dl>
-                </div>
-                <div class="capaTresColumnas">
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Defectos)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Defectos)
-                        </dd>
-                    </dl>
-                </div>
-                <div class="clearfix">
-                    <br />
-                </div>
-                <div>
-                    <dl class="dl-horizontal">
-                        <dt>
-                            @Html.DisplayNameFor(model => model.Historia)
-                        </dt>
-                        <dd>
-                            @Html.DisplayFor(model => model.Historia)
-                        </dd>
-                    </dl>
-                </div>
-                <div class="clearfix">
-                    <br />
-                </div>
+            <div class="clearfix">
+                <br />
             </div>
+            @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Otros && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
+            {
+                <div class="capaTresColumnas">
+                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                </div>
+            }            
+            <div class="clearfix">
+                <br />
+            </div>
+            <div class="capaDosColumnas">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Meritos)
+                    </dt>
+                    <dd>
+                        <textarea asp-for="Meritos" disabled class="form-control"></textarea>
+                    </dd>
+                </dl>
+            </div>
+            <div class="capaDosColumnas">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Defectos)
+                    </dt>
+                    <dd>
+                        <textarea asp-for="Defectos" disabled class="form-control"></textarea>
+                    </dd>
+                </dl>
+            </div>            
+            <div class="clearfix">
+                <br />
+            </div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Historia)
+                </dt>
+                <dd>
+                    <textarea asp-for="Historia" disabled class="grande"></textarea>
+                </dd>
+            </dl>
+            <div class="clearfix">
+                <br />
+            </div>
+        </div>
         <div id="Seguidores" class="tab-pane">
             <table class="table">
                 <thead>
@@ -285,7 +286,7 @@
             @foreach (AtributoPersonaje atributo in Model.Atributos)
             {
                 @:$("#Caracteristica_@atributo.Atributo.AtributoId.ToString()").DotRating()
-                                        }
+                                                    }
             $("#ValorSenda").DotRating();
             $("#Voluntad").DotRating();
         });

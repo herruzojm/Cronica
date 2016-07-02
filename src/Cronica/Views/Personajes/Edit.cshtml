@@ -28,31 +28,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Clan" class="col-md-2 control-label"></label>
+                    <label asp-for="JugadorId" class="control-label col-md-2">JugadorId</label>
                     <div class="col-md-10">
-                        <select asp-for="Clan" asp-items="Html.GetEnumSelectList<TipoClan>()" class="form-control"></select>
-                        <span asp-validation-for="Clan" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Concepto" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Concepto" class="form-control" />
-                        <span asp-validation-for="Concepto" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Conducta" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Conducta" class="form-control" />
-                        <span asp-validation-for="Conducta" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Defectos" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Defectos" class="form-control" />
-                        <span asp-validation-for="Defectos" class="text-danger" />
+                        <select asp-for="JugadorId" asp-items="ViewBag.Jugadores" class="form-control"></select>
+                        <span asp-validation-for="JugadorId" class="text-danger" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -63,33 +42,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Generacion" class="col-md-2 control-label"></label>
+                    <label asp-for="Nombre" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Generacion" class="form-control" />
-                        <span asp-validation-for="Generacion" class="text-danger" />
+                        <input asp-for="Nombre" class="form-control" />
+                        <span asp-validation-for="Nombre" class="text-danger" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Historia" class="col-md-2 control-label"></label>
+                    <label asp-for="Concepto" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Historia" class="form-control" />
-                        <span asp-validation-for="Historia" class="text-danger" />
+                        <input asp-for="Concepto" class="form-control" />
+                        <span asp-validation-for="Concepto" class="text-danger" />
                     </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="JugadorId" class="control-label col-md-2">JugadorId</label>
-                    <div class="col-md-10">
-                        <select asp-for="JugadorId" asp-items="ViewBag.Jugadores" class="form-control"></select>
-                        <span asp-validation-for="JugadorId" class="text-danger" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Meritos" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="Meritos" class="form-control" />
-                        <span asp-validation-for="Meritos" class="text-danger" />
-                    </div>
-                </div>
+                </div>                
                 <div class="form-group">
                     <label asp-for="Naturaleza" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
@@ -98,10 +63,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Nombre" class="col-md-2 control-label"></label>
+                    <label asp-for="Conducta" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Nombre" class="form-control" />
-                        <span asp-validation-for="Nombre" class="text-danger" />
+                        <input asp-for="Conducta" class="form-control" />
+                        <span asp-validation-for="Conducta" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Clan" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="Clan" asp-items="Html.GetEnumSelectList<TipoClan>()" class="form-control"></select>
+                        <span asp-validation-for="Clan" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Generacion" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Generacion" class="form-control" />
+                        <span asp-validation-for="Generacion" class="text-danger" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -132,6 +111,42 @@
                         <span asp-validation-for="ValorSenda" class="text-danger" />
                     </div>
                 </div>
+                <div class="form-group">
+                    <label asp-for="Virtud" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Virtud" class="form-control" />
+                        <span asp-validation-for="Virtud" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Voluntad" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="Voluntad" class="form-control" />
+                        <span asp-validation-for="Voluntad" class="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Meritos" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea  asp-for="Meritos" class="form-control"></textarea>
+                        <span asp-validation-for="Meritos" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Defectos" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea asp-for="Defectos" class="form-control"></textarea>
+                        <span asp-validation-for="Defectos" class="text-danger" />
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <label asp-for="Historia" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <textarea asp-for="Historia" class="form-control"></textarea>
+                        <span asp-validation-for="Historia" class="text-danger" />
+                    </div>
+                </div>                
             </div>
 
             <div id="Atributos" class="tab-pane">
@@ -140,21 +155,21 @@
                     <h4>Fisicos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Sociales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Mentales</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <h3 class="alineadoCentro">Habilidades</h3>
@@ -162,21 +177,21 @@
                     <h4>Talentos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Tecnicas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Conocimientos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <h3 class="alineadoCentro">Ventajas</h3>
@@ -184,24 +199,24 @@
                     <h4>Trasfondos</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Disciplinas</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
                 <div class="capaTresColumnas">
                     <h4>Virtudes</h4>
                     @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud))
                     {
-                    @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new {atributo = atributo})
+                        @await Component.InvokeAsync(nameof(EditarAtributoPersonaje), new { atributo = atributo })
                     }
                 </div>
-                <h3 class="alineadoCentro">Otros Rasgos</h3>               
+                <h3 class="alineadoCentro">Otros Rasgos</h3>
             </div>
 
             <div id="Seguidores" class="tab-pane">
@@ -223,21 +238,21 @@
                     <tbody>
                         @foreach (var item in Model.Seguidores)
                         {
-                        <tr>
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
-                                <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TipoRelacion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.TrasfondoRelacionadoId">Edit</a> |
+                                    <a asp-route="Desligar" asp-route-personajeId="@item.PersonajeJugadorId" asp-route-seguidorId="@item.TrasfondoRelacionadoId">Desligar</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -282,39 +297,39 @@
                     <tbody>
                         @foreach (var item in Model.TramasParticipadas)
                         {
-                        <tr>
-                            <td>
-                                <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
-                                <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.Cerrada)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Equipo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>
+                                    <a asp-controller="Tramas" asp-action="Edit" asp-route-id="@item.TramaId">Edit</a> |
+                                    <a asp-controller="Tramas" asp-action="Delete" asp-route-id="@item.TramaId">Delete</a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.Cerrada)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.TipoTrama)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.Descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Equipo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosActuales)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosDePresionPorTiemppo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.PuntosNecesarios)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
+                                </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
