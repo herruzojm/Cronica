@@ -27,7 +27,8 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         [Range(0, 10, ErrorMessage = "El valor debe ser entre 0 y 10")]
         public int ValoracionPartida { get; set; }
         public string CosasBien { get; set; }
-        public string CosasMal { get; set; }        
+        public string CosasMal { get; set; }
+        public string ComentariosNarrador { get; set; }
         [NotMapped]
         public bool PuedeModificarse
         {

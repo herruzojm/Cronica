@@ -376,6 +376,7 @@ namespace Cronica.Migrations
                     FormularioPostPartidaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Acuerdos = table.Column<string>(nullable: true),
+                    ComentariosNarrador = table.Column<string>(nullable: true),
                     CosasBien = table.Column<string>(nullable: true),
                     CosasMal = table.Column<string>(nullable: true),
                     Enviado = table.Column<bool>(nullable: false),

@@ -8,7 +8,7 @@ using Cronica.Modelos.Models;
 namespace Cronica.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160703174723_Inicial")]
+    [Migration("20160703183204_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -198,6 +198,8 @@ namespace Cronica.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Acuerdos");
+
+                    b.Property<string>("ComentariosNarrador");
 
                     b.Property<string>("CosasBien");
 

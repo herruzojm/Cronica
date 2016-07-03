@@ -198,6 +198,8 @@ namespace Cronica.Migrations
 
                     b.Property<string>("Acuerdos");
 
+                    b.Property<string>("ComentariosNarrador");
+
                     b.Property<string>("CosasBien");
 
                     b.Property<string>("CosasMal");

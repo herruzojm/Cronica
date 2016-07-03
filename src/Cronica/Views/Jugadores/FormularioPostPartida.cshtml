@@ -83,6 +83,13 @@
                 <span asp-validation-for="CosasMal" class="text-danger" />
             </div>
         </div>
+        <div class="form-group">
+            <label asp-for="ComentariosNarrador" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <textarea disabled asp-for="ComentariosNarrador" class="form-control"></textarea>
+                <span asp-validation-for="ComentariosNarrador" class="text-danger" />
+            </div>
+        </div>
         @{
             if (Model.PuedeModificarse)
             {
