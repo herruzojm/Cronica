@@ -15,8 +15,10 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public int PostPartidaId { get; set; }
         public string JugadorId { get; set; }
         public int PersonajeId { get; set; }
+        public string NarradorEncargadoId { get; set; }
         public bool Tramitado { get; set; }
         public bool Enviado { get; set; }
+        public DateTime FechaEnvio { get; set; }
         [StringLength(9000)]
         public string Resumen { get; set; }
         public string Acuerdos { get; set; }
@@ -25,15 +27,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         [Range(0, 10, ErrorMessage = "El valor debe ser entre 0 y 10")]
         public int ValoracionPartida { get; set; }
         public string CosasBien { get; set; }
-        public string CosasMal { get; set; }
-        [NotMapped]
-        public bool PuedeEnviarse
-        {
-            get
-            {
-                return (Enviado == false && FormularioPostPartidaId != 0);
-            }
-        }
+        public string CosasMal { get; set; }        
         [NotMapped]
         public bool PuedeModificarse
         {
@@ -45,5 +39,23 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public virtual PostPartida PostPartida { get; set; }
         public virtual ApplicationUser Jugador { get; set; }
         public virtual Personaje Personaje { get; set; }
+        public virtual ApplicationUser NarradorEncargado { get; set; }
     }
+
+
+    public class VistaFormularioPostPartida
+    {
+        public int FormularioPostPartidaId { get; set; }
+        public int PostPartidaId { get; set; }
+        public string JugadorId { get; set; }
+        public int PersonajeId { get; set; }
+        public bool Enviado { get; set; }
+        public bool Tramitado { get; set; }
+        public string EmailJugador { get; set; }
+        public string NombrePersonaje { get; set; }
+        public TipoClan Clan { get; set; }
+        public DateTime FechaEnvio { get; set; }
+        public string NarradorEncargado { get; set; }
+    }
+
 }

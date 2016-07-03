@@ -132,10 +132,11 @@ namespace Cronica.Controllers
             if (ModelState.IsValid)
             {                
                 formularioPostPartida.Enviado = true;
+                formularioPostPartida.FechaEnvio = DateTime.Now;
                 _servicioJugadores.Actualizar(formularioPostPartida);
                 await _servicioJugadores.ConfirmarCambios();
                 ViewBag.MensajeExito = $"Formulario enviado";
-                return View(formularioPostPartida);
+                return View("FormularioPostPartida", formularioPostPartida);
             }
             ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
             return View("FormularioPostPartida", formularioPostPartida);

@@ -12,6 +12,8 @@ namespace Cronica.Servicios.Interfaces
         Task<List<int>> GetPostPartidasIds();
         Task<PostPartida> GetPostPartida(int postPartidaId);
         Task<int> GetPostPartidaActualId();
-        void IncluirPostPartida(PostPartida postPartida);        
+        void IncluirPostPartida(PostPartida postPartida);
+        Task<List<VistaFormularioPostPartida>> GetFormulariosSinTramitar();
+        Task<List<VistaFormularioPostPartida>> GetFormulariosPostPartida();
     }
 }

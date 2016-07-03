@@ -15,6 +15,16 @@
         <input type="hidden" asp-for="PersonajeId" />
         <input type="hidden" asp-for="JugadorId" />
         <input type="hidden" asp-for="PostPartidaId" />
+        @if (!Model.PuedeModificarse)
+        {
+            <div class="form-group">
+                <label asp-for="FechaEnvio" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="FechaEnvio" class="form-control"/>
+                    <span asp-validation-for="FechaEnvio" class="text-danger" />
+                </div>
+            </div>
+        }        
         <div class="form-group">
             <label asp-for="Resumen" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -89,7 +99,7 @@
 
 
 @{
-    if (Model.PuedeModificarse)
+    if (Model.Resumen != null)
     {
         <form asp-action="EnviarFormularioPostPartida">
             <div class="form-group">

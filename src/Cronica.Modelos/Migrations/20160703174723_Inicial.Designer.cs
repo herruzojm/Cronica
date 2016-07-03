@@ -8,7 +8,7 @@ using Cronica.Modelos.Models;
 namespace Cronica.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160703095604_Inicial")]
+    [Migration("20160703174723_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -205,9 +205,13 @@ namespace Cronica.Migrations
 
                     b.Property<bool>("Enviado");
 
+                    b.Property<DateTime>("FechaEnvio");
+
                     b.Property<string>("InformacionClave");
 
                     b.Property<string>("JugadorId");
+
+                    b.Property<string>("NarradorEncargadoId");
 
                     b.Property<int>("PersonajeId");
 
@@ -225,6 +229,8 @@ namespace Cronica.Migrations
                     b.HasKey("FormularioPostPartidaId");
 
                     b.HasIndex("JugadorId");
+
+                    b.HasIndex("NarradorEncargadoId");
 
                     b.HasIndex("PersonajeId");
 
@@ -579,6 +585,10 @@ namespace Cronica.Migrations
                     b.HasOne("Cronica.Modelos.Models.ApplicationUser", "Jugador")
                         .WithMany()
                         .HasForeignKey("JugadorId");
+
+                    b.HasOne("Cronica.Modelos.Models.ApplicationUser", "NarradorEncargado")
+                        .WithMany()
+                        .HasForeignKey("NarradorEncargadoId");
 
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", "Personaje")
                         .WithMany()

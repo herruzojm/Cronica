@@ -379,8 +379,10 @@ namespace Cronica.Migrations
                     CosasBien = table.Column<string>(nullable: true),
                     CosasMal = table.Column<string>(nullable: true),
                     Enviado = table.Column<bool>(nullable: false),
+                    FechaEnvio = table.Column<DateTime>(nullable: false),
                     InformacionClave = table.Column<string>(nullable: true),
                     JugadorId = table.Column<string>(nullable: true),
+                    NarradorEncargadoId = table.Column<string>(nullable: true),
                     PersonajeId = table.Column<int>(nullable: false),
                     PeticionTramas = table.Column<string>(nullable: true),
                     PostPartidaId = table.Column<int>(nullable: false),
@@ -394,6 +396,12 @@ namespace Cronica.Migrations
                     table.ForeignKey(
                         name: "FK_FormulariosPostPartida_AspNetUsers_JugadorId",
                         column: x => x.JugadorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FormulariosPostPartida_AspNetUsers_NarradorEncargadoId",
+                        column: x => x.NarradorEncargadoId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -598,6 +606,11 @@ namespace Cronica.Migrations
                 name: "IX_FormulariosPostPartida_JugadorId",
                 table: "FormulariosPostPartida",
                 column: "JugadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormulariosPostPartida_NarradorEncargadoId",
+                table: "FormulariosPostPartida",
+                column: "NarradorEncargadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FormulariosPostPartida_PersonajeId",
