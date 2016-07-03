@@ -1723,16 +1723,16 @@ GO
 SET IDENTITY_INSERT [dbo].PostPartidas ON
 GO
 insert into PostPartidas
-(PostPartidaId, Cerrada, FechaFin, FechaInicio)
+(PostPartidaId, Cerrada, FechaFin, FechaInicio, Activa)
 values
-(1, 0, '30-05-2016', '01-05-2016'),
-(2, 0, '30-06-2016', '01-06-2016')
+(1, 0, '30-05-2016', '01-05-2016', 0),
+(2, 0, '30-06-2016', '01-06-2016', 1)
 GO
 insert into PostPartidas
-(PostPartidaId, Cerrada, FechaFin, FechaInicio)
+(PostPartidaId, Cerrada, FechaFin, FechaInicio, Activa)
 values
-(1, 0, '05-30-2016', '05-01-2016'),
-(2, 0, '06-30-2016', '06-01-2016')
+(1, 0, '05-30-2016', '05-01-2016', 0),
+(2, 0, '06-30-2016', '06-01-2016', 1)
 GO
 SET IDENTITY_INSERT [dbo].PostPartidas OFF
 GO

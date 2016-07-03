@@ -191,6 +191,47 @@ namespace Cronica.Migrations
                     b.ToTable("Asignaciones");
                 });
 
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.FormularioPostPartida", b =>
+                {
+                    b.Property<int>("FormularioPostPartidaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Acuerdos");
+
+                    b.Property<string>("CosasBien");
+
+                    b.Property<string>("CosasMal");
+
+                    b.Property<bool>("Enviado");
+
+                    b.Property<string>("InformacionClave");
+
+                    b.Property<string>("JugadorId");
+
+                    b.Property<int>("PersonajeId");
+
+                    b.Property<string>("PeticionTramas");
+
+                    b.Property<int>("PostPartidaId");
+
+                    b.Property<string>("Resumen")
+                        .HasAnnotation("MaxLength", 9000);
+
+                    b.Property<bool>("Tramitado");
+
+                    b.Property<int>("ValoracionPartida");
+
+                    b.HasKey("FormularioPostPartidaId");
+
+                    b.HasIndex("JugadorId");
+
+                    b.HasIndex("PersonajeId");
+
+                    b.HasIndex("PostPartidaId");
+
+                    b.ToTable("FormulariosPostPartida");
+                });
+
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
                 {
                     b.Property<int>("PasaTramaId")
@@ -241,6 +282,8 @@ namespace Cronica.Migrations
                 {
                     b.Property<int>("PostPartidaId")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Activa");
 
                     b.Property<bool>("Cerrada");
 
@@ -527,6 +570,23 @@ namespace Cronica.Migrations
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", "Personaje")
                         .WithMany()
                         .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.FormularioPostPartida", b =>
+                {
+                    b.HasOne("Cronica.Modelos.Models.ApplicationUser", "Jugador")
+                        .WithMany()
+                        .HasForeignKey("JugadorId");
+
+                    b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", "Personaje")
+                        .WithMany()
+                        .HasForeignKey("PersonajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", "PostPartida")
+                        .WithMany()
+                        .HasForeignKey("PostPartidaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

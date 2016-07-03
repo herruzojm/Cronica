@@ -4,6 +4,8 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Cronica.Modelos.ViewModels.PostPartidas;
+using System.Linq;
 
 namespace Cronica.Servicios
 {
@@ -35,5 +37,32 @@ namespace Cronica.Servicios
         {
             return _contexto.Personajes.SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true).Result.Nombre;
         }
+
+        public async Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId)
+        {
+            FormularioPostPartida formulario = await _contexto.FormulariosPostPartida.
+                SingleOrDefaultAsync(f => f.JugadorId == jugadorId && f.Personaje.Activo == true && f.PostPartida.Activa == true);            
+            return formulario;
+        }
+
+        public async Task<FormularioPostPartida> NuevoFormularioPostPartida(string jugadorId, int postPartidaId)
+        {
+            FormularioPostPartida formulario = new FormularioPostPartida();
+            formulario.JugadorId = jugadorId;
+            formulario.PersonajeId = await GetMiPetdonajeId(jugadorId);
+            formulario.PostPartidaId = postPartidaId;
+
+            return formulario;
+        }
+
+        public async Task<int> GetMiPetdonajeId(string jugadorId)
+        {
+            return await _contexto.Personajes.Where(p => p.JugadorId == jugadorId && p.Activo == true).Select(p => p.PersonajeId).FirstAsync();
+        }
+        public void IncluirFormularioPostPartida(FormularioPostPartida formularioPostPartida)
+        {
+            _contexto.FormulariosPostPartida.Add(formularioPostPartida);
+        }
+
     }
 }

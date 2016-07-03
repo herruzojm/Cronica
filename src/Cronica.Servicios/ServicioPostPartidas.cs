@@ -14,7 +14,7 @@ namespace Cronica.Servicios
         public ServicioPostPartidas(CronicaDbContext contexto) : base(contexto)
         {            
         }
-
+        
         public async Task<PostPartida> GetPostPartida(int postPartidaId)
         {
             return await _contexto.PostPartidas.Include(p => p.PasaTramas).SingleAsync(p => p.PostPartidaId == postPartidaId);
@@ -28,6 +28,11 @@ namespace Cronica.Servicios
         public async Task<List<int>> GetPostPartidasIds()
         {
             return await _contexto.PostPartidas.Select(p => p.PostPartidaId).OrderBy(p=> p).ToListAsync();
+        }
+
+        public async Task<int> GetPostPartidaActualId()
+        {
+            return await _contexto.PostPartidas.Where(p => p.Activa == true).Select(p => p.PostPartidaId).FirstAsync();
         }
 
         public void IncluirPostPartida(PostPartida postPartida)

@@ -57,6 +57,7 @@ namespace Cronica.Migrations
                 {
                     PostPartidaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Activa = table.Column<bool>(nullable: false),
                     Cerrada = table.Column<bool>(nullable: false),
                     FechaFin = table.Column<DateTime>(nullable: false),
                     FechaInicio = table.Column<DateTime>(nullable: false)
@@ -369,6 +370,48 @@ namespace Cronica.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FormulariosPostPartida",
+                columns: table => new
+                {
+                    FormularioPostPartidaId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Acuerdos = table.Column<string>(nullable: true),
+                    CosasBien = table.Column<string>(nullable: true),
+                    CosasMal = table.Column<string>(nullable: true),
+                    Enviado = table.Column<bool>(nullable: false),
+                    InformacionClave = table.Column<string>(nullable: true),
+                    JugadorId = table.Column<string>(nullable: true),
+                    PersonajeId = table.Column<int>(nullable: false),
+                    PeticionTramas = table.Column<string>(nullable: true),
+                    PostPartidaId = table.Column<int>(nullable: false),
+                    Resumen = table.Column<string>(maxLength: 9000, nullable: true),
+                    Tramitado = table.Column<bool>(nullable: false),
+                    ValoracionPartida = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormulariosPostPartida", x => x.FormularioPostPartidaId);
+                    table.ForeignKey(
+                        name: "FK_FormulariosPostPartida_AspNetUsers_JugadorId",
+                        column: x => x.JugadorId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FormulariosPostPartida_Personajes_PersonajeId",
+                        column: x => x.PersonajeId,
+                        principalTable: "Personajes",
+                        principalColumn: "PersonajeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FormulariosPostPartida_PostPartidas_PostPartidaId",
+                        column: x => x.PostPartidaId,
+                        principalTable: "PostPartidas",
+                        principalColumn: "PostPartidaId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Asignaciones",
                 columns: table => new
                 {
@@ -552,6 +595,21 @@ namespace Cronica.Migrations
                 column: "PersonajeId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_FormulariosPostPartida_JugadorId",
+                table: "FormulariosPostPartida",
+                column: "JugadorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormulariosPostPartida_PersonajeId",
+                table: "FormulariosPostPartida",
+                column: "PersonajeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormulariosPostPartida_PostPartidaId",
+                table: "FormulariosPostPartida",
+                column: "PostPartidaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PasaTramas_PostPartidaId",
                 table: "PasaTramas",
                 column: "PostPartidaId");
@@ -659,6 +717,9 @@ namespace Cronica.Migrations
 
             migrationBuilder.DropTable(
                 name: "Seguidores");
+
+            migrationBuilder.DropTable(
+                name: "FormulariosPostPartida");
 
             migrationBuilder.DropTable(
                 name: "PersonajeAsignacion");

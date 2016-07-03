@@ -23,6 +23,8 @@ namespace Cronica.Modelos.Models
         public DbSet<PuntosPasaTrama> PuntosPasaTrama { get; set; }
         public DbSet<Asignacion> Asignaciones { get; set; }
         public DbSet<PersonajeAsignacion> PersonajeAsignacion { get; set; }
+        public DbSet<FormularioPostPartida> FormulariosPostPartida { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

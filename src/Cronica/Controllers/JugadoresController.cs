@@ -23,69 +23,57 @@ namespace Cronica.Controllers
         private IServicioTramas _servicioTramas;
         private readonly UserManager<ApplicationUser> _userManager;
         private IServicioAsignaciones _servicioAsignaciones;
+        private IServicioPostPartidas _servicioPostPartidas;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
                                     IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
-                                    UserManager<ApplicationUser> userManager)
+                                    IServicioPostPartidas servicioPostPartidas, UserManager<ApplicationUser> userManager)
         {
             _servicioJugadores = servicioJugadores;
             _servicioUsuarios = servicioUsuarios;
             _servicioTramas = servicioTramas;
             _servicioAsignaciones = servicioAsignaciones;
+            _servicioPostPartidas = servicioPostPartidas;
             _userManager = userManager;
         }
+
+        // GET: SinPersonaje   
+        public IActionResult SinPersonaje()
+        {
+            return View();
+        }
+
 
         // GET: MiPersonaje        
         public async Task<IActionResult> MiPersonaje()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            if (usuario.Cuenta == TipoCuenta.Jugador)
+            Personaje personaje = await _servicioJugadores.GetMiPersonaje(usuario.Id);
+            if (personaje == null)
             {
-                Personaje personaje = await _servicioJugadores.GetMiPersonaje(usuario.Id);
-                if (personaje == null)
-                {
-                    //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
-                }
-                return View(personaje);
+                return RedirectToAction("SinPersonaje");
             }
-            else
-            {
-                return RedirectToAction("Index", "Personajes");
-            }
+            return View(personaje);            
         }
 
         // GET: MisTramas
         public async Task<IActionResult> MisTramas()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            if (usuario.Cuenta == TipoCuenta.Jugador)
+            Personaje personaje = await _servicioJugadores.GetMisTramas(usuario.Id);
+            if (personaje == null)
             {
-                Personaje personaje = await _servicioJugadores.GetMisTramas(usuario.Id);
-                if (personaje == null)
-                {
-                    //todo mostrar error de personaje no encontrado y enviar notificacion a los narradores
-                }
-                return View(personaje);
+                return RedirectToAction("SinPersonaje");
             }
-            else
-            {
-                return RedirectToAction("Index", "Personajes");
-            }
+            return View(personaje);
         }
 
         // GET: MisTramas
         public async Task<IActionResult> Asignaciones()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            if (usuario.Cuenta == TipoCuenta.Jugador)
-            {
-                Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);                
-                return View(asignacion);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Personajes");
-            }
+            Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+            return View(asignacion);
         }
 
         [HttpPost]
@@ -104,6 +92,53 @@ namespace Cronica.Controllers
             ViewBag.MensajeError = $"Uppss... parece que tenemos algún problemilla";
             asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
             return View(asignacion);
+        }
+
+        public async Task<IActionResult> FormularioPostPartida()
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
+            if (formularioPostPartida == null)
+            {
+                int postPartidaActualId = await _servicioPostPartidas.GetPostPartidaActualId();
+                formularioPostPartida = await _servicioJugadores.NuevoFormularioPostPartida(usuario.Id, postPartidaActualId);
+                _servicioJugadores.IncluirFormularioPostPartida(formularioPostPartida);
+                await _servicioJugadores.ConfirmarCambios();
+            }
+            return View(formularioPostPartida);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> FormularioPostPartida(FormularioPostPartida formularioPostPartida )
+        {
+            if (ModelState.IsValid)
+            {
+                _servicioJugadores.Actualizar(formularioPostPartida);
+                await _servicioJugadores.ConfirmarCambios();
+                ViewBag.MensajeExito = $"Formulario guardado";                
+                return View(formularioPostPartida);
+            }
+            ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
+            return View(formularioPostPartida);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EnviarFormularioPostPartida()
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
+            if (ModelState.IsValid)
+            {                
+                formularioPostPartida.Enviado = true;
+                _servicioJugadores.Actualizar(formularioPostPartida);
+                await _servicioJugadores.ConfirmarCambios();
+                ViewBag.MensajeExito = $"Formulario enviado";
+                return View(formularioPostPartida);
+            }
+            ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
+            return View("FormularioPostPartida", formularioPostPartida);
         }
 
         //GET: DetalleTrama/2
