@@ -6,7 +6,7 @@
 
 <h2>@ViewData["Title"]</h2>
 
-<form asp-action="FormularioPostPartida" readonly>
+<form method="post" asp-controller="Jugadores">
     <div class="form-horizontal">
         <h4>PasaTrama</h4>
         <hr />
@@ -95,7 +95,10 @@
             {
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Guardar" class="btn btn-default btn-success" />
+                        <input type="submit" name="Guardar" value="Guardar Borrador" class="btn btn-default btn-success" 
+                               formaction="FormularioPostPartida" formmethod="post" />
+                        <input type="submit" name="Enviar" value="Enviar a los Narradores" class="btn btn-default btn-warning" 
+                               formaction="EnviarFormularioPostPartida" formmethod="post"/>
                     </div>
                 </div>
 
@@ -103,21 +106,6 @@
         }
     </div>
 </form>
-
-
-@{
-    if (Model.Resumen != null)
-    {
-        <form asp-action="EnviarFormularioPostPartida">
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Enviar a los Narradores" class="btn btn-default btn-warning" />
-                </div>
-            </div>            
-        </form>
-    }
-}
-
 
 @section Scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>

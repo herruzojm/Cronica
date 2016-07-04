@@ -125,10 +125,8 @@ namespace Cronica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EnviarFormularioPostPartida()
-        {
-            ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
+        public async Task<IActionResult> EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida)
+        {            
             if (ModelState.IsValid)
             {                
                 formularioPostPartida.Enviado = true;
