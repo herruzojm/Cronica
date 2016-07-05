@@ -14,6 +14,7 @@ namespace Cronica.Servicios.Interfaces
         Task<Personaje> GetMisTramas(string jugadorId);
         Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId);
         Task<FormularioPostPartida> NuevoFormularioPostPartida(string jugadorId, int postPartidaId);
+        Task EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida);
         void IncluirFormularioPostPartida(FormularioPostPartida formularioPostPartida);
     }
 }

@@ -21,8 +21,8 @@ namespace Cronica.Controllers
             _servicioPostPartidas = servicioPostPartidas;    
         }
 
-        
-        // GET: PostPartidas/Edit/5
+
+        // GET: FormularioPostPartidas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -30,35 +30,37 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PostPartida postPartida = await _servicioPostPartidas.GetPostPartida(id.Value);
-            if (postPartida == null)
+            FormularioPostPartida formularioPostPartida = await _servicioPostPartidas.GetFormularioPostPartidaById(id.Value);
+            if (formularioPostPartida == null)
             {
                 return NotFound();
             }
-            return View(postPartida);
+            return View(formularioPostPartida);
         }
 
-        // POST: PostPartidas/Edit/5
+        // POST: FormularioPostPartidas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PostPartida postPartida)
+        public async Task<IActionResult> Edit(FormularioPostPartida formularioPostPartida)
         {
             if (ModelState.IsValid)
             {
-                _servicioPostPartidas.Actualizar(postPartida);
+                _servicioPostPartidas.Actualizar(formularioPostPartida);
                 await _servicioPostPartidas.ConfirmarCambios();
-                return RedirectToAction("Index");
+                ViewBag.MensajeExito = $"Formulario actualizado";
+                return View(formularioPostPartida);
             }
-            return View(postPartida);
+            ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
+            return View(formularioPostPartida);
         }
 
-        // GET: PostPartidasPendientes
+        // GET: FormularioPostPartidas/PostPartidasPendientes
         public async Task<IActionResult> PostPartidasPendientes()
         {
             return View(await _servicioPostPartidas.GetFormulariosSinTramitar());
         }
 
-        // GET: FormulariosPostPartida
+        // GET: FormularioPostPartidas/FormulariosPostPartida
         public async Task<IActionResult> FormulariosPostPartida()
         {
             return View(await _servicioPostPartidas.GetFormulariosPostPartida());

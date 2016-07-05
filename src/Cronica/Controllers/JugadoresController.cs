@@ -128,11 +128,8 @@ namespace Cronica.Controllers
         public async Task<IActionResult> EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida)
         {            
             if (ModelState.IsValid)
-            {                
-                formularioPostPartida.Enviado = true;
-                formularioPostPartida.FechaEnvio = DateTime.Now;
-                _servicioJugadores.Actualizar(formularioPostPartida);
-                await _servicioJugadores.ConfirmarCambios();
+            {
+                await _servicioJugadores.EnviarFormularioPostPartida(formularioPostPartida);                
                 ViewBag.MensajeExito = $"Formulario enviado";
                 return View("FormularioPostPartida", formularioPostPartida);
             }

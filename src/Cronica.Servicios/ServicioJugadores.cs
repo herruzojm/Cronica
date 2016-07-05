@@ -55,6 +55,14 @@ namespace Cronica.Servicios
             return formulario;
         }
 
+        public async Task EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida)
+        {
+            formularioPostPartida.Enviado = true;
+            formularioPostPartida.FechaEnvio = DateTime.Now;
+            Actualizar(formularioPostPartida);
+            await ConfirmarCambios();
+        }
+
         public async Task<int> GetMiPetdonajeId(string jugadorId)
         {
             return await _contexto.Personajes.Where(p => p.JugadorId == jugadorId && p.Activo == true).Select(p => p.PersonajeId).FirstAsync();

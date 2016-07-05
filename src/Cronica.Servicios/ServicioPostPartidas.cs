@@ -40,6 +40,12 @@ namespace Cronica.Servicios
             _contexto.PostPartidas.Add(postPartida);
         }
 
+        public async Task<FormularioPostPartida> GetFormularioPostPartidaById(int formularioPostPartidaId)
+        {
+            return await _contexto.FormulariosPostPartida.Include(f => f.Personaje).
+                SingleAsync(f => f.FormularioPostPartidaId == formularioPostPartidaId);
+        }
+
         public async Task<List<VistaFormularioPostPartida>> GetFormulariosSinTramitar()
         {
             return await _contexto.FormulariosPostPartida.Where(f => f.Tramitado == false).
