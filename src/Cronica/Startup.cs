@@ -137,7 +137,7 @@ namespace Cronica
             cookiesOptions.LogoutPath = new PathString("/Home/Index");
             cookiesOptions.LoginPath = new PathString("/Home/Index");
             cookiesOptions.AccessDeniedPath = new PathString("/Home/Index");
-            cookiesOptions.CookieName = "VerumEstSanguis";
+            cookiesOptions.CookieName = "VerumSanguinem";
             app.UseCookieAuthentication(cookiesOptions);
             
             var ci = new CultureInfo("es-ES");

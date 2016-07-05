@@ -12,7 +12,7 @@
         <input type="hidden" asp-for="PostPartidaId" />
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="tab" href="#PostPartida">Post Partida</a></li>
-            <li><a data-toggle="tab" href="#PasaTramas">Pasa Tramas</a></li>
+            <li><a data-toggle="tab" href="#Interludios">Interludios</a></li>
         </ul>
         <div class="tab-content clearfix">
             <div id="PostPartida" class="tab-pane active">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <div id="PasaTramas" class="tab-pane">
+            <div id="Interludios" class="tab-pane">
                 <table class="table">
                     <thead>
                         <tr>
@@ -92,7 +92,7 @@
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-default btn-info" asp-route="CrearPasaTrama" asp-route-id="@Model.PostPartidaId">Nuevo Pasa Trama</a> 
+                <a class="btn btn-default btn-info" asp-route="CrearPasaTrama" asp-route-id="@Model.PostPartidaId">Nuevo Interludio</a> 
             </div>
         </div>
         <div class="form-group">
