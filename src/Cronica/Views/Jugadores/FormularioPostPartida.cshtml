@@ -4,119 +4,124 @@
     ViewData["Title"] = "Formulario Post Partida";
 }
 
-    <h2>@ViewData["Title"]</h2>
+<h2>@ViewData["Title"] : @Model.PostPartidaId.ToString()</h2>
 
-    <form method="post" asp-controller="Jugadores">
-        <div class="form-horizontal">
-            <h4>PasaTrama</h4>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="FormularioPostPartidaId" />
-            <input type="hidden" asp-for="PersonajeId" />
-            <input type="hidden" asp-for="JugadorId" />
-            <input type="hidden" asp-for="PostPartidaId" />
-            @if (!Model.PuedeModificarse)
+<form method="post" asp-controller="Jugadores">
+    <div class="form-horizontal">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="FormularioPostPartidaId" />
+        <input type="hidden" asp-for="PersonajeId" />
+        <input type="hidden" asp-for="JugadorId" />
+        <input type="hidden" asp-for="PostPartidaId" />
+        <input type="hidden" asp-for="ValoracionPartida" />
+        @if (!Model.PuedeModificarse)
+            {
+            <div class="form-group">
+                <label asp-for="FechaEnvio" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="FechaEnvio" class="form-control" />
+                    <span asp-validation-for="FechaEnvio" class="text-danger" />
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            <label asp-for="Resumen" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Resumen" class="form-control"></textarea>
+                <span asp-validation-for="Resumen" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Acuerdos" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Acuerdos" class="form-control"></textarea>
+                <span asp-validation-for="Acuerdos" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="InformacionClave" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <textarea asp-for="InformacionClave" class="form-control"></textarea>
+                <span asp-validation-for="InformacionClave" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PeticionTramas" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <textarea asp-for="PeticionTramas" class="form-control"></textarea>
+                <span asp-validation-for="PeticionTramas" class="text-danger" />
+            </div>
+        </div>
+        <div class="clearfix">
+            <br />
+        </div>
+        <div class="form-group">
+            @if (Model.PuedeModificarse)
+            {
+                <span class="ss-dot-rating" id="@Html.DisplayNameFor(model => model.ValoracionPartida)" name="@Html.DisplayNameFor(model => model.ValoracionPartida)" data-dot-title="@Html.DisplayNameFor(model => model.ValoracionPartida)"
+                      data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValoracionPartida" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+            }
+            else
+            {
+                <span readonly class="ss-dot-rating" id="ValoracionPartida" data-dot-title="@Html.DisplayNameFor(model => model.ValoracionPartida)"
+                      data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValoracionPartida" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+            }
+
+        </div>
+        <div class="form-group">
+            <label asp-for="CosasBien" class="control-label col-md-2">¿Que hemos hecho bien?</label>
+            <div class="col-md-10">
+                <textarea asp-for="CosasBien" class="form-control"></textarea>
+                <span asp-validation-for="CosasBien" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CosasMal" class="control-label col-md-2">¿Donde la hemos liado parda y que podemos mejorar?</label>
+            <div class="col-md-10">
+                <textarea asp-for="CosasMal" class="form-control"></textarea>
+                <span asp-validation-for="CosasMal" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ComentariosNarrador" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <textarea disabled asp-for="ComentariosNarrador" class="form-control"></textarea>
+                <span asp-validation-for="ComentariosNarrador" class="text-danger" />
+            </div>
+        </div>
+        @{
+            if (Model.PuedeModificarse)
             {
                 <div class="form-group">
-                    <label asp-for="FechaEnvio" class="col-md-2 control-label"></label>
-                    <div class="col-md-10">
-                        <input asp-for="FechaEnvio" class="form-control" />
-                        <span asp-validation-for="FechaEnvio" class="text-danger" />
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" name="Guardar" value="Guardar Borrador" class="btn btn-default btn-success"
+                               formaction="FormularioPostPartida" formmethod="post" />
+                        <input type="submit" name="Enviar" value="Enviar a los Narradores" class="btn btn-default btn-warning"
+                               formaction="EnviarFormularioPostPartida" formmethod="post" />
                     </div>
                 </div>
+
             }
-            <div class="form-group">
-                <label asp-for="Resumen" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <textarea asp-for="Resumen" class="form-control"></textarea>
-                    <span asp-validation-for="Resumen" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="Acuerdos" class="col-md-2 control-label"></label>
-                <div class="col-md-10">
-                    <textarea asp-for="Acuerdos" class="form-control"></textarea>
-                    <span asp-validation-for="Acuerdos" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="InformacionClave" class="control-label col-md-2"></label>
-                <div class="col-md-10">
-                    <textarea asp-for="InformacionClave" class="form-control"></textarea>
-                    <span asp-validation-for="InformacionClave" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="PeticionTramas" class="control-label col-md-2"></label>
-                <div class="col-md-10">
-                    <textarea asp-for="PeticionTramas" class="form-control"></textarea>
-                    <span asp-validation-for="PeticionTramas" class="text-danger" />
-                </div>
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            <div class="form-group">
-                @if (Model.PuedeModificarse)
-            {
-                    <span class="ss-dot-rating" id="ValoracionPartida" data-dot-title="@Html.DisplayNameFor(model => model.ValoracionPartida)"
-                          data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValoracionPartida" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                }
-                else
-                {
-                    <span readonly class="ss-dot-rating" id="ValoracionPartida" data-dot-title="@Html.DisplayNameFor(model => model.ValoracionPartida)"
-                          data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValoracionPartida" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                }
+        }
+    </div>
+</form>
 
-            </div>
-            <div class="form-group">
-                <label asp-for="CosasBien" class="control-label col-md-2">¿Que hemos hecho bien?</label>
-                <div class="col-md-10">
-                    <textarea asp-for="CosasBien" class="form-control"></textarea>
-                    <span asp-validation-for="CosasBien" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="CosasMal" class="control-label col-md-2">¿Donde la hemos liado parda y que podemos mejorar?</label>
-                <div class="col-md-10">
-                    <textarea asp-for="CosasMal" class="form-control"></textarea>
-                    <span asp-validation-for="CosasMal" class="text-danger" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label asp-for="ComentariosNarrador" class="control-label col-md-2"></label>
-                <div class="col-md-10">
-                    <textarea disabled asp-for="ComentariosNarrador" class="form-control"></textarea>
-                    <span asp-validation-for="ComentariosNarrador" class="text-danger" />
-                </div>
-            </div>
-            @{
-                if (Model.PuedeModificarse)
-                {
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" name="Guardar" value="Guardar Borrador" class="btn btn-default btn-success"
-                                   formaction="FormularioPostPartida" formmethod="post" />
-                            <input type="submit" name="Enviar" value="Enviar a los Narradores" class="btn btn-default btn-warning"
-                                   formaction="EnviarFormularioPostPartida" formmethod="post" />
-                        </div>
-                    </div>
-
-                }
-            }
-        </div>
-    </form>
-
-    @section Scripts {
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-        <script>
-            $(document).ready(function () {
-                $("#ValoracionPartida").DotRating();
-                @if (!Model.PuedeModificarse)
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.ss-dot-rating').DotRating();
+            @if (!Model.PuedeModificarse)
             {
                 @:$(function () { $('input, select, textarea').attr('disabled', 'disabled'); });
-                            }
-            });
-        </script>
-    }
+                                        }
+        });
+    </script>
+    <script>
+        $(document).submit(function () {
+            $("#ValoracionPartida")[0].value = $(".ss-dot-rating").data("dot-value");
+            return true;
+        });
+    </script>
+}
