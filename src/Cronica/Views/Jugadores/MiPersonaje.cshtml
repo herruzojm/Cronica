@@ -4,291 +4,294 @@
     ViewData["Title"] = "Mi Personaje";
 }
 
+<cache expires-sliding="@TimeSpan.FromMinutes(15)" vary-by-user="true">
 
-<h2>@Model.Nombre</h2>
+    <h2>@Model.Nombre</h2>
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
 
-    <ul class="nav nav-pills">
-        <li class="active"><a data-toggle="tab" href="#Personaje">Personaje</a></li>
-        <li><a data-toggle="tab" href="#Seguidores">Seguidores</a></li>
-    </ul>
-    <hr />
-    <div class="tab-content clearfix">
-        <div id="Personaje" class="tab-pane active">
-            <div class="capaTresColumnas">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Nombre)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Clan)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Clan)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Generacion)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Generacion)
-                    </dd>
-                </dl>
-            </div>
-            <div class="capaTresColumnas">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Naturaleza)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Naturaleza)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Conducta)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Conducta)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Concepto)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Concepto)
-                    </dd>
-                </dl>
-            </div>
-            <div class="capaTresColumnas">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.PuntosDeSangre)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.PuntosDeSangre)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Experiencia)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Experiencia)
-                    </dd>
-                </dl>
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            <h3 class="alineadoCentro">Atributos</h3>
-            <div class="capaTresColumnas">
-                <h4>Fisicos</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Sociales</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Mentales</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            <h3 class="alineadoCentro">Habilidades</h3>
-            <div class="capaTresColumnas">
-                <h4>Talentos</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Tecnicas</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Conocimientos</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            <h3 class="alineadoCentro">Ventajas</h3>
-            <div class="capaTresColumnas">
-                <h4>Trasfondos</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Disciplinas</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="capaTresColumnas">
-                <h4>Virtudes</h4>
-                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
-                {
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                        <div class="clearfix"></div>
-                }
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            <h3 class="alineadoCentro">Otros Rasgos</h3>
-            <div class="capaTresColumnas">
-                <span readonly class="ss-dot-rating" id="ValorSenda" data-dot-title="@Html.DisplayFor(model => model.Senda)"
-                      data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValorSenda" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                <dl>
-                    <dt>
-                        (@Html.DisplayFor(model => model.Virtud))
-                    </dt>
-                </dl>
-            </div>
-            <div class="capaTresColumnas">
-                <span readonly class="ss-dot-rating" id="Voluntad" data-dot-title="@Html.DisplayNameFor(model => model.Voluntad)"
-                      data-dot-max="10" data-dot-min="0" data-dot-value="@Model.Voluntad" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-            </div>
-            <div class="clearfix">
-                <br />
-            </div>
-            @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Otros && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
-            {
+        <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="tab" href="#Personaje">Personaje</a></li>
+            <li><a data-toggle="tab" href="#Seguidores">Seguidores</a></li>
+        </ul>
+        <hr />
+        <div class="tab-content clearfix">
+            <div id="Personaje" class="tab-pane active">
                 <div class="capaTresColumnas">
-                    <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
-                          data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                </div>
-            }            
-            <div class="clearfix">
-                <br />
-            </div>
-            <div class="capaDosColumnas">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Meritos)
-                    </dt>
-                    <dd>
-                        <textarea asp-for="Meritos" disabled class="form-control"></textarea>
-                    </dd>
-                </dl>
-            </div>
-            <div class="capaDosColumnas">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Defectos)
-                    </dt>
-                    <dd>
-                        <textarea asp-for="Defectos" disabled class="form-control"></textarea>
-                    </dd>
-                </dl>
-            </div>            
-            <div class="clearfix">
-                <br />
-            </div>
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Historia)
-                </dt>
-                <dd>
-                    <textarea asp-for="Historia" disabled class="grande"></textarea>
-                </dd>
-            </dl>
-            <div class="clearfix">
-                <br />
-            </div>
-        </div>
-        <div id="Seguidores" class="tab-pane">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>
-                        </th>
-                        <th>
-                            Tipo
-                        </th>
-                        <th>
+                    <dl class="dl-horizontal">
+                        <dt>
                             @Html.DisplayNameFor(model => model.Nombre)
-                        </th>
-                        <th>
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Nombre)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Clan)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Clan)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Generacion)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Generacion)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="capaTresColumnas">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Naturaleza)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Naturaleza)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Conducta)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Conducta)
+                        </dd>
+                        <dt>
                             @Html.DisplayNameFor(model => model.Concepto)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Seguidores)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Concepto)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="capaTresColumnas">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.PuntosDeSangre)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.PuntosDeSangre)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Experiencia)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Experiencia)
+                        </dd>
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                <h3 class="alineadoCentro">Atributos</h3>
+                <div class="capaTresColumnas">
+                    <h4>Fisicos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Fisico).OrderBy(a => a.Atributo.Orden))
                     {
-                        <tr>
-                            <td class="tablaSeguidor">
-                                <img class="fotoSeguidor" />
-                            </td>
-                            <td>
-                                <div class="espacioTablaSeguidores">
-                                    @Html.DisplayFor(modelItem => item.TipoRelacion)
-                                </div>
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
-                            </td>
-                        </tr>
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
                     }
-                </tbody>
-            </table>
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Sociales</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Social).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Mentales</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Caracteristica && a.Atributo.SubTipo == SubTipoAtributo.Mental).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="1" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                <h3 class="alineadoCentro">Habilidades</h3>
+                <div class="capaTresColumnas">
+                    <h4>Talentos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Talento).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Tecnicas</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Tecnica).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Conocimientos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Habilidad && a.Atributo.SubTipo == SubTipoAtributo.Conocimiento).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                <h3 class="alineadoCentro">Ventajas</h3>
+                <div class="capaTresColumnas">
+                    <h4>Trasfondos</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Trasfondo && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Disciplinas</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Disciplina && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="capaTresColumnas">
+                    <h4>Virtudes</h4>
+                    @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Virtud && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
+                    {
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                        <div class="clearfix"></div>
+                    }
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                <h3 class="alineadoCentro">Otros Rasgos</h3>
+                <div class="capaTresColumnas">
+                    <span readonly class="ss-dot-rating" id="ValorSenda" data-dot-title="@Html.DisplayFor(model => model.Senda)"
+                          data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValorSenda" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                    <dl>
+                        <dt>
+                            (@Html.DisplayFor(model => model.Virtud))
+                        </dt>
+                    </dl>
+                </div>
+                <div class="capaTresColumnas">
+                    <span readonly class="ss-dot-rating" id="Voluntad" data-dot-title="@Html.DisplayNameFor(model => model.Voluntad)"
+                          data-dot-max="10" data-dot-min="0" data-dot-value="@Model.Voluntad" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                @foreach (AtributoPersonaje atributo in Model.Atributos.Where(a => a.Atributo.Tipo == TipoAtributo.Otros && a.Valor > 0).OrderBy(a => a.Atributo.Orden))
+            {
+                    <div class="capaTresColumnas">
+                        <span readonly class="ss-dot-rating" id="Caracteristica_@atributo.Atributo.AtributoId.ToString()" data-dot-title="@atributo.Atributo.Nombre"
+                              data-dot-max="5" data-dot-min="0" data-dot-value="@atributo.Valor" data-dot-color-empty="white" data-dot-color-marked="red"></span>
+                    </div>
+                }
+                <div class="clearfix">
+                    <br />
+                </div>
+                <div class="capaDosColumnas">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Meritos)
+                        </dt>
+                        <dd>
+                            <textarea asp-for="Meritos" disabled class="form-control"></textarea>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="capaDosColumnas">
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Defectos)
+                        </dt>
+                        <dd>
+                            <textarea asp-for="Defectos" disabled class="form-control"></textarea>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="clearfix">
+                    <br />
+                </div>
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Historia)
+                    </dt>
+                    <dd>
+                        <textarea asp-for="Historia" disabled class="grande"></textarea>
+                    </dd>
+                </dl>
+                <div class="clearfix">
+                    <br />
+                </div>
+            </div>
+            <div id="Seguidores" class="tab-pane">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>
+                                Tipo
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Concepto)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Seguidores)
+                        {
+                            <tr>
+                                <td class="tablaSeguidor">
+                                    <img class="fotoSeguidor" />
+                                </td>
+                                <td>
+                                    <div class="espacioTablaSeguidores">
+                                        @Html.DisplayFor(modelItem => item.TipoRelacion)
+                                    </div>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrasfondoRelacionado.Concepto)
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
         </div>
-
     </div>
-</div>
+</cache>
 
-@section Scripts {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            @foreach (AtributoPersonaje atributo in Model.Atributos)
+    @section Scripts {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                @foreach (AtributoPersonaje atributo in Model.Atributos)
             {
                 @:$("#Caracteristica_@atributo.Atributo.AtributoId.ToString()").DotRating()
-                                                    }
-            $("#ValorSenda").DotRating();
-            $("#Voluntad").DotRating();
-        });
-    </script>
-}
+                                                                    }
+                $("#ValorSenda").DotRating();
+                $("#Voluntad").DotRating();
+            });
+        </script>
+    }
+

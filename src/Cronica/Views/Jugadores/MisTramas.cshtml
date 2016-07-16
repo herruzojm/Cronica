@@ -5,54 +5,56 @@
 }
 
 
-<h2>@Model.Nombre</h2>
+<cache expires-sliding="@TimeSpan.FromMinutes(15)" vary-by-user="true">
+    <h2>@Model.Nombre</h2>
 
-<div id="Tramas" class="tab-pane">
-    <table class="table">
-        <thead>
-            <tr>
-                <th></th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Cerrada)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Nombre)
-                </th>                
-                <th>
-                    @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Descripcion)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TextoResolucion)
-                </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @foreach (var item in Model.TramasParticipadas)
-                    {
+    <div id="Tramas" class="tab-pane">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        <a class="btn btn-info" asp-route="DetalleTrama" asp-route-personajeId="@Model.PersonajeId" asp-route-tramaId="@item.TramaId">Detalles</a>                        
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Trama.Cerrada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Trama.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Trama.Descripcion)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
-                    </td>
+                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Cerrada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.Descripcion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TramasParticipadas.FirstOrDefault().Trama.TextoResolucion)
+                    </th>
                 </tr>
-                    }
-        </tbody>
-    </table>
-</div>
+            </thead>
 
-@section Scripts {
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-}
+            <tbody>
+                @foreach (var item in Model.TramasParticipadas)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-info" asp-route="DetalleTrama" asp-route-personajeId="@Model.PersonajeId" asp-route-tramaId="@item.TramaId">Detalles</a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trama.Cerrada)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trama.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trama.Descripcion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Trama.TextoResolucion)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</cache>
+
+    @section Scripts {
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    }
