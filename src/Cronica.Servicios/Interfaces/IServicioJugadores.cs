@@ -10,6 +10,7 @@ namespace Cronica.Servicios.Interfaces
     public interface IServicioJugadores : IServicioBase
     {
         Task<string> GetNombrePersonaje(string jugadorId);
+        Task<string> GetFotoPersonaje(string jugadorId);
         Task<Personaje> GetMiPersonaje(string jugadorId);
         Task<Personaje> GetMisTramas(string jugadorId);
         Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId);

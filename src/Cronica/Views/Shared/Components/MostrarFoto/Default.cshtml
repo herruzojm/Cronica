@@ -1,0 +1,14 @@
+﻿@model string
+
+@{
+    if (Model != null && Model != string.Empty)
+    {
+        <img class="fotoSeguidor"  src="~/personajes/@Model" />
+    }
+    else
+    {
+        <img class="fotoSeguidor" src="~/personajes/no-photo.png" />
+    }
+}
+
+

@@ -257,7 +257,7 @@
                         {
                             <tr>
                                 <td class="tablaSeguidor">
-                                    <img class="fotoSeguidor" />
+                                    @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = item.TrasfondoRelacionado.Foto })
                                 </td>
                                 <td>
                                     <div class="espacioTablaSeguidores">

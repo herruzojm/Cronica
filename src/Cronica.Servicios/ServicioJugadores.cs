@@ -38,6 +38,11 @@ namespace Cronica.Servicios
             return _contexto.Personajes.SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true).Result.Nombre;
         }
 
+        public async Task<string> GetFotoPersonaje(string jugadorId)
+        {
+            return _contexto.Personajes.SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true).Result.Foto;
+        }
+
         public async Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId)
         {
             FormularioPostPartida formulario = await _contexto.FormulariosPostPartida.

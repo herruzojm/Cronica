@@ -8,7 +8,7 @@
             <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">
                 Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
                 <p></p>
-                <img class="fotoSeguidor" />
+                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = await _servicioJugadores.GetFotoPersonaje(Model.Id) })
             </a>            
         </div>
         <div class="list-group panel">

@@ -76,16 +76,19 @@ namespace Cronica.Servicios
         {
             bool resultado = true;
 
-            if (personaje.Imagen.Length > 0)
+            if (personaje.Imagen != null && personaje.Imagen.Length > 0)
             {
-                if (await GuardarImagen(personaje.Imagen))
+                if (await GuardarImagen(personaje.Imagen, personaje.PersonajeId))
                 {
-                    personaje.Foto = personaje.Imagen.Name;
+                    personaje.Foto = personaje.PersonajeId.ToString() + ".png";
                 }
                 else
                 {
                     resultado = false;
-                    _mensaje = $"Uppss... tenemos un problema grabando la imagen";
+                    if (_mensaje == string.Empty)
+                    {
+                        _mensaje = $"Uppss... tenemos un problema grabando la imagen";
+                    }                    
                 }
             }
             if (resultado)
@@ -97,20 +100,47 @@ namespace Cronica.Servicios
             return resultado;
         }
 
-        private async Task<bool> GuardarImagen(IFormFile imagen)
+        private async Task<bool> GuardarImagen(IFormFile imagen, int personajeId)
         {
             bool resultado = true;
 
             string carpetaImagenes = Path.Combine(_environment.WebRootPath, "personajes");
-            if (imagen.Length > 0)
+            string extension = Path.GetExtension(imagen.FileName);
+
+            if (!EsExtensionValida(extension))
             {
-                using (var fileStream = new FileStream(Path.Combine(carpetaImagenes, imagen.FileName), FileMode.Create))
+                resultado = false;
+                _mensaje = "La extension de la imagen no es valida. Solo se admiten JPG, JPEG, GIF y PNG";
+            }
+            if (resultado && imagen.Length > 1024*1024)
+            {
+                resultado = false;
+                _mensaje = "Te has colado; la imagen no debe ser mayor de 1 mega";
+            }
+            if ( resultado && imagen.Length > 0)
+            {
+                using (var fileStream = new FileStream(Path.Combine(carpetaImagenes, personajeId.ToString() + ".png"), FileMode.Create))
                 {
                     await imagen.CopyToAsync(fileStream);
                 }
             }
 
             return resultado;
+        }
+
+        private bool EsExtensionValida(string extension)
+        {
+            switch (extension.ToUpper())
+            {
+                case ".JPG":
+                case ".JPEG":
+                case ".GIF":
+                case ".PNG":
+                    return true;
+                default:
+                    return false;
+            }
+
         }
 
     }

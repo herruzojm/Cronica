@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.AspNetCore.Authorization;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Cronica.Controllers
 {
@@ -62,7 +64,7 @@ namespace Cronica.Controllers
                 _servicioPersonajes.IncluirPersonaje(personaje);
                 await _servicioPersonajes.ConfirmarCambios();
                 //TempData["MensajeExito"] = $"Personaje creado";
-                return RedirectToAction("Edit", new { id = personaje.PersonajeId });                
+                return RedirectToAction("Edit", new { id = personaje.PersonajeId });
             }
             return View(personaje);
         }
@@ -74,8 +76,8 @@ namespace Cronica.Controllers
             {
                 return NotFound();
             }
-            
-            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);            
+
+            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id.Value);
             if (personaje == null)
             {
                 return NotFound();
@@ -103,13 +105,15 @@ namespace Cronica.Controllers
                 if (await _servicioPersonajes.ActualizarPersonaje(personaje))
                 {
                     ViewBag.MensajeExito = $"Personaje guardado";
-                    personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);                    
+                    personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);
                     return View(personaje);
                 }
                 ViewBag.MensajeError = _servicioPersonajes.Mensaje;
+                personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);
                 return View(personaje);
             }
             ViewBag.MensajeError = $"Uppss... parece que los datos no son válidos";
+            personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);
             return View(personaje);
         }
 
@@ -138,7 +142,7 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id);            
+            Personaje personaje = await _servicioPersonajes.GetPersonajeCompleto(id);
             _servicioPersonajes.Eliminar(personaje);
             await _servicioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");
