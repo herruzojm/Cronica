@@ -3,32 +3,33 @@ using Cronica.Modelos.Models;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-
+using System.Linq;
+using Microsoft.AspNetCore.Identity;
 
 namespace Cronica.Servicios
 {
     public class ServicioUsuarios : IServicioUsuarios
     {
-        private CronicaDbContext _contexto;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public ServicioUsuarios(CronicaDbContext contexto)
+        public ServicioUsuarios(UserManager<ApplicationUser> userManager)
         {
-            _contexto = contexto;
+            _userManager = userManager;
         }
 
         public async Task<ApplicationUser> GetUsuarioById(string userId)
         {
-            return await _contexto.Users.SingleAsync(u => u.Id == userId);
+            return await _userManager.FindByIdAsync(userId);
         }
 
         public async Task<ApplicationUser> GetUsuarioByEmail(string userEmail)
         {
-            return await _contexto.Users.SingleAsync(u => u.Email == userEmail);
+            return await _userManager.FindByEmailAsync(userEmail);
         }
 
         public async Task<List<ApplicationUser>> GetUsuarios()
         {
-            return await _contexto.Users.ToListAsync();
+            return await _userManager.Users.ToListAsync();
         }
 
         

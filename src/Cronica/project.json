@@ -33,7 +33,7 @@
     "preserveCompilationContext": true
   },
   "dependencies": {
-    "AutoMapper": "4.2.0",
+    "AutoMapper": "5.0.2",
     "Bootstrap.v3.Datetimepicker.CSS": "4.15.35",
     "Microsoft.AspNetCore.Authentication.Cookies": "1.0.0",
     "Microsoft.AspNetCore.Authorization": "1.0.0",
@@ -77,19 +77,20 @@
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-rc2-final",
     "npm": "3.5.2",
     "System.Collections.Immutable": "1.2.0",
-    "System.Linq": "4.0.0",
+    "System.Linq": "4.1.0-rc2-24027",
     "TagHelperSamples.Bootstrap": "1.1.1",
     "Cronica.Servicios": "1.0.0-*",
-    "Cronica.Modelos": "1.0.0-*",
-    "Microsoft.Framework.Caching.Memory": "1.0.0-beta8"
+    "Cronica.Modelos": "1.0.0-*"
   },
   "frameworks": {
-    "net452": {
+    "netcoreapp1.0": {
       "dependencies": {
-        "Microsoft.Extensions.Caching.Redis": "1.0.0",
-        "Microsoft.Extensions.Caching.Abstractions": "1.0.0",
-        "Microsoft.Extensions.Caching.SqlServer": "1.0.0"
-      }
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      },
+      "imports": [ "portable-net45+win8+wp8+wpa81" ]
     }
   },
   "publishOptions": {

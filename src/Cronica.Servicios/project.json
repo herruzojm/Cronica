@@ -3,7 +3,14 @@
   "description": "Cronica.Servicios Class Library",
   "authors": [ "Jesus Maria Herruzo Luque" ],
   "frameworks": {
-    "net452": { }
+    "netcoreapp1.0": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "version": "1.0.0-*",
+          "type": "platform"
+        }
+      }
+    }
   },
   "dependencies": {
     "Cronica.Modelos": "1.0.0-*"
