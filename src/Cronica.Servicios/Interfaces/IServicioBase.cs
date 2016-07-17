@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioBase
-    {        
+    {
+        string Mensaje { get; }
         void Eliminar(Object elemento);
         Task<int> ConfirmarCambios();
         void Actualizar(Object elemento);        

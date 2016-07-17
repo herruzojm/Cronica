@@ -1,4 +1,5 @@
 ﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Cronica.Servicios.Interfaces
         void IncluirPersonaje(Personaje personaje);        
         Task<List<Personaje>> GetPersonajesJugadores();
         Task<List<Personaje>> GetPNJs();
+        Task<bool> ActualizarPersonaje(Personaje personaje);
     }
 }

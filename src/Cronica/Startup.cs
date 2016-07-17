@@ -2,9 +2,9 @@
 using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -15,9 +15,9 @@ using Cronica.Services;
 using Cronica.Servicios.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Cronica.Servicios;
-using Microsoft.AspNetCore.Http;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+
 
 namespace Cronica
 {
@@ -69,9 +69,16 @@ namespace Cronica
                 options.User.RequireUniqueEmail = true;                
             })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();             
+                .AddDefaultTokenProviders();
 
             services.AddMvc();
+
+            //services.AddDistributedMemoryCache();
+            //services.AddSession(o =>
+            //{
+            //    o.IdleTimeout = TimeSpan.FromSeconds(10);
+            //});
+
 
             services.AddAuthorization(options =>
             {
@@ -102,6 +109,9 @@ namespace Cronica
             IHostingEnvironment env, 
             ILoggerFactory loggerFactory )
         {
+
+            //app.UseSession();
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
 
             if (env.IsDevelopment())
@@ -127,7 +137,7 @@ namespace Cronica
                 }
                 catch { }
             }
-            
+                       
             app.UseStaticFiles();
 
             app.UseIdentity();

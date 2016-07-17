@@ -47,14 +47,8 @@ namespace Cronica.Controllers
         {
             Personaje personaje = await _servicioPersonajes.GetNuevoPersonaje();
 
-            var jugadores = await _servicioUsuarios.GetUsuarios();
+            await CargarListaJugadores();
 
-            ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
-            {
-                Value = u.Id,
-                Text = u.UserName
-            }).ToList();
-                                  
             return View(personaje);
         }
 
@@ -66,8 +60,9 @@ namespace Cronica.Controllers
             if (ModelState.IsValid)
             {
                 _servicioPersonajes.IncluirPersonaje(personaje);
-                await _servicioPersonajes.ConfirmarCambios();                
-                return RedirectToAction("Edit", new { id = personaje.PersonajeId });
+                await _servicioPersonajes.ConfirmarCambios();
+                //TempData["MensajeExito"] = $"Personaje creado";
+                return RedirectToAction("Edit", new { id = personaje.PersonajeId });                
             }
             return View(personaje);
         }
@@ -86,13 +81,12 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            var jugadores = await _servicioUsuarios.GetUsuarios();
+            //if (TempData["MensajeExito"] != null)
+            //{
+            //    ViewBag.MensajeExito = TempData["MensajeExito"];
+            //}
 
-            ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
-            {
-                Value = u.Id,
-                Text = u.UserName
-            }).ToList();
+            await CargarListaJugadores();
 
             return View(personaje);
         }
@@ -102,14 +96,20 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Personaje personaje)
         {
+            await CargarListaJugadores();
+
             if (ModelState.IsValid)
-            {
-                _servicioPersonajes.Actualizar(personaje);
-                await _servicioPersonajes.ConfirmarCambios();
-                ViewBag.MensajeExito = $"Personaje guardado";
-                personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);
+            {                
+                if (await _servicioPersonajes.ActualizarPersonaje(personaje))
+                {
+                    ViewBag.MensajeExito = $"Personaje guardado";
+                    personaje = await _servicioPersonajes.GetPersonajeCompleto(personaje.PersonajeId);                    
+                    return View(personaje);
+                }
+                ViewBag.MensajeError = _servicioPersonajes.Mensaje;
                 return View(personaje);
             }
+            ViewBag.MensajeError = $"Uppss... parece que los datos no son válidos";
             return View(personaje);
         }
 
@@ -142,6 +142,17 @@ namespace Cronica.Controllers
             _servicioPersonajes.Eliminar(personaje);
             await _servicioPersonajes.ConfirmarCambios();
             return RedirectToAction("Index");
+        }
+
+
+        private async Task CargarListaJugadores()
+        {
+            var jugadores = await _servicioUsuarios.GetUsuarios();
+            ViewBag.Jugadores = jugadores.Select(u => new SelectListItem
+            {
+                Value = u.Id,
+                Text = u.UserName
+            }).ToList();
         }
 
     }

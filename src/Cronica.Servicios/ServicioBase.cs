@@ -11,6 +11,16 @@ namespace Cronica.Servicios
     {
         protected CronicaDbContext _contexto;
 
+        protected string _mensaje = string.Empty;
+
+        public string Mensaje
+        {
+            get
+            {
+                return _mensaje;
+            }
+        }
+
         public ServicioBase(CronicaDbContext contexto)
         {
             _contexto = contexto;
