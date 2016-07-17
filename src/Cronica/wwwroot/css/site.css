@@ -137,7 +137,7 @@ input.atributo {
   transition: left ease .25s;
 }
 
-  #sidebar.hide-sidebar {
+#sidebar.hide-sidebar {
     left: -250px;
     -moz-transition: left ease .25s;
     -o-transition: left ease .25s;
@@ -160,6 +160,20 @@ input.atributo {
     -webkit-transition: margin-left ease .25s;
     transition: margin-left ease .25s;
   }
+
+
+div.ui-widget-content{
+    background-image:none !important;
+    background-color: #831138;
+}
+
+span.ui-slider-handle {
+    background-image: url('../images/ankh3.png') !important;
+    height: 1.6em !important;
+    width: 1.6em !important;
+    background-color: #831138 !important;
+}
+
 
 
 
