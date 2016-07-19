@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using System.Linq;
+using Cronica.Modelos.ViewModels.Tramas;
 
 namespace Cronica.Servicios
 {
@@ -25,12 +26,48 @@ namespace Cronica.Servicios
             return personaje;
         }
 
-        public async Task<Personaje> GetMisTramas(string jugadorId)
+        public async Task<VistaTramas> GetMisTramas(string jugadorId)
         {
-            Personaje personaje = await _contexto.Personajes
-                .Include(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
-                .SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true);
-            return personaje;
+            return await (from personaje in _contexto.Personajes where personaje.JugadorId == jugadorId && personaje.Activo == true
+                          select new VistaTramas
+                          {
+                              NombrePersonaje = personaje.Nombre,
+                              PersonajeId = personaje.PersonajeId,
+                              Tramas = (from trama in _contexto.Tramas join participante in _contexto.ParticipantesTrama
+                                        on trama.TramaId equals participante.TramaId
+                                        where participante.PersonajeId == personaje.PersonajeId && trama.Cerrada == false
+                                        select new VistaListaTrama
+                                        {
+                                            TramaId = trama.TramaId,
+                                            Descripcion = trama.Descripcion,
+                                            Nombre = trama.Nombre,
+                                            TextoResolucion = trama.TextoResolucion
+                                        }
+                              ).ToList()
+                          }).FirstOrDefaultAsync();
+        }
+
+        public async Task<VistaTramas> GetMisTramasCerradas(string jugadorId)
+        {
+            return await (from personaje in _contexto.Personajes
+                          where personaje.JugadorId == jugadorId && personaje.Activo == true
+                          select new VistaTramas
+                          {
+                              NombrePersonaje = personaje.Nombre,
+                              PersonajeId = personaje.PersonajeId,
+                              Tramas = (from trama in _contexto.Tramas
+                                        join participante in _contexto.ParticipantesTrama
+                                        on trama.TramaId equals participante.TramaId
+                                        where participante.PersonajeId == personaje.PersonajeId && trama.Cerrada == true
+                                        select new VistaListaTrama
+                                        {
+                                            TramaId = trama.TramaId,
+                                            Descripcion = trama.Descripcion,
+                                            Nombre = trama.Nombre,
+                                            TextoResolucion = trama.TextoResolucion
+                                        }
+                              ).ToList()
+                          }).FirstOrDefaultAsync();
         }
 
         public async Task<string> GetNombrePersonaje(string jugadorId)

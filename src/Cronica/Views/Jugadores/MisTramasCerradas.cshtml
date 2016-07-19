@@ -1,7 +1,7 @@
 @model VistaTramas
 
 @{
-    ViewData["Title"] = "Mis Tramas Activas";
+    ViewData["Title"] = "Tramas Cerradas";
 }
 
 
@@ -12,7 +12,7 @@
         <table class="table">
             <thead>
                 <tr>
-                    <th></th>
+                    <th></th>                    
                     <th>
                         @Html.DisplayNameFor(model => model.Tramas.FirstOrDefault().Nombre)
                     </th>
@@ -31,7 +31,7 @@
                     <tr>
                         <td>
                             <a class="btn btn-info" asp-route="DetalleTrama" asp-route-personajeId="@Model.PersonajeId" asp-route-tramaId="@item.TramaId">Detalles</a>
-                        </td>
+                        </td>                        
                         <td>
                             @Html.DisplayFor(modelItem => item.Nombre)
                         </td>

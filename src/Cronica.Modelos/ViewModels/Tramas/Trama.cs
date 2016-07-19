@@ -98,5 +98,26 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public List<SelectListItem>[] GrupoParticipantes { get; set; } = new List<SelectListItem>[Enum.GetNames(typeof(TipoEquipo)).Length];
     }
 
+    public class VistaTramas
+    {
+        public VistaTramas()
+        {
+            Tramas = new List<VistaListaTrama>();
+        }
+
+        public int PersonajeId { get; set; }
+        public string NombrePersonaje { get; set; }
+        public IEnumerable<VistaListaTrama> Tramas { get; set; }
+
+    }
+
+    public class VistaListaTrama
+    {
+        public int TramaId { get; set; }
+        public string Nombre { get; set; }
+        public string Descripcion { get; set; }
+        public string TextoResolucion { get; set; }
+    }
+
 
 }

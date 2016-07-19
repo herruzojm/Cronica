@@ -1,5 +1,6 @@
 ﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Cronica.Modelos.ViewModels.PostPartidas;
+using Cronica.Modelos.ViewModels.Tramas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Cronica.Servicios.Interfaces
         Task<string> GetNombrePersonaje(string jugadorId);
         Task<string> GetFotoPersonaje(string jugadorId);
         Task<Personaje> GetMiPersonaje(string jugadorId);
-        Task<Personaje> GetMisTramas(string jugadorId);
+        Task<VistaTramas> GetMisTramas(string jugadorId);
+        Task<VistaTramas> GetMisTramasCerradas(string jugadorId);
         Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId);
         Task<FormularioPostPartida> NuevoFormularioPostPartida(string jugadorId, int postPartidaId);
         Task EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida);

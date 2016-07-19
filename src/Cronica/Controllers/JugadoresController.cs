@@ -60,12 +60,24 @@ namespace Cronica.Controllers
         public async Task<IActionResult> MisTramas()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            Personaje personaje = await _servicioJugadores.GetMisTramas(usuario.Id);
-            if (personaje == null)
+            VistaTramas vistaTramas = await _servicioJugadores.GetMisTramas(usuario.Id);
+            if (vistaTramas == null)
             {
                 return RedirectToAction("SinPersonaje");
             }
-            return View(personaje);
+            return View(vistaTramas);
+        }
+
+        // GET: MisTramasCerradas
+        public async Task<IActionResult> MisTramasCerradas()
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            VistaTramas vistaTramas = await _servicioJugadores.GetMisTramasCerradas(usuario.Id);
+            if (vistaTramas == null)
+            {
+                return RedirectToAction("SinPersonaje");
+            }
+            return View(vistaTramas);
         }
 
         // GET: MisTramas
