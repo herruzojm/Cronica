@@ -198,7 +198,7 @@ namespace Cronica.Controllers
         {
             return View();
         }
-
+        
         //
         // POST: /Manage/ChangePassword
         [HttpPost]
@@ -217,7 +217,9 @@ namespace Cronica.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User changed their password successfully.");
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    //return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    ViewBag.MensajeExito = "Tu contraseña ha sido cambiada";
+                    return View();
                 }
                 AddErrors(result);
                 return View(model);

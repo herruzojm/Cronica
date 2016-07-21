@@ -4,12 +4,10 @@
     if (Model.Cuenta == TipoCuenta.Jugador)
     {
         @inject IServicioJugadores _servicioJugadores
-        <div class="list-group panel">
-            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">
+        <div class="list-group panel">            
                 Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
                 <p></p>
-                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = await _servicioJugadores.GetFotoPersonaje(Model.Id) })
-            </a>            
+                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = await _servicioJugadores.GetFotoPersonaje(Model.Id) })            
         </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personaje</span>
@@ -34,7 +32,7 @@
     else if (Model.Cuenta == TipoCuenta.Narrador)
     {
         <div class="list-group panel">
-            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@Model.UserName</strong></a>
+            Usuario: <strong>@Model.UserName</strong>
         </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personajes</span>
@@ -60,7 +58,7 @@
     else if (Model.Cuenta == TipoCuenta.Administrador)
     {
         <div class="list-group panel">
-            <a class="list-group-item" asp-controller="Manage" asp-action="Index" title="Manage">Usuario: <strong>@Model.UserName</strong></a>
+            Usuario: <strong>@Model.UserName</strong>
         </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">En Juego</span>
