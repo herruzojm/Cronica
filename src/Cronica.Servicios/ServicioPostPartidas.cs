@@ -49,16 +49,14 @@ namespace Cronica.Servicios
         public async Task<List<VistaFormularioPostPartida>> GetFormulariosSinTramitar()
         {
             return await _contexto.FormulariosPostPartida.Where(f => f.Tramitado == false).
-                Include(f => f.Personaje).Include(f => f.Jugador).Include(f => f.NarradorEncargado).
+                Include(f => f.Personaje).Include(f => f.Jugador).
                 Select(f => new VistaFormularioPostPartida
                 {
                     Clan = f.Personaje.Clan,
-                    EmailJugador = f.Jugador.Email,
                     Enviado = f.Enviado,
                     FechaEnvio = f.FechaEnvio,
                     FormularioPostPartidaId = f.FormularioPostPartidaId,
                     JugadorId = f.JugadorId,
-                    NarradorEncargado = f.NarradorEncargado.Email,
                     NombrePersonaje = f.Personaje.Nombre,
                     PersonajeId = f.PersonajeId,
                     PostPartidaId = f.PostPartidaId,
