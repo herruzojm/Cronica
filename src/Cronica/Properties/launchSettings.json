@@ -12,7 +12,9 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "SENDGRID_USER": "ohyeah",
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SENDGRID_PASS": "molamola"
       }
     },
     "web": {

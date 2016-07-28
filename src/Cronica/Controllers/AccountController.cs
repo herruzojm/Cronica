@@ -23,7 +23,8 @@ namespace Cronica.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-        private IServicioUsuarios _servicioUsuarios;        
+        private IServicioUsuarios _servicioUsuarios;
+        private IServicioEmail _servicioEmail;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -31,7 +32,8 @@ namespace Cronica.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IServicioUsuarios servicioUsuarios)
+            IServicioUsuarios servicioUsuarios,
+            IServicioEmail servicioEmail)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -39,6 +41,7 @@ namespace Cronica.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
             _servicioUsuarios = servicioUsuarios;
+            _servicioEmail = servicioEmail;
         }
 
         // GET: /Account/Index
@@ -147,13 +150,7 @@ namespace Cronica.Controllers
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
-                        // Send an email with this link
-                        //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                        //var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                        //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                        //    "Please confirm your account by clicking this link: <a href=\"" + callbackUrl + "\">link</a>");
-                        //await _signInManager.SignInAsync(user, isPersistent: false);
+                        _servicioEmail.EnviarAltaCuenta(model.Email, model.Password);
                         _logger.LogInformation(3, $"Cuenta creada para el usuario {model.Email}");
                         ViewBag.MensajeExito = $"Cuenta creada para el usuario {model.Email}";
                         ModelState.Clear();

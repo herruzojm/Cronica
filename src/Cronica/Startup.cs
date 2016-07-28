@@ -32,7 +32,8 @@ namespace Cronica
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
             {
@@ -98,6 +99,7 @@ namespace Cronica
             services.AddScoped<IServicioPasaTramas, ServicioPasaTramas>();
             services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
             services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
+            services.AddScoped<IServicioEmail, ServicioEmail>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }

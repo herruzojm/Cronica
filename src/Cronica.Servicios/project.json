@@ -1,4 +1,4 @@
-﻿{
+{
   "version": "1.0.0-*",
   "description": "Cronica.Servicios Class Library",
   "authors": [ "Jesus Maria Herruzo Luque" ],
@@ -13,6 +13,7 @@
     }
   },
   "dependencies": {
-    "Cronica.Modelos": "1.0.0-*"
+    "Cronica.Modelos": "1.0.0-*",
+    "MailKit": "1.4.1"
   }
 }
