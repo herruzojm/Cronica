@@ -8,6 +8,8 @@ using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.Models;
 using Cronica.Servicios;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace Cronica.Controllers
 {
@@ -15,10 +17,16 @@ namespace Cronica.Controllers
     public class FormularioPostPartidasController : RutasController
     {
         private IServicioPostPartidas _servicioPostPartidas;
+        private UserManager<ApplicationUser> _userManager;
+        private IServicioUsuarios _servicioUsuarios;
 
-        public FormularioPostPartidasController(IServicioPostPartidas servicioPostPartidas)
+        public FormularioPostPartidasController(IServicioPostPartidas servicioPostPartidas,
+            IServicioUsuarios servicioUsuarios,
+            UserManager<ApplicationUser> userManager)
         {
-            _servicioPostPartidas = servicioPostPartidas;    
+            _servicioPostPartidas = servicioPostPartidas;
+            _userManager = userManager;
+            _servicioUsuarios = servicioUsuarios;
         }
 
 
@@ -35,6 +43,9 @@ namespace Cronica.Controllers
             {
                 return NotFound();
             }
+            CargarListaNarradores();
+            CargarListaJugadores();
+
             return View(formularioPostPartida);
         }
 
@@ -43,13 +54,21 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(FormularioPostPartida formularioPostPartida)
         {
+            CargarListaNarradores();
+            CargarListaJugadores();
             if (ModelState.IsValid)
-            {
+            {    
+                if (formularioPostPartida.Tramitado && formularioPostPartida.NarradorEncargadoId == null)
+                {
+                    formularioPostPartida.NarradorEncargadoId = await _servicioUsuarios.GetUserId(User);
+                }
                 _servicioPostPartidas.Actualizar(formularioPostPartida);
                 await _servicioPostPartidas.ConfirmarCambios();
+                formularioPostPartida = await _servicioPostPartidas.GetFormularioPostPartidaById(formularioPostPartida.FormularioPostPartidaId);
                 ViewBag.MensajeExito = $"Formulario actualizado";
-                return View(formularioPostPartida);
+                return View("Edit", formularioPostPartida);
             }
+            formularioPostPartida = await _servicioPostPartidas.GetFormularioPostPartidaById(formularioPostPartida.FormularioPostPartidaId);
             ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
             return View(formularioPostPartida);
         }
@@ -66,5 +85,27 @@ namespace Cronica.Controllers
             return View(await _servicioPostPartidas.GetFormulariosPostPartida());
         }
 
+        private void CargarListaJugadores()
+        {
+            List<SelectListItem> jugadores = new List<SelectListItem>();
+            jugadores.AddRange(_servicioUsuarios.GetUsuarios().Result.Select(u => new SelectListItem
+            {
+                Value = u.Id,
+                Text = u.UserName
+            }).ToList());
+            ViewBag.Jugadores = jugadores;
+        }
+
+        private void CargarListaNarradores()
+        {
+            List<SelectListItem> narradores = new List<SelectListItem>();
+            narradores.Add(new SelectListItem() { Value = "", Text = "" });
+            narradores.AddRange( _servicioUsuarios.GetNarradores().Result.Select(u => new SelectListItem
+            {
+                Value = u.Id,
+                Text = u.UserName
+            }).ToList());
+            ViewBag.Narradores = narradores;
+        }
     }
 }

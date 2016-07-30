@@ -148,7 +148,6 @@ namespace Cronica.Controllers
             return RedirectToAction("Index");
         }
 
-
         private async Task CargarListaJugadores()
         {
             var jugadores = await _servicioUsuarios.GetUsuarios();

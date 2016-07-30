@@ -72,7 +72,7 @@ namespace Cronica
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddDistributedMemoryCache();
+            services.AddMemoryCache();
             //services.AddSession(o =>
             //{
             //    o.IdleTimeout = TimeSpan.FromSeconds(10);

@@ -1,4 +1,4 @@
-@model IEnumerable<VistaFormularioPostPartida>
+@model IEnumerable<FormularioPostPartida>
 
 @{
     ViewData["Title"] = "Interludios";
@@ -20,13 +20,16 @@
                 @Html.DisplayNameFor(model => model.PostPartidaId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EmailJugador)
+                @Html.DisplayNameFor(model => model.NarradorEncargado)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NombrePersonaje)
+                Email Jugador
+            </th>
+            <th>
+                Nombre Personaje
             </th>            
             <th>
-                @Html.DisplayNameFor(model => model.Clan)
+                @Html.DisplayNameFor(model => model.Personaje.Clan)
             </th>            
             <th></th>
         </tr>
@@ -49,13 +52,16 @@
                     @Html.DisplayFor(modelItem => item.PostPartidaId)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EmailJugador)
+                    @Html.DisplayFor(modelItem => item.NarradorEncargado.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NombrePersonaje)
+                    @Html.DisplayFor(modelItem => item.Jugador.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Personaje.Nombre)
                 </td>                
                 <td>
-                    @Html.DisplayFor(modelItem => item.Clan)
+                    @Html.DisplayFor(modelItem => item.Personaje.Clan)
                 </td>                
                 <td>
                     <a asp-controller="Personajes" asp-action="Edit" asp-route-id="@item.PersonajeId">Ver Personaje</a>

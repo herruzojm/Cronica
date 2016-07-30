@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Cronica.Servicios
 {
@@ -15,6 +16,12 @@ namespace Cronica.Servicios
         public ServicioUsuarios(UserManager<ApplicationUser> userManager)
         {
             _userManager = userManager;
+        }
+
+        public async Task<string> GetUserId(ClaimsPrincipal usuario)
+        {
+            var user = await _userManager.GetUserAsync(usuario);
+            return user.Id;
         }
 
         public async Task<ApplicationUser> GetUsuarioById(string userId)
@@ -32,6 +39,10 @@ namespace Cronica.Servicios
             return await _userManager.Users.ToListAsync();
         }
 
-        
+        public async Task<List<ApplicationUser>> GetNarradores()
+        {
+            return await _userManager.Users.Where(u => u.Cuenta == TipoCuenta.Narrador).ToListAsync();
+        }
+
     }
 }

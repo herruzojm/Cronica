@@ -43,20 +43,4 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public virtual ApplicationUser NarradorEncargado { get; set; }
     }
 
-
-    public class VistaFormularioPostPartida
-    {
-        public int FormularioPostPartidaId { get; set; }
-        public int PostPartidaId { get; set; }
-        public string JugadorId { get; set; }
-        public int PersonajeId { get; set; }
-        public bool Enviado { get; set; }
-        public bool Tramitado { get; set; }
-        public string EmailJugador { get; set; }
-        public string NombrePersonaje { get; set; }
-        public TipoClan Clan { get; set; }
-        public DateTime FechaEnvio { get; set; }
-        public string NarradorEncargado { get; set; }
-    }
-
 }

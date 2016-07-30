@@ -12,6 +12,7 @@ namespace Cronica.Modelos.Models
         {
         }
 
+        public DbSet<ApplicationUser> Usuarios { get; set; }
         public DbSet<Personaje> Personajes { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
