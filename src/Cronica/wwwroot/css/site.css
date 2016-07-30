@@ -1,6 +1,38 @@
-﻿body {
+﻿@font-face { 
+    font-family: Lenarin; 
+    src: url('../fonts/lenarin_0.TTF'); 
+} 
+
+@font-face { 
+    font-family: Percolator; 
+    src: url('../fonts/Percolator Regular.TTF'); 
+} 
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: Percolator !important;
+    font-size: 1.8em;
+}
+
+.form-control{
+    font-size: 1.1em;
+}
+
+dt{
+    font-size: 1.2em;
+}
+
+dd{
+    font-size: 1.3em;
+}
+
+input[type=number]{
+    font-size: 1.4em;
+}
+
+h1, h2, h3, h4 {
+    font-family: Lenarin !important;
 }
 
 h4{
