@@ -54,7 +54,7 @@ namespace Cronica.Controllers
         [HttpGet]
         [AllowAnonymous]
         public IActionResult AccessDenied()
-        {                        
+        {
             return View();
         }
 
@@ -63,7 +63,7 @@ namespace Cronica.Controllers
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Login(string returnUrl = null)
-        {            
+        {
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -88,7 +88,7 @@ namespace Cronica.Controllers
                     if (usuario.Cuenta == TipoCuenta.Jugador)
                     {
                         return VistaMiPersonaje();
-                    }                    
+                    }
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -111,12 +111,42 @@ namespace Cronica.Controllers
             return View(model);
         }
 
+        // GET: /Account/Edit/narrador@yopmail.com
+        [HttpGet]
+        [Authorize(Policy = "Narrador")]
+        public async Task<IActionResult> Edit(string id)
+        {
+            RegisterViewModel modelo = new RegisterViewModel();
+            var usuario = await _servicioUsuarios.GetUsuarioById(id); ;
+
+            modelo.Email = usuario.Email;
+            modelo.Cuenta = usuario.Cuenta;
+
+            return View(modelo);
+        }
+
         //
+        // POST: /Account/Edit/narrador@yopmail.com
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Narrador")]
+        public async Task<IActionResult> Edit(RegisterViewModel model)
+        {
+
+            var usuario = await _servicioUsuarios.GetUsuarioByEmail(model.Email);
+            usuario.Cuenta = model.Cuenta;
+            await _userManager.UpdateAsync(usuario);
+            ViewBag.MensajeExito = @"Datos actualizados";
+            return View(model);
+        }
+
+
         // GET: /Account/Register
         [HttpGet]
         [Authorize(Policy = "Narrador")]
         public IActionResult Register()
-        {            
+        {
             return View();
         }
 
@@ -139,9 +169,9 @@ namespace Cronica.Controllers
                     {
                         crearCuenta = false;
                         ModelState.AddModelError(string.Empty, "Se necesita una cuenta de Administrador para crear cuentas de Narrador o Administrador");
-                    }                    
+                    }
                 }
-                                
+
                 if (crearCuenta)
                 {
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Cuenta = model.Cuenta };
@@ -158,7 +188,7 @@ namespace Cronica.Controllers
                     }
                     AddErrors(result);
                 }
-                
+
             }
 
             // If we got this far, something failed, redisplay form
@@ -220,7 +250,7 @@ namespace Cronica.Controllers
             {
                 // If the user does not have an account, then ask the user to create an account.
                 ViewData["ReturnUrl"] = returnUrl;
-                ViewData["LoginProvider"] = info.LoginProvider;                
+                ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
                 return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
             }
@@ -233,7 +263,7 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
-            if ( _signInManager.IsSignedIn(User))
+            if (_signInManager.IsSignedIn(User))
             {
                 return RedirectToAction(nameof(ManageController.Index), "Manage");
             }

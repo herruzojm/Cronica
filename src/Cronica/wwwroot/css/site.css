@@ -31,6 +31,10 @@ input[type=number]{
     font-size: 1.4em;
 }
 
+input[type=submit], button, a.btn{
+    font-size: 1.2em !important;
+}
+
 h1, h2, h3, h4 {
     font-family: Lenarin !important;
 }
