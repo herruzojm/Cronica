@@ -1,22 +1,23 @@
 @model PostPartida
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Crear Entre Partidas";
 }
+
+<h2>@ViewData["Title"]</h2>
 
 <form asp-action="Create">
     <div class="form-horizontal">
-        <h4>Nuevo Post Partida</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
+        @*<div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <div class="checkbox">
                     <input asp-for="Cerrada" />
                     <label asp-for="Cerrada"></label>
                 </div>
             </div>
-        </div>
+        </div>*@
         <div class="form-group">
             <label asp-for="FechaInicio" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -33,7 +34,6 @@
         </div>        
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a class="btn btn-warning" asp-route="PostPartidas">Volver</a>
                 <input type="submit" value="Crear" class="btn btn-default btn-success" />
             </div>
         </div>

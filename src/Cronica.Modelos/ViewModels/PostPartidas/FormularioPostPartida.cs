@@ -18,6 +18,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public string NarradorEncargadoId { get; set; }
         public bool Tramitado { get; set; }
         public bool Enviado { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaEnvio { get; set; }
         [StringLength(9000)]
         public string Resumen { get; set; }

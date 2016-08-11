@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Cronica.Servicios.Interfaces
 {
-    public interface IServicioPostPartidas : IServicioBase
+    public interface IServicioEntrePartidas : IServicioBase
     {        
         Task<List<PostPartida>> GetPostPartidas();
         Task<List<int>> GetPostPartidasIds();

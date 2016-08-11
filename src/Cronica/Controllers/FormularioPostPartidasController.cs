@@ -16,11 +16,11 @@ namespace Cronica.Controllers
     [Authorize(Policy = "Narrador")]
     public class FormularioPostPartidasController : RutasController
     {
-        private IServicioPostPartidas _servicioPostPartidas;
+        private IServicioEntrePartidas _servicioPostPartidas;
         private UserManager<ApplicationUser> _userManager;
         private IServicioUsuarios _servicioUsuarios;
 
-        public FormularioPostPartidasController(IServicioPostPartidas servicioPostPartidas,
+        public FormularioPostPartidasController(IServicioEntrePartidas servicioPostPartidas,
             IServicioUsuarios servicioUsuarios,
             UserManager<ApplicationUser> userManager)
         {

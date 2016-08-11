@@ -23,11 +23,11 @@ namespace Cronica.Controllers
         private IServicioTramas _servicioTramas;
         private readonly UserManager<ApplicationUser> _userManager;
         private IServicioAsignaciones _servicioAsignaciones;
-        private IServicioPostPartidas _servicioPostPartidas;
+        private IServicioEntrePartidas _servicioPostPartidas;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
                                     IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
-                                    IServicioPostPartidas servicioPostPartidas, UserManager<ApplicationUser> userManager)
+                                    IServicioEntrePartidas servicioPostPartidas, UserManager<ApplicationUser> userManager)
         {
             _servicioJugadores = servicioJugadores;
             _servicioUsuarios = servicioUsuarios;

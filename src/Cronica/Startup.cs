@@ -95,7 +95,7 @@ namespace Cronica
             services.AddScoped<IServicioAtributos, ServicioAtributos>();
             services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
             services.AddScoped<IServicioTramas, ServicioTramas>();
-            services.AddScoped<IServicioPostPartidas, ServicioPostPartidas>();
+            services.AddScoped<IServicioEntrePartidas, ServicioEntrePartidas>();
             services.AddScoped<IServicioPasaTramas, ServicioPasaTramas>();
             services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
             services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
@@ -175,17 +175,17 @@ namespace Cronica
                     defaults: new { controller = "Personajes", action = "Index" });
 
                 routes.MapRoute(
-                    name: "PostPartidas",
-                    template: "PostPartidas",
-                    defaults: new { controller = "PostPartidas", action = "Index" });
+                    name: "EntrePartidas",
+                    template: "EntrePartidas",
+                    defaults: new { controller = "EntrePartidas", action = "Index" });
                 routes.MapRoute(
-                    name: "AbrirPostPartida",
-                    template: "PostPartidas/Edit/{id}",
-                    defaults: new { controller = "PostPartidas", action = "Edit" });
+                    name: "AbrirEntrePartida",
+                    template: "EntrePartidas/Edit/{id}",
+                    defaults: new { controller = "EntrePartidas", action = "Edit" });
                 routes.MapRoute(
-                    name: "CrearPostPartida",
-                    template: "PostPartidas/Create",
-                    defaults: new { controller = "PostPartidas", action = "Create" });
+                    name: "CrearEntrePartida",
+                    template: "EntrePartidas/Create",
+                    defaults: new { controller = "EntrePartidas", action = "Create" });
 
                 routes.MapRoute(
                     name: "CrearPasaTrama",

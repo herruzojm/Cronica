@@ -2,6 +2,7 @@
 using Cronica.Modelos.ViewModels.Tramas;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,9 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         }
 
         public int PostPartidaId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaInicio { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaFin { get; set; }
         public bool Cerrada { get; set; }
         public bool Activa {get;set;}

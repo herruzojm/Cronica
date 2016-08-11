@@ -10,7 +10,9 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
     public class PasaTrama
     {
         public int PasaTramaId { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaPrevista { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime? FechaResolucion { get; set; }
         public bool Actual { get; set; }
         public bool Resuelto { get; set; }

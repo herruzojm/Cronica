@@ -10,11 +10,11 @@ using System;
 
 namespace Cronica.Servicios
 {
-    public class ServicioPostPartidas : ServicioBase, IServicioPostPartidas
+    public class ServicioEntrePartidas : ServicioBase, IServicioEntrePartidas
     {
 
 
-        public ServicioPostPartidas(CronicaDbContext contexto) : base(contexto)
+        public ServicioEntrePartidas(CronicaDbContext contexto) : base(contexto)
         {
         }
 
