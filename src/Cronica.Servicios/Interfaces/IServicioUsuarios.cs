@@ -14,5 +14,6 @@ namespace Cronica.Servicios.Interfaces
         Task<ApplicationUser> GetUsuarioById(string userId);
         Task<ApplicationUser> GetUsuarioByEmail(string userEmail);
         Task<List<ApplicationUser>> GetNarradores();
+        Task<bool> BorrarUsuario(string email);
     }
 }

@@ -111,13 +111,13 @@ namespace Cronica.Controllers
             return View(model);
         }
 
-        // GET: /Account/Edit/narrador@yopmail.com
+        // GET: /Account/Edit/bla-bla-bla
         [HttpGet]
         [Authorize(Policy = "Narrador")]
         public async Task<IActionResult> Edit(string id)
         {
             RegisterViewModel modelo = new RegisterViewModel();
-            var usuario = await _servicioUsuarios.GetUsuarioById(id); ;
+            var usuario = await _servicioUsuarios.GetUsuarioById(id);
 
             modelo.Email = usuario.Email;
             modelo.Cuenta = usuario.Cuenta;
@@ -126,7 +126,7 @@ namespace Cronica.Controllers
         }
 
         //
-        // POST: /Account/Edit/narrador@yopmail.com
+        // POST: /Account/Edit/bla-bla-bla
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
@@ -141,6 +141,35 @@ namespace Cronica.Controllers
             return View(model);
         }
 
+        // GET: /Account/Delete/bla-bla-bla
+        [HttpGet]
+        [Authorize(Policy = "Narrador")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            RegisterViewModel modelo = new RegisterViewModel();
+            var usuario = await _servicioUsuarios.GetUsuarioById(id); ;
+
+            modelo.Email = usuario.Email;
+            modelo.Cuenta = usuario.Cuenta;
+
+            return View(modelo);
+        }
+
+        //
+        // POST: /Account/Delete/bla-bla-bla
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        [Authorize(Policy = "Narrador")]
+        public async Task<IActionResult> Delete(RegisterViewModel model, string id)
+        {
+            if (await _servicioUsuarios.BorrarUsuario(id))
+            {
+                return RedirectToAction("Index");
+            }
+            ViewBag.MensajeError = "No se puede marcar como borrada la cuenta";
+            return View(model);
+        }
 
         // GET: /Account/Register
         [HttpGet]
