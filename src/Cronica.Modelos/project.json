@@ -1,12 +1,14 @@
 {
   "authors": [ "Jesus Maria Herruzo Luque" ],
   "dependencies": {
-    "AutoMapper":  "5.0.2",
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0-rc2-final",
+    "AutoMapper": "5.0.2",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.0",
     "Microsoft.DotNet.Cli.Utils": "1.0.0-preview2-003121",
     "Microsoft.EntityFrameworkCore": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0-rc2-final",
+    "Microsoft.EntityFrameworkCore.Relational": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
     "Microsoft.EntityFrameworkCore.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
