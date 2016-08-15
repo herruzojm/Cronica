@@ -18,12 +18,18 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         }
 
         public int PostPartidaId { get; set; }
+
+        [Display(Name = "Fecha de Inicio")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaInicio { get; set; }
+
+        [Display(Name = "Fecha de Fin")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaFin { get; set; }
+
         public bool Cerrada { get; set; }
         public bool Activa {get;set;}
+
         public virtual List<PasaTrama> PasaTramas { get; set; }
         public virtual List<Trama> TramasActivas { get; set; }
     }

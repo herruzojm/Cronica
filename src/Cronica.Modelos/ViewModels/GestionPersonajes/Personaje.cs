@@ -31,10 +31,13 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public string Naturaleza { get; set; }
         public string Conducta { get; set; }
         public int Generacion { get; set; }
+        [Display(Name = "Potencia de Sangre")]
         public int PotenciaSangre { get; set; }
         public TipoClan Clan { get; set; }
+        [Display(Name = "Puntos de Sangre")]
         public int PuntosDeSangre { get; set; }
         public TipoSenda Senda { get; set; }
+        [Display(Name = "Valor en Senda")]
         public int ValorSenda { get; set; }
         public int Voluntad { get; set; }
         public int Experiencia { get; set; }        
@@ -58,6 +61,7 @@ namespace Cronica.Modelos.ViewModels.GestionPersonajes
         public int AtributoId { get; set; }
         [Range(0, 10, ErrorMessage="El valor debe ser entre 0 y 10")]
         public int Valor { get; set; } = 0;
+        [Display(Name = "Valor en Trama")]
         public int ValorEnTrama { get; set; } = 0;
         public string Descripcion { get; set; }
         public virtual Atributo Atributo { get; set; }

@@ -32,9 +32,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <a asp-action="Edit" asp-route-id="@item.PasaTramaId">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.PasaTramaId">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.PasaTramaId">Delete</a>
+            <a asp-action="Edit" asp-route-id="@item.PasaTramaId">Editar</a> |
+            <a asp-action="Details" asp-route-id="@item.PasaTramaId">Detalles</a> |
+            <a asp-action="Delete" asp-route-id="@item.PasaTramaId">Borrar</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaPrevista)

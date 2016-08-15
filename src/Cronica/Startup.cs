@@ -96,7 +96,7 @@ namespace Cronica
             services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
             services.AddScoped<IServicioTramas, ServicioTramas>();
             services.AddScoped<IServicioEntrePartidas, ServicioEntrePartidas>();
-            services.AddScoped<IServicioPasaTramas, ServicioPasaTramas>();
+            services.AddScoped<IServicioInterludios, ServicioInterludios>();
             services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
             services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
             services.AddScoped<IServicioEmail, ServicioEmail>();
@@ -185,12 +185,7 @@ namespace Cronica
                 routes.MapRoute(
                     name: "CrearEntrePartida",
                     template: "EntrePartidas/Create",
-                    defaults: new { controller = "EntrePartidas", action = "Create" });
-
-                routes.MapRoute(
-                    name: "CrearPasaTrama",
-                    template: "PasaTramas/Create/{id}",
-                    defaults: new { controller = "PasaTramas", action = "Create" });                
+                    defaults: new { controller = "EntrePartidas", action = "Create" });                            
 
                 routes.MapRoute(
                     name: "MiPersonaje",

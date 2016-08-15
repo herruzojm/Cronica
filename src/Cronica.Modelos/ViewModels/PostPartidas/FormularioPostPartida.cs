@@ -18,18 +18,26 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public string NarradorEncargadoId { get; set; }
         public bool Tramitado { get; set; }
         public bool Enviado { get; set; }
+        [Display(Name = "Fecha de Envio")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaEnvio { get; set; }
         [StringLength(9000)]
         public string Resumen { get; set; }
         public string Acuerdos { get; set; }
+        [Display(Name = "Información Clave")]
         public string InformacionClave { get; set; }
+        [Display(Name = "Petición de Tramas")]
         public string PeticionTramas { get; set; }
+        [Display(Name = "Valoración de la Partida")]
         [Range(0, 10, ErrorMessage = "El valor debe ser entre 0 y 10")]
         public int ValoracionPartida { get; set; }
+        [Display(Name = "Cosas que hemos hecho bien")]
         public string CosasBien { get; set; }
+        [Display(Name = "Cosas que hemos hecho mal")]
         public string CosasMal { get; set; }
+        [Display(Name = "Comentarios del Narrador")]
         public string ComentariosNarrador { get; set; }
+        [Display(Name = "Puede Modificarse")]
         [NotMapped]
         public bool PuedeModificarse
         {

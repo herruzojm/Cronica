@@ -3,6 +3,7 @@ using Cronica.Modelos.ViewModels.PostPartidas;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,11 +20,16 @@ namespace Cronica.Modelos.ViewModels.Tramas
 
         public int TramaId { get; set; }
         public string Nombre { get; set; }
+        [Display(Name = "Tipo de Trama")]
         public TipoTrama TipoTrama { get; set; }
         public string Descripcion { get; set; }
+        [Display(Name = "Puntos Necesarios")]
         public int PuntosNecesarios { get; set; }
+        [Display(Name = "Puntos de Presión Por Tiempo")]
         public int PuntosDePresionPorTiemppo { get; set; }
+        [Display(Name = "Puntos Actuales")]
         public int PuntosActuales { get; set; }
+        [Display(Name = "Texto de Resolución")]
         public string TextoResolucion { get; set; }
         public bool Cerrada { get; set; }
         public int? PlantillaId { get; set; }
@@ -56,6 +62,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public int TramaId { get; set; }
         public int PasaTramaId { get; set; }
         public int PersonajeId { get; set; }
+        [Display(Name = "Puntos Obtenidos")]
         public int PuntosObtenidos { get; set; }
         public string Descripcion { get; set; }
         public virtual PasaTrama PasaTrama { get; set; }
@@ -106,6 +113,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         }
 
         public int PersonajeId { get; set; }
+        [Display(Name = "Nombre Personaje")]
         public string NombrePersonaje { get; set; }
         public IEnumerable<VistaListaTrama> Tramas { get; set; }
 
@@ -116,6 +124,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public int TramaId { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        [Display(Name = "Texto Resolución")]
         public string TextoResolucion { get; set; }
     }
 

@@ -44,10 +44,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th></th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().PuedeResolverse)
-                            </th>
+                            <th></th>                            
                             <th>
                                 @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Actual)
                             </th>
@@ -59,7 +56,10 @@
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().FechaResolucion)
-                            </th>                           
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().PuedeResolverse)
+                            </th>
                         </tr>
                     </thead>
 
@@ -68,15 +68,9 @@
                         {
                             <tr>
                                 <td>
-                                    <a asp-controller="PasaTramas" asp-action="Edit" asp-route-id="@item.PasaTramaId">Edit</a> |
-                                    <a asp-controller="PasaTramas" asp-action="Delete" asp-route-id="@item.PasaTramaId">Delete</a>                                   
-                                </td>
-                                <td>
-                                    @if (item.PuedeResolverse)
-                                    {
-                                        <a asp-controller="PasaTramas" asp-action="ResolverPasaTrama" asp-route-id="@item.PasaTramaId">Resolver</a>
-                                    }                                    
-                                </td>
+                                    <a asp-controller="Interludios" asp-action="Edit" asp-route-id="@item.PasaTramaId">Editar</a> |
+                                    <a asp-controller="Interludios" asp-action="Delete" asp-route-id="@item.PasaTramaId">Borrar</a>
+                                </td>                                
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Actual)
                                 </td>
@@ -88,12 +82,19 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.FechaResolucion)
-                                </td>                                
+                                </td>
+                                <td>
+                                    @if (item.PuedeResolverse)
+                                    {
+                                        <a asp-controller="Interludios" asp-action="ResolverInterludio" asp-route-id="@item.PasaTramaId">Resolver</a>
+                                    }
+                                </td>
+
                             </tr>
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-default btn-info" asp-route="CrearPasaTrama" asp-route-id="@Model.PostPartidaId">Nuevo Interludio</a> 
+                <a class="btn btn-default btn-info" asp-controller="Interludios" asp-action="Create" asp-route-id="@Model.PostPartidaId">Nuevo Interludio</a> 
             </div>
         </div>
         <div class="form-group">

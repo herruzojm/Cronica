@@ -28,6 +28,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public int PersonajeId { get; set; }
         public int TramaId { get; set; }
         [Range(0, 100)]
+        [Display(Name = "Participación")]
         public int PuntosParticipacion { get; set; }
         public virtual Personaje Personaje { get; set; }
         public virtual Trama Trama { get; set; }

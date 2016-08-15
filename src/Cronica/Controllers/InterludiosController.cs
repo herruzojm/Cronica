@@ -12,30 +12,28 @@ using Microsoft.AspNetCore.Authorization;
 namespace Cronica.Controllers
 {
     [Authorize(Policy = "Administrador")]
-    public class PasaTramasController : RutasController
+    public class InterludiosController : RutasController
     {
-        private IServicioPasaTramas _servicioPasaTramas;
+        private IServicioInterludios _servicioPasaTramas;
 
-        public PasaTramasController(IServicioPasaTramas servicioPasaTrama)
+        public InterludiosController(IServicioInterludios servicioPasaTrama)
         {
             _servicioPasaTramas = servicioPasaTrama;
         }
 
-        // GET: PasaTramas
         public async Task<IActionResult> Index()
         {
-            return View(await _servicioPasaTramas.GetPasaTramas());
+            return View(await _servicioPasaTramas.GetInterludios());
         }
 
-        // GET: PasaTramas/Details/5
-        public async Task<IActionResult> ResolverPasaTrama(int? id)
+        public async Task<IActionResult> ResolverInterludio(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
             if (pasaTrama == null)
             {
                 return NotFound();
@@ -46,26 +44,25 @@ namespace Cronica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ResolverPasaTrama(PasaTrama pasaTrama)
+        public async Task<IActionResult> ResolverInterludio(PasaTrama pasaTrama)
         {     
             if (ModelState.IsValid)
             {
-                //todo: resolver pasa trama
+                pasaTrama = await _servicioPasaTramas.GetInterludio(pasaTrama.PasaTramaId);
+
                 return AbrirPostPartida(pasaTrama.PostPartidaId);
             }
             return View(pasaTrama);
         }
 
-        // GET: PasaTramas/Create
         public async Task<IActionResult> Create(int id)
         {
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetNuevoPasaTrama();
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetNuevoInterludio();
             pasaTrama.PostPartidaId = id;
             pasaTrama.FechaPrevista = DateTime.Now.Date;
             return View(pasaTrama);
         }
 
-        // POST: PasaTramas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PasaTrama pasaTrama)
@@ -79,7 +76,6 @@ namespace Cronica.Controllers
             return View(pasaTrama);
         }
 
-        // GET: PasaTramas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -87,7 +83,7 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
             if (pasaTrama == null)
             {
                 return NotFound();
@@ -95,7 +91,6 @@ namespace Cronica.Controllers
             return View(pasaTrama);
         }
 
-        // POST: PasaTramas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(PasaTrama pasaTrama)
@@ -109,7 +104,6 @@ namespace Cronica.Controllers
             return View(pasaTrama);
         }
 
-        // GET: PasaTramas/Delete/5
         [ActionName("Delete")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -118,7 +112,7 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id.Value);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
             if (pasaTrama == null)
             {
                 return NotFound();
@@ -127,12 +121,11 @@ namespace Cronica.Controllers
             return View(pasaTrama);
         }
 
-        // POST: PasaTramas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetPasaTrama(id);
+            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id);
             _servicioPasaTramas.Eliminar(pasaTrama);
             await _servicioPasaTramas.ConfirmarCambios();
             return RedirectToAction("Index");
