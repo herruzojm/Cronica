@@ -8,12 +8,12 @@ namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioEntrePartidas : IServicioBase
     {        
-        Task<List<PostPartida>> GetPostPartidas();
-        Task<List<int>> GetPostPartidasIds();
-        Task<PostPartida> GetPostPartida(int postPartidaId);
-        Task<int> GetPostPartidaActualId();
-        void IncluirPostPartida(PostPartida postPartida);
-        Task<FormularioPostPartida> GetFormularioPostPartidaById(int formularioPostPartidaId);
+        Task<List<EntrePartida>> GetEntrePartidas();
+        Task<List<int>> GetEntrePartidasIds();
+        Task<EntrePartida> GetEntrePartida(int entrePartidaId);
+        Task<int> GetEntrePartidaActualId();
+        void IncluirEntrePartida(EntrePartida entrePartida);
+        Task<FormularioPostPartida> GetFormularioPostPartidaById(int formularioEntrePartidaId);
         Task<List<FormularioPostPartida>> GetFormulariosSinTramitar();
         Task<List<FormularioPostPartida>> GetFormulariosPostPartida();
     }

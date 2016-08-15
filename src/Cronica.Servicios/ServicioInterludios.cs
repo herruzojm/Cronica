@@ -16,28 +16,28 @@ namespace Cronica.Servicios
         {            
         }
 
-        public async Task<PasaTrama> GetNuevoInterludio()
+        public async Task<Interludio> GetNuevoInterludio()
         {
-            PasaTrama interludio = new PasaTrama();
+            Interludio interludio = new Interludio();
             return interludio;
         }
 
-        public async Task<PasaTrama> GetInterludio(int interludioId)
+        public async Task<Interludio> GetInterludio(int interludioId)
         {
-            return await _contexto.PasaTramas.Where(p => p.PasaTramaId == interludioId).FirstOrDefaultAsync();
+            return await _contexto.Interludios.Where(p => p.InterludioId == interludioId).FirstOrDefaultAsync();
         }
 
-        public async Task<List<PasaTrama>> GetInterludios()
+        public async Task<List<Interludio>> GetInterludios()
         {
-            return await _contexto.PasaTramas.ToListAsync();
+            return await _contexto.Interludios.ToListAsync();
         }
 
-        public void IncluirPasaTrama(PasaTrama interludio)
+        public void IncluirInterludio(Interludio interludio)
         {
-            _contexto.PasaTramas.Add(interludio);
+            _contexto.Interludios.Add(interludio);
         }
 
-        public Task<bool> ResolverInterludio(PasaTrama interludio)
+        public Task<bool> ResolverInterludio(Interludio interludio)
         {
             //todo
             throw new NotImplementedException();

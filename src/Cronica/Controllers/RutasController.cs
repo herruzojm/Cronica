@@ -22,9 +22,9 @@ namespace Cronica.Controllers
             return RedirectToRoute("AbrirPersonaje", new { id = personajeId });
         }
 
-        protected IActionResult AbrirPostPartida(int postPartidaId)
+        protected IActionResult AbrirEntrePartida(int entrePartidaId)
         {
-            return RedirectToRoute("AbrirPostPartida", new { id = postPartidaId });
+            return RedirectToRoute("AbrirEntrePartida", new { id = entrePartidaId });
         }
 
     }

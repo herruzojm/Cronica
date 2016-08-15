@@ -18,35 +18,35 @@ namespace Cronica.Servicios
         {
         }
 
-        public async Task<PostPartida> GetPostPartida(int postPartidaId)
+        public async Task<EntrePartida> GetEntrePartida(int entrePartidaId)
         {
-            return await _contexto.PostPartidas.Include(p => p.PasaTramas).SingleAsync(p => p.PostPartidaId == postPartidaId);
+            return await _contexto.EntrePartidas.Include(p => p.Interludios).SingleAsync(p => p.EntrePartidaId == entrePartidaId);
         }
 
-        public async Task<List<PostPartida>> GetPostPartidas()
+        public async Task<List<EntrePartida>> GetEntrePartidas()
         {
-            return await _contexto.PostPartidas.ToListAsync();
+            return await _contexto.EntrePartidas.ToListAsync();
         }
 
-        public async Task<List<int>> GetPostPartidasIds()
+        public async Task<List<int>> GetEntrePartidasIds()
         {
-            return await _contexto.PostPartidas.Select(p => p.PostPartidaId).OrderBy(p => p).ToListAsync();
+            return await _contexto.EntrePartidas.Select(p => p.EntrePartidaId).OrderBy(p => p).ToListAsync();
         }
 
-        public async Task<int> GetPostPartidaActualId()
+        public async Task<int> GetEntrePartidaActualId()
         {
-            return await _contexto.PostPartidas.Where(p => p.Activa == true).Select(p => p.PostPartidaId).FirstAsync();
+            return await _contexto.EntrePartidas.Where(p => p.Activa == true).Select(p => p.EntrePartidaId).FirstAsync();
         }
 
-        public void IncluirPostPartida(PostPartida postPartida)
+        public void IncluirEntrePartida(EntrePartida entrePartida)
         {
-            _contexto.PostPartidas.Add(postPartida);
+            _contexto.EntrePartidas.Add(entrePartida);
         }
 
-        public async Task<FormularioPostPartida> GetFormularioPostPartidaById(int formularioPostPartidaId)
+        public async Task<FormularioPostPartida> GetFormularioPostPartidaById(int formularioEntrePartidaId)
         {
             return await _contexto.FormulariosPostPartida.Include(f => f.Personaje)
-                .SingleAsync(f => f.FormularioPostPartidaId == formularioPostPartidaId);
+                .SingleAsync(f => f.FormularioPostPartidaId == formularioEntrePartidaId);
         }
 
         public async Task<List<FormularioPostPartida>> GetFormulariosSinTramitar()

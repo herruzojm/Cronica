@@ -4,7 +4,7 @@
     ViewData["Title"] = "Formulario Post Partida";
 }
 
-<h2>@ViewData["Title"] : @Model.PostPartidaId.ToString()</h2>
+<h2>@ViewData["Title"] : @Model.EntrePartidaId.ToString()</h2>
 
 <form method="post" asp-controller="Jugadores">
     <div class="form-horizontal">
@@ -12,7 +12,7 @@
         <input type="hidden" asp-for="FormularioPostPartidaId" />
         <input type="hidden" asp-for="PersonajeId" />
         <input type="hidden" asp-for="JugadorId" />
-        <input type="hidden" asp-for="PostPartidaId" />
+        <input type="hidden" asp-for="EntrePartidaId" />
         <input type="hidden" asp-for="ValoracionPartida" />
         @if (!Model.PuedeModificarse)
             {

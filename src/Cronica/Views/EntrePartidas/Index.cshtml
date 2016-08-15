@@ -1,4 +1,4 @@
-@model IEnumerable<PostPartida>
+@model IEnumerable<EntrePartida>
 
 @{
     ViewData["Title"] = "Index";
@@ -30,7 +30,7 @@
         {
             <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.PostPartidaId">Editar</a> 
+                    <a asp-action="Edit" asp-route-id="@item.EntrePartidaId">Editar</a> 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Activa)

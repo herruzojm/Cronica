@@ -1,13 +1,13 @@
-@model IEnumerable<Cronica.Modelos.ViewModels.PostPartidas.PasaTrama>
+@model IEnumerable<Interludio>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Interludios";
 }
 
-<h2>Index</h2>
+<h2>@ViewData["Title"]</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Nuevo Interludio</a>
 </p>
 <table class="table">
     <thead>
@@ -32,9 +32,8 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            <a asp-action="Edit" asp-route-id="@item.PasaTramaId">Editar</a> |
-            <a asp-action="Details" asp-route-id="@item.PasaTramaId">Detalles</a> |
-            <a asp-action="Delete" asp-route-id="@item.PasaTramaId">Borrar</a>
+            <a asp-action="Edit" asp-route-id="@item.InterludioId">Editar</a> |
+            <a asp-action="Delete" asp-route-id="@item.InterludioId">Borrar</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaPrevista)

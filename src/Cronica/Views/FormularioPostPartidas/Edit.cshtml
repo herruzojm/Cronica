@@ -7,13 +7,12 @@
 <h2>@ViewData["Title"]: @Model.Personaje.Nombre</h2>
 
 <form asp-action="Edit">
-    <div class="form-horizontal">
-        <h4>PasaTrama</h4>
+    <div class="form-horizontal">        
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="FormularioPostPartidaId" />
         <input type="hidden" asp-for="PersonajeId" />        
-        <input type="hidden" asp-for="PostPartidaId" />
+        <input type="hidden" asp-for="EntrePartidaId" />
         <input type="hidden" asp-for="ValoracionPartida" />
 
         <div class="form-group">

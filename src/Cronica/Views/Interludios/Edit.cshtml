@@ -1,16 +1,16 @@
-@model PasaTrama
+@model Interludio
 
 @{
     ViewData["Title"] = "Editar Interludio";
 }
 
-<h2>@ViewData["Title"]: <b>@Model.PasaTramaId</b></h2>
+<h2>@ViewData["Title"]: <b>@Model.InterludioId</b></h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="PasaTramaId" />
+        <input type="hidden" asp-for="InterludioId" />
         <div class="form-group">
             <label asp-for="FechaPrevista" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -26,10 +26,10 @@
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="PostPartidaId" class="control-label col-md-2">PostPartidaId</label>
+            <label asp-for="EntrePartidaId" class="control-label col-md-2">EntrePartidaId</label>
             <div class="col-md-10">
-                <input readonly asp-for="PostPartidaId" class="form-control" />
-                <span asp-validation-for="PostPartidaId" class="text-danger" />
+                <input readonly asp-for="EntrePartidaId" class="form-control" />
+                <span asp-validation-for="EntrePartidaId" class="text-danger" />
             </div>
         </div>
         <div class="form-group">
@@ -42,7 +42,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <a class="btn btn-warning" asp-controller="EntrePartidas" asp-action="Edit" asp-route-id="@Model.PostPartidaId">Volver al PostPartida</a>
+                <a class="btn btn-warning" asp-controller="EntrePartidas" asp-action="Edit" asp-route-id="@Model.EntrePartidaId">Volver al PostPartida</a>
                 <input type="submit" value="Guardar" class="btn btn-default btn-success" />
             </div>
         </div>

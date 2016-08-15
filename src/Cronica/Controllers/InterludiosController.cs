@@ -14,16 +14,16 @@ namespace Cronica.Controllers
     [Authorize(Policy = "Administrador")]
     public class InterludiosController : RutasController
     {
-        private IServicioInterludios _servicioPasaTramas;
+        private IServicioInterludios _servicioInterludios;
 
-        public InterludiosController(IServicioInterludios servicioPasaTrama)
+        public InterludiosController(IServicioInterludios servicioInterludios)
         {
-            _servicioPasaTramas = servicioPasaTrama;
+            _servicioInterludios = servicioInterludios;
         }
 
         public async Task<IActionResult> Index()
         {
-            return View(await _servicioPasaTramas.GetInterludios());
+            return View(await _servicioInterludios.GetInterludios());
         }
 
         public async Task<IActionResult> ResolverInterludio(int? id)
@@ -33,47 +33,47 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
-            if (pasaTrama == null)
+            Interludio interludio = await _servicioInterludios.GetInterludio(id.Value);
+            if (interludio == null)
             {
                 return NotFound();
             }
 
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ResolverInterludio(PasaTrama pasaTrama)
+        public async Task<IActionResult> ResolverInterludio(Interludio interludio)
         {     
             if (ModelState.IsValid)
             {
-                pasaTrama = await _servicioPasaTramas.GetInterludio(pasaTrama.PasaTramaId);
+                interludio = await _servicioInterludios.GetInterludio(interludio.InterludioId);
 
-                return AbrirPostPartida(pasaTrama.PostPartidaId);
+                return AbrirEntrePartida(interludio.EntrePartidaId);
             }
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         public async Task<IActionResult> Create(int id)
         {
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetNuevoInterludio();
-            pasaTrama.PostPartidaId = id;
-            pasaTrama.FechaPrevista = DateTime.Now.Date;
-            return View(pasaTrama);
+            Interludio interludio = await _servicioInterludios.GetNuevoInterludio();
+            interludio.EntrePartidaId = id;
+            interludio.FechaPrevista = DateTime.Now.Date;
+            return View(interludio);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PasaTrama pasaTrama)
+        public async Task<IActionResult> Create(Interludio interludio)
         {
             if (ModelState.IsValid)
             {
-                _servicioPasaTramas.IncluirPasaTrama(pasaTrama);
-                await _servicioPasaTramas.ConfirmarCambios();
-                return AbrirPostPartida(pasaTrama.PostPartidaId);
+                _servicioInterludios.IncluirInterludio(interludio);
+                await _servicioInterludios.ConfirmarCambios();
+                return AbrirEntrePartida(interludio.EntrePartidaId);
             }
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -83,25 +83,25 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
-            if (pasaTrama == null)
+            Interludio interludio = await _servicioInterludios.GetInterludio(id.Value);
+            if (interludio == null)
             {
                 return NotFound();
             }
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PasaTrama pasaTrama)
+        public async Task<IActionResult> Edit(Interludio interludio)
         {
             if (ModelState.IsValid)
             {
-                _servicioPasaTramas.Actualizar(pasaTrama);
-                await _servicioPasaTramas.ConfirmarCambios();
+                _servicioInterludios.Actualizar(interludio);
+                await _servicioInterludios.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         [ActionName("Delete")]
@@ -112,22 +112,22 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id.Value);
-            if (pasaTrama == null)
+            Interludio interludio = await _servicioInterludios.GetInterludio(id.Value);
+            if (interludio == null)
             {
                 return NotFound();
             }
 
-            return View(pasaTrama);
+            return View(interludio);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            PasaTrama pasaTrama = await _servicioPasaTramas.GetInterludio(id);
-            _servicioPasaTramas.Eliminar(pasaTrama);
-            await _servicioPasaTramas.ConfirmarCambios();
+            Interludio interludio = await _servicioInterludios.GetInterludio(id);
+            _servicioInterludios.Eliminar(interludio);
+            await _servicioInterludios.ConfirmarCambios();
             return RedirectToAction("Index");
         }
 

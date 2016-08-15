@@ -14,7 +14,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public Trama()
         {
             Atributos = new List<AtributoTrama>();
-            Puntos = new List<PuntosPasaTrama>();
+            Puntos = new List<PuntosInterludio>();
             Participantes = new List<ParticipantesTrama>();
         }        
 
@@ -36,7 +36,7 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public virtual List<ParticipantesTrama> Participantes { get; set; }
         public virtual PlantillaTrama Plantilla { get; set; }
         public virtual List<AtributoTrama> Atributos { get; set; }
-        public virtual List<PuntosPasaTrama> Puntos { get; set; }
+        public virtual List<PuntosInterludio> Puntos { get; set; }
     }
 
 
@@ -57,15 +57,15 @@ namespace Cronica.Modelos.ViewModels.Tramas
         public virtual Atributo Atributo { get; set; }
     }
 
-    public class PuntosPasaTrama
+    public class PuntosInterludio
     {
         public int TramaId { get; set; }
-        public int PasaTramaId { get; set; }
+        public int InterludioId { get; set; }
         public int PersonajeId { get; set; }
         [Display(Name = "Puntos Obtenidos")]
         public int PuntosObtenidos { get; set; }
         public string Descripcion { get; set; }
-        public virtual PasaTrama PasaTrama { get; set; }
+        public virtual Interludio Interludio { get; set; }
     }
 
     public enum TipoEquipo

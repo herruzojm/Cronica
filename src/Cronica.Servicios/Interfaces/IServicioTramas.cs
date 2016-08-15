@@ -9,9 +9,8 @@ namespace Cronica.Servicios.Interfaces
     public interface IServicioTramas : IServicioBase
     {
         Task<List<Trama>> GetTramas();
-        //Task<List<Trama>> GetTramasPersonaje(int personajeId);
         Task<Trama> GetTrama(int tramaId);
-        Task<Trama> GetTramaConPasatrama(int personajeId, int tramaId);
+        Task<Trama> GetTramaConInterludio(int personajeId, int tramaId);
         Task<List<ParticipantesTrama>> GetParticipantesTrama(int tramaId);
         void IncluirTrama(Trama trama);
         Task<Trama> GetNuevaTrama(int? plantillaId);

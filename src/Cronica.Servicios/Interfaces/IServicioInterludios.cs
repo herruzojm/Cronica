@@ -9,10 +9,10 @@ namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioInterludios : IServicioBase
     {
-        Task<PasaTrama> GetNuevoInterludio();
-        Task<List<PasaTrama>> GetInterludios();
-        Task<PasaTrama> GetInterludio(int interludioId);
-        void IncluirPasaTrama(PasaTrama interludio);
-        Task<bool> ResolverInterludio(PasaTrama interludio);
+        Task<Interludio> GetNuevoInterludio();
+        Task<List<Interludio>> GetInterludios();
+        Task<Interludio> GetInterludio(int interludioId);
+        void IncluirInterludio(Interludio interludio);
+        Task<bool> ResolverInterludio(Interludio interludio);
     }
 }

@@ -43,15 +43,15 @@
         </dd>
     </dl>
     @{
-        foreach (PuntosPasaTrama puntos in Model.Puntos)
+        foreach (PuntosInterludio puntos in Model.Puntos)
         {
             <hr />
             <dl class="dl-horizontal">
                 <dt>
-                    @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().PasaTrama.FechaResolucion)
+                    @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().Interludio.FechaResolucion)
                 </dt>
                 <dd>
-                    @Html.DisplayFor(model => puntos.PasaTrama.FechaResolucion)
+                    @Html.DisplayFor(model => puntos.Interludio.FechaResolucion)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.Puntos.FirstOrDefault().PuntosObtenidos)

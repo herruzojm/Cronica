@@ -21,33 +21,29 @@ namespace Cronica.Controllers
             _servicioEntrePartidas = servicioEntrePartidas;    
         }
 
-        // GET: PostPartidas
         public async Task<IActionResult> Index()
         {
-            return View(await _servicioEntrePartidas.GetPostPartidas());
+            return View(await _servicioEntrePartidas.GetEntrePartidas());
         }
 
-        // GET: PostPartidas/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: PostPartidas/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PostPartida postPartida)
+        public async Task<IActionResult> Create(EntrePartida entrePartida)
         {
             if (ModelState.IsValid)
             {
-                _servicioEntrePartidas.IncluirPostPartida(postPartida);
+                _servicioEntrePartidas.IncluirEntrePartida(entrePartida);
                 await _servicioEntrePartidas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
-            return View(postPartida);
+            return View(entrePartida);
         }
 
-        // GET: PostPartidas/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -55,29 +51,28 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            PostPartida postPartida = await _servicioEntrePartidas.GetPostPartida(id.Value);
-            if (postPartida == null)
+            EntrePartida entrePartida = await _servicioEntrePartidas.GetEntrePartida(id.Value);
+            if (entrePartida == null)
             {
                 return NotFound();
             }
-            return View(postPartida);
+            return View(entrePartida);
         }
 
-        // POST: PostPartidas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(PostPartida postPartida)
+        public async Task<IActionResult> Edit(EntrePartida entrePartida)
         {
             if (ModelState.IsValid)
             {
-                PostPartida postPartidaOriginal = await _servicioEntrePartidas.GetPostPartida(postPartida.PostPartidaId);
-                postPartidaOriginal.FechaFin = postPartida.FechaFin;
-                postPartidaOriginal.FechaInicio = postPartida.FechaInicio;
-                _servicioEntrePartidas.Actualizar(postPartidaOriginal);
+                EntrePartida entrePartidaOriginal = await _servicioEntrePartidas.GetEntrePartida(entrePartida.EntrePartidaId);
+                entrePartidaOriginal.FechaFin = entrePartida.FechaFin;
+                entrePartidaOriginal.FechaInicio = entrePartida.FechaInicio;
+                _servicioEntrePartidas.Actualizar(entrePartidaOriginal);
                 await _servicioEntrePartidas.ConfirmarCambios();
                 return RedirectToAction("Index");
             }
-            return View(postPartida);
+            return View(entrePartida);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Cronica.Migrations
+namespace Cronica.Modelos.Migrations
 {
     public partial class Inicial : Migration
     {
@@ -52,10 +52,10 @@ namespace Cronica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PostPartidas",
+                name: "EntrePartidas",
                 columns: table => new
                 {
-                    PostPartidaId = table.Column<int>(nullable: false)
+                    EntrePartidaId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Activa = table.Column<bool>(nullable: false),
                     Cerrada = table.Column<bool>(nullable: false),
@@ -64,7 +64,7 @@ namespace Cronica.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PostPartidas", x => x.PostPartidaId);
+                    table.PrimaryKey("PK_EntrePartidas", x => x.EntrePartidaId);
                 });
 
             migrationBuilder.CreateTable(
@@ -191,25 +191,25 @@ namespace Cronica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PasaTramas",
+                name: "Interludios",
                 columns: table => new
                 {
-                    PasaTramaId = table.Column<int>(nullable: false)
+                    InterludioId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Actual = table.Column<bool>(nullable: false),
+                    EntrePartidaId = table.Column<int>(nullable: false),
                     FechaPrevista = table.Column<DateTime>(nullable: false),
                     FechaResolucion = table.Column<DateTime>(nullable: true),
-                    PostPartidaId = table.Column<int>(nullable: false),
                     Resuelto = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PasaTramas", x => x.PasaTramaId);
+                    table.PrimaryKey("PK_Interludios", x => x.InterludioId);
                     table.ForeignKey(
-                        name: "FK_PasaTramas_PostPartidas_PostPartidaId",
-                        column: x => x.PostPartidaId,
-                        principalTable: "PostPartidas",
-                        principalColumn: "PostPartidaId",
+                        name: "FK_Interludios_EntrePartidas_EntrePartidaId",
+                        column: x => x.EntrePartidaId,
+                        principalTable: "EntrePartidas",
+                        principalColumn: "EntrePartidaId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -246,9 +246,9 @@ namespace Cronica.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Cerrada = table.Column<bool>(nullable: false),
                     Descripcion = table.Column<string>(nullable: true),
+                    EntrePartidaId = table.Column<int>(nullable: true),
                     Nombre = table.Column<string>(nullable: true),
                     PlantillaId = table.Column<int>(nullable: true),
-                    PostPartidaId = table.Column<int>(nullable: true),
                     PuntosActuales = table.Column<int>(nullable: false),
                     PuntosDePresionPorTiemppo = table.Column<int>(nullable: false),
                     PuntosNecesarios = table.Column<int>(nullable: false),
@@ -259,16 +259,16 @@ namespace Cronica.Migrations
                 {
                     table.PrimaryKey("PK_Tramas", x => x.TramaId);
                     table.ForeignKey(
+                        name: "FK_Tramas_EntrePartidas_EntrePartidaId",
+                        column: x => x.EntrePartidaId,
+                        principalTable: "EntrePartidas",
+                        principalColumn: "EntrePartidaId",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Tramas_PlantillasTrama_PlantillaId",
                         column: x => x.PlantillaId,
                         principalTable: "PlantillasTrama",
                         principalColumn: "PlantillaTramaId",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Tramas_PostPartidas_PostPartidaId",
-                        column: x => x.PostPartidaId,
-                        principalTable: "PostPartidas",
-                        principalColumn: "PostPartidaId",
                         onDelete: ReferentialAction.Restrict);
                 });
 
@@ -379,6 +379,7 @@ namespace Cronica.Migrations
                     ComentariosNarrador = table.Column<string>(nullable: true),
                     CosasBien = table.Column<string>(nullable: true),
                     CosasMal = table.Column<string>(nullable: true),
+                    EntrePartidaId = table.Column<int>(nullable: false),
                     Enviado = table.Column<bool>(nullable: false),
                     FechaEnvio = table.Column<DateTime>(nullable: false),
                     InformacionClave = table.Column<string>(nullable: true),
@@ -386,7 +387,6 @@ namespace Cronica.Migrations
                     NarradorEncargadoId = table.Column<string>(nullable: true),
                     PersonajeId = table.Column<int>(nullable: false),
                     PeticionTramas = table.Column<string>(nullable: true),
-                    PostPartidaId = table.Column<int>(nullable: false),
                     Resumen = table.Column<string>(maxLength: 9000, nullable: true),
                     Tramitado = table.Column<bool>(nullable: false),
                     ValoracionPartida = table.Column<int>(nullable: false)
@@ -394,6 +394,12 @@ namespace Cronica.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FormulariosPostPartida", x => x.FormularioPostPartidaId);
+                    table.ForeignKey(
+                        name: "FK_FormulariosPostPartida_EntrePartidas_EntrePartidaId",
+                        column: x => x.EntrePartidaId,
+                        principalTable: "EntrePartidas",
+                        principalColumn: "EntrePartidaId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_FormulariosPostPartida_AspNetUsers_JugadorId",
                         column: x => x.JugadorId,
@@ -412,12 +418,6 @@ namespace Cronica.Migrations
                         principalTable: "Personajes",
                         principalColumn: "PersonajeId",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_FormulariosPostPartida_PostPartidas_PostPartidaId",
-                        column: x => x.PostPartidaId,
-                        principalTable: "PostPartidas",
-                        principalColumn: "PostPartidaId",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -426,17 +426,17 @@ namespace Cronica.Migrations
                 {
                     AsignacionId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    PasaTramaId = table.Column<int>(nullable: false),
+                    InterludioId = table.Column<int>(nullable: false),
                     PersonajeId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Asignaciones", x => x.AsignacionId);
                     table.ForeignKey(
-                        name: "FK_Asignaciones_PasaTramas_PasaTramaId",
-                        column: x => x.PasaTramaId,
-                        principalTable: "PasaTramas",
-                        principalColumn: "PasaTramaId",
+                        name: "FK_Asignaciones_Interludios_InterludioId",
+                        column: x => x.InterludioId,
+                        principalTable: "Interludios",
+                        principalColumn: "InterludioId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Asignaciones_Personajes_PersonajeId",
@@ -497,26 +497,26 @@ namespace Cronica.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PuntosPasaTrama",
+                name: "PuntosInterludio",
                 columns: table => new
                 {
                     TramaId = table.Column<int>(nullable: false),
-                    PasaTramaId = table.Column<int>(nullable: false),
+                    InterludioId = table.Column<int>(nullable: false),
                     PersonajeId = table.Column<int>(nullable: false),
                     Descripcion = table.Column<string>(nullable: true),
                     PuntosObtenidos = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PuntosPasaTrama", x => new { x.TramaId, x.PasaTramaId, x.PersonajeId });
+                    table.PrimaryKey("PK_PuntosInterludio", x => new { x.TramaId, x.InterludioId, x.PersonajeId });
                     table.ForeignKey(
-                        name: "FK_PuntosPasaTrama_PasaTramas_PasaTramaId",
-                        column: x => x.PasaTramaId,
-                        principalTable: "PasaTramas",
-                        principalColumn: "PasaTramaId",
+                        name: "FK_PuntosInterludio_Interludios_InterludioId",
+                        column: x => x.InterludioId,
+                        principalTable: "Interludios",
+                        principalColumn: "InterludioId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PuntosPasaTrama_Tramas_TramaId",
+                        name: "FK_PuntosInterludio_Tramas_TramaId",
                         column: x => x.TramaId,
                         principalTable: "Tramas",
                         principalColumn: "TramaId",
@@ -594,14 +594,19 @@ namespace Cronica.Migrations
                 column: "TrasfondoRelacionadoId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Asignaciones_PasaTramaId",
+                name: "IX_Asignaciones_InterludioId",
                 table: "Asignaciones",
-                column: "PasaTramaId");
+                column: "InterludioId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Asignaciones_PersonajeId",
                 table: "Asignaciones",
                 column: "PersonajeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FormulariosPostPartida_EntrePartidaId",
+                table: "FormulariosPostPartida",
+                column: "EntrePartidaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FormulariosPostPartida_JugadorId",
@@ -619,14 +624,9 @@ namespace Cronica.Migrations
                 column: "PersonajeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FormulariosPostPartida_PostPartidaId",
-                table: "FormulariosPostPartida",
-                column: "PostPartidaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PasaTramas_PostPartidaId",
-                table: "PasaTramas",
-                column: "PostPartidaId");
+                name: "IX_Interludios_EntrePartidaId",
+                table: "Interludios",
+                column: "EntrePartidaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PersonajeAsignacion_AsignacionId",
@@ -674,24 +674,24 @@ namespace Cronica.Migrations
                 column: "TramaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PuntosPasaTrama_PasaTramaId",
-                table: "PuntosPasaTrama",
-                column: "PasaTramaId");
+                name: "IX_PuntosInterludio_InterludioId",
+                table: "PuntosInterludio",
+                column: "InterludioId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_PuntosPasaTrama_TramaId",
-                table: "PuntosPasaTrama",
+                name: "IX_PuntosInterludio_TramaId",
+                table: "PuntosInterludio",
                 column: "TramaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tramas_EntrePartidaId",
+                table: "Tramas",
+                column: "EntrePartidaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tramas_PlantillaId",
                 table: "Tramas",
                 column: "PlantillaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tramas_PostPartidaId",
-                table: "Tramas",
-                column: "PostPartidaId");
 
             migrationBuilder.CreateIndex(
                 name: "RoleNameIndex",
@@ -748,7 +748,7 @@ namespace Cronica.Migrations
                 name: "ParticipantesTrama");
 
             migrationBuilder.DropTable(
-                name: "PuntosPasaTrama");
+                name: "PuntosInterludio");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -778,7 +778,7 @@ namespace Cronica.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "PasaTramas");
+                name: "Interludios");
 
             migrationBuilder.DropTable(
                 name: "Personajes");
@@ -787,7 +787,7 @@ namespace Cronica.Migrations
                 name: "PlantillasTrama");
 
             migrationBuilder.DropTable(
-                name: "PostPartidas");
+                name: "EntrePartidas");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

@@ -16,9 +16,9 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         }
         public int AsignacionId { get; set; }
         public int PersonajeId { get; set; }
-        public int PasaTramaId { get; set; }                
+        public int InterludioId { get; set; }                
         public virtual Personaje Personaje { get; set; }
-        public virtual PasaTrama PasaTrama { get; set; }
+        public virtual Interludio Interludio { get; set; }
         public virtual List<PersonajeAsignacion> Asignaciones { get; set; }
     }
 

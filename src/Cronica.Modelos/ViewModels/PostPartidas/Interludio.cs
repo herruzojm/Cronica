@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.ViewModels.PostPartidas
 {
-    public class PasaTrama
+    public class Interludio
     {
-        public int PasaTramaId { get; set; }
+        public int InterludioId { get; set; }
 
         [Display(Name = "Fecha Prevista")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -28,14 +28,14 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         {
             get
             {
-                if (!Resuelto && Actual && FechaPrevista.Date <= DateTime.Now.Date && PostPartida != null && PostPartida.Activa)
+                if (!Resuelto && Actual && FechaPrevista.Date <= DateTime.Now.Date && EntrePartida != null && EntrePartida.Activa)
                 {
                     return true;
                 }
                 return false;
             }
         }
-        public virtual int PostPartidaId { get; set; }
-        public virtual PostPartida PostPartida { get; set; }
+        public virtual int EntrePartidaId { get; set; }
+        public virtual EntrePartida EntrePartida { get; set; }
     }
 }

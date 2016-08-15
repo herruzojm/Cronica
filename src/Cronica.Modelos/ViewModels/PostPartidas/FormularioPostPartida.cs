@@ -12,7 +12,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
     public class FormularioPostPartida
     {
         public int FormularioPostPartidaId { get; set; }
-        public int PostPartidaId { get; set; }
+        public int EntrePartidaId { get; set; }
         public string JugadorId { get; set; }
         public int PersonajeId { get; set; }
         public string NarradorEncargadoId { get; set; }
@@ -46,7 +46,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
                 return (Enviado == false);
             }
         }
-        public virtual PostPartida PostPartida { get; set; }
+        public virtual EntrePartida PostPartida { get; set; }
         public virtual ApplicationUser Jugador { get; set; }
         public virtual Personaje Personaje { get; set; }
         public virtual ApplicationUser NarradorEncargado { get; set; }

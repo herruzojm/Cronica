@@ -124,10 +124,10 @@ namespace Cronica.Servicios
             return await _contexto.Tramas.Include(t=> t.Participantes).ThenInclude(p=> p.Personaje).ToListAsync();
         }
 
-        public async Task<Trama> GetTramaConPasatrama(int personajeId, int tramaId)
+        public async Task<Trama> GetTramaConInterludio(int personajeId, int tramaId)
         {        
             Trama trama = await _contexto.Tramas.SingleAsync(t => t.TramaId == tramaId);
-            trama.Puntos = await _contexto.PuntosPasaTrama.Include(p => p.PasaTrama).Where(p => p.PersonajeId == personajeId && p.PasaTrama.Resuelto == true).ToListAsync();
+            trama.Puntos = await _contexto.PuntosInterludio.Include(p => p.Interludio).Where(p => p.PersonajeId == personajeId && p.Interludio.Resuelto == true).ToListAsync();
             return trama;
         }
 

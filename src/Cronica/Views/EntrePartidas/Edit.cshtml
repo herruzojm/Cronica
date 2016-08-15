@@ -1,16 +1,16 @@
-@model PostPartida
+@model EntrePartida
 
 @{
     ViewData["Title"] = "Editar Entre Partidas";
 }
 
-<h2>@ViewData["Title"]: <b>@Model.PostPartidaId.ToString()</b></h2>
+<h2>@ViewData["Title"]: <b>@Model.EntrePartidaId.ToString()</b></h2>
 
 <form asp-action="Edit">
     <div class="form-horizontal">
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="PostPartidaId" />
+        <input type="hidden" asp-for="EntrePartidaId" />
         <ul class="nav nav-pills">
             <li class="active"><a data-toggle="tab" href="#EntrePartida">Entre Partida</a></li>
             <li><a data-toggle="tab" href="#Interludios">Interludios</a></li>
@@ -46,30 +46,30 @@
                         <tr>
                             <th></th>                            
                             <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Actual)
+                                @Html.DisplayNameFor(model => model.Interludios.FirstOrDefault().Actual)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().Resuelto)
+                                @Html.DisplayNameFor(model => model.Interludios.FirstOrDefault().Resuelto)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().FechaPrevista)
+                                @Html.DisplayNameFor(model => model.Interludios.FirstOrDefault().FechaPrevista)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().FechaResolucion)
+                                @Html.DisplayNameFor(model => model.Interludios.FirstOrDefault().FechaResolucion)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.PasaTramas.FirstOrDefault().PuedeResolverse)
+                                @Html.DisplayNameFor(model => model.Interludios.FirstOrDefault().PuedeResolverse)
                             </th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach (var item in Model.PasaTramas)
+                        @foreach (var item in Model.Interludios)
                         {
                             <tr>
                                 <td>
-                                    <a asp-controller="Interludios" asp-action="Edit" asp-route-id="@item.PasaTramaId">Editar</a> |
-                                    <a asp-controller="Interludios" asp-action="Delete" asp-route-id="@item.PasaTramaId">Borrar</a>
+                                    <a asp-controller="Interludios" asp-action="Edit" asp-route-id="@item.InterludioId">Editar</a> |
+                                    <a asp-controller="Interludios" asp-action="Delete" asp-route-id="@item.InterludioId">Borrar</a>
                                 </td>                                
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Actual)
@@ -86,7 +86,7 @@
                                 <td>
                                     @if (item.PuedeResolverse)
                                     {
-                                        <a asp-controller="Interludios" asp-action="ResolverInterludio" asp-route-id="@item.PasaTramaId">Resolver</a>
+                                        <a asp-controller="Interludios" asp-action="ResolverInterludio" asp-route-id="@item.InterludioId">Resolver</a>
                                     }
                                 </td>
 
@@ -94,7 +94,7 @@
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-default btn-info" asp-controller="Interludios" asp-action="Create" asp-route-id="@Model.PostPartidaId">Nuevo Interludio</a> 
+                <a class="btn btn-default btn-info" asp-controller="Interludios" asp-action="Create" asp-route-id="@Model.EntrePartidaId">Nuevo Interludio</a> 
             </div>
         </div>
         <div class="form-group">

@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 
 namespace Cronica.Modelos.ViewModels.PostPartidas
 {
-    public class PostPartida
+    public class EntrePartida
     {
-        public PostPartida()
+        public EntrePartida()
         {
-            PasaTramas = new List<PasaTrama>();
+            Interludios = new List<Interludio>();
             TramasActivas = new List<Trama>();
         }
 
-        public int PostPartidaId { get; set; }
+        public int EntrePartidaId { get; set; }
 
         [Display(Name = "Fecha de Inicio")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -30,7 +30,7 @@ namespace Cronica.Modelos.ViewModels.PostPartidas
         public bool Cerrada { get; set; }
         public bool Activa {get;set;}
 
-        public virtual List<PasaTrama> PasaTramas { get; set; }
+        public virtual List<Interludio> Interludios { get; set; }
         public virtual List<Trama> TramasActivas { get; set; }
     }
 }

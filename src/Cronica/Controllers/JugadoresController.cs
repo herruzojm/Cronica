@@ -23,7 +23,7 @@ namespace Cronica.Controllers
         private IServicioTramas _servicioTramas;
         private readonly UserManager<ApplicationUser> _userManager;
         private IServicioAsignaciones _servicioAsignaciones;
-        private IServicioEntrePartidas _servicioPostPartidas;
+        private IServicioEntrePartidas _servicioEntrePartidas;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
                                     IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
@@ -33,7 +33,7 @@ namespace Cronica.Controllers
             _servicioUsuarios = servicioUsuarios;
             _servicioTramas = servicioTramas;
             _servicioAsignaciones = servicioAsignaciones;
-            _servicioPostPartidas = servicioPostPartidas;
+            _servicioEntrePartidas = servicioPostPartidas;
             _userManager = userManager;
         }
 
@@ -112,7 +112,7 @@ namespace Cronica.Controllers
             FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
             if (formularioPostPartida == null)
             {
-                int postPartidaActualId = await _servicioPostPartidas.GetPostPartidaActualId();
+                int postPartidaActualId = await _servicioEntrePartidas.GetEntrePartidaActualId();
                 formularioPostPartida = await _servicioJugadores.NuevoFormularioPostPartida(usuario.Id, postPartidaActualId);
                 _servicioJugadores.IncluirFormularioPostPartida(formularioPostPartida);
                 await _servicioJugadores.ConfirmarCambios();
@@ -157,7 +157,7 @@ namespace Cronica.Controllers
                 return NotFound();
             }
 
-            Trama trama = await _servicioTramas.GetTramaConPasatrama(personajeId.Value, tramaId.Value);
+            Trama trama = await _servicioTramas.GetTramaConInterludio(personajeId.Value, tramaId.Value);
 
             return View(trama);
         }

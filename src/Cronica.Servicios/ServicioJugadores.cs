@@ -92,7 +92,7 @@ namespace Cronica.Servicios
             FormularioPostPartida formulario = new FormularioPostPartida();
             formulario.JugadorId = jugadorId;
             formulario.PersonajeId = await GetMiPetdonajeId(jugadorId);
-            formulario.PostPartidaId = postPartidaId;
+            formulario.EntrePartidaId = postPartidaId;
 
             return formulario;
         }

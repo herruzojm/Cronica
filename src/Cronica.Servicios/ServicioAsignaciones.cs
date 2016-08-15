@@ -24,7 +24,7 @@ namespace Cronica.Servicios
                 .Include(a => a.Personaje).ThenInclude(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Personaje)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Trama)
-                .Where(a => a.Personaje.JugadorId == jugadorId && a.PasaTrama.Actual == true).FirstOrDefaultAsync();
+                .Where(a => a.Personaje.JugadorId == jugadorId && a.Interludio.Actual == true).FirstOrDefaultAsync();
 
             // si no hay asignacion, creamos una nueva y la recuperamos
             // asegurandonos de no volver a invocar el proceso para no caer en un bucle infinito
@@ -65,7 +65,7 @@ namespace Cronica.Servicios
         {
 
             Asignacion asignacion = new Asignacion();
-            asignacion.PasaTramaId = _contexto.PasaTramas.Single(p => p.Actual == true).PasaTramaId;
+            asignacion.InterludioId = _contexto.Interludios.Single(p => p.Actual == true).InterludioId;
             Personaje personaje = await _contexto.Personajes.
                 Include(p => p.Seguidores).Include(p => p.TramasParticipadas)
                 .SingleAsync(p => p.JugadorId == jugadorId);

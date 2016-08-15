@@ -16,12 +16,12 @@ namespace Cronica.Modelos.Models
         public DbSet<Personaje> Personajes { get; set; }
         public DbSet<Atributo> Atributos { get; set; }
         public DbSet<PlantillaTrama> PlantillasTrama { get; set; }
-        public DbSet<PostPartida> PostPartidas { get; set; }
+        public DbSet<EntrePartida> EntrePartidas { get; set; }
         public DbSet<Trama> Tramas { get; set; }
-        public DbSet<PasaTrama> PasaTramas { get; set; }
+        public DbSet<Interludio> Interludios { get; set; }
         public DbSet<PersonaTrasfondo> Seguidores { get; set; }
         public DbSet<ParticipantesTrama> ParticipantesTrama{ get; set; }
-        public DbSet<PuntosPasaTrama> PuntosPasaTrama { get; set; }
+        public DbSet<PuntosInterludio> PuntosInterludio { get; set; }
         public DbSet<Asignacion> Asignaciones { get; set; }
         public DbSet<PersonajeAsignacion> PersonajeAsignacion { get; set; }
         public DbSet<FormularioPostPartida> FormulariosPostPartida { get; set; }
@@ -55,8 +55,8 @@ namespace Cronica.Modelos.Models
             builder.Entity<AtributoTrama>()
                 .HasKey(a => new { a.AtributoId, a.TramaId });
 
-            builder.Entity<PuntosPasaTrama>()
-                .HasKey(a => new { a.TramaId, a.PasaTramaId, a.PersonajeId });
+            builder.Entity<PuntosInterludio>()
+                .HasKey(a => new { a.TramaId, a.InterludioId, a.PersonajeId });
 
             builder.Entity<ParticipantesTrama>()
                 .HasKey(a => new { a.TramaId, a.PersonajeId, a.Equipo });            

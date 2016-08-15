@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Cronica.Modelos.Models;
 
-namespace Cronica.Migrations
+namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160703183204_Inicial")]
+    [Migration("20160815204702_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -179,17 +179,35 @@ namespace Cronica.Migrations
                     b.Property<int>("AsignacionId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("PasaTramaId");
+                    b.Property<int>("InterludioId");
 
                     b.Property<int>("PersonajeId");
 
                     b.HasKey("AsignacionId");
 
-                    b.HasIndex("PasaTramaId");
+                    b.HasIndex("InterludioId");
 
                     b.HasIndex("PersonajeId");
 
                     b.ToTable("Asignaciones");
+                });
+
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.EntrePartida", b =>
+                {
+                    b.Property<int>("EntrePartidaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<bool>("Activa");
+
+                    b.Property<bool>("Cerrada");
+
+                    b.Property<DateTime>("FechaFin");
+
+                    b.Property<DateTime>("FechaInicio");
+
+                    b.HasKey("EntrePartidaId");
+
+                    b.ToTable("EntrePartidas");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.FormularioPostPartida", b =>
@@ -205,6 +223,8 @@ namespace Cronica.Migrations
 
                     b.Property<string>("CosasMal");
 
+                    b.Property<int>("EntrePartidaId");
+
                     b.Property<bool>("Enviado");
 
                     b.Property<DateTime>("FechaEnvio");
@@ -219,8 +239,6 @@ namespace Cronica.Migrations
 
                     b.Property<string>("PeticionTramas");
 
-                    b.Property<int>("PostPartidaId");
-
                     b.Property<string>("Resumen")
                         .HasAnnotation("MaxLength", 9000);
 
@@ -230,37 +248,37 @@ namespace Cronica.Migrations
 
                     b.HasKey("FormularioPostPartidaId");
 
+                    b.HasIndex("EntrePartidaId");
+
                     b.HasIndex("JugadorId");
 
                     b.HasIndex("NarradorEncargadoId");
 
                     b.HasIndex("PersonajeId");
 
-                    b.HasIndex("PostPartidaId");
-
                     b.ToTable("FormulariosPostPartida");
                 });
 
-            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.Interludio", b =>
                 {
-                    b.Property<int>("PasaTramaId")
+                    b.Property<int>("InterludioId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<bool>("Actual");
+
+                    b.Property<int>("EntrePartidaId");
 
                     b.Property<DateTime>("FechaPrevista");
 
                     b.Property<DateTime?>("FechaResolucion");
 
-                    b.Property<int>("PostPartidaId");
-
                     b.Property<bool>("Resuelto");
 
-                    b.HasKey("PasaTramaId");
+                    b.HasKey("InterludioId");
 
-                    b.HasIndex("PostPartidaId");
+                    b.HasIndex("EntrePartidaId");
 
-                    b.ToTable("PasaTramas");
+                    b.ToTable("Interludios");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PersonajeAsignacion", b =>
@@ -285,24 +303,6 @@ namespace Cronica.Migrations
                     b.HasIndex("TramaId");
 
                     b.ToTable("PersonajeAsignacion");
-                });
-
-            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", b =>
-                {
-                    b.Property<int>("PostPartidaId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("Activa");
-
-                    b.Property<bool>("Cerrada");
-
-                    b.Property<DateTime>("FechaFin");
-
-                    b.Property<DateTime>("FechaInicio");
-
-                    b.HasKey("PostPartidaId");
-
-                    b.ToTable("PostPartidas");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.AtributoPlantillaTrama", b =>
@@ -376,11 +376,11 @@ namespace Cronica.Migrations
                     b.ToTable("PlantillasTrama");
                 });
 
-            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosPasaTrama", b =>
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosInterludio", b =>
                 {
                     b.Property<int>("TramaId");
 
-                    b.Property<int>("PasaTramaId");
+                    b.Property<int>("InterludioId");
 
                     b.Property<int>("PersonajeId");
 
@@ -388,13 +388,13 @@ namespace Cronica.Migrations
 
                     b.Property<int>("PuntosObtenidos");
 
-                    b.HasKey("TramaId", "PasaTramaId", "PersonajeId");
+                    b.HasKey("TramaId", "InterludioId", "PersonajeId");
 
-                    b.HasIndex("PasaTramaId");
+                    b.HasIndex("InterludioId");
 
                     b.HasIndex("TramaId");
 
-                    b.ToTable("PuntosPasaTrama");
+                    b.ToTable("PuntosInterludio");
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
@@ -406,11 +406,11 @@ namespace Cronica.Migrations
 
                     b.Property<string>("Descripcion");
 
+                    b.Property<int?>("EntrePartidaId");
+
                     b.Property<string>("Nombre");
 
                     b.Property<int?>("PlantillaId");
-
-                    b.Property<int?>("PostPartidaId");
 
                     b.Property<int>("PuntosActuales");
 
@@ -424,9 +424,9 @@ namespace Cronica.Migrations
 
                     b.HasKey("TramaId");
 
-                    b.HasIndex("PlantillaId");
+                    b.HasIndex("EntrePartidaId");
 
-                    b.HasIndex("PostPartidaId");
+                    b.HasIndex("PlantillaId");
 
                     b.ToTable("Tramas");
                 });
@@ -571,9 +571,9 @@ namespace Cronica.Migrations
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.Asignacion", b =>
                 {
-                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", "PasaTrama")
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.Interludio", "Interludio")
                         .WithMany()
-                        .HasForeignKey("PasaTramaId")
+                        .HasForeignKey("InterludioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.GestionPersonajes.Personaje", "Personaje")
@@ -584,6 +584,11 @@ namespace Cronica.Migrations
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.FormularioPostPartida", b =>
                 {
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.EntrePartida", "PostPartida")
+                        .WithMany()
+                        .HasForeignKey("EntrePartidaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("Cronica.Modelos.Models.ApplicationUser", "Jugador")
                         .WithMany()
                         .HasForeignKey("JugadorId");
@@ -596,18 +601,13 @@ namespace Cronica.Migrations
                         .WithMany()
                         .HasForeignKey("PersonajeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", "PostPartida")
-                        .WithMany()
-                        .HasForeignKey("PostPartidaId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", b =>
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.PostPartidas.Interludio", b =>
                 {
-                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida", "PostPartida")
-                        .WithMany("PasaTramas")
-                        .HasForeignKey("PostPartidaId")
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.EntrePartida", "EntrePartida")
+                        .WithMany("Interludios")
+                        .HasForeignKey("EntrePartidaId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -667,11 +667,11 @@ namespace Cronica.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosPasaTrama", b =>
+            modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.PuntosInterludio", b =>
                 {
-                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PasaTrama", "PasaTrama")
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.Interludio", "Interludio")
                         .WithMany()
-                        .HasForeignKey("PasaTramaId")
+                        .HasForeignKey("InterludioId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.Trama")
@@ -682,13 +682,13 @@ namespace Cronica.Migrations
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Tramas.Trama", b =>
                 {
+                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.EntrePartida")
+                        .WithMany("TramasActivas")
+                        .HasForeignKey("EntrePartidaId");
+
                     b.HasOne("Cronica.Modelos.ViewModels.Tramas.PlantillaTrama", "Plantilla")
                         .WithMany()
                         .HasForeignKey("PlantillaId");
-
-                    b.HasOne("Cronica.Modelos.ViewModels.PostPartidas.PostPartida")
-                        .WithMany("TramasActivas")
-                        .HasForeignKey("PostPartidaId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

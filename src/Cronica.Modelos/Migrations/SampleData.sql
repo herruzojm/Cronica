@@ -1720,54 +1720,70 @@ update Cronica.dbo.AtributoPersonaje set ValorEnTrama = Valor
 GO
 
 
-SET IDENTITY_INSERT [dbo].PostPartidas ON
+SET IDENTITY_INSERT [dbo].EntrePartidas ON
 GO
-insert into PostPartidas
-(PostPartidaId, Cerrada, FechaFin, FechaInicio, Activa)
+insert into EntrePartidas
+(EntrePartidaId, Cerrada, FechaFin, FechaInicio, Activa)
 values
 (1, 0, '30-05-2016', '01-05-2016', 0),
 (2, 0, '30-06-2016', '01-06-2016', 1)
 GO
-insert into PostPartidas
-(PostPartidaId, Cerrada, FechaFin, FechaInicio, Activa)
+insert into EntrePartidas
+(EntrePartidaId, Cerrada, FechaFin, FechaInicio, Activa)
 values
 (1, 0, '05-30-2016', '05-01-2016', 0),
 (2, 0, '06-30-2016', '06-01-2016', 1)
 GO
-SET IDENTITY_INSERT [dbo].PostPartidas OFF
+SET IDENTITY_INSERT [dbo].EntrePartidas OFF
 GO
 
-
-SET IDENTITY_INSERT [dbo].PasaTramas ON
+SET IDENTITY_INSERT [dbo].Interludios ON
 GO
-insert into PasaTramas
-(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto, Actual)
+insert into Interludios
+(InterludioId, FechaPrevista, FechaResolucion, EntrePartidaId, Resuelto, Actual)
 values
 (1, '20/05/2016', '21/05/2016', 1, 1, 0),
 (2, '20/06/2016', null, 2, 0, 1)
 GO
-insert into PasaTramas
-(PasaTramaId, FechaPrevista, FechaResolucion, PostPartidaId, Resuelto, Actual)
+insert into Interludios
+(InterludioId, FechaPrevista, FechaResolucion, EntrePartidaId, Resuelto, Actual)
 values
 (1, '05/20/2016', '05/21/2016', 1, 1, 0),
 (2, '06/20/2016', null, 2, 0, 1)
 GO
-SET IDENTITY_INSERT [dbo].PasaTramas OFF
+SET IDENTITY_INSERT [dbo].Interludios OFF
 GO
+
+
+
+--insert into Interludios
+--(FechaPrevista, FechaResolucion, EntrePartidaId, Resuelto, Actual)
+--values
+--('20/05/2016', '21/05/2016', 1, 1, 0),
+--('20/06/2016', null, 2, 0, 1)
+--GO
+--insert into Interludios
+--(FechaPrevista, FechaResolucion, EntrePartidaId, Resuelto, Actual)
+--values
+--('05/20/2016', '05/21/2016', 1, 1, 0),
+--('06/20/2016', null, 2, 0, 1)
+--GO
+--SET IDENTITY_INSERT [dbo].Interludios OFF
+--GO
 
 
 SET IDENTITY_INSERT [dbo].[Tramas] ON 
 
 GO
-INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (1, 0, N'Aumentar Recursos', N'Aumentar Recursos', 1, NULL, 0, 1, 50, NULL, 0)
+INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [EntrePartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (1, 0, N'Aumentar Recursos', N'Aumentar Recursos', 1, NULL, 0, 1, 50, NULL, 0)
 GO
-INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [PostPartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (3, 0, N'Gana el pulso a tu rival', N'Ganar el pulso', 3, NULL, 0, 0, 30, NULL, 2)
+INSERT [dbo].[Tramas] ([TramaId], [Cerrada], [Descripcion], [Nombre], [PlantillaId], [EntrePartidaId], [PuntosActuales], [PuntosDePresionPorTiemppo], [PuntosNecesarios], [TextoResolucion], [TipoTrama]) VALUES (3, 0, N'Gana el pulso a tu rival', N'Ganar el pulso', 3, NULL, 0, 0, 30, NULL, 2)
 GO
 SET IDENTITY_INSERT [dbo].[Tramas] OFF
 GO
 
-insert into PuntosPasaTrama
-(TramaId, PasaTramaId, PersonajeId, Descripcion, PuntosObtenidos)
+insert into PuntosInterludio
+(TramaId, InterludioId, PersonajeId, Descripcion, PuntosObtenidos)
 values
 (3, 2, 3, 'De segundas no contribuyes tanto', 6),
 (3, 1, 3, 'Puntos para personaje tres', 10),
@@ -1804,7 +1820,7 @@ GO
 SET IDENTITY_INSERT [dbo].[Asignaciones] ON 
 GO
 insert into Asignaciones
-(AsignacionId, PersonajeId, PasaTramaId)
+(AsignacionId, PersonajeId, InterludioId)
 values
 (1, 3, 2)
 GO
@@ -1827,7 +1843,6 @@ values
 GO
 SET IDENTITY_INSERT [dbo].[PersonajeAsignacion] OFF
 GO
-
 
 
 
