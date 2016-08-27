@@ -15,9 +15,21 @@ namespace Cronica.Servicios
         {
         }
 
-        public async Task<List<Mensaje>> GetMensajesRecibidos(int personajeId)
+        public async Task<List<MensajeBandejaEntrada>> GetMensajesRecibidos(int personajeId)
         {
-            return await _contexto.Mensajes.Include(m => m.Destinatarios).Where(m => m.Destinatarios.Any(d => d.DestinatarioId == personajeId)).ToListAsync();
+            return await (from mensaje in _contexto.Mensajes
+                          join destinatario in _contexto.DestinatariosMensaje on mensaje.MensajeId equals destinatario.MensajeId
+                          join personaje in _contexto.Personajes on mensaje.RemitenteId equals personaje.PersonajeId
+                          where destinatario.DestinatarioId == personajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+                          select new MensajeBandejaEntrada {
+                              Asunto = mensaje.Asunto,
+                              EnviadoComo = mensaje.NombreParaMostrar,
+                              EsAnonimo = mensaje.EsAnonimo,
+                              Estado = destinatario.EstadoMensaje,
+                              FechaEnvio = mensaje.FechaCreacion,
+                              MensajeId = mensaje.MensajeId,
+                              Remitente = personaje.Nombre
+                          }).OrderBy(m => m.Estado).ThenByDescending(m => m.FechaEnvio).ToListAsync();                
         }
 
         public async Task<List<Mensaje>> GetMensajesEnviados(int personajeId)

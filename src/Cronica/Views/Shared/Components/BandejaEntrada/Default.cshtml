@@ -1,50 +1,52 @@
-@model IEnumerable<Mensaje>
+@model IEnumerable<MensajeBandejaEntrada>
 
 <table class="table">
     <thead>
         <tr>
             <th></th>
             <th>
-                @Html.DisplayNameFor(model => model.NombreParaMostrar)
+                @Html.DisplayNameFor(model => model.EsAnonimo)
             </th>
             <th>
-                Envio Anonimo
+                @Html.DisplayNameFor(model => model.Remitente)
             </th>
             <th>
-                Remitente Real
+                @Html.DisplayNameFor(model => model.EnviadoComo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Asunto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
+                @Html.DisplayNameFor(model => model.FechaEnvio)
             </th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreParaMostrar)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EsAnonimo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreReal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Asunto)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacion)
-                </td>
-            </tr>
+        @{
+            foreach (var item in Model)
+            {
+                <tr class="@(item.Estado == EstadoMensaje.SinLeer ? "mensajeSinLeer" : "mensajeLeido" ) ">
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EsAnonimo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Remitente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnviadoComo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Asunto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaEnvio)
+                    </td>
+                </tr>
+            }
         }
     </tbody>
 </table>
-<a class="btn btn-default btn-info" asp-controller="Mensajeria" asp-action="Create">Nuevo Mensaje</a> 
+<a class="btn btn-default btn-info" asp-controller="Mensajeria" asp-action="Create">Nuevo Mensaje</a>

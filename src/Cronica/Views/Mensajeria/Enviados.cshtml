@@ -28,6 +28,7 @@
             var id = $('#PersonajeId').val();
             $.get("/Mensajeria/BandejaSalida", { personajeId: id }, function (data) {
                 $('#BandejaSalida').html(data);
+                $('.table').DataTable();
             });
         }
 </script>

@@ -9,7 +9,7 @@ namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioMensajeria : IServicioBase
     {
-        Task<List<Mensaje>> GetMensajesRecibidos(int personajeId);
+        Task<List<MensajeBandejaEntrada>> GetMensajesRecibidos(int personajeId);
         Task<List<Mensaje>> GetMensajesEnviados(int personajeId);
         Task<bool> EnviarMensaje(Mensaje mensaje, List<string> para, List<string> copiaOculta);
     }

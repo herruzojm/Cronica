@@ -27,4 +27,17 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
         public virtual List<DestinatarioMensaje> Destinatarios { get; set; }
     }
 
+
+    public class MensajeBandejaEntrada
+    {
+        public int MensajeId { get; set; }
+        public bool EsAnonimo { get; set; }
+        public string Remitente { get; set; }
+        public string EnviadoComo { get; set; }
+        public string Asunto { get; set; }
+        public DateTime FechaEnvio { get; set; }
+        public EstadoMensaje Estado { get; set; }
+    }
+
+
 }

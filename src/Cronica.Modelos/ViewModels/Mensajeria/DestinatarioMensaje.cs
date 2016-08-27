@@ -11,6 +11,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
     {
         public int DestinatarioMensajeId { get; set; }
         public int DestinatarioId { get; set; }
+        public int MensajeId { get; set; }
         public TipoDestinatario TipoDestinatario { get; set; }
         public EstadoMensaje EstadoMensaje { get; set; }
 
