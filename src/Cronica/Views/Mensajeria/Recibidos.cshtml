@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Lista de Mensajes Recibidos";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="form-horizontal">  
+    <div class="form-group">
+        <label class="col-md-2 control-label">Personaje: </label>
+        <div class="col-md-10">
+            <select asp-items="ViewBag.Personajes" id="PersonajeId" onchange="CargarBandejaEntrada()" class="form-control"></select>
+        </div>
+    </div>
+    <hr />
+    <p></p>
+    <span id="BandejaEntrada">
+    </span>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            CargarBandejaEntrada();
+        });
+</script>
+<script>
+    function CargarBandejaEntrada() {
+            var id = $('#PersonajeId').val();
+            $.get("/Mensajeria/BandejaEntrada", { personajeId: id}, function (data) {
+                $('#BandejaEntrada').html(data);
+            });
+        }
+</script>
+}

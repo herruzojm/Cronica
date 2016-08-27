@@ -8,5 +8,6 @@ namespace Cronica.Servicios.Interfaces
     public interface IServicioEmail
     {
         void EnviarAltaCuenta(string cuentaUsuario, string password);
+        void EnviarNuevoMensaje(string cuentaUsuario);
     }
 }

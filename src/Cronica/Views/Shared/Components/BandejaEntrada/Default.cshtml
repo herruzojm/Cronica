@@ -1,0 +1,50 @@
+@model IEnumerable<Mensaje>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreParaMostrar)
+            </th>
+            <th>
+                Envio Anonimo
+            </th>
+            <th>
+                Remitente Real
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asunto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreParaMostrar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EsAnonimo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreReal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asunto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-default btn-info" asp-controller="Mensajeria" asp-action="Create">Nuevo Mensaje</a> 

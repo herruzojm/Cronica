@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Cronica.Modelos.ViewModels;
 
 namespace Cronica.Servicios
 {
@@ -18,6 +19,11 @@ namespace Cronica.Servicios
         public ServicioPersonajes(CronicaDbContext contexto, IHostingEnvironment environment) : base(contexto)
         {
             _environment = environment;
+        }
+
+        public async Task<List<Enumerado>> GetEnumeradoPersonajes()
+        {
+            return await _contexto.Personajes.Select(p => new Enumerado { Id = p.PersonajeId.ToString(), Descripcion = p.Nombre }).ToListAsync();
         }
 
         public async Task<List<Personaje>> GetPersonajes()

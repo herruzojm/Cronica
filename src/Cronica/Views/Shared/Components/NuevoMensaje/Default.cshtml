@@ -1,0 +1,53 @@
+@model ModeloNuevoMensaje
+
+<form asp-action="NuevoMensaje">
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Mensaje.MensajeId" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Mensaje.EsAnonimo" />
+                    <label asp-for="Mensaje.EsAnonimo">Enviar de forma anónima (el remitente aparecerá en blanco)</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Para: </label>
+            <div class="col-md-10">
+                <select asp-items="ViewBag.Personajes" asp-for="Para" multiple class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">CopiaOculta: </label>
+            <div class="col-md-10">
+                <select asp-items="ViewBag.Personajes" asp-for="CopiaOculta" multiple class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Mensaje.Asunto" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Mensaje.Asunto" asp-format="{0:d}" class="form-control datepicker" />
+                <span asp-validation-for="Mensaje.Asunto" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Mensaje.Cuerpo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Mensaje.Cuerpo" class="form-control"></textarea>
+                <span asp-validation-for="Mensaje.Cuerpo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enviar Mensaje" class="btn btn-default btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

@@ -3,6 +3,7 @@ using Cronica.Modelos.ViewModels.Tramas;
 using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Cronica.Modelos.ViewModels.Mensajeria;
 
 namespace Cronica.Modelos.Models
 {
@@ -25,6 +26,9 @@ namespace Cronica.Modelos.Models
         public DbSet<Asignacion> Asignaciones { get; set; }
         public DbSet<PersonajeAsignacion> PersonajeAsignacion { get; set; }
         public DbSet<FormularioPostPartida> FormulariosPostPartida { get; set; }
+        public DbSet<Mensaje> Mensajes { get; set; }
+        public DbSet<DestinatarioMensaje> DestinatariosMensaje { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)

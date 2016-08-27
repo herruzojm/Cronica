@@ -10,7 +10,7 @@
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="">
         @await Component.InvokeAsync(nameof(MenuUsuario), new { userId = _user.Id })
 
-        <a class="list-group-item" asp-controller="Manage" asp-action="ChangePassword">Cambiar Contraseña</a>
+        <a class="list-group-item" asp-controller="Manage" asp-action="Administrar">Administrar Cuenta</a>
         <div class="list-group panel">
             <button type="submit" class="list-group-item">Cerrar Sesión</button>
         </div>

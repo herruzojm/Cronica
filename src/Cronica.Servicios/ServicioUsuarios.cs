@@ -25,9 +25,20 @@ namespace Cronica.Servicios
             return user.Id;
         }
 
+        public async Task<ApplicationUser> GetUser(ClaimsPrincipal usuario)
+        {
+            var user = await _userManager.GetUserAsync(usuario);
+            return user;
+        }
+
         public async Task<ApplicationUser> GetUsuarioById(string userId)
         {
             return await _userManager.FindByIdAsync(userId);
+        }
+
+        public string GetEmailByPersonajeId(int personajeId)
+        {
+            return _contexto.Personajes.Include(p => p.Jugador).Single(p => p.PersonajeId == personajeId).Jugador.Email;
         }
 
         public async Task<ApplicationUser> GetUsuarioByEmail(string userEmail)

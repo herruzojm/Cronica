@@ -1,4 +1,5 @@
-﻿using Cronica.Modelos.ViewModels.GestionPersonajes;
+﻿using Cronica.Modelos.ViewModels;
+using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,8 @@ using System.Threading.Tasks;
 namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioPersonajes : IServicioBase
-    {        
+    {
+        Task<List<Enumerado>> GetEnumeradoPersonajes();
         Task<List<Personaje>> GetPersonajes();
         Task<Personaje> GetNuevoPersonaje();        
         Task<Personaje> GetPersonajeCompleto(int personajeId);

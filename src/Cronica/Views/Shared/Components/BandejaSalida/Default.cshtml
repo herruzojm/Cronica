@@ -1,0 +1,61 @@
+@model IEnumerable<Mensaje>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            @{
+                if (ViewBag.Usuario.Cuenta != TipoCuenta.Jugador)
+                {
+                    <th>
+                        Enviado Como
+                    </th>
+                }
+            }
+            <th>
+                Destinatarios
+            </th>
+            <th>
+                Envio Anonimo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Asunto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </th>
+        </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
+                </td>
+                @{
+                    if (ViewBag.Usuario.Cuenta != TipoCuenta.Jugador)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombreReal)
+                        </td>
+                    }
+                }                
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreDestinatarios)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EsAnonimo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Asunto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a class="btn btn-default btn-info" asp-controller="Mensajeria" asp-action="Create">Nuevo Mensaje</a> 

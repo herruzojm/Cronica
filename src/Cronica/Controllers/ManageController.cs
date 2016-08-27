@@ -192,18 +192,18 @@ namespace Cronica.Controllers
         }
 
         //
-        // GET: /Manage/ChangePassword
+        // GET: /Manage/Administrar
         [HttpGet]
-        public IActionResult ChangePassword()
+        public IActionResult Administrar()
         {
             return View();
         }
-        
+
         //
-        // POST: /Manage/ChangePassword
+        // POST: /Manage/Administrar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        public async Task<IActionResult> Administrar(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {

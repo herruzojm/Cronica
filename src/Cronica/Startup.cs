@@ -99,6 +99,7 @@ namespace Cronica
             services.AddScoped<IServicioInterludios, ServicioInterludios>();
             services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
             services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
+            services.AddScoped<IServicioMensajeria, ServicioMensajeria>();
             services.AddScoped<IServicioEmail, ServicioEmail>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();

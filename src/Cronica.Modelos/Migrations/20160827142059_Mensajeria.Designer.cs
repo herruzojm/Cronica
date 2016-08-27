@@ -8,9 +8,10 @@ using Cronica.Modelos.Models;
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    partial class CronicaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160827142059_Mensajeria")]
+    partial class Mensajeria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rtm-21431")

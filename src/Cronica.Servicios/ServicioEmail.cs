@@ -18,6 +18,16 @@ namespace Cronica.Servicios
             EnviarMensaje(mensage);                       
         }
 
+        public void EnviarNuevoMensaje(string cuentaUsuario)
+        {
+            var mensage = new MimeMessage();
+            mensage.From.Add(new MailboxAddress("Verum In Sanguine", "VerumInSanguine@gmail.com"));
+            mensage.To.Add(new MailboxAddress(cuentaUsuario, cuentaUsuario));
+            mensage.Subject = "Cuenta de usuario en Verum In Sanguine";
+            mensage.Body = new TextPart("html") { Text = TextoNuevoMensaje() };
+            EnviarMensaje(mensage);
+        }
+
         private void EnviarMensaje(MimeMessage mensaje)
         {
             using (var client = new SmtpClient())
@@ -56,5 +66,18 @@ namespace Cronica.Servicios
                 <p>¡Nos vemos!</p> ";
 
 		}
+
+        private string TextoNuevoMensaje()
+        {
+            return @"
+                <h3>¡¡Nuevo Mensaje!!</h3>
+
+                <p>Recibes este email porque alguien te ha enviado un mensaje en la partida <a href=""http://veruminsanguine.azurewebsites.net/"" target=""_blank"">Verum In Sanguine</a>.</p>
+                
+                <p>No nos marques como spam.<br/>
+                Si recibes demasiados emails por parte del sistema, recuerda que puedes desactivar esta funcionalidad en la página de <a href=""http://veruminsanguine.azurewebsites.net/Manage/Administrar"" target=""_blank"">Administracción de tu Cuenta</a>.<br/>
+                Si crees que alguien está abusando de este sistema, no dudes en ponerte en contacto con nosotros enviandonos un correo a <a href=""mailto:VerumInSanguine@gmail.com"">VerumInSanguine@gmail.com</a>. 
+                </p>";
+        }
     }
 }
