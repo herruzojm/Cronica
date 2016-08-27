@@ -21,7 +21,8 @@ namespace Cronica.Servicios
                           join destinatario in _contexto.DestinatariosMensaje on mensaje.MensajeId equals destinatario.MensajeId
                           join personaje in _contexto.Personajes on mensaje.RemitenteId equals personaje.PersonajeId
                           where destinatario.DestinatarioId == personajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
-                          select new MensajeBandejaEntrada {
+                          select new MensajeBandejaEntrada
+                          {
                               Asunto = mensaje.Asunto,
                               EnviadoComo = mensaje.NombreParaMostrar,
                               EsAnonimo = mensaje.EsAnonimo,
@@ -29,12 +30,33 @@ namespace Cronica.Servicios
                               FechaEnvio = mensaje.FechaCreacion,
                               MensajeId = mensaje.MensajeId,
                               Remitente = personaje.Nombre
-                          }).OrderBy(m => m.Estado).ThenByDescending(m => m.FechaEnvio).ToListAsync();                
+                          }).OrderBy(m => m.Estado).ThenByDescending(m => m.FechaEnvio).ToListAsync();
         }
 
-        public async Task<List<Mensaje>> GetMensajesEnviados(int personajeId)
+        public async Task<List<MensajeBandejaSalida>> GetMensajesEnviados(int personajeId)
         {
-            return await _contexto.Mensajes.Where(m => m.RemitenteId == personajeId).ToListAsync();
+            var listaMensajes = await (from mensaje in _contexto.Mensajes
+                                       where mensaje.RemitenteId == personajeId
+                                       select new MensajeBandejaSalida
+                                       {
+                                           Asunto = mensaje.Asunto,
+                                           EnviadoComo = mensaje.NombreParaMostrar,
+                                           EsAnonimo = mensaje.EsAnonimo,
+                                           FechaEnvio = mensaje.FechaCreacion,
+                                           MensajeId = mensaje.MensajeId                                           
+                                       }).OrderByDescending(m => m.FechaEnvio).ToListAsync();
+
+            foreach(MensajeBandejaSalida mensaje in listaMensajes)
+            {
+                mensaje.EnviadoA = String.Join("; ",
+                                    (from destinatario in _contexto.DestinatariosMensaje
+                                     join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                     where destinatario.MensajeId == mensaje.MensajeId
+                                     select personaje.Nombre
+                                    ).ToList());
+            }
+
+            return listaMensajes;
         }
 
         public async Task<bool> EnviarMensaje(Mensaje mensaje, List<string> para, List<string> copiaOculta)
@@ -49,7 +71,7 @@ namespace Cronica.Servicios
 
             mensaje.Destinatarios = new List<DestinatarioMensaje>();
             DestinatarioMensaje destinatario;
-            foreach(string destinatarioId in para)
+            foreach (string destinatarioId in para)
             {
                 destinatario = new DestinatarioMensaje();
                 destinatario.DestinatarioId = Convert.ToInt32(destinatarioId);

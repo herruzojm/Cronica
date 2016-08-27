@@ -31,13 +31,29 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
     public class MensajeBandejaEntrada
     {
         public int MensajeId { get; set; }
+        [Display(Name = "Anonimo")]
         public bool EsAnonimo { get; set; }
         public string Remitente { get; set; }
+        [Display(Name = "Enviado como...")]
         public string EnviadoComo { get; set; }
         public string Asunto { get; set; }
+        [Display(Name = "Fecha Envio")]
         public DateTime FechaEnvio { get; set; }
         public EstadoMensaje Estado { get; set; }
     }
 
+    public class MensajeBandejaSalida
+    {
+        public int MensajeId { get; set; }
+        [Display(Name = "Anonimo")]
+        public bool EsAnonimo { get; set; }
+        [Display(Name = "Enviado como...")]
+        public string EnviadoComo { get; set; }
+        [Display(Name = "Enviado a...")]
+        public string EnviadoA { get; set; }
+        public string Asunto { get; set; }
+        [Display(Name = "Fecha Envio")]
+        public DateTime FechaEnvio { get; set; }
+    }
 
 }

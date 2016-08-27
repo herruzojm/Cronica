@@ -1,28 +1,23 @@
-@model IEnumerable<Mensaje>
+@model IEnumerable<MensajeBandejaSalida>
 
 <table class="table">
     <thead>
         <tr>
             <th></th>
-            @{
-                if (ViewBag.Usuario.Cuenta != TipoCuenta.Jugador)
-                {
-                    <th>
-                        Enviado Como
-                    </th>
-                }
-            }
             <th>
-                Destinatarios
+                @Html.DisplayNameFor(model => model.EsAnonimo)
             </th>
             <th>
-                Envio Anonimo
+                @Html.DisplayNameFor(model => model.EnviadoA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnviadoComo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Asunto)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.FechaCreacion)
+                @Html.DisplayNameFor(model => model.FechaEnvio)
             </th>
         </tr>
 
@@ -34,25 +29,20 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
                 </td>
-                @{
-                    if (ViewBag.Usuario.Cuenta != TipoCuenta.Jugador)
-                    {
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreReal)
-                        </td>
-                    }
-                }                
-                <td>
-                    @Html.DisplayFor(modelItem => item.NombreDestinatarios)
-                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EsAnonimo)
+                </td>               
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnviadoA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnviadoComo)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Asunto)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                    @Html.DisplayFor(modelItem => item.FechaEnvio)
                 </td>
             </tr>
         }
