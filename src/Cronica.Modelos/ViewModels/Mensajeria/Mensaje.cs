@@ -31,6 +31,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
     public class MensajeBandejaEntrada
     {
         public int MensajeId { get; set; }
+        public int PersonajeId { get; set; }
         [Display(Name = "Anonimo")]
         public bool EsAnonimo { get; set; }
         public string Remitente { get; set; }
@@ -45,6 +46,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
     public class MensajeBandejaSalida
     {
         public int MensajeId { get; set; }
+        public int PersonajeId { get; set; }
         [Display(Name = "Anonimo")]
         public bool EsAnonimo { get; set; }
         [Display(Name = "Enviado como...")]
@@ -54,6 +56,19 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
         public string Asunto { get; set; }
         [Display(Name = "Fecha Envio")]
         public DateTime FechaEnvio { get; set; }
+    }
+
+    public class VistaMensaje
+    {
+        public int MensajeId { get; set; }
+        public bool EsAnonimo { get; set; }
+        public string Remitente { get; set; }
+        public string RemitenteReal { get; set; }
+        public DateTime FechaEnvio { get; set; }
+        public string Destinatarios { get; set; }
+        public string Asunto { get; set; }
+        public string Cuerpo { get; set; }
+
     }
 
 }

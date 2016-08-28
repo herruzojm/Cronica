@@ -29,7 +29,8 @@ namespace Cronica.Servicios
                               Estado = destinatario.EstadoMensaje,
                               FechaEnvio = mensaje.FechaCreacion,
                               MensajeId = mensaje.MensajeId,
-                              Remitente = personaje.Nombre
+                              Remitente = personaje.Nombre,
+                              PersonajeId = personajeId
                           }).OrderBy(m => m.Estado).ThenByDescending(m => m.FechaEnvio).ToListAsync();
         }
 
@@ -43,10 +44,11 @@ namespace Cronica.Servicios
                                            EnviadoComo = mensaje.NombreParaMostrar,
                                            EsAnonimo = mensaje.EsAnonimo,
                                            FechaEnvio = mensaje.FechaCreacion,
-                                           MensajeId = mensaje.MensajeId                                           
+                                           MensajeId = mensaje.MensajeId,
+                                           PersonajeId = personajeId
                                        }).OrderByDescending(m => m.FechaEnvio).ToListAsync();
 
-            foreach(MensajeBandejaSalida mensaje in listaMensajes)
+            foreach (MensajeBandejaSalida mensaje in listaMensajes)
             {
                 mensaje.EnviadoA = String.Join("; ",
                                     (from destinatario in _contexto.DestinatariosMensaje
@@ -58,6 +60,57 @@ namespace Cronica.Servicios
 
             return listaMensajes;
         }
+
+        public async Task<VistaMensaje> GetMensaje(int mensajeId, int personajeId, ApplicationUser usuario)
+        {
+            VistaMensaje vistaMensaje = null;
+
+            if (PuedeVerMensaje(mensajeId, usuario))
+            {
+                vistaMensaje = await (from mensaje in _contexto.Mensajes                                      
+                                      join personaje in _contexto.Personajes on mensaje.RemitenteId equals personaje.PersonajeId
+                                      where mensaje.MensajeId == mensajeId 
+                                      select new VistaMensaje
+                                      {
+                                          Asunto = mensaje.Asunto,
+                                          Cuerpo = mensaje.Cuerpo,
+                                          EsAnonimo = mensaje.EsAnonimo,
+                                          FechaEnvio = mensaje.FechaCreacion,
+                                          MensajeId = mensaje.MensajeId,
+                                          Remitente = (mensaje.NombreParaMostrar == string.Empty) ? personaje.Nombre : mensaje.NombreParaMostrar,
+                                          RemitenteReal = personaje.Nombre
+                                      }
+                           ).FirstOrDefaultAsync();
+                if (vistaMensaje != null)
+                {
+                    await MarcarMensajeComoLeido(mensajeId, personajeId);
+
+                    if (usuario.Cuenta == TipoCuenta.Administrador || usuario.Cuenta == TipoCuenta.Narrador)
+                    {
+                        //para narradores y administradores, recupera todos los destinatarios
+                        vistaMensaje.Destinatarios = String.Join("; ",
+                                            (from destinatario in _contexto.DestinatariosMensaje
+                                             join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                             where destinatario.MensajeId == vistaMensaje.MensajeId
+                                             select personaje.Nombre
+                                            ).ToList());
+                    }
+                    else
+                    {
+                        //en caso de jugadores, recupera solo los destinatarios incluidos en el para
+                        vistaMensaje.Destinatarios = String.Join("; ",
+                                            (from destinatario in _contexto.DestinatariosMensaje
+                                             join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                             where destinatario.MensajeId == vistaMensaje.MensajeId && destinatario.TipoDestinatario == TipoDestinatario.Para
+                                             select personaje.Nombre
+                                            ).ToList());
+                    }
+                }
+            }
+
+            return vistaMensaje;
+        }
+
 
         public async Task<bool> EnviarMensaje(Mensaje mensaje, List<string> para, List<string> copiaOculta)
         {
@@ -92,6 +145,53 @@ namespace Cronica.Servicios
             await ConfirmarCambios();
 
             return resultado;
+        }
+
+        private bool PuedeVerMensaje(int mensajeId, ApplicationUser usuario)
+        {
+            if (usuario.Cuenta == TipoCuenta.Administrador || usuario.Cuenta == TipoCuenta.Narrador)
+            {
+                return true;
+            }
+            else
+            {
+                bool usuarioEsDestinatario = (from destinatario in _contexto.DestinatariosMensaje
+                                              join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                              where destinatario.MensajeId == mensajeId && personaje.JugadorId == usuario.Id
+                                              && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+                                              select destinatario.DestinatarioMensajeId).Count() > 0;
+                return usuarioEsDestinatario;
+            }
+        }
+
+        //public async Task MarcarMensajeComoLeido(int mensajeId, ApplicationUser usuario)
+        //{
+        //    DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
+        //                                               join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+        //                                               where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+        //                                               && personaje.JugadorId == usuario.Id
+        //                                               select destinatario).FirstOrDefault();
+
+        //    if (destinatarioMensaje != null && destinatarioMensaje.EstadoMensaje == EstadoMensaje.SinLeer)
+        //    {
+        //        destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
+        //        Actualizar(destinatarioMensaje);
+        //        await ConfirmarCambios();
+        //    }
+        //}
+        public async Task MarcarMensajeComoLeido(int mensajeId, int personajeId)
+        {
+            DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
+                                                       where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+                                                       && destinatario.DestinatarioId == personajeId
+                                                       select destinatario).FirstOrDefault();
+
+            if (destinatarioMensaje != null && destinatarioMensaje.EstadoMensaje == EstadoMensaje.SinLeer)
+            {
+                destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
+                Actualizar(destinatarioMensaje);
+                await ConfirmarCambios();
+            }
         }
     }
 }

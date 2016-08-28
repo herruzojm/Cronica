@@ -12,17 +12,14 @@ namespace Cronica.ViewComponents
     {
 
         private IServicioMensajeria _servicioMensajeria;
-        private IServicioUsuarios _servicioUsuarios;
 
-        public BandejaEntrada(IServicioMensajeria servicioMensajeria, IServicioUsuarios servicioUsuarios)
+        public BandejaEntrada(IServicioMensajeria servicioMensajeria)
         {
             _servicioMensajeria = servicioMensajeria;
-            _servicioUsuarios = servicioUsuarios;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int personajeId, ClaimsPrincipal user)
+        public async Task<IViewComponentResult> InvokeAsync(int personajeId)
         {
-            ViewBag.Usuario = _servicioUsuarios.GetUser(user);
             return View(await _servicioMensajeria.GetMensajesRecibidos(personajeId));
         }
     }

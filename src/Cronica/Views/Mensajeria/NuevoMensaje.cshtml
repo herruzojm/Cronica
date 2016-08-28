@@ -65,32 +65,3 @@
         </div>
     </div>
 </form>
-
-@*<div class="form-horizontal">  
-    <div class="form-group">
-        <label class="col-md-2 control-label">Enviar como: </label>
-        <div class="col-md-10">
-            <select asp-items="ViewBag.Personajes" id="PersonajeId" onchange="CargarNuevoMensaje()" class="form-control"></select>
-        </div>
-    </div>
-    <hr />
-    <p></p>
-    <span id="NuevoMensaje">
-    </span>
-</div>
-
-@section Scripts {
-    <script>
-        $(document).ready(function () {
-            CargarNuevoMensaje();
-        });
-</script>
-<script>
-    function CargarNuevoMensaje() {
-            var id = $('#PersonajeId').val();
-            $.get("/Mensajeria/ComponenteNuevoMensaje", { personajeId: id }, function (data) {
-                $('#NuevoMensaje').html(data);
-            });
-        }
-</script>
-}*@

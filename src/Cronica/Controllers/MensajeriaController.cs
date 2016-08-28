@@ -1,4 +1,5 @@
-﻿using Cronica.Modelos.ViewModels.Mensajeria;
+﻿using Cronica.Modelos.Models;
+using Cronica.Modelos.ViewModels.Mensajeria;
 using Cronica.Servicios.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -46,13 +47,13 @@ namespace Cronica.Controllers
 
         public IActionResult BandejaSalida(int personajeId)
         {            
-            return ViewComponent(nameof(ViewComponents.BandejaSalida), new { personajeId = personajeId, user = User });
+            return ViewComponent(nameof(ViewComponents.BandejaSalida), new { personajeId = personajeId});
         }
 
         public IActionResult ComponenteNuevoMensaje(int personajeId)
         {
             ViewBag.Personajes = new SelectList(_servicioPersonajes.GetEnumeradoPersonajes().Result, "Id", "Descripcion");
-            return ViewComponent(nameof(ViewComponents.NuevoMensaje), new { personajeId = personajeId, user = User });
+            return ViewComponent(nameof(ViewComponents.NuevoMensaje), new { personajeId = personajeId });
         }
 
         public async Task<IActionResult> NuevoMensaje()
@@ -109,5 +110,19 @@ namespace Cronica.Controllers
             }
         }
 
+        public async Task<IActionResult> VerMensaje(int id, int personajeId)
+        {
+            ApplicationUser usuario = await _servicioUsuarios.GetUser(User);
+            ViewBag.Usuario = usuario;
+            VistaMensaje mensaje = await _servicioMensajeria.GetMensaje(id, personajeId, usuario);
+            if (mensaje != null)
+            {
+                return View(mensaje);
+            }
+            else
+            {
+               return RedirectToAction("AccessDenied", "Account");
+            }            
+        }
     }
 }

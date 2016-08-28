@@ -206,6 +206,11 @@ namespace Cronica
                     defaults: new { controller = "Jugadores", action = "DetalleTrama" });
 
                 routes.MapRoute(
+                    name: "VerMensaje",
+                    template: "VerMensaje/{id}/{personajeId}",
+                    defaults: new { controller = "Mensajeria", action = "VerMensaje" });
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });

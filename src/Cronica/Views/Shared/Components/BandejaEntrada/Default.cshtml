@@ -27,7 +27,7 @@
             {
                 <tr class="@(item.Estado == EstadoMensaje.SinLeer ? "mensajeSinLeer" : "mensajeLeido" ) ">
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.MensajeId">Abrir</a>
+                        <a asp-action="VerMensaje" asp-route-id="@item.MensajeId" asp-route-PersonajeId="@item.PersonajeId">Abrir</a>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.EsAnonimo)
