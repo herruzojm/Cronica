@@ -14,6 +14,10 @@ namespace Cronica.Servicios
 {
     public class ServicioPersonajes : ServicioBase, IServicioPersonajes
     {
+
+        private const int SubterfugioId = 19;
+        private const int InformticaId = 33;
+
         private IHostingEnvironment _environment;
 
         public ServicioPersonajes(CronicaDbContext contexto, IHostingEnvironment environment) : base(contexto)
@@ -77,7 +81,6 @@ namespace Cronica.Servicios
                 .Where(p => p.Jugador.Cuenta == TipoCuenta.Narrador && p.Activo == true).ToListAsync();
         }
 
-
         public async Task<bool> ActualizarPersonaje(Personaje personaje)
         {
             bool resultado = true;
@@ -104,6 +107,13 @@ namespace Cronica.Servicios
             }
 
             return resultado;
+        }
+
+        public bool PuedeHacerEnvioAnonimo(int personajeId)
+        {
+            return _contexto.Personajes.Include(p => p.Atributos).Where(p => p.PersonajeId == personajeId &&
+                    p.Atributos.Any(a => (a.AtributoId == SubterfugioId && a.Valor >= 3) || (a.AtributoId == InformticaId && a.Valor >= 3))).Count() > 0;
+                    
         }
 
         private async Task<bool> GuardarImagen(IFormFile imagen, int personajeId)

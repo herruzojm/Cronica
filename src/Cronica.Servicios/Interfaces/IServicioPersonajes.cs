@@ -19,5 +19,6 @@ namespace Cronica.Servicios.Interfaces
         Task<List<Personaje>> GetPersonajesJugadores();
         Task<List<Personaje>> GetPNJs();
         Task<bool> ActualizarPersonaje(Personaje personaje);
+        bool PuedeHacerEnvioAnonimo(int personajeId);
     }
 }

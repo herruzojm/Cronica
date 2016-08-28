@@ -12,6 +12,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.PostPartidas;
 using Cronica.Modelos.ViewModels.Mensajeria;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Cronica.Controllers
 {
@@ -26,11 +27,12 @@ namespace Cronica.Controllers
         private IServicioAsignaciones _servicioAsignaciones;
         private IServicioEntrePartidas _servicioEntrePartidas;
         private IServicioMensajeria _servicioMensajeria;
+        private IServicioPersonajes _servicioPersonajes;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
                                     IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
                                     IServicioEntrePartidas servicioPostPartidas, UserManager<ApplicationUser> userManager,
-                                    IServicioMensajeria servicioMensajeria)
+                                    IServicioMensajeria servicioMensajeria, IServicioPersonajes servicioPersonajes)
         {
             _servicioJugadores = servicioJugadores;
             _servicioUsuarios = servicioUsuarios;
@@ -39,6 +41,7 @@ namespace Cronica.Controllers
             _servicioEntrePartidas = servicioPostPartidas;
             _userManager = userManager;
             _servicioMensajeria = servicioMensajeria;
+            _servicioPersonajes = servicioPersonajes;
         }
 
         // GET: SinPersonaje   
@@ -194,5 +197,53 @@ namespace Cronica.Controllers
             return View(await _servicioMensajeria.GetMensajesEnviados(personajeId));
         }
 
+        public async Task<IActionResult> NuevoMensaje()
+        {
+            SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+            personajes.Append(new SelectListItem() { Value = "", Text = "" });
+            ViewBag.Personajes = personajes;
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+            ViewBag.PuedeHacerEnvioAnonimo = _servicioPersonajes.PuedeHacerEnvioAnonimo(personajeId);
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NuevoMensaje(Mensaje mensaje, List<string> Para, List<string> CopiaOculta)
+        {
+            if (ModelState.IsValid)
+            {
+                if (Para.Count() > 0 || CopiaOculta.Count() > 0)
+                {                    
+                    ApplicationUser usuario = await _userManager.GetUserAsync(User);                    
+                    mensaje.RemitenteId = _servicioJugadores.GetPersonajeId(usuario.Id);
+                    if (!mensaje.EsAnonimo || (mensaje.EsAnonimo && _servicioPersonajes.PuedeHacerEnvioAnonimo(mensaje.RemitenteId)))
+                    {
+                        if (await _servicioMensajeria.EnviarMensaje(mensaje, Para, CopiaOculta))
+                        {
+                            ViewBag.MensajeExito = "Mensaje enviado";
+                            _servicioMensajeria.EnviarEmails(Para, CopiaOculta); //todo enviar de forma asincrona
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.MensajeError = $"Uppss... esto es delicado. Parece que estás intentando mandar el mensaje como anónimo pero tu personaje no tiene las habilidades para ello";
+                    }
+                }
+                else
+                {
+                    ViewBag.MensajeError = $"Iiiioooo... sipote... selecciona a alguien pa' mandarle el mensaje, ¿no?";
+                }
+            }
+            else
+            {
+                ViewBag.MensajeError = $"Uppss... parece que los datos no son válidos";
+            }
+            SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+            ViewBag.Personajes = personajes;
+            return View(mensaje);
+        }
     }
 }

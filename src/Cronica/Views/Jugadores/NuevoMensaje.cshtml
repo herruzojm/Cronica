@@ -1,0 +1,59 @@
+@model Mensaje
+
+@{
+    ViewData["Title"] = "Nuevo Mensaje";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<form asp-action="NuevoMensaje">
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @{
+            if (ViewBag.PuedeHacerEnvioAnonimo)
+            {
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <div class="checkbox">
+                            <input asp-for="EsAnonimo" />
+                            <label asp-for="EsAnonimo">Enviar de forma anónima (el remitente aparecerá en blanco)</label>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="form-group">
+            <label class="col-md-2 control-label">Para: </label>
+            <div class="col-md-10">
+                <select asp-items="ViewBag.Personajes" name="Para" multiple class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">CopiaOculta: </label>
+            <div class="col-md-10">
+                <select asp-items="ViewBag.Personajes" name="CopiaOculta" multiple class="form-control"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Asunto" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Asunto" class="form-control " />
+                <span asp-validation-for="Asunto" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cuerpo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea asp-for="Cuerpo" class="form-control"></textarea>
+                <span asp-validation-for="Cuerpo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Enviar Mensaje" class="btn btn-default btn-success" />
+            </div>
+        </div>
+    </div>
+</form>

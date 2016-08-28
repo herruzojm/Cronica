@@ -11,8 +11,13 @@ namespace Cronica.Servicios
 {
     public class ServicioMensajeria : ServicioBase, IServicioMensajeria
     {
-        public ServicioMensajeria(CronicaDbContext contexto) : base(contexto)
+        private IServicioUsuarios _servicioUsuarios;
+        private IServicioEmail _servicioEmail;
+
+        public ServicioMensajeria(CronicaDbContext contexto, IServicioUsuarios servicioUsuarios, IServicioEmail servicioEmail) : base(contexto)
         {
+            _servicioUsuarios = servicioUsuarios;
+            _servicioEmail = servicioEmail;
         }
 
         public async Task<List<MensajeBandejaEntrada>> GetMensajesRecibidos(int personajeId)
@@ -219,6 +224,21 @@ namespace Cronica.Servicios
                 destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
                 Actualizar(destinatarioMensaje);
                 await ConfirmarCambios();
+            }
+        }
+
+        public void EnviarEmails(List<string> Para, List<string> CopiaOculta)
+        {
+            string jugadorEmail;
+            foreach (string destinatarioId in Para)
+            {
+                jugadorEmail = _servicioUsuarios.GetEmailByPersonajeId(Convert.ToInt32(destinatarioId));
+                _servicioEmail.EnviarNuevoMensaje(jugadorEmail);
+            }
+            foreach (string destinatarioId in CopiaOculta)
+            {
+                jugadorEmail = _servicioUsuarios.GetEmailByPersonajeId(Convert.ToInt32(destinatarioId));
+                _servicioEmail.EnviarNuevoMensaje(jugadorEmail);
             }
         }
     }

@@ -77,7 +77,7 @@ namespace Cronica.Controllers
                     if (await _servicioMensajeria.EnviarMensaje(mensaje, Para, CopiaOculta))
                     {
                         ViewBag.MensajeExito = "Mensaje enviado";
-                        EnviarEmails(Para, CopiaOculta); //todo enviar de forma asincrona
+                        _servicioMensajeria.EnviarEmails(Para, CopiaOculta); //todo enviar de forma asincrona
                         return View();
                     }
                 }
@@ -95,20 +95,6 @@ namespace Cronica.Controllers
             return View(mensaje);
         }
 
-        private void EnviarEmails(List<string> Para, List<string> CopiaOculta)
-        {
-            string jugadorEmail;
-            foreach (string destinatarioId in Para)
-            {
-                jugadorEmail = _servicioUsuarios.GetEmailByPersonajeId(Convert.ToInt32(destinatarioId));
-                _servicioEmail.EnviarNuevoMensaje(jugadorEmail);
-            }
-            foreach (string destinatarioId in CopiaOculta)
-            {
-                jugadorEmail = _servicioUsuarios.GetEmailByPersonajeId(Convert.ToInt32(destinatarioId));
-                _servicioEmail.EnviarNuevoMensaje(jugadorEmail);
-            }
-        }
 
         public async Task<IActionResult> VerMensaje(int id, int personajeId)
         {
