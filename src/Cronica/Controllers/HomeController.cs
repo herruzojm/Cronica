@@ -15,17 +15,18 @@ namespace Cronica.Controllers
 
         public IActionResult QuienesSomos()
         {
-            ViewData["Message"] = "Your application description page.";
-
             return View();
         }
 
         public IActionResult Escribenos()
         {
-            ViewData["Message"] = "Your contact page.";
-
             return View();
-        }        
+        }
+
+        public IActionResult NotaMensajeria()
+        {
+            return View();
+        }
 
         public IActionResult Error()
         {
