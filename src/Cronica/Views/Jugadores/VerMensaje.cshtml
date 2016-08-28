@@ -1,0 +1,47 @@
+@model VistaMensaje
+@{
+    ViewData["Title"] = "Ver Mensaje";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<div class="form-horizontal">
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="MensajeId" />
+        <div class="form-group">
+            <label class="col-md-2 control-label">Fecha Envio</label>
+            <div class="col-md-10">
+                <input readonly asp-for="FechaEnvio" class="form-control" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Remitente </label>
+            <div class="col-md-10">
+                <input readonly asp-for="Remitente" class="form-control " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Destinatarios</label>
+            <div class="col-md-10">
+                <input readonly asp-for="Destinatarios" class="form-control " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Asunto" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input readonly asp-for="Asunto" class="form-control " />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Cuerpo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <textarea readonly asp-for="Cuerpo" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+</div>
+
+

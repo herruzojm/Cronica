@@ -61,6 +61,11 @@ namespace Cronica.Servicios
             return listaMensajes;
         }
 
+        public async Task<VistaMensaje> GetMensaje(int mensajeId, ApplicationUser usuario)
+        {
+            return await GetMensaje(mensajeId, 0, usuario);
+        }
+
         public async Task<VistaMensaje> GetMensaje(int mensajeId, int personajeId, ApplicationUser usuario)
         {
             VistaMensaje vistaMensaje = null;
@@ -77,13 +82,20 @@ namespace Cronica.Servicios
                                           EsAnonimo = mensaje.EsAnonimo,
                                           FechaEnvio = mensaje.FechaCreacion,
                                           MensajeId = mensaje.MensajeId,
-                                          Remitente = (mensaje.NombreParaMostrar == string.Empty) ? personaje.Nombre : mensaje.NombreParaMostrar,
+                                          Remitente = (mensaje.NombreParaMostrar == null || mensaje.NombreParaMostrar == string.Empty) ? personaje.Nombre : mensaje.NombreParaMostrar,
                                           RemitenteReal = personaje.Nombre
                                       }
                            ).FirstOrDefaultAsync();
                 if (vistaMensaje != null)
                 {
-                    await MarcarMensajeComoLeido(mensajeId, personajeId);
+                    if (personajeId != 0)
+                    {
+                        await MarcarMensajeComoLeido(mensajeId, personajeId);
+                    }
+                    else
+                    {
+                        await MarcarMensajeComoLeido(mensajeId, usuario);
+                    }
 
                     if (usuario.Cuenta == TipoCuenta.Administrador || usuario.Cuenta == TipoCuenta.Narrador)
                     {
@@ -164,29 +176,30 @@ namespace Cronica.Servicios
             }
         }
 
-        //public async Task MarcarMensajeComoLeido(int mensajeId, ApplicationUser usuario)
-        //{
-        //    DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
-        //                                               join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
-        //                                               where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
-        //                                               && personaje.JugadorId == usuario.Id
-        //                                               select destinatario).FirstOrDefault();
+        public async Task MarcarMensajeComoLeido(int mensajeId, ApplicationUser usuario)
+        {
+            DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
+                                                       join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                                       where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje == EstadoMensaje.SinLeer
+                                                       && personaje.JugadorId == usuario.Id
+                                                       select destinatario).FirstOrDefault();
 
-        //    if (destinatarioMensaje != null && destinatarioMensaje.EstadoMensaje == EstadoMensaje.SinLeer)
-        //    {
-        //        destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
-        //        Actualizar(destinatarioMensaje);
-        //        await ConfirmarCambios();
-        //    }
-        //}
+            if (destinatarioMensaje != null)
+            {
+                destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
+                Actualizar(destinatarioMensaje);
+                await ConfirmarCambios();
+            }
+        }
+
         public async Task MarcarMensajeComoLeido(int mensajeId, int personajeId)
         {
             DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
-                                                       where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+                                                       where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje == EstadoMensaje.SinLeer
                                                        && destinatario.DestinatarioId == personajeId
                                                        select destinatario).FirstOrDefault();
 
-            if (destinatarioMensaje != null && destinatarioMensaje.EstadoMensaje == EstadoMensaje.SinLeer)
+            if (destinatarioMensaje != null)
             {
                 destinatarioMensaje.EstadoMensaje = EstadoMensaje.Leido;
                 Actualizar(destinatarioMensaje);

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Cronica.Modelos.ViewModels.PostPartidas;
+using Cronica.Modelos.ViewModels.Mensajeria;
 
 namespace Cronica.Controllers
 {
@@ -24,10 +25,12 @@ namespace Cronica.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private IServicioAsignaciones _servicioAsignaciones;
         private IServicioEntrePartidas _servicioEntrePartidas;
+        private IServicioMensajeria _servicioMensajeria;
 
         public JugadoresController(IServicioJugadores servicioJugadores, IServicioUsuarios servicioUsuarios,
                                     IServicioTramas servicioTramas, IServicioAsignaciones servicioAsignaciones,
-                                    IServicioEntrePartidas servicioPostPartidas, UserManager<ApplicationUser> userManager)
+                                    IServicioEntrePartidas servicioPostPartidas, UserManager<ApplicationUser> userManager,
+                                    IServicioMensajeria servicioMensajeria)
         {
             _servicioJugadores = servicioJugadores;
             _servicioUsuarios = servicioUsuarios;
@@ -35,6 +38,7 @@ namespace Cronica.Controllers
             _servicioAsignaciones = servicioAsignaciones;
             _servicioEntrePartidas = servicioPostPartidas;
             _userManager = userManager;
+            _servicioMensajeria = servicioMensajeria;
         }
 
         // GET: SinPersonaje   
@@ -160,6 +164,20 @@ namespace Cronica.Controllers
             Trama trama = await _servicioTramas.GetTramaConInterludio(personajeId.Value, tramaId.Value);
 
             return View(trama);
+        }
+
+        public async Task<IActionResult> VerMensaje(int id)
+        {
+            ApplicationUser usuario = await _servicioUsuarios.GetUser(User);
+            VistaMensaje mensaje = await _servicioMensajeria.GetMensaje(id, usuario);
+            if (mensaje != null)
+            {
+                return View(mensaje);
+            }
+            else
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
         }
     }
 }

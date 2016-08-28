@@ -39,6 +39,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
         public string EnviadoComo { get; set; }
         public string Asunto { get; set; }
         [Display(Name = "Fecha Envio")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy - hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime FechaEnvio { get; set; }
         public EstadoMensaje Estado { get; set; }
     }
@@ -55,6 +56,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
         public string EnviadoA { get; set; }
         public string Asunto { get; set; }
         [Display(Name = "Fecha Envio")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy - hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime FechaEnvio { get; set; }
     }
 
@@ -64,6 +66,7 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
         public bool EsAnonimo { get; set; }
         public string Remitente { get; set; }
         public string RemitenteReal { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy - hh:mm:ss}", ApplyFormatInEditMode = true)]
         public DateTime FechaEnvio { get; set; }
         public string Destinatarios { get; set; }
         public string Asunto { get; set; }
