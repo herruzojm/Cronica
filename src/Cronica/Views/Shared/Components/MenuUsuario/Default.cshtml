@@ -5,9 +5,9 @@
     {
         @inject IServicioJugadores _servicioJugadores
         <div class="list-group panel">            
-                Usuario: <strong>@await _servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
+                Usuario: <strong>@_servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
                 <p></p>
-                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = await _servicioJugadores.GetFotoPersonaje(Model.Id) })            
+                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = _servicioJugadores.GetFotoPersonaje(Model.Id) })            
         </div>
         <div class="list-group panel">
             <span class="list-group-item list-group-item-info">Personaje</span>
@@ -25,7 +25,7 @@
             <div>
                 <a class="list-group-item" asp-controller="Jugadores" asp-action="MisRecibidos">Recibidos</a>
                 <a class="list-group-item" asp-controller="Jugadores" asp-action="MisEnviados">Enviados</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="Create">Nuevo Correo</a>
+                <a class="list-group-item" asp-controller="Jugadores" asp-action="NuevoMensaje">Nuevo Mensaje</a>
             </div>
         </div>
     }
@@ -52,7 +52,7 @@
             <div>
                 <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
                 <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Create">Nuevo Correo</a>
+                <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
             </div>
             <span class="list-group-item list-group-item-info">Usuarios</span>
             <div>
@@ -89,7 +89,7 @@
             <div>
                 <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
                 <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Create">Nuevo Correo</a>
+                <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
             </div>
             <span class="list-group-item list-group-item-info">Usuarios</span>
             <div>

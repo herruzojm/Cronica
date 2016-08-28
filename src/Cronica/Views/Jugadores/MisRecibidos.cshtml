@@ -1,18 +1,17 @@
 @model IEnumerable<MensajeBandejaEntrada>
+@{
+    ViewData["Title"] = "Lista de Mensajes Recibidos";
+}
+
+<h2>@ViewData["Title"]</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th></th>
-            <th>
-                @Html.DisplayNameFor(model => model.EsAnonimo)
-            </th>
+            <th></th>            
             <th>
                 @Html.DisplayNameFor(model => model.Remitente)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnviadoComo)
-            </th>
+            </th>            
             <th>
                 @Html.DisplayNameFor(model => model.Asunto)
             </th>
@@ -27,16 +26,19 @@
             {
                 <tr class="@(item.Estado == EstadoMensaje.SinLeer ? "mensajeSinLeer" : "mensajeLeido" ) ">
                     <td>
-                        <a asp-action="VerMensaje" asp-route-id="@item.MensajeId" asp-route-PersonajeId="@item.PersonajeId">Abrir</a>
+                        <a asp-action="VerMensaje" asp-route-id="@item.MensajeId">Abrir</a>
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.EsAnonimo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Remitente)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EnviadoComo)
+                        @{ 
+                            if (item.EnviadoComo != null && item.EnviadoComo != string.Empty)
+                            {
+                                @Html.DisplayFor(modelItem => item.EnviadoComo)
+                            }
+                            else if (!item.EsAnonimo)
+                            {
+                                @Html.DisplayFor(modelItem => item.Remitente)
+                            }
+                        }                        
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Asunto)
@@ -49,4 +51,4 @@
         }
     </tbody>
 </table>
-<a class="btn btn-default btn-info" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+<a class="btn btn-default btn-info" asp-action="NuevoMensaje">Nuevo Mensaje</a>

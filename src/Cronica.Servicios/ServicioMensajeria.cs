@@ -72,9 +72,9 @@ namespace Cronica.Servicios
 
             if (PuedeVerMensaje(mensajeId, usuario))
             {
-                vistaMensaje = await (from mensaje in _contexto.Mensajes                                      
+                vistaMensaje = await (from mensaje in _contexto.Mensajes
                                       join personaje in _contexto.Personajes on mensaje.RemitenteId equals personaje.PersonajeId
-                                      where mensaje.MensajeId == mensajeId 
+                                      where mensaje.MensajeId == mensajeId
                                       select new VistaMensaje
                                       {
                                           Asunto = mensaje.Asunto,
@@ -90,7 +90,7 @@ namespace Cronica.Servicios
                 {
                     if (personajeId != 0)
                     {
-                        await MarcarMensajeComoLeido(mensajeId, personajeId);
+                        await MarcarMensajeComoLeido(mensajeId, usuario.Id, personajeId);
                     }
                     else
                     {
@@ -167,16 +167,30 @@ namespace Cronica.Servicios
             }
             else
             {
-                bool usuarioEsDestinatario = (from destinatario in _contexto.DestinatariosMensaje
-                                              join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
-                                              where destinatario.MensajeId == mensajeId && personaje.JugadorId == usuario.Id
-                                              && destinatario.EstadoMensaje != EstadoMensaje.Borrado
-                                              select destinatario.DestinatarioMensajeId).Count() > 0;
-                return usuarioEsDestinatario;
+                //podra ver el mensaje si es remitente o destinatario y no esta borrado
+                bool esRemitente = false;
+                bool esDestinatario = false;
+
+                esDestinatario = (from destinatario in _contexto.DestinatariosMensaje
+                                  join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
+                                  where destinatario.MensajeId == mensajeId && personaje.JugadorId == usuario.Id
+                                  && destinatario.EstadoMensaje != EstadoMensaje.Borrado
+                                  select destinatario.DestinatarioMensajeId).Count() > 0;
+
+                if (!esDestinatario)
+                {
+                    esRemitente = (from mensaje in _contexto.Mensajes
+                                   join personje in _contexto.Personajes on mensaje.RemitenteId equals personje.PersonajeId
+                                   where personje.JugadorId == usuario.Id
+                                   select mensaje.MensajeId).Count() > 0;
+                }
+
+
+                return esDestinatario || esRemitente;
             }
         }
 
-        public async Task MarcarMensajeComoLeido(int mensajeId, ApplicationUser usuario)
+        private async Task MarcarMensajeComoLeido(int mensajeId, ApplicationUser usuario)
         {
             DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
                                                        join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
@@ -192,11 +206,12 @@ namespace Cronica.Servicios
             }
         }
 
-        public async Task MarcarMensajeComoLeido(int mensajeId, int personajeId)
+        private async Task MarcarMensajeComoLeido(int mensajeId, string jugadorId, int personajeId)
         {
             DestinatarioMensaje destinatarioMensaje = (from destinatario in _contexto.DestinatariosMensaje
+                                                       join personaje in _contexto.Personajes on destinatario.DestinatarioId equals personaje.PersonajeId
                                                        where destinatario.MensajeId == mensajeId && destinatario.EstadoMensaje == EstadoMensaje.SinLeer
-                                                       && destinatario.DestinatarioId == personajeId
+                                                       && destinatario.DestinatarioId == personajeId && personaje.JugadorId == jugadorId
                                                        select destinatario).FirstOrDefault();
 
             if (destinatarioMensaje != null)

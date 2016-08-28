@@ -70,14 +70,19 @@ namespace Cronica.Servicios
                           }).FirstOrDefaultAsync();
         }
 
-        public async Task<string> GetNombrePersonaje(string jugadorId)
+        public string GetNombrePersonaje(string jugadorId)
         {
-            return _contexto.Personajes.SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true).Result.Nombre;
+            return _contexto.Personajes.Single(p => p.JugadorId == jugadorId && p.Activo == true).Nombre;
         }
 
-        public async Task<string> GetFotoPersonaje(string jugadorId)
+        public string GetFotoPersonaje(string jugadorId)
         {
-            return _contexto.Personajes.SingleAsync(p => p.JugadorId == jugadorId && p.Activo == true).Result.Foto;
+            return _contexto.Personajes.Single(p => p.JugadorId == jugadorId && p.Activo == true).Foto;
+        }
+
+        public int GetPersonajeId(string jugadorId)
+        {
+            return _contexto.Personajes.Single(p => p.JugadorId == jugadorId && p.Activo == true).PersonajeId;
         }
 
         public async Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId)

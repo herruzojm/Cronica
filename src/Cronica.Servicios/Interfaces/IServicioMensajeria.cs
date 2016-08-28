@@ -15,6 +15,5 @@ namespace Cronica.Servicios.Interfaces
         Task<VistaMensaje> GetMensaje(int mensajeId, int personajeId, ApplicationUser usuario);
         Task<VistaMensaje> GetMensaje(int mensajeId, ApplicationUser usuario);
         Task<bool> EnviarMensaje(Mensaje mensaje, List<string> para, List<string> copiaOculta);
-        Task MarcarMensajeComoLeido(int mensajeId, int personajeId);
     }
 }

@@ -179,5 +179,20 @@ namespace Cronica.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
         }
+
+        public async Task<IActionResult> MisRecibidos()
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+            return View(await _servicioMensajeria.GetMensajesRecibidos(personajeId));
+        }
+
+        public async Task<IActionResult> MisEnviados()
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+            return View(await _servicioMensajeria.GetMensajesEnviados(personajeId));
+        }
+
     }
 }
