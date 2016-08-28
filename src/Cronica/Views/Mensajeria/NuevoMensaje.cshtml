@@ -10,7 +10,7 @@
 <form asp-action="NuevoMensaje">
     <div class="form-horizontal">
         <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>        
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label class="col-md-2 control-label">Enviar como: </label>
             <div class="col-md-10">
@@ -47,7 +47,7 @@
         <div class="form-group">
             <label asp-for="Asunto" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Asunto"  class="form-control " />
+                <input asp-for="Asunto" class="form-control " />
                 <span asp-validation-for="Asunto" class="text-danger" />
             </div>
         </div>
@@ -65,3 +65,8 @@
         </div>
     </div>
 </form>
+
+@section Scripts {
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+}

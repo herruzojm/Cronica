@@ -7,41 +7,49 @@
 
 
 <div class="form-horizontal">
-    <div class="form-horizontal">
-        <hr />
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <input type="hidden" asp-for="MensajeId" />
-        <div class="form-group">
-            <label class="col-md-2 control-label">Fecha Envio</label>
-            <div class="col-md-10">
-                <input readonly asp-for="FechaEnvio" class="form-control" />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Remitente </label>
-            <div class="col-md-10">
-                <input readonly asp-for="Remitente" class="form-control " />
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-2 control-label">Destinatarios</label>
-            <div class="col-md-10">
-                <input readonly asp-for="Destinatarios" class="form-control " />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Asunto" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input readonly asp-for="Asunto" class="form-control " />
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="Cuerpo" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <textarea readonly asp-for="Cuerpo" class="form-control"></textarea>
-            </div>
-        </div>
-    </div>
+    <hr />
+    <input type="hidden" asp-for="MensajeId" />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaEnvio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FechaEnvio)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Remitente)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Remitente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Destinatarios)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Destinatarios)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Asunto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Asunto)
+        </dd>        
+        <dt>
+            @Html.DisplayNameFor(model => model.Cuerpo)
+        </dt>  
+        <dd>
+            <textarea readonly asp-for="Cuerpo" class="form-control"></textarea>
+        </dd>                     
+    </dl>
 </div>
-
+@section Scripts {
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>
+        tinymce.init(
+            {
+                selector: 'textarea',
+                readonly: 1
+            });
+    </script>
+}
 
