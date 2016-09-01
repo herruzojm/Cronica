@@ -3,11 +3,18 @@ using Cronica.Servicios.Interfaces;
 using MailKit.Net.Smtp;
 using MimeKit;
 using System.Threading.Tasks;
+using Cronica.Modelos.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Cronica.Servicios
 {
-    public class ServicioEmail : IServicioEmail
+    public class ServicioEmail : ServicioBase, IServicioEmail
     {
+        public ServicioEmail(CronicaDbContext contexto) : base(contexto)
+        {
+        }
+
         public void EnviarAltaCuenta(string cuentaUsuario, string password)
         {
             var mensage = new MimeMessage();
@@ -20,12 +27,16 @@ namespace Cronica.Servicios
 
         public void EnviarNuevoMensaje(string cuentaUsuario)
         {
-            var mensage = new MimeMessage();
-            mensage.From.Add(new MailboxAddress("Verum In Sanguine", "VerumInSanguine@gmail.com"));
-            mensage.To.Add(new MailboxAddress(cuentaUsuario, cuentaUsuario));
-            mensage.Subject = "Cuenta de usuario en Verum In Sanguine";
-            mensage.Body = new TextPart("html") { Text = TextoNuevoMensaje() };
-            EnviarMensaje(mensage);
+            bool quiereEmail = _contexto.Users.Single(u => u.Email == cuentaUsuario).MailPorNotificacion;
+            if (quiereEmail)
+            {
+                var mensage = new MimeMessage();
+                mensage.From.Add(new MailboxAddress("Verum In Sanguine", "VerumInSanguine@gmail.com"));
+                mensage.To.Add(new MailboxAddress(cuentaUsuario, cuentaUsuario));
+                mensage.Subject = "Cuenta de usuario en Verum In Sanguine";
+                mensage.Body = new TextPart("html") { Text = TextoNuevoMensaje() };
+                EnviarMensaje(mensage);
+            }
         }
 
         private void EnviarMensaje(MimeMessage mensaje)
