@@ -192,18 +192,18 @@ namespace Cronica.Controllers
         }
 
         //
-        // GET: /Manage/Administrar
+        // GET: /Manage/ChangePassword
         [HttpGet]
-        public IActionResult Administrar()
+        public IActionResult ChangePassword()
         {
             return View();
         }
 
         //
-        // POST: /Manage/Administrar
+        // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Administrar(ChangePasswordViewModel model)
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -225,6 +225,30 @@ namespace Cronica.Controllers
                 return View(model);
             }
             return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+        }
+
+        //
+        // GET: /Manage/CambiarPreferencias
+        [HttpGet]
+        public IActionResult CambiarPreferencias()
+        {
+            ApplicationUser usuario = _userManager.GetUserAsync(User).Result;
+            PreferenciasUsuario preferencias = new PreferenciasUsuario();
+            preferencias.MailPorInterludio = usuario.MailPorInterludio;
+            preferencias.MailPorNotificacion = usuario.MailPorNotificacion;
+            return View(preferencias);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> CambiarPreferencias(PreferenciasUsuario preferencias)
+        {
+            ApplicationUser usuario = await _userManager.GetUserAsync(User);
+            usuario.MailPorInterludio = preferencias.MailPorInterludio;
+            usuario.MailPorNotificacion = preferencias.MailPorNotificacion;
+            await _userManager.UpdateAsync(usuario);
+            ViewBag.MensajeExito = "Preferencias actualizadas";
+            return View(preferencias);
         }
 
         //

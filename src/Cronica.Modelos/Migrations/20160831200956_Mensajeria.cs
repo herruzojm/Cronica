@@ -41,7 +41,7 @@ namespace Cronica.Modelos.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     DestinatarioId = table.Column<int>(nullable: false),
                     EstadoMensaje = table.Column<int>(nullable: false),
-                    MensajeId = table.Column<int>(nullable: true),
+                    MensajeId = table.Column<int>(nullable: false),
                     TipoDestinatario = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -58,8 +58,20 @@ namespace Cronica.Modelos.Migrations
                         column: x => x.MensajeId,
                         principalTable: "Mensajes",
                         principalColumn: "MensajeId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
+
+            migrationBuilder.AddColumn<bool>(
+                name: "MailPorInterludio",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: true);
+
+            migrationBuilder.AddColumn<bool>(
+                name: "MailPorNotificacion",
+                table: "AspNetUsers",
+                nullable: false,
+                defaultValue: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_DestinatariosMensaje_DestinatarioId",
@@ -79,6 +91,14 @@ namespace Cronica.Modelos.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "MailPorInterludio",
+                table: "AspNetUsers");
+
+            migrationBuilder.DropColumn(
+                name: "MailPorNotificacion",
+                table: "AspNetUsers");
+
             migrationBuilder.DropTable(
                 name: "DestinatariosMensaje");
 

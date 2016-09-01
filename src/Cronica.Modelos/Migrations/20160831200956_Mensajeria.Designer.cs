@@ -8,7 +8,7 @@ using Cronica.Modelos.Models;
 namespace Cronica.Modelos.Migrations
 {
     [DbContext(typeof(CronicaDbContext))]
-    [Migration("20160827142059_Mensajeria")]
+    [Migration("20160831200956_Mensajeria")]
     partial class Mensajeria
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,10 @@ namespace Cronica.Modelos.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<bool>("MailPorInterludio");
+
+                    b.Property<bool>("MailPorNotificacion");
 
                     b.Property<string>("NormalizedEmail")
                         .HasAnnotation("MaxLength", 256);
@@ -183,7 +187,7 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("EstadoMensaje");
 
-                    b.Property<int?>("MensajeId");
+                    b.Property<int>("MensajeId");
 
                     b.Property<int>("TipoDestinatario");
 
@@ -624,7 +628,8 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasOne("Cronica.Modelos.ViewModels.Mensajeria.Mensaje", "Mensaje")
                         .WithMany("Destinatarios")
-                        .HasForeignKey("MensajeId");
+                        .HasForeignKey("MensajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Mensajeria.Mensaje", b =>

@@ -7,6 +7,8 @@ namespace Cronica.Modelos.Models
     public class ApplicationUser : IdentityUser
     {
         public TipoCuenta Cuenta { get; set; }
+        public bool MailPorNotificacion { get; set; } = true;
+        public bool MailPorInterludio { get; set; } = true;
     }
 
     public enum TipoCuenta
@@ -15,4 +17,11 @@ namespace Cronica.Modelos.Models
         Narrador,
         Administrador
     }
+
+    public class PreferenciasUsuario
+    {
+        public bool MailPorNotificacion { get; set; } = true;
+        public bool MailPorInterludio { get; set; } = true;
+    }
+
 }

@@ -4,28 +4,58 @@
     if (Model.Cuenta == TipoCuenta.Jugador)
     {
         @inject IServicioJugadores _servicioJugadores
-        <div class="list-group panel">            
-                Usuario: <strong>@_servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
-                <p></p>
-                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = _servicioJugadores.GetFotoPersonaje(Model.Id) })            
-        </div>
         <div class="list-group panel">
-            <span class="list-group-item list-group-item-info">Personaje</span>
-            <div>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="MiPersonaje">Mi Personaje</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="FormularioPostPartida">Enviar Interludio</a>
+            Usuario: <strong>@_servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
+            <p></p>
+            @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = _servicioJugadores.GetFotoPersonaje(Model.Id) })
+        </div>
+        <div class="list-group panel" id="Menus">
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuPersonaje" aria-expanded="true" aria-controls="MenuPersonaje">
+                    Personaje
+                </a>
+                <div id="MenuPersonaje" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuPersonaje">
+                    <div>
+                        <a class="list-group-item" asp-controller="Jugadores" asp-action="MiPersonaje">Mi Personaje</a>
+                        <a class="list-group-item" asp-controller="Jugadores" asp-action="FormularioPostPartida">Enviar Interludio</a>
+                    </div>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Tramas</span>
-            <div>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramas">Tramas Activas</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="Asignaciones">Asignaciones</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramasCerradas">Tramas Cerradas</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuTramas" aria-expanded="true" aria-controls="MenuTramas">
+                    Tramas
+                </a>
+                <div id="MenuTramas" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuTramas">
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramas">Tramas Activas</a>
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="Asignaciones">Asignaciones</a>
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="MisTramasCerradas">Tramas Cerradas</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Mensajeria</span>
-            <div>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="MisRecibidos">Recibidos</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="MisEnviados">Enviados</a>
-                <a class="list-group-item" asp-controller="Jugadores" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuMensajeria" aria-expanded="true" aria-controls="MenuMensajeria">
+                    Mensajeria
+                </a>
+                <div id="MenuMensajeria" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuMensajeria">
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="MisRecibidos">Recibidos</a>
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="MisEnviados">Enviados</a>
+                    <a class="list-group-item" asp-controller="Jugadores" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuCuenta" aria-expanded="true" aria-controls="MenuCuenta">
+                    Cuenta
+                </a>
+                <div id="MenuCuenta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuCuenta">
+                    <a class="list-group-item" asp-controller="Manage" asp-action="CambiarPreferencias">Preferencias</a>
+                    <a class="list-group-item" asp-controller="Manage" asp-action="ChangePassword">Cambiar Contraseña</a>
+                </div>
+            </div>
+            <div class="list-group panel">
+                <button type="submit" class="list-group-item">Cerrar Sesión</button>
             </div>
         </div>
     }
@@ -34,30 +64,62 @@
         <div class="list-group panel">
             Usuario: <strong>@Model.UserName</strong>
         </div>
-        <div class="list-group panel">
-            <span class="list-group-item list-group-item-info">Personajes</span>
-            <div>
-                
-                <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
-                <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
-                <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+        <div class="list-group panel" id="Menus">
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuPersonajes" aria-expanded="true" aria-controls="MenuPersonajes">
+                    Personajes
+                </a>
+                <div id="MenuPersonajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuPersonajes">
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Tramas</span>
-            <div>
-                <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
-                <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="PostPartidasPendientes">Interludios Pendientes</a>
-                <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="FormulariosPostPartida">Interludios</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuTramas" aria-expanded="true" aria-controls="MenuTramas">
+                    Tramas
+                </a>
+                <div id="MenuTramas" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuTramas">
+                    <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
+                    <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="PostPartidasPendientes">Interludios Pendientes</a>
+                    <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="FormulariosPostPartida">Interludios</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Mensajeria</span>
-            <div>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuMensajeria" aria-expanded="true" aria-controls="MenuMensajeria">
+                    Mensajeria
+                </a>
+                <div id="MenuMensajeria" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuMensajeria">
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Usuarios</span>
-            <div>
-                <a class="list-group-item" asp-controller="Account" asp-action="Index">Listado de Cuentas</a>
-                <a class="list-group-item" asp-controller="Account" asp-action="Register">Crear Cuenta</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuUsuarios" aria-expanded="true" aria-controls="MenuUsuarios">
+                    Usuarios
+                </a>
+                <div id="MenuUsuarios" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuUsuarios">
+                    <a class="list-group-item" asp-controller="Account" asp-action="Index">Listado de Cuentas</a>
+                    <a class="list-group-item" asp-controller="Account" asp-action="Register">Crear Cuenta</a>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuCuenta" aria-expanded="true" aria-controls="MenuCuenta">
+                    Cuenta
+                </a>
+                <div id="MenuCuenta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuCuenta">
+                    <a class="list-group-item" asp-controller="Manage" asp-action="CambiarPreferencias">Preferencias</a>
+                    <a class="list-group-item" asp-controller="Manage" asp-action="ChangePassword">Cambiar Contraseña</a>
+                </div>
+            </div>
+            <div class="list-group panel">
+                <button type="submit" class="list-group-item">Cerrar Sesión</button>
             </div>
         </div>
     }
@@ -66,35 +128,73 @@
         <div class="list-group panel">
             Usuario: <strong>@Model.UserName</strong>
         </div>
-        <div class="list-group panel">
-            <span class="list-group-item list-group-item-info">En Juego</span>
-            <div>                
-                <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>                
-                <a class="list-group-item" asp-controller="EntrePartidas" asp-action="Index">Entre Partidas</a>                
-                <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="PostPartidasPendientes">Interludios Pendientes</a>
-                <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="FormulariosPostPartida">Interludios</a>
+        <div class="list-group panel" id="Menus">
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuEnJuego" aria-expanded="true" aria-controls="MenuEnJuego">
+                    En Juego
+                </a>
+                <div id="MenuEnJuego" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuEnJuego">
+                    <a class="list-group-item" asp-controller="Tramas" asp-action="Index">Tramas</a>
+                    <a class="list-group-item" asp-controller="EntrePartidas" asp-action="Index">Entre Partidas</a>
+                    <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="PostPartidasPendientes">Interludios Pendientes</a>
+                    <a class="list-group-item" asp-controller="FormularioPostPartidas" asp-action="FormulariosPostPartida">Interludios</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Gestion</span>
-            <div>
-                <a class="list-group-item" asp-controller="Atributos" asp-action="Index">Atributos</a>
-                <a class="list-group-item" asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuGestion" aria-expanded="true" aria-controls="MenuGestion">
+                    Gestion
+                </a>
+                <div id="MenuGestion" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuGestion">
+                    <a class="list-group-item" asp-controller="Atributos" asp-action="Index">Atributos</a>
+                    <a class="list-group-item" asp-controller="PlantillasTrama" asp-action="Index">Plantillas Trama</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Personajes</span>
-            <div>
-                <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
-                <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
-                <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuPersonajes" aria-expanded="true" aria-controls="MenuPersonajes">
+                    Personajes
+                </a>
+                <div id="MenuPersonajes" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuPersonajes">
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="PersonajesJugadores">Personajes</a>
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="PNJs">PNJs</a>
+                    <a class="list-group-item" asp-controller="Personajes" asp-action="Index">Todos</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Mensajeria</span>
-            <div>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
-                <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuMensajeria" aria-expanded="true" aria-controls="MenuMensajeria">
+                    Mensajeria
+                </a>
+                <div id="MenuMensajeria" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuMensajeria">
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="Recibidos">Bandeja Entrada</a>
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
+                    <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
+                </div>
+            </div>            
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuUsuarios" aria-expanded="true" aria-controls="MenuUsuarios">
+                    Usuarios
+                </a>
+                <div id="MenuUsuarios" class="panel-collapse collapse" role="tabpanel" aria-labelledby="MenuUsuarios">
+                    <a class="list-group-item" asp-controller="Account" asp-action="Index">Listado de Cuentas</a>
+                    <a class="list-group-item" asp-controller="Account" asp-action="Register">Crear Cuenta</a>
+                </div>
             </div>
-            <span class="list-group-item list-group-item-info">Usuarios</span>
-            <div>
-                <a class="list-group-item" asp-controller="Account" asp-action="Index">Listado de Cuentas</a>
-                <a class="list-group-item" asp-controller="Account" asp-action="Register">Crear Cuenta</a>
+            <div class="panel panel-default">
+                <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
+                   href="#MenuCuenta" aria-expanded="true" aria-controls="MenuCuenta">
+                    Cuenta
+                </a>
+                <div id="MenuCuenta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="MenuCuenta">
+                    <a class="list-group-item" asp-controller="Manage" asp-action="CambiarPreferencias">Preferencias</a>
+                    <a class="list-group-item" asp-controller="Manage" asp-action="ChangePassword">Cambiar Contraseña</a>
+                </div>
+            </div>
+            <div class="list-group panel">
+                <button type="submit" class="list-group-item">Cerrar Sesión</button>
             </div>
         </div>
     }

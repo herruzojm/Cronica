@@ -36,6 +36,10 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
 
+                    b.Property<bool>("MailPorInterludio");
+
+                    b.Property<bool>("MailPorNotificacion");
+
                     b.Property<string>("NormalizedEmail")
                         .HasAnnotation("MaxLength", 256);
 
@@ -182,7 +186,7 @@ namespace Cronica.Modelos.Migrations
 
                     b.Property<int>("EstadoMensaje");
 
-                    b.Property<int?>("MensajeId");
+                    b.Property<int>("MensajeId");
 
                     b.Property<int>("TipoDestinatario");
 
@@ -623,7 +627,8 @@ namespace Cronica.Modelos.Migrations
 
                     b.HasOne("Cronica.Modelos.ViewModels.Mensajeria.Mensaje", "Mensaje")
                         .WithMany("Destinatarios")
-                        .HasForeignKey("MensajeId");
+                        .HasForeignKey("MensajeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Cronica.Modelos.ViewModels.Mensajeria.Mensaje", b =>
