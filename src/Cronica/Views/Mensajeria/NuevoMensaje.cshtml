@@ -14,7 +14,7 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Enviar como: </label>
             <div class="col-md-10">
-                <select asp-items="ViewBag.Personajes" asp-for="RemitenteId" class="form-control"></select>
+                <select asp-items="ViewBag.PersonajesPara" asp-for="RemitenteId" class="form-control"></select>
             </div>
         </div>
         <div class="form-group">
@@ -35,13 +35,13 @@
         <div class="form-group">
             <label class="col-md-2 control-label">Para: </label>
             <div class="col-md-10">
-                <select asp-items="ViewBag.Personajes" name="Para" multiple class="form-control"></select>
+                <select asp-items="ViewBag.PersonajesPara" name="Para" multiple class="form-control"></select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-md-2 control-label">CopiaOculta: </label>
             <div class="col-md-10">
-                <select asp-items="ViewBag.Personajes" name="CopiaOculta" multiple class="form-control"></select>
+                <select asp-items="ViewBag.PersonajesCopiaOculta" name="CopiaOculta" multiple class="form-control"></select>
             </div>
         </div>
         <div class="form-group">

@@ -12,8 +12,9 @@ namespace Cronica.Servicios.Interfaces
     {
         Task<List<MensajeBandejaEntrada>> GetMensajesRecibidos(int personajeId);
         Task<List<MensajeBandejaSalida>> GetMensajesEnviados(int personajeId);
-        Task<VistaMensaje> GetMensaje(int mensajeId, int personajeId, ApplicationUser usuario);
-        Task<VistaMensaje> GetMensaje(int mensajeId, ApplicationUser usuario);
+        Task<VistaMensaje> GetVistaMensaje(int mensajeId, int personajeId, ApplicationUser usuario);
+        Task<VistaMensaje> GetVistaMensaje(int mensajeId, ApplicationUser usuario);
+        Task<Mensaje> GetMensaje(int mensajeId);
         Task<bool> EnviarMensaje(Mensaje mensaje, List<string> para, List<string> copiaOculta);
         void EnviarEmails(List<string> Para, List<string> CopiaOculta);
     }

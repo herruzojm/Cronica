@@ -1,9 +1,6 @@
 @model VistaMensaje
-@{
-    ViewData["Title"] = "Ver Mensaje";
-}
 
-<h2>@ViewData["Title"]</h2>
+<h2>@ViewBag.Titulo</h2>
 
 @{
     ApplicationUser usuario = ViewBag.Usuario;
@@ -61,6 +58,9 @@
         </dl>
     </div>
 }
+<a class="btn btn-default btn-info" asp-action="ResponderMensaje" asp-route-id="@Model.MensajeId">Responder</a> 
+
+
 @section Scripts {
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
     <script>

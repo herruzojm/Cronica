@@ -25,6 +25,31 @@ namespace Cronica.Modelos.ViewModels.Mensajeria
 
         public virtual Personaje Remitente { get; set; }
         public virtual List<DestinatarioMensaje> Destinatarios { get; set; }
+
+        [NotMapped]
+        public string NombreAutentico
+        {
+            get
+            {
+                if (NombreParaMostrar != null && NombreParaMostrar != string.Empty)
+                {
+                    return NombreParaMostrar;
+                }
+                else if (EsAnonimo)
+                {
+                    return "Anonimo";
+                }
+                else if (Remitente != null)
+                {
+                    return Remitente.Nombre;
+                }
+                else
+                {
+                    return "Desconocido";
+                }
+            }
+        }
+
     }
 
 

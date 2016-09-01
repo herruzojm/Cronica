@@ -172,7 +172,7 @@ namespace Cronica.Controllers
         public async Task<IActionResult> VerMensaje(int id)
         {
             ApplicationUser usuario = await _servicioUsuarios.GetUser(User);
-            VistaMensaje mensaje = await _servicioMensajeria.GetMensaje(id, usuario);
+            VistaMensaje mensaje = await _servicioMensajeria.GetVistaMensaje(id, usuario);
             if (mensaje != null)
             {
                 return View(mensaje);

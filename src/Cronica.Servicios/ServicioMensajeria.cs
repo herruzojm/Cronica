@@ -66,12 +66,17 @@ namespace Cronica.Servicios
             return listaMensajes;
         }
 
-        public async Task<VistaMensaje> GetMensaje(int mensajeId, ApplicationUser usuario)
+        public async Task<Mensaje> GetMensaje(int mensajeId)
         {
-            return await GetMensaje(mensajeId, 0, usuario);
+            return await _contexto.Mensajes.Include(m => m.Destinatarios).Include(m => m.Remitente).SingleAsync(m => m.MensajeId == mensajeId);
         }
 
-        public async Task<VistaMensaje> GetMensaje(int mensajeId, int personajeId, ApplicationUser usuario)
+        public async Task<VistaMensaje> GetVistaMensaje(int mensajeId, ApplicationUser usuario)
+        {
+            return await GetVistaMensaje(mensajeId, 0, usuario);
+        }
+
+        public async Task<VistaMensaje> GetVistaMensaje(int mensajeId, int personajeId, ApplicationUser usuario)
         {
             VistaMensaje vistaMensaje = null;
 
@@ -241,5 +246,7 @@ namespace Cronica.Servicios
                 _servicioEmail.EnviarNuevoMensaje(jugadorEmail);
             }
         }
+
+        
     }
 }

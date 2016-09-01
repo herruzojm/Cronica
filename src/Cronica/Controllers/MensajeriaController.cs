@@ -57,11 +57,12 @@ namespace Cronica.Controllers
         }
 
         public async Task<IActionResult> NuevoMensaje()
-        {
-            //ViewBag.ElegirPersonaje = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+        {            
             SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
             personajes.Append(new SelectListItem() { Value = "", Text = "" });
-            ViewBag.Personajes = personajes;
+            ViewBag.PersonajesPara = personajes;
+            ViewBag.PersonajesCopiaOculta = personajes;
+            ViewBag.Titulo = "Nuevo Mensaje";
             return View();
         }
 
@@ -69,7 +70,6 @@ namespace Cronica.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> NuevoMensaje(Mensaje mensaje, List<string> Para, List<string> CopiaOculta)
         {
-            //ViewBag.ElegirPersonaje = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");            
             if (ModelState.IsValid)
             {
                 if (Para.Count() > 0 || CopiaOculta.Count() > 0)
@@ -91,16 +91,17 @@ namespace Cronica.Controllers
                 ViewBag.MensajeError = $"Uppss... parece que los datos no son válidos";
             }
             SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
-            ViewBag.Personajes = personajes;
+            ViewBag.PersonajesPara = personajes;
+            ViewBag.PersonajesCopiaOculta = personajes;
+            ViewBag.Titulo = "Nuevo Mensaje";
             return View(mensaje);
         }
-
 
         public async Task<IActionResult> VerMensaje(int id, int personajeId)
         {
             ApplicationUser usuario = await _servicioUsuarios.GetUser(User);
-            ViewBag.Usuario = usuario;
-            VistaMensaje mensaje = await _servicioMensajeria.GetMensaje(id, personajeId, usuario);
+            ViewBag.Usuario = usuario;            
+            VistaMensaje mensaje = await _servicioMensajeria.GetVistaMensaje(id, personajeId, usuario);
             if (mensaje != null)
             {
                 return View(mensaje);
@@ -108,7 +109,46 @@ namespace Cronica.Controllers
             else
             {
                return RedirectToAction("AccessDenied", "Account");
-            }            
+            }
+        }
+
+        public async Task<IActionResult> ResponderMensaje(int id)
+        {
+            ApplicationUser usuario = await _servicioUsuarios.GetUser(User);
+            ViewBag.Titulo = "Responder Mensaje";
+            Mensaje mensaje = await _servicioMensajeria.GetMensaje(id);
+            if (mensaje != null)
+            {
+                mensaje.MensajeId = 0;
+                if (!mensaje.Asunto.Contains(" Re.: "))
+                {
+                    mensaje.Asunto = " Re.: " + mensaje.Asunto;
+                }
+                mensaje.Cuerpo = "<p></p><p></p>[Enviador por " + mensaje.NombreAutentico + "]<p></p><blockquote>" +  mensaje.Cuerpo + "</blockquote>";
+                SelectList personajesPara = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+                foreach (SelectListItem personajePara in personajesPara)
+                {
+                    if (mensaje.Destinatarios.Any(d => d.TipoDestinatario == TipoDestinatario.Para && d.DestinatarioId == Convert.ToInt32(personajePara.Value)))
+                    {
+                        personajePara.Selected = true;
+                    }                    
+                }
+                SelectList personajesCopiaOculta = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+                foreach (SelectListItem personajeCopiaOculta in personajesCopiaOculta)
+                {
+                    if (mensaje.Destinatarios.Any(d => d.TipoDestinatario == TipoDestinatario.CopiaOculta && d.DestinatarioId == Convert.ToInt32(personajeCopiaOculta.Value)))
+                    {
+                        personajeCopiaOculta.Selected = true;
+                    }
+                }
+                ViewBag.PersonajesPara = personajesPara;
+                ViewBag.PersonajesCopiaOculta = personajesCopiaOculta;
+                return View("NuevoMensaje", mensaje);
+            }
+            else
+            {
+                return RedirectToAction("AccessDenied", "Account");
+            }
         }
     }
 }
