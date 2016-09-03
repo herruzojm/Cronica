@@ -97,20 +97,20 @@ namespace Cronica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Asignaciones(Asignacion asignacion)
+        public async Task<IActionResult> Asignaciones(Asignacion nuevaAsignacion)
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
-                _servicioAsignaciones.Actualizar(asignacion);
+                _servicioAsignaciones.Actualizar(nuevaAsignacion);
                 await _servicioAsignaciones.ConfirmarCambios();
                 ViewBag.MensajeExito = $"Asignaciones guardadas";
-                asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
-                return View(asignacion);
+                nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+                return View(nuevaAsignacion);
             }
             ViewBag.MensajeError = $"Uppss... parece que tenemos algún problemilla";
-            asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
-            return View(asignacion);
+            nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+            return View(nuevaAsignacion);
         }
 
         public async Task<IActionResult> FormularioPostPartida()
