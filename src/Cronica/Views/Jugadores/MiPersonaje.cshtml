@@ -75,6 +75,12 @@
                         <dd>
                             @Html.DisplayFor(model => model.Experiencia)
                         </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Virtud)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Virtud)
+                        </dd>
                     </dl>
                 </div>
                 <div class="clearfix">
@@ -177,11 +183,6 @@
                 <div class="capaTresColumnas">
                     <span readonly class="ss-dot-rating" id="ValorSenda" data-dot-title="@Html.DisplayFor(model => model.Senda)"
                           data-dot-max="10" data-dot-min="0" data-dot-value="@Model.ValorSenda" data-dot-color-empty="white" data-dot-color-marked="red"></span>
-                    <dl>
-                        <dt>
-                            (@Html.DisplayFor(model => model.Virtud))
-                        </dt>
-                    </dl>
                 </div>
                 <div class="capaTresColumnas">
                     <span readonly class="ss-dot-rating" id="Voluntad" data-dot-title="@Html.DisplayNameFor(model => model.Voluntad)"

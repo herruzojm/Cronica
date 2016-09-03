@@ -102,11 +102,28 @@ namespace Cronica.Controllers
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
             if (ModelState.IsValid)
             {
-                _servicioAsignaciones.Actualizar(nuevaAsignacion);
-                await _servicioAsignaciones.ConfirmarCambios();
-                ViewBag.MensajeExito = $"Asignaciones guardadas";
-                nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
-                return View(nuevaAsignacion);
+                Asignacion asignacionOriginal = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+                if (nuevaAsignacion.AsignacionId == asignacionOriginal.AsignacionId &&
+                    nuevaAsignacion.InterludioId == asignacionOriginal.InterludioId &&
+                    nuevaAsignacion.PersonajeId == asignacionOriginal.PersonajeId)
+                {
+                    foreach (PersonajeAsignacion pa in nuevaAsignacion.Asignaciones)
+                    {
+                        asignacionOriginal.Asignaciones.Single(a => a.PersonajeAsignacionId == pa.PersonajeAsignacionId &&
+                            a.PersonajeId == pa.PersonajeId && a.TramaId == pa.TramaId).PuntosParticipacion = pa.PuntosParticipacion;
+                    }
+                    _servicioAsignaciones.Actualizar(asignacionOriginal);
+                    await _servicioAsignaciones.ConfirmarCambios();
+                    ViewBag.MensajeExito = $"Asignaciones guardadas";
+                    nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+                    return View(nuevaAsignacion);
+                }
+                else
+                {
+                    ViewBag.MensajeError = $"Quieto parao', esos identificadores no me cuadran. No estarás intentando chanchullear esto, ¿verdad?";
+                    nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+                    return View(nuevaAsignacion);
+                }
             }
             ViewBag.MensajeError = $"Uppss... parece que tenemos algún problemilla";
             nuevaAsignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
@@ -129,31 +146,83 @@ namespace Cronica.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> FormularioPostPartida(FormularioPostPartida formularioPostPartida )
+        public async Task<IActionResult> FormularioPostPartida(FormularioPostPartida nuevoFormularioPostPartida )
         {
             if (ModelState.IsValid)
             {
-                _servicioJugadores.Actualizar(formularioPostPartida);
-                await _servicioJugadores.ConfirmarCambios();
-                ViewBag.MensajeExito = $"Formulario guardado";                
-                return View(formularioPostPartida);
+                ApplicationUser usuario = await _userManager.GetUserAsync(User);
+                FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
+                if (nuevoFormularioPostPartida.EntrePartidaId == formularioPostPartida.EntrePartidaId &&
+                    nuevoFormularioPostPartida.PersonajeId == formularioPostPartida.PersonajeId &&
+                    nuevoFormularioPostPartida.JugadorId == formularioPostPartida.JugadorId &&
+                    nuevoFormularioPostPartida.FormularioPostPartidaId == formularioPostPartida.FormularioPostPartidaId &&
+                    nuevoFormularioPostPartida.NarradorEncargadoId == formularioPostPartida.NarradorEncargadoId)
+                {
+                    formularioPostPartida.Acuerdos = nuevoFormularioPostPartida.Acuerdos;
+                    formularioPostPartida.ComentariosNarrador = nuevoFormularioPostPartida.ComentariosNarrador;
+                    formularioPostPartida.CosasBien = nuevoFormularioPostPartida.CosasBien;
+                    formularioPostPartida.CosasMal = nuevoFormularioPostPartida.CosasMal;
+                    formularioPostPartida.Enviado = nuevoFormularioPostPartida.Enviado;
+                    formularioPostPartida.FechaEnvio = nuevoFormularioPostPartida.FechaEnvio;
+                    formularioPostPartida.InformacionClave = nuevoFormularioPostPartida.InformacionClave;
+                    formularioPostPartida.PeticionTramas = nuevoFormularioPostPartida.PeticionTramas;
+                    formularioPostPartida.Resumen = nuevoFormularioPostPartida.Resumen;
+                    formularioPostPartida.Tramitado = nuevoFormularioPostPartida.Tramitado;
+                    formularioPostPartida.ValoracionPartida = nuevoFormularioPostPartida.ValoracionPartida;
+
+                    _servicioJugadores.Actualizar(formularioPostPartida);
+                    await _servicioJugadores.ConfirmarCambios();
+                    ViewBag.MensajeExito = $"Formulario guardado";
+                    return View(formularioPostPartida);
+                }
+                else
+                {
+                    ViewBag.MensajeError = $"Quieto parao', esos identificadores no me cuadran. No estarás intentando chanchullear esto, ¿verdad?";
+                    return View(nuevoFormularioPostPartida);
+                }
             }
             ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
-            return View(formularioPostPartida);
+            return View(nuevoFormularioPostPartida);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EnviarFormularioPostPartida(FormularioPostPartida formularioPostPartida)
+        public async Task<IActionResult> EnviarFormularioPostPartida(FormularioPostPartida nuevoFormularioPostPartida)
         {            
             if (ModelState.IsValid)
             {
-                await _servicioJugadores.EnviarFormularioPostPartida(formularioPostPartida);                
-                ViewBag.MensajeExito = $"Formulario enviado";
-                return View("FormularioPostPartida", formularioPostPartida);
+                ApplicationUser usuario = await _userManager.GetUserAsync(User);
+                FormularioPostPartida formularioPostPartida = await _servicioJugadores.GetFormularioPostPartida(usuario.Id);
+                if (nuevoFormularioPostPartida.EntrePartidaId == formularioPostPartida.EntrePartidaId &&
+                    nuevoFormularioPostPartida.PersonajeId == formularioPostPartida.PersonajeId &&
+                    nuevoFormularioPostPartida.JugadorId == formularioPostPartida.JugadorId &&
+                    nuevoFormularioPostPartida.FormularioPostPartidaId == formularioPostPartida.FormularioPostPartidaId &&
+                    nuevoFormularioPostPartida.NarradorEncargadoId == formularioPostPartida.NarradorEncargadoId)
+                {
+                    formularioPostPartida.Acuerdos = nuevoFormularioPostPartida.Acuerdos;
+                    formularioPostPartida.ComentariosNarrador = nuevoFormularioPostPartida.ComentariosNarrador;
+                    formularioPostPartida.CosasBien = nuevoFormularioPostPartida.CosasBien;
+                    formularioPostPartida.CosasMal = nuevoFormularioPostPartida.CosasMal;
+                    formularioPostPartida.Enviado = nuevoFormularioPostPartida.Enviado;
+                    formularioPostPartida.FechaEnvio = nuevoFormularioPostPartida.FechaEnvio;
+                    formularioPostPartida.InformacionClave = nuevoFormularioPostPartida.InformacionClave;
+                    formularioPostPartida.PeticionTramas = nuevoFormularioPostPartida.PeticionTramas;
+                    formularioPostPartida.Resumen = nuevoFormularioPostPartida.Resumen;
+                    formularioPostPartida.Tramitado = nuevoFormularioPostPartida.Tramitado;
+                    formularioPostPartida.ValoracionPartida = nuevoFormularioPostPartida.ValoracionPartida;
+
+                    await _servicioJugadores.EnviarFormularioPostPartida(formularioPostPartida);
+                    ViewBag.MensajeExito = $"Formulario enviado";
+                    return View("FormularioPostPartida", formularioPostPartida);
+                }
+                else
+                {
+                    ViewBag.MensajeError = $"Quieto parao', esos identificadores no me cuadran. No estarás intentando chanchullear esto, ¿verdad?";
+                    return View(nuevoFormularioPostPartida);
+                }                
             }
             ViewBag.MensajeError = $"Upps, parece que tenemos algún problemilla";
-            return View("FormularioPostPartida", formularioPostPartida);
+            return View("FormularioPostPartida", nuevoFormularioPostPartida);
         }
 
         //GET: DetalleTrama/2

@@ -89,18 +89,18 @@ namespace Cronica
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();            
-            services.AddScoped<IServicioUsuarios, ServicioUsuarios>();
-            services.AddScoped<IServicioPersonajes, ServicioPersonajes>();
-            services.AddScoped<IServicioJugadores, ServicioJugadores>();
-            services.AddScoped<IServicioAtributos, ServicioAtributos>();
-            services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
-            services.AddScoped<IServicioTramas, ServicioTramas>();
-            services.AddScoped<IServicioEntrePartidas, ServicioEntrePartidas>();
-            services.AddScoped<IServicioInterludios, ServicioInterludios>();
-            services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
-            services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
-            services.AddScoped<IServicioMensajeria, ServicioMensajeria>();
-            services.AddScoped<IServicioEmail, ServicioEmail>();
+            services.AddSingleton<IServicioUsuarios, ServicioUsuarios>();
+            services.AddSingleton<IServicioPersonajes, ServicioPersonajes>();
+            services.AddSingleton<IServicioJugadores, ServicioJugadores>();
+            services.AddSingleton<IServicioAtributos, ServicioAtributos>();
+            services.AddSingleton<IServicioPlantillasTrama, ServicioPlantillasTrama>();
+            services.AddSingleton<IServicioTramas, ServicioTramas>();
+            services.AddSingleton<IServicioEntrePartidas, ServicioEntrePartidas>();
+            services.AddSingleton<IServicioInterludios, ServicioInterludios>();
+            services.AddSingleton<IServicioSeguidores, ServicioSeguidores>();
+            services.AddSingleton<IServicioAsignaciones, ServicioAsignaciones>();
+            services.AddSingleton<IServicioMensajeria, ServicioMensajeria>();
+            services.AddSingleton<IServicioEmail, ServicioEmail>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }
