@@ -4,6 +4,7 @@ using Cronica.Modelos.ViewModels.GestionPersonajes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Cronica.Modelos.ViewModels.Mensajeria;
+using Cronica.Modelos.ViewModels.Manage;
 
 namespace Cronica.Modelos.Models
 {
@@ -28,6 +29,7 @@ namespace Cronica.Modelos.Models
         public DbSet<FormularioPostPartida> FormulariosPostPartida { get; set; }
         public DbSet<Mensaje> Mensajes { get; set; }
         public DbSet<DestinatarioMensaje> DestinatariosMensaje { get; set; }
+        public DbSet<Configuracion> Configuracion { get; set; }
 
 
 

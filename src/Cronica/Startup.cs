@@ -31,8 +31,8 @@ namespace Cronica
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json")
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddJsonFile("appsettings.json", optional:true, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables();
 
             if (env.IsDevelopment())
@@ -88,19 +88,20 @@ namespace Cronica
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();            
-            services.AddSingleton<IServicioUsuarios, ServicioUsuarios>();
-            services.AddSingleton<IServicioPersonajes, ServicioPersonajes>();
-            services.AddSingleton<IServicioJugadores, ServicioJugadores>();
-            services.AddSingleton<IServicioAtributos, ServicioAtributos>();
-            services.AddSingleton<IServicioPlantillasTrama, ServicioPlantillasTrama>();
-            services.AddSingleton<IServicioTramas, ServicioTramas>();
-            services.AddSingleton<IServicioEntrePartidas, ServicioEntrePartidas>();
-            services.AddSingleton<IServicioInterludios, ServicioInterludios>();
-            services.AddSingleton<IServicioSeguidores, ServicioSeguidores>();
-            services.AddSingleton<IServicioAsignaciones, ServicioAsignaciones>();
-            services.AddSingleton<IServicioMensajeria, ServicioMensajeria>();
-            services.AddSingleton<IServicioEmail, ServicioEmail>();
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddScoped<IServicioUsuarios, ServicioUsuarios>();
+            services.AddScoped<IServicioPersonajes, ServicioPersonajes>();
+            services.AddScoped<IServicioJugadores, ServicioJugadores>();
+            services.AddScoped<IServicioAtributos, ServicioAtributos>();
+            services.AddScoped<IServicioPlantillasTrama, ServicioPlantillasTrama>();
+            services.AddScoped<IServicioTramas, ServicioTramas>();
+            services.AddScoped<IServicioEntrePartidas, ServicioEntrePartidas>();
+            services.AddScoped<IServicioInterludios, ServicioInterludios>();
+            services.AddScoped<IServicioSeguidores, ServicioSeguidores>();
+            services.AddScoped<IServicioAsignaciones, ServicioAsignaciones>();
+            services.AddScoped<IServicioMensajeria, ServicioMensajeria>();
+            services.AddScoped<IServicioEmail, ServicioEmail>();
+            services.AddScoped<IServicioConfiguracion, ServicioConfiguracion>();
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
             services.AddSingleton<IAuthorizationHandler, TipoCuentaHandler>();
         }
@@ -153,9 +154,11 @@ namespace Cronica
             
             var ci = new CultureInfo("es-ES");
             ci.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
-
-            Microsoft.AspNetCore.Builder.RequestLocalizationOptions localizationOptions = new Microsoft.AspNetCore.Builder.RequestLocalizationOptions();
+            
+            RequestLocalizationOptions localizationOptions = new RequestLocalizationOptions();
             localizationOptions.DefaultRequestCulture = new RequestCulture(ci);
+            localizationOptions.SupportedCultures.Add(ci);
+            localizationOptions.SupportedUICultures.Add(ci);
             app.UseRequestLocalization(localizationOptions);
             
             ConfigurarRutas(app);

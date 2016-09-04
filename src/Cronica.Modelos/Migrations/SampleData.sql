@@ -1845,4 +1845,9 @@ SET IDENTITY_INSERT [dbo].[PersonajeAsignacion] OFF
 GO
 
 
+insert into Configuracion
+(DireccionBase, Email, PorcentajeAliados, PorcentajeContactos, PorcentajeInfluencia, PorcentajeMentor)
+values
+('http://veruminsanguine.azurewebsites.net', 'VerumInSanguine@gmail.com', 120, 90, 100, 100)
+
 
