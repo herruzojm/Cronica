@@ -94,7 +94,10 @@ namespace Cronica.Controllers
             if (_servicioJugadores.TienePersonaje(usuario.Id))
             {
                 Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
-                return View(asignacion);
+                if (asignacion != null)
+                {
+                    return View(asignacion);
+                }                
             }
             return RedirectToAction("SinPersonaje");
         }

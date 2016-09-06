@@ -19,46 +19,49 @@ namespace Cronica.Servicios
 
         public async Task<Asignacion> GetAsignacion(string jugadorId, bool reInvocado = false)
         {
-            Asignacion asignacion = await _contexto.Asignaciones
+            if (_contexto.Interludios.Count() > 0)
+            {
+                Asignacion asignacion = await _contexto.Asignaciones
                 .Include(a => a.Personaje).ThenInclude(p => p.Seguidores).ThenInclude(s => s.TrasfondoRelacionado)
                 .Include(a => a.Personaje).ThenInclude(p => p.TramasParticipadas).ThenInclude(tp => tp.Trama)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Personaje)
                 .Include(a => a.Asignaciones).ThenInclude(ap => ap.Trama)
                 .Where(a => a.Personaje.JugadorId == jugadorId && a.Interludio.Actual == true).FirstOrDefaultAsync();
 
-            // si no hay asignacion, creamos una nueva y la recuperamos
-            // asegurandonos de no volver a invocar el proceso para no caer en un bucle infinito
-            if (!reInvocado && (asignacion == null || asignacion.Asignaciones.Count() == 0))
-            {
-                await CreateNuevaAsignacion(jugadorId);
-                asignacion = await GetAsignacion(jugadorId, true);
-            }
-
-            // comprobamos que el numero de asignaciones se corresponden con seguidores y tramas
-            if (asignacion != null && !reInvocado)
-            {
-                bool recargar = false;
-                if ((asignacion.Personaje.Seguidores.Count() + 1) * asignacion.Personaje.TramasParticipadas.Count() > asignacion.Asignaciones.Count())
+                // si no hay asignacion, creamos una nueva y la recuperamos
+                // asegurandonos de no volver a invocar el proceso para no caer en un bucle infinito
+                if (!reInvocado && (asignacion == null || asignacion.Asignaciones.Count() == 0))
                 {
-                    //tenemos menos asignaciones de las que deberiamos, hay que crear las que faltan
-                    await CreateAsignacionesRestantes(asignacion);
-                    recargar = true;
-                }
-                if ((asignacion.Personaje.Seguidores.Count() + 1) * asignacion.Personaje.TramasParticipadas.Count() < asignacion.Asignaciones.Count())
-                {
-                    //tenemos mas asignaciones de las que deberiamos, hay que borrar las que sobran
-                    await DeleteAsignacionesSobrantes(asignacion);
-                    recargar = true;
-                }
-                //si hemos borrado o añadido asignaciones, volvemos a recargar el objeto antes de devolverlo a la UI
-                if (recargar)
-                {
+                    await CreateNuevaAsignacion(jugadorId);
                     asignacion = await GetAsignacion(jugadorId, true);
                 }
+
+                // comprobamos que el numero de asignaciones se corresponden con seguidores y tramas
+                if (asignacion != null && !reInvocado)
+                {
+                    bool recargar = false;
+                    if ((asignacion.Personaje.Seguidores.Count() + 1) * asignacion.Personaje.TramasParticipadas.Count() > asignacion.Asignaciones.Count())
+                    {
+                        //tenemos menos asignaciones de las que deberiamos, hay que crear las que faltan
+                        await CreateAsignacionesRestantes(asignacion);
+                        recargar = true;
+                    }
+                    if ((asignacion.Personaje.Seguidores.Count() + 1) * asignacion.Personaje.TramasParticipadas.Count() < asignacion.Asignaciones.Count())
+                    {
+                        //tenemos mas asignaciones de las que deberiamos, hay que borrar las que sobran
+                        await DeleteAsignacionesSobrantes(asignacion);
+                        recargar = true;
+                    }
+                    //si hemos borrado o añadido asignaciones, volvemos a recargar el objeto antes de devolverlo a la UI
+                    if (recargar)
+                    {
+                        asignacion = await GetAsignacion(jugadorId, true);
+                    }
+                }
+
+                return asignacion;
             }
-
-
-            return asignacion;
+            return null;
         }
 
         private async Task CreateNuevaAsignacion(string jugadorId)
