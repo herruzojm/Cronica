@@ -4,11 +4,15 @@
     if (Model.Cuenta == TipoCuenta.Jugador)
     {
         @inject IServicioJugadores _servicioJugadores
-        <div class="list-group panel">
-            Usuario: <strong>@_servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
-            <p></p>
-            @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = _servicioJugadores.GetFotoPersonaje(Model.Id) })
-        </div>
+        @if (_servicioJugadores.TienePersonaje(Model.Id))
+        {
+            <div class="list-group panel">
+                Usuario: <strong>@_servicioJugadores.GetNombrePersonaje(Model.Id)</strong>
+                <p></p>
+                @await Component.InvokeAsync(nameof(MostrarFoto), new { foto = _servicioJugadores.GetFotoPersonaje(Model.Id) })
+            </div>
+
+        }
         <div class="list-group panel" id="Menus">
             <div class="panel panel-default">
                 <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
@@ -173,7 +177,7 @@
                     <a class="list-group-item" asp-controller="Mensajeria" asp-action="Enviados">Bandeja Salida</a>
                     <a class="list-group-item" asp-controller="Mensajeria" asp-action="NuevoMensaje">Nuevo Mensaje</a>
                 </div>
-            </div>            
+            </div>
             <div class="panel panel-default">
                 <a class="list-group-item list-group-item-info" data-toggle="collapse" data-parent="#Menus"
                    href="#MenuUsuarios" aria-expanded="true" aria-controls="MenuUsuarios">

@@ -35,7 +35,14 @@ namespace Cronica.Servicios
 
         public async Task<int> GetEntrePartidaActualId()
         {
-            return await _contexto.EntrePartidas.Where(p => p.Activa == true).Select(p => p.EntrePartidaId).FirstAsync();
+            if (_contexto.EntrePartidas.Where(p => p.Activa == true).Count() > 0)
+            {
+                return await _contexto.EntrePartidas.Where(p => p.Activa == true).Select(p => p.EntrePartidaId).FirstAsync();
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         public void IncluirEntrePartida(EntrePartida entrePartida)

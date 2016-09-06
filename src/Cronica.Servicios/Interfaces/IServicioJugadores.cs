@@ -10,6 +10,7 @@ namespace Cronica.Servicios.Interfaces
 {
     public interface IServicioJugadores : IServicioBase
     {
+        bool TienePersonaje(string jugadorId);
         string GetNombrePersonaje(string jugadorId);
         string GetFotoPersonaje(string jugadorId);
         int GetPersonajeId(string jugadorId);

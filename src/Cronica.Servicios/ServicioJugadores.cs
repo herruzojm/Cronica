@@ -17,6 +17,11 @@ namespace Cronica.Servicios
         {
         }
         
+        public bool TienePersonaje(string jugadorId)
+        {
+            return (_contexto.Personajes.Where(p => p.JugadorId == jugadorId && p.Activo == true).Count() > 0);
+        }
+
         public async Task<Personaje> GetMiPersonaje(string jugadorId)
         {
             Personaje personaje = await _contexto.Personajes
@@ -83,13 +88,21 @@ namespace Cronica.Servicios
         public int GetPersonajeId(string jugadorId)
         {
             return _contexto.Personajes.Single(p => p.JugadorId == jugadorId && p.Activo == true).PersonajeId;
+
         }
 
         public async Task<FormularioPostPartida> GetFormularioPostPartida(string jugadorId)
         {
-            FormularioPostPartida formulario = await _contexto.FormulariosPostPartida.
-                SingleOrDefaultAsync(f => f.JugadorId == jugadorId && f.Personaje.Activo == true && f.PostPartida.Activa == true);            
-            return formulario;
+            if (_contexto.FormulariosPostPartida.Where(f => f.JugadorId == jugadorId && f.Personaje.Activo == true && f.PostPartida.Activa == true).Count() > 0)
+            {
+                FormularioPostPartida formulario = await _contexto.FormulariosPostPartida.
+                SingleAsync(f => f.JugadorId == jugadorId && f.Personaje.Activo == true && f.PostPartida.Activa == true);
+                return formulario;
+            }            
+            else
+            {
+                return null;
+            }
         }
 
         public async Task<FormularioPostPartida> NuevoFormularioPostPartida(string jugadorId, int postPartidaId)

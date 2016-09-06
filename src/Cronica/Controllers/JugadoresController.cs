@@ -55,12 +55,12 @@ namespace Cronica.Controllers
         public async Task<IActionResult> MiPersonaje()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            Personaje personaje = await _servicioJugadores.GetMiPersonaje(usuario.Id);
-            if (personaje == null)
+            if (_servicioJugadores.TienePersonaje(usuario.Id))
             {
-                return RedirectToAction("SinPersonaje");
+                Personaje personaje = await _servicioJugadores.GetMiPersonaje(usuario.Id);
+                return View(personaje);
             }
-            return View(personaje);            
+            return RedirectToAction("SinPersonaje");            
         }
 
         // GET: MisTramas
@@ -91,8 +91,12 @@ namespace Cronica.Controllers
         public async Task<IActionResult> Asignaciones()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
-            return View(asignacion);
+            if (_servicioJugadores.TienePersonaje(usuario.Id))
+            {
+                Asignacion asignacion = await _servicioAsignaciones.GetAsignacion(usuario.Id);
+                return View(asignacion);
+            }
+            return RedirectToAction("SinPersonaje");
         }
 
         [HttpPost]
@@ -137,6 +141,10 @@ namespace Cronica.Controllers
             if (formularioPostPartida == null)
             {
                 int postPartidaActualId = await _servicioEntrePartidas.GetEntrePartidaActualId();
+                if (postPartidaActualId == 0)
+                {
+                    return RedirectToAction("SinPersonaje");
+                }
                 formularioPostPartida = await _servicioJugadores.NuevoFormularioPostPartida(usuario.Id, postPartidaActualId);
                 _servicioJugadores.IncluirFormularioPostPartida(formularioPostPartida);
                 await _servicioJugadores.ConfirmarCambios();
@@ -255,26 +263,38 @@ namespace Cronica.Controllers
         public async Task<IActionResult> MisRecibidos()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
-            return View(await _servicioMensajeria.GetMensajesRecibidos(personajeId));
+            if (_servicioJugadores.TienePersonaje(usuario.Id))
+            {
+                int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+                return View(await _servicioMensajeria.GetMensajesRecibidos(personajeId));
+            }
+            return RedirectToAction("SinPersonaje");
         }
 
         public async Task<IActionResult> MisEnviados()
         {
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
-            return View(await _servicioMensajeria.GetMensajesEnviados(personajeId));
+            if (_servicioJugadores.TienePersonaje(usuario.Id))
+            {
+                int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+                return View(await _servicioMensajeria.GetMensajesEnviados(personajeId));
+            }
+            return RedirectToAction("SinPersonaje");
         }
 
         public async Task<IActionResult> NuevoMensaje()
         {
-            SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
-            personajes.Append(new SelectListItem() { Value = "", Text = "" });
-            ViewBag.Personajes = personajes;
             ApplicationUser usuario = await _userManager.GetUserAsync(User);
-            int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
-            ViewBag.PuedeHacerEnvioAnonimo = _servicioPersonajes.PuedeHacerEnvioAnonimo(personajeId);
-            return View();
+            if (_servicioJugadores.TienePersonaje(usuario.Id))
+            {
+                SelectList personajes = new SelectList(await _servicioPersonajes.GetEnumeradoPersonajes(), "Id", "Descripcion");
+                personajes.Append(new SelectListItem() { Value = "", Text = "" });
+                ViewBag.Personajes = personajes;
+                int personajeId = _servicioJugadores.GetPersonajeId(usuario.Id);
+                ViewBag.PuedeHacerEnvioAnonimo = _servicioPersonajes.PuedeHacerEnvioAnonimo(personajeId);
+                return View();
+            }                
+            return RedirectToAction("SinPersonaje");
         }
 
         [HttpPost]
